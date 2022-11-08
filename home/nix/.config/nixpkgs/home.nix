@@ -35,6 +35,7 @@ home.packages = with pkgs; [
   pulseaudio
   pulseaudio-ctl
   picom
+  pipes
   qogir-icon-theme
   qogir-theme
   rclone

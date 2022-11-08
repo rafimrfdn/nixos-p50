@@ -112,9 +112,9 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock("  %d/%m/%y %I:%M %p ")
 
-myuptime = awful.widget.watch('bash -c "sh /home/nix/.config/awesome/uptime.sh "' )
+myuptime = awful.widget.watch('bash -c "sh /home/nix/.config/awesome/script/uptime.sh "' )
 
-mymemoryfree = awful.widget.watch('bash -c "sh /home/nix/.config/awesome/memoryfree.sh "' )
+mymemoryfree = awful.widget.watch('bash -c "sh /home/nix/.config/awesome/script/memoryfree.sh "' )
 
 mybatteryperc = awful.widget.watch('bash -c "cat /sys/class/power_supply/BAT0/capacity"')
 
@@ -213,7 +213,7 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
-      mylauncher,
+      --      mylauncher,
       s.mytaglist,
       s.mypromptbox,
     },
@@ -222,7 +222,6 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
       --mykeyboardlayout,
       wibox.widget.systray(),
-      battery_widget(),
       brightness_widget{
         type = 'icon_and_text',
         program = 'light',
@@ -232,6 +231,7 @@ awful.screen.connect_for_each_screen(function(s)
       mymemoryfree,
       --      mybatteryperc,
       mytextclock,
+      battery_widget(),
       s.mylayoutbox,
     },
   }
@@ -638,7 +638,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- My custom config
-beautiful.useless_gap=2
+--beautiful.useless_gap=2
 
 -- Autostart
 awful.spawn.with_shell("~/.config/autostart/dwm-autostart.sh")
