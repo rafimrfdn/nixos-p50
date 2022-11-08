@@ -43,4 +43,5 @@ alias jt="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Proje
 alias jf="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/jfhugo"
 alias pm="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/pmhugo"
 
-alias p50="/home/nix/.nix-profile/bin/git --git-dir=$HOME/nixos-p50/ --work-tree=/"
+# my dotfiles alias
+alias p50="/home/nix/.nix-profile/bin/git --git-dir=$HOME/.nixos-p50/ --work-tree=/"

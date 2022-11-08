@@ -24,6 +24,7 @@ home.packages = with pkgs; [
   inkscape
   keepassxc
   killall
+  libreoffice
   luajit
   lxappearance
   mpv
@@ -31,6 +32,7 @@ home.packages = with pkgs; [
   neovim
   nodejs
   ntfs3g
+  onlyoffice-bin
   papirus-icon-theme
   pulseaudio
   pulseaudio-ctl
