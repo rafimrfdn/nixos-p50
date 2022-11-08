@@ -1,0 +1,27 @@
+window:
+  decorations: full
+  opacity: 0.90
+font:
+  normal:
+    family: Iosevka Term
+    #family: CaskaydiaCove Nerd Font
+    style: Medium
+  bold:
+    family: Iosevka Term
+    #family: CaskaydiaCove Nerd Font
+    style: Bold
+  italic:
+    family: Iosevka Term
+    #family: CaskaydiaCove Nerd Font
+    style: Italic
+  bold_italic:
+    family: Iosevka 
+    #family: CaskaydiaCove Nerd Font
+    style: Bold Italic
+  size: 9.0
+  offset:
+    x: 0
+    y: -4
+  glyph_offset:
+    x: 0
+    y: -2
