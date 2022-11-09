@@ -270,6 +270,13 @@ globalkeys = gears.table.join(
   awful.key({}, "XF86AudioRaiseVolume", function() os.execute("pactl set-sink-volume 0 +5%") end),
   awful.key({}, "XF86AudioMute", function() os.execute("pactl set-sink-mute 0 toggle") end),
 
+
+  -- increase / decrease gap
+  awful.key({ modkey }, "=", function () awful.tag.incgap(1)    end,
+    {description = "increase gap", group = "layout"}),
+  awful.key({ modkey }, "-", function () awful.tag.incgap(-1)    end,
+    {description = "decrease gap", group = "layout"}),
+
   --awful.key({}, "XF86MonBrightnessUp", function() os.execute("light -A 5") end),
   --awful.key({}, "XF86MonBrightnessDown", function() os.execute("light -U 5") end),
 
