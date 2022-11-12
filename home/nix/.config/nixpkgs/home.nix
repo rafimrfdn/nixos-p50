@@ -42,7 +42,6 @@ home.packages = with pkgs; [
   qogir-theme
   rclone
   rclone-browser
-  ripgrep
   rofi
   scrot
   tdesktop
@@ -57,6 +56,20 @@ home.packages = with pkgs; [
   yarn
   youtube-dl
   zsh-autosuggestions
+
+  #my rust specal apps
+  ripgrep
+  bat
+  lsd
+  exa
+  xcp
+  zoxide
+  du-dust
+  fd
+  procs
+  bottom
+  broot
+  monolith
 ];
 
 # This value determines the Home Manager release that your
