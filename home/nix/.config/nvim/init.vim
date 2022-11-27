@@ -29,10 +29,10 @@ au BufRead,BufNewFile *.md setlocal wrap linebreak
 
 
 " auto indent on save 
-augroup autoindent
-  au!
-  autocmd BufWritePre * :normal migg=G`i
-augroup End
+"augroup autoindent
+"  au!
+"  autocmd BufWritePre * :normal migg=G`i
+"augroup End
 
 
 " toggle to show and hide number
@@ -87,6 +87,9 @@ Plug 'folke/tokyonight.nvim'
 
 Plug 'LnL7/vim-nix' "For syntax highlight in nix
 
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'MunifTanjim/prettier.nvim'
+
 " Then run :PlugInstall to install theese plugins above
 " It will automatically created plugin directory on .vim/plugged/
 " Initialize plugin system
@@ -104,6 +107,8 @@ lua require('mynamespace.nvim-treesitter')
 lua require('mynamespace.cmp')
 lua require('mynamespace.nvim-autopairs')
 lua require('mynamespace.tokyonight')
+lua require('mynamespace.null-ls')
+lua require('mynamespace.prettier')
 
 set completeopt=menu,menuone,noselect
 

@@ -15,6 +15,7 @@ compinit
 export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 alias ll="ls -alG"
+alias ls="exa --icons"
 
 #PROMPT='%F{208}%n%f in %F{226}%~%f -> '
 PROMPT='%F{226}%~%f '
@@ -42,6 +43,8 @@ alias hms="home-manager switch"
 alias jt="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/jagotekno"
 alias jf="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/jfhugo"
 alias pm="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/pmhugo"
+
+alias yrd="yarn run dev"
 
 # my dotfiles alias
 alias p50="/home/nix/.nix-profile/bin/git --git-dir=$HOME/.nixos-p50/ --work-tree=/"

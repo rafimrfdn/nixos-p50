@@ -9,4 +9,4 @@ picom &
 nm-applet &
 volumeicon &
 sh $HOME/.fehbg &
-rustyvibes & 
+sh .config/rustyvibes/rustyvibes & 

@@ -1,7 +1,7 @@
 require'nvim-treesitter.configs'.setup {
   -- install language parser
   -- :TSInstallInfo Command to view supported languages
-  ensure_installed = {"css", "vim", "lua", "javascript", "typescript", "yaml", "toml", "json", "php" },
+  ensure_installed = {"css", "vim", "lua", "javascript", "typescript", "yaml", "toml", "json", "php", "astro" },
   -- Enable code highlighting
   highlight = {
     enable = true,

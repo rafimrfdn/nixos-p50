@@ -32,6 +32,7 @@ home.packages = with pkgs; [
   neovim
   nodejs
   ntfs3g
+  obs-studio
   onlyoffice-bin
   papirus-icon-theme
   pulseaudio
@@ -58,18 +59,18 @@ home.packages = with pkgs; [
   zsh-autosuggestions
 
   #my rust specal apps
-  ripgrep
-  bat
-  lsd
-  exa
-  xcp
+  ripgrep #untuk Telescope neovim
+  bat #cat yang lebih cantik, ketik bat namafile
+  lsd #ls yang menampilkan icon, ketik lsd
+  exa #ls lebih rapih, ketik exa
+  xcp 
   zoxide
-  du-dust
-  fd
-  procs
-  bottom
-  broot
-  monolith
+  du-dust #du yang lebih cantik, ketik dust
+  fd #find yang lebih mudah, ketik fd --type query
+  procs #ps yang lebih modern, ketik ps
+  bottom #top yang lebih cantik, ketik btm
+  broot #cd ala vim, ketik broot
+  monolith #save single page ke satu halaman html
 ];
 
 # This value determines the Home Manager release that your
