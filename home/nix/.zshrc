@@ -40,9 +40,11 @@ alias rustyvibes="/home/nix/rustyvibes/target/debug/rustyvibes /home/nix/.config
 alias hme="home-manager edit"
 alias hms="home-manager switch"
 
-alias jt="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/jagotekno"
-alias jf="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/jfhugo"
-alias pm="cd /run/media/nix/dedba799-9b30-47dc-98d4-a222505d8db9/home/mint/Project/pmhugo"
+alias jt="cd /home/nix/Project/jagotekno"
+alias jf="cd /home/nix/Project/jfhugo"
+alias pm="cd /home/nix/Project/pmhugo"
+alias iz="cd /home/nix/Project/izzulislam.com"
+alias mrfdn="cd /home/nix/Project/mrfdn.com"
 
 alias yrd="yarn run dev"
 

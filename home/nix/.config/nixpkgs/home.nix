@@ -30,7 +30,10 @@ home.packages = with pkgs; [
   mpv
   neofetch
   neovim
-  nodejs
+
+  #nodejs
+  deno
+
   ntfs3g
   obs-studio
   onlyoffice-bin

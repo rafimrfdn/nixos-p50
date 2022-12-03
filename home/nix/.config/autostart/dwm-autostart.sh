@@ -3,10 +3,10 @@
 xrdb -merge .Xresources &
 xset r rate 300 50 &
 xset mouse 5 1 &
-slstatus &
+#slstatus &
 copyq & copyq iconColor white &
+volumeicon &
 picom &
 nm-applet &
-volumeicon &
 sh $HOME/.fehbg &
 sh .config/rustyvibes/rustyvibes & 
