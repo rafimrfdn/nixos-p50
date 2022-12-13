@@ -46,7 +46,7 @@ alias pm="cd /home/nix/Project/pmhugo"
 alias iz="cd /home/nix/Project/izzulislam.com"
 alias mrfdn="cd /home/nix/Project/mrfdn.com"
 
-alias yrd="yarn run dev"
+alias dev="npm run dev"
 
 # my dotfiles alias
 alias p50="/home/nix/.nix-profile/bin/git --git-dir=$HOME/.nixos-p50/ --work-tree=/"

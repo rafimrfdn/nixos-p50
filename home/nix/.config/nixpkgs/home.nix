@@ -13,6 +13,8 @@ home.packages = with pkgs; [
   arc-theme
   acpi
   copyq
+  darktable
+  easyeffects
   elementary-xfce-icon-theme
   feh
   firefox
@@ -20,7 +22,9 @@ home.packages = with pkgs; [
   font-awesome
   gimp
   git
+  gparted
   hugo
+  imagemagick
   inkscape
   keepassxc
   killall
@@ -30,12 +34,10 @@ home.packages = with pkgs; [
   mpv
   neofetch
   neovim
-
-  #nodejs
+  nodejs
   deno
 
   ntfs3g
-  obs-studio
   onlyoffice-bin
   papirus-icon-theme
   pulseaudio
@@ -47,6 +49,7 @@ home.packages = with pkgs; [
   rclone
   rclone-browser
   rofi
+  simplescreenrecorder
   scrot
   tdesktop
   tree
@@ -56,8 +59,8 @@ home.packages = with pkgs; [
   vscodium
   wget
   xclip
+  xfce.thunar
   xorg.xev
-  yarn
   youtube-dl
   zsh-autosuggestions
 

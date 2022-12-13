@@ -151,6 +151,9 @@
     xkbVariant = "";
   };
 
+  #NVidia
+  services.xserver.videoDrivers = [ "nvidia" "intel" ];
+
   # enable backlight
   programs.light.enable = true;
 
@@ -211,7 +214,8 @@
 
 
   # NodeJS and NPM
-#  programs.npm.enable = true;
+  programs.npm.enable = true;
+  programs.neovim.withNodeJs = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

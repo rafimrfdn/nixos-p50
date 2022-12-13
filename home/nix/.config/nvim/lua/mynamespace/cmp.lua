@@ -66,4 +66,19 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 require('lspconfig')['emmet_ls'].setup {
   capabilities = capabilities
 }
+-- The following example advertise capabilities to `clangd`.
+require'lspconfig'.clangd.setup {
+  capabilities = capabilities,
+}
+
+require'lspconfig'.astro.setup{
+  cmd = { "astro-ls", "--stdio" },
+  filetypes = { "astro" },
+  capabilities = capabilities
+}
+require'lspconfig'.tailwindcss.setup{
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
+  capabilities = capabilities
+}
 

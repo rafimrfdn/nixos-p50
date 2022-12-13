@@ -53,8 +53,8 @@ map <C-t> :tabnew <CR>
 map <F9> :Goyo <bar> <CR>
 
 " toogle to show Neotree
-nnoremap <F3> :Neotree toggle right<CR>
-nnoremap <F5> :Telescope file_browser<CR>
+"nnoremap <F3> :Neotree toggle reveal right<CR>
+nnoremap <F3> :Telescope file_browser<CR>
 nnoremap <F4> :Telescope oldfiles<CR>
 
 " Specify a directory for plugins
