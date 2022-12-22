@@ -11,4 +11,4 @@ easyeffects --gapplication-service &
 picom &
 nm-applet &
 sh $HOME/.fehbg &
-sh .config/rustyvibes/rustyvibes & 
+#sh .config/rustyvibes/rustyvibes & 
