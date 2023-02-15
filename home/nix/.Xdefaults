@@ -1,0 +1,181 @@
+!URxvt.vt100.foreground: white
+!URxvt.vt100.background: black
+!URxvt.vt100.faceName: Liberation Mono:size=12:antialias=true
+URxvt.vt100.faceName: Iosevka Nerd Font:size=12:antialias=true:style=Regular
+!!URxvt.vt100.faceName: Iosevka Term:size=12:antialias=true
+URxvt.vt100.font: 7x13
+
+! URxvt resources
+!
+! Remember to run `xrdb < .Xresources` after changing anything.
+!
+! Tavis Ormandy <taviso@gmail.com>
+
+! Set the default UI font (menus, toolbar, etc)
+URxvt.XftFont:                  Segoe UI:size=10:antialias=true:style=Regular
+
+! Color of UI Components
+URxvt..SimpleMenu.background:   #ffffff
+URxvt..SimpleMenu.foreground:   #000000
+
+! Tone down the Xaw3D effect.
+URxvt.shapeStyle:               Rectangle
+URxvt.beNiceToColormap:         false
+URxvt.relief:                   None
+URxvt.highlightThickness:       0
+
+! Dont automatically jump to the bottom on output, but do on keypress.
+URxvt.scrollTtyOutput:          false
+URxvt.scrollKey:                true
+URxvt.scrollBar:                false
+URxvt.eightBitInput:            false
+URxvt.cursorBlink:              true
+
+! Dont allow mouse ops - it can be enabled in the view Menu at runtime.
+! The reason is it breaks copy/paste if an application requests mouse events,
+! because the application gets the event instead of URxvt.
+URxvt.allowMouseOps:            false
+
+! Dont change my title by default, this can be re-enabled from the menu.
+URxvt.allowTitleOps:            false
+URxvt.allowFontOps:             false
+
+! Mouse cursor configuration, I prefer to keep it simple.
+URxvt.pointerColor:             white
+URxvt.pointerColorBackground:   black
+URxvt.pointerShape:             left_ptr
+
+! Only select text, not empty space around it.
+URxvt.highlightSelection:       true
+
+! The distance between the edge of the screen and the characters.
+URxvt.vt100.internalBorder:     6
+
+! The border around elements.
+URxvt..BorderColor:             #ffffff
+URxvt.vt100.BorderColor:        #d0d0d0
+URxvt.BorderWidth:              3
+
+! Menu Names, I dont like the default verbose names.
+URxvt..mainMenu.label:          File
+URxvt..vtMenu.label:            Options
+URxvt..fontMenu.label:          View
+
+! You can rename menu entries, like this, I dont know why the menubar
+! is called a "toolbar", probably historical reasons.
+URxvt..mainMenu.toolbar.label:  Menubar
+
+! Adjust how the active menu item looks
+URxvt..SimpleMenu.*.shadowWidth: 3
+URxvt..SimpleMenu.*.topShadowPixel: SkyBlue
+URxvt..SimpleMenu.*.bottomShadowPixel: LightSkyBlue
+
+! Try to hide the useless title displayed at the top of menus, I know what
+! menu it is because I just clicked it.
+URxvt..*.menuLabel.vertSpace:   0
+URxvt..*.menuLabel.foreground:  #ffffff
+URxvt..*.menuLabel.XftFont:     Courier:size=0
+
+! Space around menu entries.
+URxvt..SimpleMenu.*.topMargin:  0
+URxvt..SimpleMenu.*.bottomMargin: 0
+URxvt..SimpleMenu.*.leftMargin: 32
+URxvt..SimpleMenu.*.rightMargin: 64
+! The height of each menu entry, the default calculates it from font size.
+! URxvt..SimpleMenu.*.rowHeight: 16
+
+! Space around the checkmark in the menus.
+URxvt..SimpleMenu.*.leftWhitespace: 16
+!URxvt..SimpleMenu.*.rightWhitespace: 8
+
+! Trim vertical padding around the toolbar, all elements have a form.
+URxvt.Form.menubar.vSpace:      0
+URxvt.Form.menubar.vertDistance: 0
+!URxvt.Form.menubar.foreground: #000000
+!URxvt.Form.menubar.background: #ffffff
+!URxvt.Form.menubar.Thickness:  0
+
+! Fonts
+!URxvt.vt100.faceName:           xft:Consolas:size=12:antialias=true:style=Regular
+!URxvt.vt100.boldFont:           xft:Consolas:size=12:antialias=true:style=Bold
+!URxvt.vt100.faceName:           xft:JetBrains Mono Nerd:size=12:antialias=true:style=Regular
+!URxvt.vt100.boldFont:           xft:JetBrains Mono Nerd:size=12:antialias=true:style=Bold
+
+! Size and Title
+URxvt.vt100.geometry:           100x30
+URxvt.title:                    Terminal
+!URxvt.iconHint:                 /home/taviso/.icons/computer_x11.xpm
+
+! Terminal Colors
+URxvt.vt100.background:     #212121
+URxvt.vt100.foreground:     #80FF80
+URxvt.cursorColor:          #ffffff
+
+! I like bold items to be in bright white.
+URxvt.veryBoldColors:       4
+URxvt.colorBDMode:          true
+URxvt.colorBD:              #ffffff
+URxvt.colorRV:              #ffffff
+
+! I can see a small line between box characters, this fixes it.
+URxvt.forceBoxChars:        true
+URxvt.vt100.scaleHeight:    1.04
+
+! This (or similar id) is required for Sixel support.
+URxvt.decTerminalID:        vt382
+
+! Color Scheme
+! 0-7:  Black, Red, Green, Yellow, Blue, Purple, Cyan, White
+! 8-15: Bright Black, Bright Red, ...
+URxvt.color0:               #212121
+URxvt.color8:               #7f7f7f
+URxvt.color1:               #A00000
+URxvt.color9:               #FF0000
+URxvt.color2:               #00A000
+URxvt.color10:              #00FF00
+URxvt.color3:               #A0A000
+URxvt.color11:              #FFFF00
+URxvt.color4:               #0000A0
+URxvt.color12:              #5C5CFF
+URxvt.color5:               #A000A0
+URxvt.color13:              #FF00FF
+URxvt.color6:               #00A0A0
+URxvt.color14:              #00FFFF
+URxvt.color7:               #C0C0C0
+URxvt.color15:              #ffffff
+
+!  URxvt Translations, i.e. keyboard remapping.
+!
+! Notes:
+!   ~       means that that modifier must not be asserted.
+!   !       means that the listed modifiers must be in the correct state and
+!               no other modifiers can be asserted.
+!   None    means no modifiers can be asserted.
+!   :       directs the Intrinsics to apply any standard modifiers in the event.
+!   ^       is an abbreviation for the Control modifier.
+!   $       is an abbreviation for Meta
+!
+! Example:
+!   No modifiers:                          None <event> detail
+!   Any modifiers:                              <event> detail
+!   Only these modifiers:           ! mod1 mod2 <event> detail
+!   These modifiers and any others:   mod1 mod2 <event> detail
+
+! Below:
+!
+! - I have some old apps that use Alt-F4, but thats sometimes difficult to
+!       press so Ctrl-Shift-F4 does the same thing.
+! - Ctrl-MouseWheel can be used to increase and descrease font size.
+! - Ctrl-I is totally useless, because it is literally impossible for
+!       applications to differentiate it from Tab. You can remap it to some
+!       other harder-to-press keybinding here, I use it for Italics in
+!       wordperfect.
+
+URxvt.vt100.translations:   #override           \n\
+    Ctrl Shift <Key>F4:     string("\033[1;3S") \n\
+  ! Ctrl <Btn4Up>:          larger-vt-font()    \n\
+  ! Ctrl <Btn5Up>:          smaller-vt-font()   \n\
+    ^<Key>I:                string("\014")      \n\
+
+
+

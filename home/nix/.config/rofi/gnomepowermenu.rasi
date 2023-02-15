@@ -1,0 +1,43 @@
+/*
+ *
+ *Author  :  Aditya Shakya
+ *Mail    :  adi1090x@gmail.com
+ *Github  :  @adi1090x
+ *Twitter :  @adi1090x
+ *
+ */
+configuration {
+font: "SFPro Display 12";
+      show-icons: false;
+      icon-theme: "auto";
+      display-drun: "";
+}
+* {
+background: #252525ff;
+            background-alt: #00000000;
+            background-bar: #10101040;
+foreground: #e5e5e5EE;
+accent: #3DAEE966;
+}
+window {
+transparency: "real";
+              background-color: @background;
+              text-color: @foreground;
+width: 30%;
+}
+listview {
+  background-color: @background-alt;
+columns: 5;
+lines: 5;
+spacing: 1%;
+cycle: false;
+dynamic: true;
+layout: horizontal;
+}
+element {
+  background-color: @background-alt;
+  text-color: @foreground;
+orientation: vertical;
+             border-radius: 0%;
+width: 20%;
+}

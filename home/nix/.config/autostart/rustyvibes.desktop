@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=sh .config/rustyvibes/rustyvibes
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=rustyvibes
+Comment[en_US]=run rustyvibes
+X-GNOME-Autostart-Delay=0
