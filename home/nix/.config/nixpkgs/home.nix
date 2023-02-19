@@ -68,7 +68,7 @@
   pulseaudio
   pulseaudio-ctl
   picom
-  pipes
+  pipes #run with pipes.sh
   qogir-icon-theme
   qogir-theme
   rclone

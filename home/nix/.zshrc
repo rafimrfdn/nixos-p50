@@ -12,6 +12,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# everything will be easy when you can use vim keybind on terminal
+bindkey -v
+
 #because when type which $TERM it returns "xterm-kitty not found"
 TERM="kitty"
 EDITOR="nvim"
@@ -68,3 +71,4 @@ alias dev="npm run dev"
 
 # my dotfiles alias
 alias p50="/home/nix/.nix-profile/bin/git --git-dir=$HOME/.nixos-p50/ --work-tree=/"
+

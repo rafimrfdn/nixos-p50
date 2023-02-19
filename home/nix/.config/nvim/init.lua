@@ -48,9 +48,9 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
---  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
 --  use 'rose-pine/neovim'
-  use 'EdenEast/nightfox.nvim'
+--  use 'EdenEast/nightfox.nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -62,22 +62,22 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
---  use {
---  "nvim-neo-tree/neo-tree.nvim",
---    branch = "v2.x",
---    requires = {
---      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
---      "MunifTanjim/nui.nvim",
---    }
---  }
-  
   use {
-     'nvim-tree/nvim-tree.lua',
-     requires = {
-       'nvim-tree/nvim-web-devicons', -- optional, for file icons
-     },
-     tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
   }
+  
+--  use {
+--     'nvim-tree/nvim-tree.lua',
+--     requires = {
+--       'nvim-tree/nvim-web-devicons', -- optional, for file icons
+--     },
+--     tag = 'nightly' -- optional, updated every week. (see issue #1193)
+--  }
 
   -- Toggle Terminal with :ToggleTerm
   use {'akinsho/toggleterm.nvim', tag = '*', config = function()
@@ -149,8 +149,8 @@ vim.o.rnu = true
 
 -- Set colorscheme
 vim.o.termguicolors = true
---vim.cmd [[colorscheme onedark]]
-vim.cmd [[colorscheme nightfox]]
+vim.cmd [[colorscheme onedark]]
+--vim.cmd [[colorscheme nightfox]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -239,7 +239,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 
---vim.keymap.set("n", "<F3>", ":Neotree toggle reveal right<CR>")
+vim.keymap.set("n", "<F3>", ":Neotree toggle reveal right<CR>")
 
 -- nvim-tree setup mulai disini
 -- disable netrw at the very start of your init.lua (strongly advised)
@@ -247,25 +247,25 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- empty setup using defaults
-require("nvim-tree").setup({
-    view = {
-        width = 30,
-        side = "right",
-        mappings = {
-          list = {
-            { key = { "<C-]>", "<2-RightMouse>", "." },    action = "cd" }
-          }
-        }
-      },
-    filters = {
-        dotfiles = true,
-      },
-    renderer = {
-        group_empty = true,
-      }
-    })
-
-vim.keymap.set("n", "<F3>", ":NvimTreeToggle view <CR>")
+--require("nvim-tree").setup({
+--    view = {
+--        width = 30,
+--        side = "right",
+--        mappings = {
+--          list = {
+--            { key = { "<C-]>", "<2-RightMouse>", "." },    action = "cd" }
+--          }
+--        }
+--      },
+--    filters = {
+--        dotfiles = true,
+--      },
+--    renderer = {
+--        group_empty = true,
+--      }
+--    })
+--
+--vim.keymap.set("n", "<F3>", ":NvimTreeToggle view <CR>")
 -- nvim-tree setup end disini
 
 
@@ -294,24 +294,31 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'nightfox',
+    theme = 'onedark',
     component_separators = '|',
     section_separators = '',
   },
 }
 
 
+-- Onedark setup
+require('onedark').setup {
+    style = 'deep'
+}
+require('onedark').load()
+
+
 -- Nightfox configuration setup
-require('nightfox').setup({
-  options = {
-    -- Compiled file's destination location
-    compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-    compile_file_suffix = "_compiled", -- Compiled file suffix
-    transparent = true,     -- Disable setting background
-    terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
---    dim_inactive = false,    -- Non focused panes set to alternative background
-    }
-})
+--require('nightfox').setup({
+--  options = {
+--    -- Compiled file's destination location
+--    compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+--    compile_file_suffix = "_compiled", -- Compiled file suffix
+--    transparent = true,     -- Disable setting background
+--    terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+----    dim_inactive = false,    -- Non focused panes set to alternative background
+--    }
+--})
 
 -- Enable Comment.nvim
 require('Comment').setup()
