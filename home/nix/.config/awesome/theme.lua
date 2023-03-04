@@ -11,8 +11,11 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Iosevka Nerd Font 10"
+--theme.font          = "Iosevka Nerd Font Medium 10"
+theme.font          = "Iosevka Medium 10"
+--theme.font          = "Fira Sans Regular 10"
 
+-- Default Dark Theme Bar
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
 theme.bg_urgent     = "#ff0000"
@@ -30,6 +33,26 @@ theme.border_normal = "#000000"
 --theme.border_focus  = "#535d6c"
 theme.border_focus  = "#eeeeee"
 theme.border_marked = "#91231c"
+
+
+-- Light Theme Bar
+--theme.bg_normal     = "#dddddd"
+--theme.bg_focus      = "#aaaaaa"
+--theme.bg_urgent     = "#aaaaaa"
+--theme.bg_minimize   = "#dddddd"
+--theme.bg_systray    = theme.bg_normal
+--
+--theme.fg_normal     = "#444444"
+--theme.fg_focus      = "#444444"
+--theme.fg_urgent     = "#444444"
+--theme.fg_minimize   = "#444444"
+--
+--theme.useless_gap   = dpi(0)
+--theme.border_width  = dpi(1)
+--theme.border_normal = "#000000"
+----theme.border_focus  = "#535d6c"
+--theme.border_focus  = "#eeeeee"
+--theme.border_marked = "#91231c"
 
 -- There are other variable sets
 -- overriding the default one when

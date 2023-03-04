@@ -10,20 +10,22 @@
     (self: super: {
       st = super.st.overrideAttrs (oldAttrs: rec {
         patches = [
-	./st/st-scrollback-0.8.5.diff
-	#./st/st-alpha-20220206-0.8.5.diff
-	./st/st-anysize-20220718-baa9357.diff
-	./st/st-xresources-20200604-9ba7ecf.diff
-	#./st/st-colorschemes-0.8.5.diff
-#	./st/st-cyberpunk-neon.diff
-	#./st/st-color_schemes.diff
-	#./st/st-w3m-0.8.3.diff
+        ./st/st-scrollback-0.8.5.diff
+        #./st/st-alpha-20220206-0.8.5.diff
+        ./st/st-anysize-20220718-baa9357.diff
+        #./st/st-xresources-20200604-9ba7ecf.diff
+        #./st/st-colorschemes-0.8.5.diff
+        #./st/st-cyberpunk-neon.diff
+        #./st/st-color_schemes.diff
+        #./st/st-w3m-0.8.3.diff
         ];
-	#configFile = super.writeText "config.h" (builtins.readFile ./st/config.h);
-        #postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
+        configFile = super.writeText "config.h" (builtins.readFile ./st/config.h);
+        postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
       });
     })
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
   arandr
@@ -48,6 +50,7 @@
   hugo
   imagemagick
   inkscape
+  kdenlive
   keepassxc
   killall
   kitty

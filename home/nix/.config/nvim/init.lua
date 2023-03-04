@@ -62,14 +62,21 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
+  -- Telescope plugin File browser
   use {
-  "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
-  }
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+}
+
+
+--  use {
+--  "nvim-neo-tree/neo-tree.nvim",
+--    branch = "v2.x",
+--    requires = {
+--      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+--      "MunifTanjim/nui.nvim",
+--    }
+--  }
   
 --  use {
 --     'nvim-tree/nvim-tree.lua',
@@ -239,7 +246,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 
-vim.keymap.set("n", "<F3>", ":Neotree toggle reveal right<CR>")
+--vim.keymap.set("n", "<F3>", ":Neotree toggle reveal float<CR>")
+--vim.keymap.set("n", "<F3>", ":NeoTreeFloatToggle<CR>")
+--vim.keymap.set("n", "<F5>", ":NeoTreeShowToggle<CR>")
 
 -- nvim-tree setup mulai disini
 -- disable netrw at the very start of your init.lua (strongly advised)
@@ -248,12 +257,25 @@ vim.g.loaded_netrwPlugin = 1
 
 -- empty setup using defaults
 --require("nvim-tree").setup({
+--    sort_by = "case_sensitive",
 --    view = {
---        width = 30,
+--        width = 50,
 --        side = "right",
 --        mappings = {
+--          custom_only = false,
 --          list = {
---            { key = { "<C-]>", "<2-RightMouse>", "." },    action = "cd" }
+--            { key = { "<C-]>", "<2-RightMouse>", "." },    action = "cd" },
+--            --{ key = ".", action = "cd" },
+--            --{ key = "<CR>", action = "open" },
+--            --{ key = "/", action = "toggle_help" },
+--            --{ key = "H", action = "toggle_hidden_filter" },
+--            --{ key = "a", action = "create" },
+--            --{ key = "y", action = "copy" },
+--            --{ key = "d", action = "remove" },
+--            --{ key = "x", action = "cut" },
+--            --{ key = "p", action = "paste" },
+--            --{ key = "r", action = "rename" },
+--            --{ key = "R", action = "Reload" },
 --          }
 --        }
 --      },
@@ -268,6 +290,7 @@ vim.g.loaded_netrwPlugin = 1
 --vim.keymap.set("n", "<F3>", ":NvimTreeToggle view <CR>")
 -- nvim-tree setup end disini
 
+vim.keymap.set("n", "<F3>", ":Telescope file_browser <CR>")
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -303,7 +326,7 @@ require('lualine').setup {
 
 -- Onedark setup
 require('onedark').setup {
-    style = 'deep'
+    style = 'warm'
 }
 require('onedark').load()
 
@@ -353,7 +376,25 @@ require('telescope').setup {
       },
     },
   },
+  -- activate telescope-file-browser
+  extensions = {
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
 }
+
+require("telescope").load_extension "file_browser"
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')

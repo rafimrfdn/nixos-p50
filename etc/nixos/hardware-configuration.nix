@@ -23,6 +23,8 @@
       fsType = "vfat";
     };
 
+  # Disable swap partition
+  systemd.units."dev-sda3.swap ".enable = false;
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

@@ -16,6 +16,14 @@
     experimental-features = nix-command
     '';
 
+    # Enable Intel SGX, this setting must enable from Bios,
+    # I actually don't know what is this.
+    #services.aesmd.enable = true;
+    #hardware.cpu.intel.sgx.provision.enable = true;
+
+  # Enable zram
+  zramSwap.enable = true;
+  zramSwap.memoryPercent = 50;
 
   # Silent boot to hide Stage when boot system 
   boot.plymouth.enable = true;
@@ -91,7 +99,6 @@
   services.xserver.enable = true;
   services.xserver.displayManager.startx.enable = true;
 
-
   #AwesomeWM
   services.xserver.windowManager.awesome.enable = true;
 
@@ -118,13 +125,26 @@
   };
 
   #NVidia setting
-  services.xserver.videoDrivers = [ "nvidia" "intel" ];
-#  services.xserver.videoDrivers = [ "intel" ];
-  hardware.nvidia.nvidiaPersistenced = true;
+#  services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  services.xserver.videoDrivers = [ "intel" ];
+#  hardware.nvidia.nvidiaPersistenced = true;
 
 
   # enable backlight
   programs.light.enable = true;
+
+# Fonts
+  fonts.fonts = with pkgs; [
+    cascadia-code
+    fira-code
+    fira
+    cooper-hewitt
+    ibm-plex
+    jetbrains-mono
+    iosevka
+    spleen
+    fira-code-symbols
+  ];
 
 
   # Enable CUPS to print documents.
@@ -175,6 +195,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+#  nixpkgs.config.allowBroken = true;
 
 
 # Virtualization with qemu kvm
