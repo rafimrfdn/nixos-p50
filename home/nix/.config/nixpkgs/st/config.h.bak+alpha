@@ -6,17 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 // static char *font = "Iosevka:pixelsize=16:antialias=true:autohint=true";
-static char *font = "Iosevka:style=Medium:pixelsize=16:antialias=true:autohint=true";
-/* Spare fonts */
-static char *font2[] = {
-	// "Symbols Nerd Font:style=2048-em:size=16:antialias=true:autohint=true",
-	// "Hack Nerd Font:style=Regular:size=16:antialias=true:autohint=true",
-	//  "Noto Color Emoji:size=10:antialias=true:autohint=true",
-	//  "Noto Sans Symbols:size=12:antialias=true:autohint=true"
-	 "Symbols Nerd Font:size=12",
-	 "Hack Nerd Font:size=12",
-	 "Noto Sans Symbols:size=12"
-};
+static char *font = "Iosevka:size=12:antialias=true:autohint=true";
 static int borderpx = 0;
 
 /*
@@ -38,10 +28,7 @@ char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = .92;
-/* Character rendering offsets in pixels */
-static short cxoffset = 0;
-static short cyoffset = 0;
+static float chscale = 1.0;
 
 /*
  * word delimiter string
@@ -112,51 +99,27 @@ float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	// /* 8 normal colors */
-	// "black",
-	// "red3",
-	// "green3",
-	// "yellow3",
-	// "blue2",
-	// "magenta3",
-	// "cyan3",
-	// "gray90",
-	//
-	// /* 8 bright colors */
-	// "gray50",
-	// "red",
-	// "green",
-	// "yellow",
-	// "#5c5cff",
-	// "magenta",
-	// "cyan",
-	// "white",
-	//
-	// [255] = 0,
-	
-    /* 8 normal colors */
-    [0] = "#000000", /* black   */
-    [1] = "#ff5555", /* red     */
-    [2] = "#50fa7b", /* green   */
-    [3] = "#f1fa8c", /* yellow  */
-    [4] = "#bd93f9", /* blue    */
-    [5] = "#ff79c6", /* magenta */
-    [6] = "#8be9fd", /* cyan    */
-    [7] = "#bbbbbb", /* white   */
-                                  
-    /* 8 bright colors */
-    [8]  = "#44475a", /* black   */
-    [9]  = "#ff5555", /* red     */
-    [10] = "#50fa7b", /* green   */
-    [11] = "#f1fa8c", /* yellow  */
-    [12] = "#bd93f9", /* blue    */
-    [13] = "#ff79c6", /* magenta */
-    [14] = "#8be9fd", /* cyan    */
-    [15] = "#ffffff", /* white   */
-                                   
-    /* special colors */
-    [256] = "#282a36", /* background */
-    [257] = "#f8f8f2", /* foreground */
+	/* 8 normal colors */
+	"black",
+	"red3",
+	"green3",
+	"yellow3",
+	"blue2",
+	"magenta3",
+	"cyan3",
+	"gray90",
+
+	/* 8 bright colors */
+	"gray50",
+	"red",
+	"green",
+	"yellow",
+	"#5c5cff",
+	"magenta",
+	"cyan",
+	"white",
+
+	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
@@ -170,16 +133,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-// unsigned int defaultfg = 258;
-// unsigned int defaultbg = 259;
-// unsigned int defaultcs = 256;
-unsigned int defaultfg = 257;
-unsigned int defaultbg = 256;
-unsigned int defaultcs = 257;
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
+unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
-
-unsigned int defaultitalic = 7;
-unsigned int defaultunderline = 7;
 
 /*
  * Default shape of cursor

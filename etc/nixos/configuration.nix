@@ -4,11 +4,11 @@
 
 { config, pkgs, ... }:
 
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./greetd/default.nix
     ];
 
 
@@ -21,9 +21,17 @@
     #services.aesmd.enable = true;
     #hardware.cpu.intel.sgx.provision.enable = true;
 
+  # Enable OpenGL
+  hardware.opengl.enable = true;
+  hardware.opengl.extraPackages = with pkgs; [ intel-media-driver (vaapiIntel.override {enableHybridCodec = true;}) vaapiVdpau libvdpau-va-gl ];
+  hardware.opengl.driSupport = true;
+
   # Enable zram
   zramSwap.enable = true;
   zramSwap.memoryPercent = 50;
+
+  # Disable kernel from nvidia
+  boot.blacklistedKernelModules = [ "nouveau" ];
 
   # Silent boot to hide Stage when boot system 
   boot.plymouth.enable = true;
@@ -103,7 +111,26 @@
   services.xserver.windowManager.awesome.enable = true;
 
   # Enable LightDM
-  services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.displayManager.lightdm.greeters.slick.enable = true;
+  #services.xserver.displayManager.lightdm.greeters.slick.theme.name = "Qogir";
+
+
+  # Enable GDM
+#  services.xserver.displayManager.gdm.enable = true;
+#  services.xserver.displayManager.gdm.wayland = true;
+
+
+
+  programs.xwayland.enable = true;
+  xdg.portal = {
+  	enable = true;
+  	wlr.enable = true;
+	extraPortals = [ 
+		pkgs.xdg-desktop-portal-gtk 
+		];
+  };
+  
 
   # Set default XSesssion
   services.xserver.displayManager.defaultSession = "none+awesome";
@@ -118,6 +145,8 @@
     programs.zsh.autosuggestions.enable = true;
     programs.bash.enableCompletion = true;
 
+
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -126,6 +155,7 @@
 
   #NVidia setting
 #  services.xserver.videoDrivers = [ "nvidia" "intel" ];
+#  services.xserver.videoDrivers = [ "nouveau" "intel" ];
   services.xserver.videoDrivers = [ "intel" ];
 #  hardware.nvidia.nvidiaPersistenced = true;
 
@@ -179,7 +209,21 @@
     isNormalUser = true;
     description = "nix";
     extraGroups = [ 
-	    "wheel" 
+	"wheel" 
+    	"networokmanager" 
+	"video" 
+	"input" 
+	"storage" 
+	"libvirtd"
+	];
+    shell = pkgs.zsh;
+  };
+
+  users.users.rafi = {
+    isNormalUser = true;
+    description = "user wayland";
+    extraGroups = [ 
+	"wheel" 
     	"networokmanager" 
 	"video" 
 	"input" 
@@ -190,12 +234,12 @@
   };
 
     # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "nix";
+  #services.xserver.displayManager.autoLogin.enable = true;
+  #services.xserver.displayManager.autoLogin.user = "nix";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-#  nixpkgs.config.allowBroken = true;
+# nixpkgs.config.allowBroken = true;
 
 
 # Virtualization with qemu kvm
@@ -205,15 +249,41 @@
 
   # NodeJS and NPM
   programs.npm.enable = true;
-  programs.neovim.withNodeJs = true;
+  
+  # neovim global
+  programs.neovim = {
+  	enable = true;
+	withNodeJs = true;
+	defaultEditor = true;	
+	vimAlias = true;
+	configure = {
+		packages.myVimPackage = with pkgs.vimPlugins; {
+			start = [ vim-nix];
+		};
+	};
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 	gcc #must have one linux compiler like gcc or cc etc.
 	gnumake
-	neovim
+#	xwayland
   ];
+
+# Auto login TTY 
+#systemd.services."autovt@tty2".description = "Autologin at the TTY1";
+#systemd.services."autovt@tty2".after = [ "systemd-logind.service" ];  # without it user session not started and xorg can't be run from this tty
+#systemd.services."autovt@tty2".wantedBy = [ "multi-user.target" ];
+#systemd.services."autovt@tty2".serviceConfig =
+#  { ExecStart = [
+##      ""  # override upstream default with an empty ExecStart
+##      "@${pkgs.utillinux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --autologin rafi --noclear %I $TERM"
+#"exec awesome"
+#    ];
+#    Restart = "always";
+#    Type = "idle";
+#  };
 
 
   # Mount drive
@@ -248,6 +318,10 @@
       gc.automatic = true;
       gc.dates = "weekly";
       gc.options = "--delete-older-than 30d";
+
+    settings.substituters = ["https://hyprland.cachix.org"];
+    settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+ 
   };
 
   # Some programs need SUID wrappers, can be configured further or are
