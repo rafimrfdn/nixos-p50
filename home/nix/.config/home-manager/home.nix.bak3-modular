@@ -1,0 +1,210 @@
+{ config, pkgs, ... }:
+
+ let
+   flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+
+  hyprland = (import flake-compat {
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+in {
+  imports = [
+    hyprland.homeManagerModules.default
+    ./neovim/default.nix
+    ./waybar/default.nix
+    ./gtk/default.nix
+  ];
+  
+
+
+  home.username = "rafi";
+  home.homeDirectory = "/home/rafi";
+
+  home.packages = with pkgs; [
+  kitty
+  mpv
+  ripgrep
+  fd
+  git 
+  firefox
+  neofetch
+  wget
+  wayland
+  font-awesome
+  sway-contrib.grimshot
+  eww-wayland
+  rofi-wayland
+  wl-clipboard
+  unzip
+  sway
+  wl-clipboard
+  waybar
+  cinnamon.nemo
+  #gnome.file-roller
+  xarchiver
+  xdg-desktop-portal-wlr
+];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    extraConfig = ''
+      monitor=eDP-1,1920x1080@60,0x0,1
+      #env=GDK_BACKEND=wayland,x11
+
+      exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+      exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
+
+      exec-once=xset r rate 300 50 
+      exec-once=xset mouse 5 1 
+
+      general {
+              gaps_in = 0
+              gaps_out = 0
+              border_size = 1
+              col.active_border = rgb(ffc0cb)
+              col.inactive_border = rgba(595959aa)
+              layout = dwindle # master|dwindle 
+            }
+
+      decoration {
+          rounding=4
+          blur = true
+          blur_size = 3
+          blur_passes = 3
+          blur_new_optimizations = true
+          drop_shadow=0
+          shadow_range=60
+          col.shadow=0x66000000
+          multisample_edges = true
+        }
+
+      bindm = SUPER, mouse:272, movewindow
+      bindm = SUPER, mouse:273, resizewindow
+
+      bind = SUPERSHIFT, Return, exec, kitty
+      bind = SUPER, E, exec, nemo
+      bind = SUPER, D, exec, rofi -show drun
+      bind = SUPER, W, exec, firefox
+      bind = SUPER, Q, exec, ~/.scripts/powermenu.sh
+      
+      #exec-once=eww daemon
+      #exec-once=eww open bar
+
+      bind=SUPER,V,togglefloating,
+      bind=SUPER,F,fullscreen,0
+      bind= SUPER, g, togglegroup
+      bind= SUPER, tab, changegroupactive
+
+      bind = SUPER, h, movefocus, l
+      bind = SUPER, l, movefocus, r
+      bind = SUPER, j, movefocus, u
+      bind = SUPER, k, movefocus, d
+
+      bind = SUPER CTRL, left, resizeactive, -20 0
+      bind = SUPER CTRL, right, resizeactive, 20 0
+      bind = SUPER CTRL, up, resizeactive, 0 -20
+      bind = SUPER CTRL, down, resizeactive, 0 20
+
+      
+      bind=SUPERSHIFT,C,killactive
+      
+      bind=SUPERSHIFT,h,movewindow,l
+      bind=SUPERSHIFT,l,movewindow,r
+      bind=SUPERSHIFT,k,movewindow,u
+      bind=SUPERSHIFT,j,movewindow,d
+      
+      bind=SUPER,1,workspace,1
+      bind=SUPER,2,workspace,2
+      bind=SUPER,3,workspace,3
+      bind=SUPER,4,workspace,4
+      bind=SUPER,5,workspace,5
+      bind=SUPER,6,workspace,6
+      bind=SUPER,7,workspace,7
+      bind=SUPER,8,workspace,8
+      bind=SUPER,9,workspace,9
+      
+      bind=SUPERSHIFT,1,movetoworkspacesilent,1
+      bind=SUPERSHIFT,2,movetoworkspacesilent,2
+      bind=SUPERSHIFT,3,movetoworkspacesilent,3
+      bind=SUPERSHIFT,4,movetoworkspacesilent,4
+      bind=SUPERSHIFT,5,movetoworkspacesilent,5
+      bind=SUPERSHIFT,6,movetoworkspacesilent,6
+      bind=SUPERSHIFT,7,movetoworkspacesilent,7
+      bind=SUPERSHIFT,8,movetoworkspacesilent,8
+      bind=SUPERSHIFT,9,movetoworkspacesilent,9
+
+      bind=ALT,R,submap,resize
+      submap=resize
+      binde=,right,resizeactive,15 0
+      binde=,left,resizeactive,-15 0
+      binde=,up,resizeactive,0 -15
+      binde=,down,resizeactive,0 15
+      binde=,l,resizeactive,15 0
+      binde=,h,resizeactive,-15 0
+      binde=,k,resizeactive,0 -15
+      binde=,j,resizeactive,0 15
+      bind=,escape,submap,reset 
+      submap=reset
+      bind=CTRL SHIFT, left, resizeactive,-15 0
+      bind=CTRL SHIFT, right, resizeactive,15 0
+      bind=CTRL SHIFT, up, resizeactive,0 -15
+      bind=CTRL SHIFT, down, resizeactive,0 15
+      bind=CTRL SHIFT, l, resizeactive, 15 0
+      bind=CTRL SHIFT, h, resizeactive,-15 0
+      bind=CTRL SHIFT, k, resizeactive, 0 -15
+      bind=CTRL SHIFT, j, resizeactive, 0 15
+
+      bind=,XF86MonBrightnessUp,exec, light -A 2
+      bind=,XF86MonBrightnessDown,exec, light -U 2
+
+      bind=,XF86AudioRaiseVolume,exec,pamixer -i 5
+      bind=,XF86AudioLowerVolume,exec,pamixer -d 5
+
+    '';
+
+  };
+
+    wayland.windowManager.sway = {
+      enable = true;
+      config = {
+   #     output."eDP-1".scale = "1.5";
+   #     seat."*".xcursor_theme = "Vimix-White 32";
+   #     terminal = "${pkgs.foot}/bin/foot";
+   #     input =  { "*" = { xkb_layout = "de"; } ; };
+   #     menu = "${pkgs.bemenu}/bin/bemenu-run -b";
+        modifier = "Mod4";
+   #     startup = [
+   #       { command = "librewolf"; }
+   #       { command = "signal-desktop"; }
+   #       { command = "waybar"; }
+   #       { command = "mako"; }
+   #     ];
+        bars = [];
+   #     assigns = {
+   #       "1" = [{ app_id = "librewolf"; }];
+   #       "2" = [{ title = "Signal"; }];
+   #     };
+        workspaceAutoBackAndForth = true;
+#        keybindings = lib.mkOptionDefault{
+#          "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudioFull}/bin/pactl set-sink-volume 0 +5%";
+#          "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudioFull}/bin/pactl set-sink-volume 0 -5%";
+#          "XF86AudioMute" = "exec ${pkgs.pulseaudioFull}/bin/pactl set-sink-mute 0 toggle";
+#          "XF86WebCam" = "exec ${pkgs.swaylock}/bin/swaylock -i /home/onny/pictures/catalina.jpg --scaling fill";
+#          "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%+";
+#          "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
+#          "print" = "exec --no-startup-id ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && ${pkgs.wl-clipboard}/bin/wl-paste > $(${pkgs.xdg-user-dirs}/bin/xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')";
+#          "XF86Display" = "exec ${inputs.wl-togglescreens.packages.x86_64-linux.wl-togglescreens}/bin/wl-togglescreens";
+#        };
+   #     floating.criteria = [
+   #       { "title" = "^OpenSnitch v.*"; }
+   #     ];
+      };
+    };
+
+
+
+
+  home.stateVersion = "22.11";
+
+  programs.home-manager.enable = true;
+}

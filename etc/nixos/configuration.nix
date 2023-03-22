@@ -122,7 +122,7 @@
 
 
 
-  programs.xwayland.enable = true;
+#  programs.xwayland.enable = true;
   xdg.portal = {
   	enable = true;
   	wlr.enable = true;
@@ -155,8 +155,8 @@
 
   #NVidia setting
 #  services.xserver.videoDrivers = [ "nvidia" "intel" ];
-#  services.xserver.videoDrivers = [ "nouveau" "intel" ];
-  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = [ "nouveau" "intel" ];
+#  services.xserver.videoDrivers = [ "intel" ];
 #  hardware.nvidia.nvidiaPersistenced = true;
 
 
@@ -262,6 +262,7 @@
 		};
 	};
   };
+  environment.variables.EDITOR = "nvim";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

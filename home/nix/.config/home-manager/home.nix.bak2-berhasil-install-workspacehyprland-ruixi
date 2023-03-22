@@ -1,0 +1,557 @@
+{ config, pkgs, ... }:
+
+ let
+   flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+
+  hyprland = (import flake-compat {
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+in {
+  imports = [
+    hyprland.homeManagerModules.default
+  ];
+
+  home.username = "rafi";
+  home.homeDirectory = "/home/rafi";
+
+  home.packages = with pkgs; [
+  kitty
+  mpv
+  ripgrep
+  fd
+  git 
+  firefox
+  neofetch
+  wget
+  wayland
+  eww-wayland
+  rofi-wayland
+  wl-clipboard
+  unzip
+  waybar
+  cinnamon.nemo
+];
+
+programs.neovim = {
+  enable = true;
+  defaultEditor = true;
+  withNodeJs = true;
+  vimAlias = true;
+  extraConfig = ''
+  '';
+};
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    extraConfig = ''
+      monitor=eDP-1,1920x1080@60,0x0,1
+      #env=GDK_BACKEND=wayland,x11
+
+      exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+      exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
+
+      exec-once=xset r rate 300 50 
+      exec-once=xset mouse 5 1 
+
+
+      bind = SUPER, Return, exec, kitty
+      bind = SUPER, E, exec, nemo
+      bind = SUPER, D, exec, rofi -show drun
+      bind = SUPER, W, exec, firefox
+      bind = SUPER, Q, exec, ~/.scripts/powermenu.sh
+      
+      #exec-once=eww daemon
+      #exec-once=eww open bar
+
+
+      bind = SUPER, h, movefocus, l
+      bind = SUPER, l, movefocus, r
+      bind = SUPER, j, movefocus, u
+      bind = SUPER, k, movefocus, d
+
+      
+      bind=SUPERSHIFT,Q,killactive
+      
+      bind=SUPERSHIFT,h,movewindow,l
+      bind=SUPERSHIFT,l,movewindow,r
+      bind=SUPERSHIFT,k,movewindow,u
+      bind=SUPERSHIFT,j,movewindow,d
+      
+      bind=SUPER,1,workspace,1
+      bind=SUPER,2,workspace,2
+      bind=SUPER,3,workspace,3
+      bind=SUPER,4,workspace,4
+      bind=SUPER,5,workspace,5
+      bind=SUPER,6,workspace,6
+      bind=SUPER,7,workspace,7
+      bind=SUPER,8,workspace,8
+      bind=SUPER,9,workspace,9
+      
+      bind=SUPERSHIFT,1,movetoworkspacesilent,1
+      bind=SUPERSHIFT,2,movetoworkspacesilent,2
+      bind=SUPERSHIFT,3,movetoworkspacesilent,3
+      bind=SUPERSHIFT,4,movetoworkspacesilent,4
+      bind=SUPERSHIFT,5,movetoworkspacesilent,5
+      bind=SUPERSHIFT,6,movetoworkspacesilent,6
+      bind=SUPERSHIFT,7,movetoworkspacesilent,7
+      bind=SUPERSHIFT,8,movetoworkspacesilent,8
+      bind=SUPERSHIFT,9,movetoworkspacesilent,9
+      
+      bind=,XF86MonBrightnessUp,exec, light -A 2
+      bind=,XF86MonBrightnessDown,exec, light -U 2
+
+      bind=,XF86AudioRaiseVolume,exec,pamixer -i 5
+      bind=,XF86AudioLowerVolume,exec,pamixer -d 5
+
+    '';
+  };
+
+nixpkgs.overlays = [
+    (final: prev: {
+      waybar =
+        let
+          hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+          waybarPatchFile = import ./workspace-patch.nix { inherit pkgs hyprctl; };
+        in
+        prev.waybar.overrideAttrs (oldAttrs: {
+          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+          patches = (oldAttrs.patches or [ ]) ++ [ waybarPatchFile ];
+          # postPatch = (oldAttrs.postPatch or "") + ''
+          #   sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+          # '';
+        });
+    })
+  ];
+
+
+programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+    style = ''
+    * {
+  font-family: "Cantarel";
+  font-size: 10pt;
+  font-weight: bold;
+  border-radius: 0px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+@keyframes blink_red {
+  to {
+    background-color: rgb(242, 143, 173);
+    color: rgb(26, 24, 38);
+  }
+}
+.warning, .critical, .urgent {
+  animation-name: blink_red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+window#waybar {
+  background-color: transparent;
+}
+window > box {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: rgb(30, 30, 46);
+}
+#workspaces {
+  padding-left: 0px;
+  padding-right: 4px;
+}
+#workspaces button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+#workspaces button.focused {
+  background-color: rgb(181, 232, 224);
+  color: rgb(26, 24, 38);
+}
+#workspaces button.urgent {
+  color: rgb(26, 24, 38);
+}
+#workspaces button:hover {
+  background-color: rgb(248, 189, 150);
+  color: rgb(26, 24, 38);
+}
+tooltip {
+  background: rgb(48, 45, 65);
+}
+tooltip label {
+  color: rgb(217, 224, 238);
+}
+#custom-launcher {
+  padding-left: 8px;
+  padding-right: 6px;
+  color: rgb(201, 203, 255);
+}
+#mode, #clock, #memory, #temperature,#cpu,#mpd, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* #mode { */
+/* 	margin-left: 10px; */
+/* 	background-color: rgb(248, 189, 150); */
+/*     color: rgb(26, 24, 38); */
+/* } */
+#memory {
+  color: rgb(181, 232, 224);
+}
+#cpu {
+  color: rgb(245, 194, 231);
+}
+#clock {
+  color: rgb(217, 224, 238);
+}
+#idle_inhibitor {
+  color: rgb(221, 182, 242);
+}
+#temperature {
+  color: rgb(150, 205, 251);
+}
+#backlight {
+  color: rgb(248, 189, 150);
+}
+#pulseaudio {
+  color: rgb(245, 224, 220);
+}
+#network {
+  color: #ABE9B3;
+}
+
+#network.disconnected {
+  color: rgb(255, 255, 255);
+}
+#battery.charging, #battery.full, #battery.discharging {
+  color: rgb(250, 227, 176);
+}
+#battery.critical:not(.charging) {
+  color: rgb(242, 143, 173);
+}
+#custom-powermenu {
+  color: rgb(242, 143, 173);
+}
+#tray {
+  padding-right: 8px;
+  padding-left: 10px;
+}
+#mpd.paused {
+  color: #414868;
+  font-style: italic;
+}
+#mpd.stopped {
+  background: transparent;
+}
+#mpd {
+  color: #c0caf5;
+}
+#custom-cava-internal{
+  font-family: "Hack Nerd Font" ;
+}
+    '';
+
+    settings = [{
+        "layer" = "top";
+        "position" = "top";
+        modules-left = [
+          "custom/launcher"
+          "wlr/workspaces"
+          "temperature"
+          #"idle_inhibitor"
+          "custom/wall"
+          "mpd"
+          "custom/cava-internal"
+        ];
+        modules-center = [
+          "clock"
+        ];
+        modules-right = [
+          "pulseaudio"
+          "backlight"
+          "memory"
+          "cpu"
+          "network"
+          "battery"
+          "custom/powermenu"
+          "tray"
+        ];
+        "custom/launcher" = {
+          "format" = " ";
+          "on-click" = "pkill rofi || ~/.config/rofi/launcher.sh";
+          "tooltip" = false;
+        };
+        "custom/wall" = {
+          "on-click" = "wallpaper_random";
+          "on-click-middle" = "default_wall";
+          "on-click-right" = "killall dynamic_wallpaper || dynamic_wallpaper &";
+          "format" = " ﴔ ";
+          "tooltip" = false;
+        };
+        "custom/cava-internal" = {
+          "exec" = "sleep 1s && cava-internal";
+          "tooltip" = false;
+        };
+        "wlr/workspaces" = {
+          "format" = "{icon}";
+          "on-click" = "activate";
+          # "on-scroll-up" = "hyprctl dispatch workspace e+1";
+          # "on-scroll-down" = "hyprctl dispatch workspace e-1";
+        };
+        "idle_inhibitor" = {
+          "format" = "{icon}";
+          "format-icons" = {
+            "activated" = "";
+            "deactivated" = "";
+          };
+          "tooltip" = false;
+        };
+        "backlight" = {
+          "device" = "intel_backlight";
+          "on-scroll-up" = "light -A 5";
+          "on-scroll-down" = "light -U 5";
+          "format" = "{icon} {percent}%";
+          "format-icons" = [ "" "" "" "" ];
+        };
+        "pulseaudio" = {
+          "scroll-step" = 1;
+          "format" = "{icon} {volume}%";
+          "format-muted" = "婢 Muted";
+          "format-icons" = {
+            "default" = [ "" "" "" ];
+          };
+          "states" = {
+            "warning" = 85;
+          };
+          "on-click" = "pamixer -t";
+          "tooltip" = false;
+        };
+        "battery" = {
+          "interval" = 10;
+          "states" = {
+            "warning" = 20;
+            "critical" = 10;
+          };
+          "format" = "{icon} {capacity}%";
+          "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
+          "format-full" = "{icon} {capacity}%";
+          "format-charging" = " {capacity}%";
+          "tooltip" = false;
+        };
+        "clock" = {
+          "interval" = 1;
+          "format" = "{:%I:%M %p  %A %b %d}";
+          "tooltip" = true;
+          /* "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>" */
+          "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
+        };
+        "memory" = {
+          "interval" = 1;
+          "format" = "﬙ {percentage}%";
+          "states" = {
+            "warning" = 85;
+          };
+        };
+        "cpu" = {
+          "interval" = 1;
+          "format" = " {usage}%";
+        };
+        "mpd" = {
+          "max-length" = 25;
+          "format" = "<span foreground='#bb9af7'></span> {title}";
+          "format-paused" = " {title}";
+          "format-stopped" = "<span foreground='#bb9af7'></span>";
+          "format-disconnected" = "";
+          "on-click" = "mpc --quiet toggle";
+          "on-click-right" = "mpc update; mpc ls | mpc add";
+          "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
+          "on-scroll-up" = "mpc --quiet prev";
+          "on-scroll-down" = "mpc --quiet next";
+          "smooth-scrolling-threshold" = 5;
+          "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
+        };
+        "network" = {
+          "interval" = 1;
+          "format-wifi" = "說 {essid}";
+          "format-ethernet" = "  {ifname} ({ipaddr})";
+          "format-linked" = "說 {essid} (No IP)";
+          "format-disconnected" = "說 Disconnected";
+          "tooltip" = false;
+        };
+        "temperature" = {
+          # "hwmon-path"= "${env:HWMON_PATH}";
+          #"critical-threshold"= 80;
+          "tooltip" = false;
+          "format" = " {temperatureC}°C";
+        };
+        "custom/powermenu" = {
+          "format" = "";
+          "on-click" = "pkill rofi || ~/.config/rofi/powermenu.sh";
+          "tooltip" = false;
+        };
+        "tray" = {
+          "icon-size" = 15;
+          "spacing" = 5;
+        };
+      }];
+
+  };
+#programs.waybar = {
+#    enable = true;
+#    systemd.enable = true;
+#        package = (pkgs.waybar.override (oldAttrs: { pulseSupport = true;} ));
+#        settings = [{
+#          layer = "top";
+#          position = "top";
+#          height = 30;
+#          modules-left = ["sway/workspaces" "sway/mode"];
+#          modules-center = ["sway/window"];
+#          modules-right = ["custom/stopwatch" "cpu" "memory" "network" "pulseaudio" "battery" "clock" "tray"];
+#          "sway/workspaces" = {
+#            format = "{icon}";
+#            format-icons = {
+#              "urgent" = "";
+#              "focused" = "";
+#              "default" = "";
+#            };
+#          };
+#          "custom/stopwatch" = {
+#            format = "   {} ";
+#            exec = "~/.config/waybar/sw";
+#            on-click = "~/.config/waybar/sw";
+#            on-click-right = "~/.config/waybar/sw --stop";
+#            return-type = "json";
+#          };
+#          "network" = {
+#            format-wifi = " {essid} ({signalStrength}%)";
+#            format-ethernet = " {ifname}: {ipaddr}/{cidr}";
+#            format-disconnected = "Disconnected ⚠";
+#          };
+#          "cpu" = {
+#            interval = 5;
+#            format = " {usage}%";
+#            states = {
+#              warning = 70;
+#              critical = 90;
+#            };
+#          };
+#          "memory" = {
+#            interval = 5;
+#            format = " {}%";
+#            states = {
+#              warning = 70;
+#              critical = 90;
+#            };
+#          };
+#          "pulseaudio" = {
+#            format = "{icon} {volume}%";
+#            format-bluetooth = "{icon} {volume}%";
+#            format-muted = " 0%";
+#            format-icons = {
+#              "headphones" = "";
+#              "handsfree" = "";
+#              "headset" = "";
+#              "phone" = "";
+#              "portable" = "";
+#              "car" = "";
+#              "default" = ["" ""];
+#            };
+#          };
+#          "battery" = {
+#            bat = "BAT0";
+#            states = {
+#              "warning" = 30;
+#              "critical" = 15;
+#            };
+#            format = "{icon}  {capacity}%";
+#            format-icons = ["" "" "" "" ""];
+#          };
+#          "clock" = {
+#            format = "{:%a %d %b %H:%M}";
+#          };
+#        }];
+#        style = (builtins.readFile /home/rafi/.config/waybar/style.css);
+#      };
+#    xdg.configFile."waybar/sw".source = /home/rafi/.config/waybar/sw;
+
+    wayland.windowManager.sway = {
+      enable = true;
+      config = {
+   #     output."eDP-1".scale = "1.5";
+   #     seat."*".xcursor_theme = "Vimix-White 32";
+   #     terminal = "${pkgs.foot}/bin/foot";
+   #     input =  { "*" = { xkb_layout = "de"; } ; };
+   #     menu = "${pkgs.bemenu}/bin/bemenu-run -b";
+        modifier = "Mod4";
+   #     startup = [
+   #       { command = "librewolf"; }
+   #       { command = "signal-desktop"; }
+   #       { command = "waybar"; }
+   #       { command = "mako"; }
+   #     ];
+        bars = [];
+   #     assigns = {
+   #       "1" = [{ app_id = "librewolf"; }];
+   #       "2" = [{ title = "Signal"; }];
+   #     };
+        workspaceAutoBackAndForth = true;
+#        keybindings = lib.mkOptionDefault{
+#          "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudioFull}/bin/pactl set-sink-volume 0 +5%";
+#          "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudioFull}/bin/pactl set-sink-volume 0 -5%";
+#          "XF86AudioMute" = "exec ${pkgs.pulseaudioFull}/bin/pactl set-sink-mute 0 toggle";
+#          "XF86WebCam" = "exec ${pkgs.swaylock}/bin/swaylock -i /home/onny/pictures/catalina.jpg --scaling fill";
+#          "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%+";
+#          "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 5%-";
+#          "print" = "exec --no-startup-id ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && ${pkgs.wl-clipboard}/bin/wl-paste > $(${pkgs.xdg-user-dirs}/bin/xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')";
+#          "XF86Display" = "exec ${inputs.wl-togglescreens.packages.x86_64-linux.wl-togglescreens}/bin/wl-togglescreens";
+#        };
+   #     floating.criteria = [
+   #       { "title" = "^OpenSnitch v.*"; }
+   #     ];
+      };
+    };
+
+    dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
+      };
+    };
+
+    gtk = {
+      enable = true;
+      font = {
+          name = "Cantarel";
+          package = pkgs.cantarell-fonts;
+        };
+      iconTheme = {
+        package = pkgs.papirus-icon-theme;
+        name = "Papirus-Dark";
+      };
+      theme = {
+        package = pkgs.qogir-theme;
+        name = "Qogir";
+      };
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+    };
+
+
+
+
+
+  home.stateVersion = "22.11";
+
+  programs.home-manager.enable = true;
+}

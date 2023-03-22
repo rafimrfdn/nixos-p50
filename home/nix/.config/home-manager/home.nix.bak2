@@ -1,0 +1,52 @@
+{ config, pkgs, ... }:
+
+{
+  imports = [
+   ./sway/default.nix
+   ./hyprland/default.nix
+   ./neovim/default.nix
+   ./waybar/default.nix
+   ./gtk/default.nix
+  ];
+  
+  home.username = "rafi";
+  home.homeDirectory = "/home/rafi";
+
+   
+  nixpkgs.config.allowUnfree = true;
+
+  home.packages = with pkgs; [
+  kitty
+  mpv
+  ripgrep
+  fd
+  git 
+  firefox
+  neofetch
+  wget
+  wayland
+  font-awesome
+  feh
+  sway-contrib.grimshot
+  eww-wayland
+  rofi-wayland
+  wayshot
+  #wl-clipboard
+  unzip
+  wl-clipboard
+  #waybar
+  cinnamon.nemo
+  #gnome.file-roller
+  xarchiver
+  xdg-desktop-portal-wlr
+  xwayland
+  #slurp
+  flameshot
+  mako
+  #grim
+];
+
+  home.stateVersion = "22.11";
+
+  programs.home-manager.enable = true;
+}

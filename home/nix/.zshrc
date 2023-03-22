@@ -28,7 +28,7 @@ alias ls="exa"
 #PROMPT='%F{208}%n%f in %F{226}%~%f -> '
 PROMPT='%F{226}%~%f '
 
-alias vim="/home/nix/neovim-nightly/build/bin/nvim"
+#alias vim="/home/nix/neovim-nightly/build/bin/nvim"
 alias alphp="./.alphp/7.4-full/bin/alphp"
 
 export EDITOR=nvim

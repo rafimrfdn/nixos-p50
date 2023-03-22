@@ -5,6 +5,7 @@ x-scheme-handler/tg=userapp-Telegram Desktop-0WB901.desktop
 image/jpeg=xviewer.desktop
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=calc.desktop
 inode/directory=pcmanfm.desktop;
+video/webm=userapp-mpv-JVXS11.desktop
 
 [Added Associations]
 image/png=org.gnome.eog.desktop;xviewer.desktop;pix.desktop;
@@ -14,6 +15,8 @@ image/jpeg=pix.desktop;xviewer.desktop;
 application/vnd.oasis.opendocument.spreadsheet=calc.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=calc.desktop;
 inode/directory=code-oss.desktop;
+video/mp4=userapp-mpv-JVXS11.desktop;
+video/webm=userapp-mpv-JVXS11.desktop;
 
 [Removed Associations]
 inode/directory=code-oss.desktop
