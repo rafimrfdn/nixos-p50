@@ -8,22 +8,7 @@
    ./waybar/default.nix
    ./gtk/default.nix
    ./tmux/default.nix
-  ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      st = super.st.overrideAttrs (oldAttrs: rec {
-        patches = [
-        ./st/st-scrollback-0.8.5.diff
-        ./st/st-font2-0.8.5.diff
-        ./st/st-glyph-wide-support-20220411-ef05519.diff
-        ./st/st-charoffsets-20220311-0.8.5.diff
-        #./st/st-anysize-20220718-baa9357.diff
-        ];
-        configFile = super.writeText "config.h" (builtins.readFile ./st/config.h);
-        postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
-      });
-    })
+   ./st/default.nix
   ];
 
   
@@ -90,7 +75,6 @@
   rofi-wayland
   scrot
   simplescreenrecorder
-  st
   tdesktop
   tree
   unzip
@@ -120,7 +104,6 @@
   bottom #top yang lebih cantik, ketik btm
   broot #cd ala vim, ketik broot
   monolith #save single page ke satu halaman html
-
 
 ];
 

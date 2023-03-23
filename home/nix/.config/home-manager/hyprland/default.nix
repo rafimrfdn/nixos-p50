@@ -32,6 +32,7 @@ in {
 #    exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
 
     exec-once=waybar
+    exec-once=copyq
 
     #exec-once = swaybg -m fill -i ~/Pictures/wp/xp.jpg
     exec-once = sh ~/.scripts/different-wp.sh

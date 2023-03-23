@@ -12,38 +12,39 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
---  'wbthomason/packer.nvim',
---  'ellisonleao/gruvbox.nvim',
-   -- {
-   --   'dracula/vim',
-   --   lazy = false,
-   -- },
+  -- 'wbthomason/packer.nvim',
+  -- 'ellisonleao/gruvbox.nvim',
+  -- {
+  --   'dracula/vim',
+  --   lazy = false,
+  -- },
   'rose-pine/neovim',
   'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',
   'nvim-lualine/lualine.nvim',
   'nvim-treesitter/nvim-treesitter',
---  'bluz71/vim-nightfly-colors',
---  'vim-test/vim-test',
---  'windwp/nvim-autopairs',
---  'lewis6991/gitsigns.nvim',
---  'preservim/vimux',
---  'christoomey/vim-tmux-navigator',
-  -- 'tpope/vim-fugitive',
+  'bluz71/vim-nightfly-colors',
+  'vim-test/vim-test',
+  -- 'lewis6991/gitsigns.nvim',
+  -- 'preservim/vimux',
+  -- 'christoomey/vim-tmux-navigator',
+  'tpope/vim-fugitive',
   -- completion
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-path',         -- Optional
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
   "rafamadriz/friendly-snippets",
---  "github/copilot.vim",
+  -- "github/copilot.vim",
   "williamboman/mason.nvim",
-  "numToStr/Comment.nvim", --for commenting support
-  "akinsho/toggleterm.nvim", -- run terminal on vim
   "neovim/nvim-lspconfig",
   "williamboman/mason-lspconfig.nvim",
   -- "glepnir/lspsaga.nvim",
+
+    -- My own useful plugin
+    'akinsho/toggleterm.nvim', -- run terminal on vim
+    'numToStr/Comment.nvim', -- for commenting support
   {
 	  'nvim-telescope/telescope.nvim',
 	  tag = '0.1.0',
