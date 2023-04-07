@@ -85,7 +85,7 @@ programs.waybar = {
                  padding-right: 6px;
                  color: #7ebae4;
                }
-         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
+         #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-uptime {
                  padding-left: 10px;
                  padding-right: 10px;
                }
@@ -94,6 +94,9 @@ programs.waybar = {
                /* 	background-color: rgb(248, 189, 150); */
                /*     color: rgb(26, 24, 38); */
                /* } */
+         #custom-uptime {
+                 color: rgb(242, 143, 173);
+               }
          #memory {
                  color: rgb(181, 232, 224);
                }
@@ -160,6 +163,7 @@ programs.waybar = {
           #"custom/launcher"
           "wlr/workspaces"
           "temperature"
+          "custom/uptime"
           #"idle_inhibitor"
           #"custom/wall"
           #"mpd"
@@ -254,15 +258,14 @@ programs.waybar = {
           "interval" = 1;
           /* "format" = "﬙ {percentage}%";
           "format" = " {percentage}%";*/
-          "format" = "M {percentage}%";
+           "format" = " {percentage}%";
           "states" = {
             "warning" = 85;
           };
         };
         "cpu" = {
           "interval" = 1;
-          /*"format" = " {usage}%";*/
-          "format" = "C {usage}%";
+          "format" = " {usage}%";
         };
         "mpd" = {
           "max-length" = 25;
@@ -291,6 +294,14 @@ programs.waybar = {
           #"critical-threshold"= 80;*/
           "tooltip" = false;
           "format" = " {temperatureC}°C";
+        };
+        "custom/uptime" = {
+          /*"format" = "Uptime {uptime | awk '{print $3 }' | sed 's/,/ /' }";*/
+          "format" = "󱎴  {}";
+          /*"exec" = "~/.config/waybar/uptime.sh";*/
+          "exec" = "uptime | awk '{print $3 }' | sed 's/,/ /'";
+          "interval" = 1;
+          "tooltip" = false;
         };
         "custom/powermenu" = {
           "format" = "";

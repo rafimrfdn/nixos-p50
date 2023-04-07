@@ -13,9 +13,10 @@ in {
   ];
 
   home.packages = with pkgs; [
-    wofi swaybg wlsunset wl-clipboard 
-#sway 
-      slurp sway-contrib.grimshot jq socat
+    wofi swaybg wlsunset 
+    wl-clipboard 
+    clipman
+    slurp sway-contrib.grimshot jq socat
   ];
 
   wayland.windowManager.hyprland = {
@@ -24,20 +25,33 @@ in {
     # My HYPRLAND Configuration
     monitor=eDP-1,1920x1080@60,0x0,1
 
-    # For screen sharing 
-    exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-#    exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+    #exec-once=export WAYLAND_DISPLAY=wayland-0
 
-#    exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
+    # For screen sharing 
+    #exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK 
+    #exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+    exec-once=dbus-update-activation-environment --systemd DISPLAY _WAYLAND_DISPLAY wayland-0 HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP SWAYSOCK _XDG_CURRENT_SESSION wayland
+
+    # exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+    # exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
+
+    # environment variable and clipboard
+   # exec-once=export GDK_BACKEND=wayland,x11
+   # exec-once=export XDG_CURRENT_DESKTOP=Hyprland
+   # exec-once=export XDG_SESSION_TYPE=wayland
+   # exec-once=export XDG_SESSION_DESKTOP=Hyprland
+    
+
 
     exec-once=waybar
-    exec-once=copyq
+    
+    # Set clipman as Clipboard, dont forget to set the environment variable
+    exec-once = wl-paste -t text --watch clipman store --no-persist
 
     #exec-once = swaybg -m fill -i ~/Pictures/wp/xp.jpg
-    exec-once = sh ~/.scripts/different-wp.sh
    # exec-once=swaymsg output "*" bg ~/Pictures/wp/* fill
-
+    exec-once = sh ~/.scripts/different-wp.sh
 
     # Set your Xrate setting in here 
     input {
@@ -73,7 +87,7 @@ in {
 
     decoration {
       rounding=0
-        blur = true
+        blur = false
         blur_size = 3
         blur_passes = 3
         blur_new_optimizations = true
@@ -105,8 +119,8 @@ in {
     }
     
     misc {
-      # disable_hyprland_logo=true
-      # disable_splash_rendering=true
+      disable_hyprland_logo=true
+      disable_splash_rendering=true
       mouse_move_enables_dpms=true
       vfr = true
       hide_cursor_on_touch = true
@@ -122,6 +136,7 @@ in {
     bind = SUPER, P, exec, wofi --show run
     bind = SUPER, W, exec, firefox
     bind = SUPER, Q, exec, ~/.scripts/powermenu.sh
+    bind = SUPER, N, exec, kitty -e ~/.scripts/notetaker.sh
 
     bind = ,Print,exec, grimshot save active
     bind = SHIFT,Print,exec, grimshot save area
@@ -213,8 +228,14 @@ in {
     MOZ_ENABLE_WAYLAND = "1";
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    SDL_VIDEODRIVER = "wayland";
-    XDG_SESSION_TYPE = "wayland";
+
+   GDK_BACKEND="wayland,x11";
+   SDL_VIDEODRIVER = "wayland";
+   XDG_SESSION_TYPE = "wayland";
+   XDG_CURRENT_DESKTOP="Hyprland";
+   XDG_SESSION_DESKTOP="Hyprland";
+
+   CLUTTER_BACKEND="wayland";
   };
 
 #programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [wlrobs];

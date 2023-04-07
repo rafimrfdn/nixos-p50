@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/sh 
+#!/usr/bin/env bash
 
 #xsetroot -cursor_name left_ptr &
 #xset r rate 300 50 &

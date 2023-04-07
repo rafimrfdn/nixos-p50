@@ -32,7 +32,7 @@ PROMPT='%F{226}%~%f '
 alias alphp="./.alphp/7.4-full/bin/alphp"
 
 export EDITOR=nvim
-export XDG_RUNTIME_DIR=~/.tmp/xdg
+#export XDG_RUNTIME_DIR=~/.tmp/xdg
 
 #alias lf="/home/nix/.local/bin/lf-gadgets/lf-ueberzug/lf-ueberzug"
 #alias lf="/run/current-system/sw/bin/lf"

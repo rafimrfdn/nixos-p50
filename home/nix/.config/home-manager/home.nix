@@ -21,11 +21,8 @@
   #deno
   #elementary-xfce-icon-theme
   #lf
-  #neovim
   #rofi
-  #wayland
   #xfce.thunar
-  #xwayland
   acpi
   arandr
   arc-theme
@@ -87,7 +84,6 @@
   xclip
   xdg-desktop-portal-wlr
   xorg.xev
-  #youtube-dl
   yt-dlp
   zsh-autosuggestions
 
@@ -106,7 +102,6 @@
   monolith #save single page ke satu halaman html
 
 ];
-
 
   home.stateVersion = "22.11";
 

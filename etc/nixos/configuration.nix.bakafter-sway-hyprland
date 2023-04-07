@@ -2,14 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: let
 
-{
+  flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+
+  hyprland = (import flake-compat {
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+
+in {
+
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./greetd/default.nix
-#      ./sound/default.nix
+	hyprland.nixosModules.default
     ];
 
 
@@ -23,24 +30,8 @@
     #hardware.cpu.intel.sgx.provision.enable = true;
 
   # Enable OpenGL
-#  hardware.opengl.enable = true;
-#  hardware.opengl.extraPackages = with pkgs; [ intel-media-driver (vaapiIntel.override {enableHybridCodec = true;}) vaapiVdpau libvdpau-va-gl ];
-#  hardware.opengl.driSupport = true;
-
-    # Intel/OpenGL
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-       intel-media-driver
-       vaapiIntel
-       vaapiVdpau
-       libvdpau-va-gl
-    ];
-    driSupport = true;
-   };
-
-
-#  hardware.pulseaudio.extraConfig = "load-module module-combine-sink";
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
 
   # Enable zram
   zramSwap.enable = true;
@@ -121,30 +112,62 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.displayManager.startx.enable = true;
+  #services.xserver.displayManager.startx.enable = true;
 
   #AwesomeWM
-#  services.xserver.windowManager.awesome.enable = true;
+  services.xserver.windowManager.awesome.enable = true;
 
   # Enable LightDM
-  services.xserver.displayManager.lightdm.enable = false;
+  #services.xserver.displayManager.lightdm.enable = true;
   #services.xserver.displayManager.lightdm.greeters.slick.enable = true;
   #services.xserver.displayManager.lightdm.greeters.slick.theme.name = "Qogir";
 
 
   # Enable GDM
-#  services.xserver.displayManager.gdm.enable = true;
-#  services.xserver.displayManager.gdm.wayland = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
 
+  
+  # Enable Sway
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
+    extraPackages = with pkgs; [
+      swaylock
+      swayidle
+      wl-clipboard
+      wf-recorder
+      mako # notification daemon
+      grim
+      slurp
+      dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+    ];
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+    '';
+  };
 
-#  programs.xwayland.enable = true;
-#  programs.sway.enable = true;
+  # Enable Hyprland
+  programs.hyprland = {
+    enable = true;
+    package = hyprland.packages.${pkgs.system}.default;
+    xwayland = {
+      enable = true;
+      hidpi = true;
+    };
+    nvidiaPatches = false;
+  };
 
-
+  programs.xwayland.enable = true;
+  xdg.portal.wlr.enable = true;
 
 
   # Set default XSesssion
-#  services.xserver.displayManager.defaultSession = "none+awesome";
+  #services.xserver.displayManager.defaultSession = "none+awesome";
 
 
   # Enable Cinnamon Dekstop
@@ -155,8 +178,6 @@
     programs.zsh.enable = true;
     programs.zsh.autosuggestions.enable = true;
     programs.bash.enableCompletion = true;
-
-
 
   # Configure keymap in X11
   services.xserver = {
@@ -193,14 +214,13 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false; #Disable Pulseaudio
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -222,7 +242,7 @@
     description = "nix";
     extraGroups = [ 
 	"wheel" 
-    	"networkmanager" 
+    	"networokmanager" 
 	"video" 
 	"input" 
 	"storage" 
@@ -231,24 +251,9 @@
     shell = pkgs.zsh;
   };
 
-  users.users.rafi = {
-    isNormalUser = true;
-    description = "user wayland";
-    extraGroups = [ 
-	"wheel" 
-    	"networkmanager" 
-	"audio"
-	"video" 
-	"input" 
-	"storage" 
-	"libvirtd"
-	];
-#    shell = pkgs.zsh;
-  };
-
     # Enable automatic login for the user.
-  #services.xserver.displayManager.autoLogin.enable = true;
-  #services.xserver.displayManager.autoLogin.user = "nix";
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "nix";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -259,83 +264,18 @@
    virtualisation.libvirtd.enable = true;
    programs.dconf.enable = true;
 
-  # Automatic delete old version
-  nix = {
-      # Hard link identical files in the store automatically
-       #autoOptimiseStore = true;
-      settings.auto-optimise-store = true;
-      # automatically trigger garbage collection
-      gc.automatic = true;
-      gc.dates = "weekly";
-      gc.options = "--delete-older-than 30d";
-
-    settings.substituters = ["https://hyprland.cachix.org"];
-    settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
- 
-  };
-
 
   # NodeJS and NPM
   programs.npm.enable = true;
-  
-  # neovim global
-#  programs.neovim = {
-#  	enable = true;
-#	withNodeJs = true;
-#	defaultEditor = true;	
-#	vimAlias = true;
-#	configure = {
-#		packages.myVimPackage = with pkgs.vimPlugins; {
-#			start = [ vim-nix];
-#		};
-#	};
-#  };
-
-# Remove unecessary preinstalled packages
-  #environment.defaultPackages = [];
-
-  environment.variables.EDITOR = "nvim";
-# environment.shells = with pkgs; [zsh];
+  programs.neovim.withNodeJs = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 	gcc #must have one linux compiler like gcc or cc etc.
 	gnumake
-#	wayland
-#   	wayland-scanner
-#       wayland-protocols
-#    	xwayland
-	wlroots
-	wlroots_0_16
-	wlr-protocols
-      	hyprland
-	wl-clipboard
-	xdg-desktop-portal-hyprland
-	hyprland-share-picker
-	hyprland-protocols
+	neovim
   ];
-
-#  services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-# Auto login TTY 
-#systemd.services."autovt@tty2".description = "Autologin at the TTY1";
-#systemd.services."autovt@tty2".after = [ "systemd-logind.service" ];  # without it user session not started and xorg can't be run from this tty
-#systemd.services."autovt@tty2".wantedBy = [ "multi-user.target" ];
-#systemd.services."autovt@tty2".serviceConfig =
-#  { ExecStart = [
-##      ""  # override upstream default with an empty ExecStart
-##      "@${pkgs.utillinux}/sbin/agetty agetty --login-program ${pkgs.shadow}/bin/login --autologin rafi --noclear %I $TERM"
-#"exec awesome"
-#    ];
-#    Restart = "always";
-#    Type = "idle";
-#  };
 
 
   # Mount drive
@@ -361,6 +301,20 @@
    services.udisks2.enable = true;
 
 
+  # Automatic delete old version
+  nix = {
+      # Hard link identical files in the store automatically
+       #autoOptimiseStore = true;
+      settings.auto-optimise-store = true;
+      # automatically trigger garbage collection
+      gc.automatic = true;
+      gc.dates = "weekly";
+      gc.options = "--delete-older-than 30d";
+
+    settings.substituters = ["https://hyprland.cachix.org"];
+    settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+ 
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
