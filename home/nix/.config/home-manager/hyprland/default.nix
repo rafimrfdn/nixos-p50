@@ -17,6 +17,7 @@ in {
     wl-clipboard 
     clipman
     slurp sway-contrib.grimshot jq socat
+    wlogout swaylock
   ];
 
   wayland.windowManager.hyprland = {
@@ -25,32 +26,22 @@ in {
     # My HYPRLAND Configuration
     monitor=eDP-1,1920x1080@60,0x0,1
 
-    #exec-once=export WAYLAND_DISPLAY=wayland-0
-
     # For screen sharing 
     #exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK 
     #exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
-    exec-once=dbus-update-activation-environment --systemd DISPLAY _WAYLAND_DISPLAY wayland-0 HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP SWAYSOCK _XDG_CURRENT_SESSION wayland
+    exec-once=dbus-update-activation-environment --systemd DISPLAY _WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP SWAYSOCK _XDG_CURRENT_SESSION 
 
     # exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     # exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
-
-    # environment variable and clipboard
-   # exec-once=export GDK_BACKEND=wayland,x11
-   # exec-once=export XDG_CURRENT_DESKTOP=Hyprland
-   # exec-once=export XDG_SESSION_TYPE=wayland
-   # exec-once=export XDG_SESSION_DESKTOP=Hyprland
-    
-
 
     exec-once=waybar
     
     # Set clipman as Clipboard, dont forget to set the environment variable
     exec-once = wl-paste -t text --watch clipman store --no-persist
 
-    #exec-once = swaybg -m fill -i ~/Pictures/wp/xp.jpg
-   # exec-once=swaymsg output "*" bg ~/Pictures/wp/* fill
+    # exec-once = swaybg -m fill -i ~/Pictures/wp/xp.jpg
+    # exec-once=swaymsg output "*" bg ~/Pictures/wp/* fill
     exec-once = sh ~/.scripts/different-wp.sh
 
     # Set your Xrate setting in here 
@@ -67,6 +58,7 @@ in {
         middle_button_emulation=0
         tap-to-click=1
       }
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
     }
     
    # This will activate gesture so you can switch between workspace like Gnome 42 or MacOS  
@@ -80,13 +72,13 @@ in {
         gaps_in = 5
         gaps_out = 5
         border_size = 1
-        col.active_border = rgb(ffc0cb)
+        col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
         col.inactive_border = rgba(595959aa)
         layout = dwindle # master|dwindle 
       }
 
     decoration {
-      rounding=0
+      rounding = 5
         blur = false
         blur_size = 3
         blur_passes = 3
@@ -135,7 +127,8 @@ in {
     bind = SUPER, D, exec, wofi --show drun -I
     bind = SUPER, P, exec, wofi --show run
     bind = SUPER, W, exec, firefox
-    bind = SUPER, Q, exec, ~/.scripts/powermenu.sh
+    # bind = SUPER, Q, exec, ~/.scripts/powermenu.sh
+    bind = SUPER, Q, exec, pkill wlogout || wlogout 
     bind = SUPER, N, exec, kitty -e ~/.scripts/notetaker.sh
 
     bind = ,Print,exec, grimshot save active

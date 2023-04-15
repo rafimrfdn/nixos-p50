@@ -243,7 +243,7 @@
 	"storage" 
 	"libvirtd"
 	];
-#    shell = pkgs.zsh;
+    shell = pkgs.zsh;
   };
 
     # Enable automatic login for the user.
@@ -306,11 +306,10 @@
 #   	wayland-scanner
 #       wayland-protocols
 #    	xwayland
-	wlroots
-	wlroots_0_16
-	wlr-protocols
+#	wlroots
+#	wlroots_0_16
+#	wlr-protocols
       	hyprland
-	wl-clipboard
 	xdg-desktop-portal-hyprland
 	hyprland-share-picker
 	hyprland-protocols
@@ -359,6 +358,13 @@
    security.polkit.enable = true;
    services.gvfs.enable = true;
    services.udisks2.enable = true;
+
+   # Make swaylock function 
+   security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
 
 

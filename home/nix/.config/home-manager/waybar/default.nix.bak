@@ -47,8 +47,7 @@ programs.waybar = {
                  margin-left: 0px;
                  margin-right: 0px;
                  margin-top: 0px;
-                 background: none;
-                 /**background: rgba(30, 30, 46, 0.5);**/
+                 background: rgba(30, 30, 46, 0.5);
                 /** background: rgba(43, 48, 59, 0.3);**/
                 /** background-color: rgb(30, 30, 46); **/
                 /**   border-bottom: 3px solid rgba(100, 114, 125, 0.5);**/
@@ -56,7 +55,6 @@ programs.waybar = {
          #workspaces {
                  padding-left: 0px;
                  padding-right: 4px;
-                 background-color: rgb(48, 52, 70);
                }
          #workspaces button {
                  padding-top: 5px;
@@ -86,7 +84,6 @@ programs.waybar = {
                  padding-left: 8px;
                  padding-right: 6px;
                  color: #7ebae4;
-                 background-color: rgb(48, 52, 70);
                }
          #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-uptime {
                  padding-left: 10px;
@@ -99,28 +96,15 @@ programs.waybar = {
                /* } */
          #custom-uptime {
                  color: rgb(242, 143, 173);
-                 background-color: rgb(48, 52, 70);
-                 border-left:20px;
-                 /*border-radius: 0 15px 15px 0;*/
-               }
-         #custom-borderleft, #custom-borderright{
-                 background-color: transparent;
-                 color: rgb(48, 52, 70);
-                 font-family: "Symbols Nerd Font";
-                 font-size: 30pt;
                }
          #memory {
                  color: rgb(181, 232, 224);
-                 background-color: rgb(48, 52, 70);
                }
          #cpu {
                  color: rgb(245, 194, 231);
-                 background-color: rgb(48, 52, 70);
                }
          #clock {
                  color: rgb(217, 224, 238);
-                 background-color: rgb(48, 52, 70);
-                 /*border-radius: 15px ;*/
                }
         /* #idle_inhibitor {
                  color: rgb(221, 182, 242);
@@ -130,16 +114,12 @@ programs.waybar = {
             }
          #temperature {
                  color: rgb(150, 205, 251);
-                 background-color: rgb(48, 52, 70);
                }
          #backlight {
                  color: rgb(248, 189, 150);
-                 background-color: rgb(48, 52, 70);
                }
          #pulseaudio {
                  color: rgb(245, 224, 220);
-                 background-color: rgb(48, 52, 70);
-                /*border-radius: 15px 0 0 15px; */
                }
          #network {
                  color: #ABE9B3;
@@ -149,19 +129,16 @@ programs.waybar = {
                }
          #battery.charging, #battery.full, #battery.discharging {
                  color: rgb(250, 227, 176);
-                 background-color: rgb(48, 52, 70);
                }
          #battery.critical:not(.charging) {
                  color: rgb(242, 143, 173);
                }
          #custom-powermenu {
                  color: rgb(242, 143, 173);
-                 background-color: rgb(48, 52, 70);
                }
          #tray {
                  padding-right: 8px;
                  padding-left: 10px;
-                 background-color: rgb(48, 52, 70);
                }
          #mpd.paused {
                  color: #414868;
@@ -181,25 +158,21 @@ programs.waybar = {
     settings = [{
         "layer" = "top";
         "position" = "top";
-        "height" = 10;
+        "height" = 15;
         modules-left = [
-          "custom/launcher"
+          #"custom/launcher"
           "wlr/workspaces"
           "temperature"
           "custom/uptime"
-          "custom/borderright"
           #"idle_inhibitor"
           #"custom/wall"
           #"mpd"
           #"custom/cava-internal"
         ];
         modules-center = [
-          "custom/borderleft"
           "clock"
-          "custom/borderright"
         ];
         modules-right = [
-          "custom/borderleft"
           "pulseaudio"
           "backlight"
           "memory"
@@ -211,8 +184,7 @@ programs.waybar = {
         ];
         "custom/launcher" = {
           "format" = " ";
-          /** "on-click" = "pkill rofi || ~/.config/rofi/launcher.sh";**/
-          "on-click" = "pkill wofi || wofi --show drun -I";
+          "on-click" = "pkill rofi || ~/.config/rofi/launcher.sh";
           "tooltip" = false;
         };
         "custom/wall" = {
@@ -253,8 +225,8 @@ programs.waybar = {
           "format" = "{icon} {volume}%";
           "format-muted" = "婢 Muted";
           "format-icons" = {
-            "default" = [ "" "" "" ];
             "headphones" = "";
+            "default" = [ "" "" "" ];
           };
           "states" = {
             "warning" = 85;
@@ -331,16 +303,9 @@ programs.waybar = {
           "interval" = 1;
           "tooltip" = false;
         };
-        "custom/borderleft" = {
-          "format" = "";
-        };
-        "custom/borderright" = {
-          "format" = "";
-        };
         "custom/powermenu" = {
           "format" = "";
-          # "on-click" = "pkill rofi || ~/.scripts/powermenu.sh";
-          "on-click" = "wlogout";
+          "on-click" = "pkill rofi || ~/.scripts/powermenu.sh";
           "tooltip" = false;
         };
         "tray" = {
