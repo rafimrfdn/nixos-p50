@@ -4,8 +4,8 @@ let
   flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
 
   hyprland = (import flake-compat {
-    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/releases/download/v0.23.0beta/source-v0.23.0beta.tar.gz";
-    # src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+    #src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/releases/download/v0.24.1/source-v0.24.1.tar.gz";
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
   }).defaultNix;
 in {
   imports = [
@@ -15,6 +15,7 @@ in {
   home.packages = with pkgs; [
     wofi swaybg wlsunset 
     wl-clipboard 
+    wf-recorder
     clipman
     slurp sway-contrib.grimshot jq socat
     wlogout swaylock
@@ -130,6 +131,7 @@ in {
     # bind = SUPER, Q, exec, ~/.scripts/powermenu.sh
     bind = SUPER, Q, exec, pkill wlogout || wlogout 
     bind = SUPER, N, exec, kitty -e ~/.scripts/notetaker.sh
+    bind = SUPER, O, pseudo, # dwindle
 
     bind = ,Print,exec, grimshot save active
     bind = SHIFT,Print,exec, grimshot save area

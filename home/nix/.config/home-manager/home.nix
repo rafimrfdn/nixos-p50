@@ -41,6 +41,7 @@
   gcc
   gimp
   git
+  gnome.file-roller #archive manager for nemo
   gnumake
   gparted
   hugo
@@ -80,7 +81,7 @@
   vscodium
   wget
   wofi
-  xarchiver #for pcmanfm extractor
+  #xarchiver #for pcmanfm extractor
   xclip
   xdg-desktop-portal-wlr
   xorg.xev

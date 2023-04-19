@@ -21,7 +21,8 @@ programs.waybar = {
     style = ''
             * {
                  font-family: "SF Pro Display";
-                 font-size: 10pt;
+                 font-size: 12px;
+                 min-height: 0;
                  font-weight: 600;
                  border-radius: 0px;
                  transition-property: background-color;
@@ -59,8 +60,8 @@ programs.waybar = {
                  background-color: rgb(48, 52, 70);
                }
          #workspaces button {
-                 padding-top: 5px;
-                 padding-bottom: 5px;
+                 padding-top: 2px;
+                 padding-bottom: 2px;
                  padding-left: 6px;
                  padding-right: 6px;
                }
@@ -82,7 +83,7 @@ programs.waybar = {
                  color: rgb(217, 224, 238);
                }
          #custom-launcher {
-                 font-size: 20px;
+                 font-size: 12px;
                  padding-left: 8px;
                  padding-right: 6px;
                  color: #7ebae4;
@@ -107,7 +108,7 @@ programs.waybar = {
                  background-color: transparent;
                  color: rgb(48, 52, 70);
                  font-family: "Symbols Nerd Font";
-                 font-size: 30pt;
+                 font-size: 25px;
                }
          #memory {
                  color: rgb(181, 232, 224);
@@ -204,7 +205,7 @@ programs.waybar = {
           "backlight"
           "memory"
           "cpu"
-          #"network"
+         #"network"
           "battery"
           "custom/powermenu"
           "tray"
@@ -340,7 +341,7 @@ programs.waybar = {
         "custom/powermenu" = {
           "format" = "";
           # "on-click" = "pkill rofi || ~/.scripts/powermenu.sh";
-          "on-click" = "wlogout";
+          "on-click" = "pkill wlogout || wlogout";
           "tooltip" = false;
         };
         "tray" = {

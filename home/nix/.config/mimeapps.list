@@ -2,23 +2,23 @@
 image/png=pix.desktop
 text/plain=nvim.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-0WB901.desktop
-image/jpeg=xviewer.desktop
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=calc.desktop
 inode/directory=pcmanfm.desktop;
 video/webm=userapp-mpv-JVXS11.desktop
 video/x-matroska=userapp-mpv-JVXS11.desktop
+application/vnd.rar=org.gnome.FileRoller.desktop
 
 [Added Associations]
 image/png=org.gnome.eog.desktop;xviewer.desktop;pix.desktop;
 text/plain=nvim.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-TT28T1.desktop;userapp-Telegram Desktop-73AFV1.desktop;userapp-Telegram Desktop-JWXCW1.desktop;userapp-Telegram Desktop-ZXIKX1.desktop;userapp-Telegram Desktop-2YH2Y1.desktop;userapp-Telegram Desktop-1CNEZ1.desktop;userapp-Telegram Desktop-2JV4Z1.desktop;userapp-Telegram Desktop-OG8A01.desktop;userapp-Telegram Desktop-PNH301.desktop;userapp-Telegram Desktop-Y7RN01.desktop;userapp-Telegram Desktop-0WB901.desktop;
-image/jpeg=pix.desktop;xviewer.desktop;
 application/vnd.oasis.opendocument.spreadsheet=calc.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=calc.desktop;
 inode/directory=code-oss.desktop;
 video/mp4=userapp-mpv-JVXS11.desktop;
 video/webm=userapp-mpv-JVXS11.desktop;
 video/x-matroska=userapp-mpv-JVXS11.desktop;
+application/vnd.rar=org.gnome.FileRoller.desktop;
 
 [Removed Associations]
 inode/directory=code-oss.desktop
