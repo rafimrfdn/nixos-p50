@@ -197,14 +197,14 @@ in {
     #bind=,escape,submap,reset 
     #submap=reset
 
-    bind=CTRL SHIFT, left, resizeactive,-15 0
-    bind=CTRL SHIFT, right, resizeactive,15 0
-    bind=CTRL SHIFT, up, resizeactive,0 -15
-    bind=CTRL SHIFT, down, resizeactive,0 15
-    bind=CTRL SHIFT, l, resizeactive, 15 0
-    bind=CTRL SHIFT, h, resizeactive,-15 0
-    bind=CTRL SHIFT, k, resizeactive, 0 -15
-    bind=CTRL SHIFT, j, resizeactive, 0 15
+#    bind=CTRL SHIFT, left, resizeactive,-15 0
+#    bind=CTRL SHIFT, right, resizeactive,15 0
+#    bind=CTRL SHIFT, up, resizeactive,0 -15
+#    bind=CTRL SHIFT, down, resizeactive,0 15
+#    bind=CTRL SHIFT, l, resizeactive, 15 0
+#    bind=CTRL SHIFT, h, resizeactive,-15 0
+#    bind=CTRL SHIFT, k, resizeactive, 0 -15
+#    bind=CTRL SHIFT, j, resizeactive, 0 15
 
     bind=,XF86MonBrightnessUp,exec, light -A 2
     bind=,XF86MonBrightnessDown,exec, light -U 2
