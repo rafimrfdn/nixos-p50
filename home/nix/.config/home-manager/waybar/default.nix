@@ -280,8 +280,8 @@ programs.waybar = {
           "interval" = 1;
           "format" = "{:%I:%M %p  %A, %d %b }";
           "tooltip" = true;
-          /* "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>" */
-          "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
+          "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
+          /*"tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";*/
         };
         "memory" = {
           "interval" = 1;
@@ -334,9 +334,11 @@ programs.waybar = {
         };
         "custom/borderleft" = {
           "format" = "";
+          "tooltip" = false;
         };
         "custom/borderright" = {
           "format" = "";
+          "tooltip" = false;
         };
         "custom/powermenu" = {
           "format" = "";
