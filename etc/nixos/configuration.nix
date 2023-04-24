@@ -302,6 +302,7 @@
   environment.systemPackages = with pkgs; [
 	gcc #must have one linux compiler like gcc or cc etc.
 	gnumake
+	git
 #	wayland
 #   	wayland-scanner
 #       wayland-protocols
