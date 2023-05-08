@@ -2,8 +2,6 @@
 
 {
   imports = [
-   ./sway/default.nix
-   ./hyprland/default.nix
    ./neovim/default.nix
    ./waybar/default.nix
    ./gtk/default.nix

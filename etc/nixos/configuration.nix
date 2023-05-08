@@ -124,7 +124,7 @@
   services.xserver.displayManager.startx.enable = true;
 
   #AwesomeWM
-#  services.xserver.windowManager.awesome.enable = true;
+  services.xserver.windowManager.awesome.enable = true;
 
   # Enable LightDM
   services.xserver.displayManager.lightdm.enable = false;
@@ -144,7 +144,7 @@
 
 
   # Set default XSesssion
-#  services.xserver.displayManager.defaultSession = "none+awesome";
+  services.xserver.displayManager.defaultSession = "none+awesome";
 
 
   # Enable Cinnamon Dekstop
@@ -270,7 +270,7 @@
       gc.dates = "weekly";
       gc.options = "--delete-older-than 30d";
 
-# Activate Hyprland
+# Activate Hyprland Globally, without install on Hyprland
 #    settings.substituters = ["https://hyprland.cachix.org"];
 #    settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
  
@@ -305,7 +305,7 @@
 	gcc #must have one linux compiler like gcc or cc etc.
 	gnumake
 
-# Activate Hyprland
+# Activate Hyprland Globally without home-manager, uncomment these 4 lines
 #      	hyprland
 #	xdg-desktop-portal-hyprland
 #	hyprland-share-picker

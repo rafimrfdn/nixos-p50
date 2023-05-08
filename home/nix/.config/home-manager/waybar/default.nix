@@ -213,7 +213,7 @@ programs.waybar = {
         "custom/launcher" = {
           "format" = " ";
           /** "on-click" = "pkill rofi || ~/.config/rofi/launcher.sh";**/
-          "on-click" = "pkill wofi || wofi --show drun -I";
+          "on-click" = "pkill wofi || wofi --show drun -I || pkill wofi";
           "tooltip" = false;
         };
         "custom/wall" = {
