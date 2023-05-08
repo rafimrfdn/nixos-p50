@@ -20,11 +20,14 @@ in
     settings = {
       default_session = {
         #command = "${lib.makeBinPath [pkgs.greetd.tuigreet] }/tuigreet --time --cmd ${swayRun}";
-        command = "${lib.makeBinPath [pkgs.greetd.tuigreet] }/tuigreet --time --cmd Hyprland";
+        command = "Hyprland"; 
         user = "nix";
       };
       initial_session = {
-        command = "${swayRun}";
+        #command = "${swayRun}";
+        command = "Hyprland"; # I want to set Hyprland as my default session
+        #command = "startx";
+        #command = "sway";
         user = "nix";
       };
     };
@@ -33,7 +36,7 @@ in
   environment.etc."greetd/environments".text = ''
   Hyprland
   sway
-  awesome
+  startx
   '';
 }
 
@@ -45,9 +48,7 @@ in
 #  enable = true;
 #  settings = rec {
 #    initial_session = {
-#      command = "
-#        Hyprland
-#     ";
+#      command = "Hyprland";
 #      user = "nix";
 #    };
 #    default_session = initial_session;

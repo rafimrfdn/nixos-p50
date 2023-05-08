@@ -124,7 +124,7 @@
   services.xserver.displayManager.startx.enable = true;
 
   #AwesomeWM
-#  services.xserver.windowManager.awesome.enable = true;
+  services.xserver.windowManager.awesome.enable = true;
 
   # Enable LightDM
   services.xserver.displayManager.lightdm.enable = false;
@@ -144,7 +144,7 @@
 
 
   # Set default XSesssion
-#  services.xserver.displayManager.defaultSession = "none+awesome";
+  services.xserver.displayManager.defaultSession = "none+awesome";
 
 
   # Enable Cinnamon Dekstop
@@ -231,20 +231,21 @@
     shell = pkgs.zsh;
   };
 
-  users.users.rafi = {
-    isNormalUser = true;
-    description = "user wayland";
-    extraGroups = [ 
-	"wheel" 
-    	"networkmanager" 
-	"audio"
-	"video" 
-	"input" 
-	"storage" 
-	"libvirtd"
-	];
-    shell = pkgs.zsh;
-  };
+# Additional user for test Hyprland installed on system, not from home-manager
+#  users.users.rafi = {
+#    isNormalUser = true;
+#    description = "user wayland";
+#    extraGroups = [ 
+#	"wheel" 
+#    	"networkmanager" 
+#	"audio"
+#	"video" 
+#	"input" 
+#	"storage" 
+#	"libvirtd"
+#	];
+#    shell = pkgs.zsh;
+#  };
 
     # Enable automatic login for the user.
   #services.xserver.displayManager.autoLogin.enable = true;
@@ -269,8 +270,9 @@
       gc.dates = "weekly";
       gc.options = "--delete-older-than 30d";
 
-    settings.substituters = ["https://hyprland.cachix.org"];
-    settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+# Activate Hyprland Globally, without install on Hyprland
+#    settings.substituters = ["https://hyprland.cachix.org"];
+#    settings.trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
  
   };
 
@@ -302,17 +304,12 @@
   environment.systemPackages = with pkgs; [
 	gcc #must have one linux compiler like gcc or cc etc.
 	gnumake
-#	wayland
-#   	wayland-scanner
-#       wayland-protocols
-#    	xwayland
-#	wlroots
-#	wlroots_0_16
-#	wlr-protocols
-      	hyprland
-	xdg-desktop-portal-hyprland
-	hyprland-share-picker
-	hyprland-protocols
+
+# Activate Hyprland Globally without home-manager, uncomment these 4 lines
+#      	hyprland
+#	xdg-desktop-portal-hyprland
+#	hyprland-share-picker
+#	hyprland-protocols
   ];
 
 #  services.dbus.enable = true;
