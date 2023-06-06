@@ -319,6 +319,12 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
+# enable emacs daemon
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
+  };
+
 # Auto login TTY 
 #systemd.services."autovt@tty2".description = "Autologin at the TTY1";
 #systemd.services."autovt@tty2".after = [ "systemd-logind.service" ];  # without it user session not started and xorg can't be run from this tty

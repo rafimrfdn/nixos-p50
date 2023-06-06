@@ -2,13 +2,14 @@
 
 {
   imports = [
-   ./sway/default.nix
+#   ./sway/default.nix
    ./hyprland/default.nix
    ./neovim/default.nix
    ./waybar/default.nix
    ./gtk/default.nix
    ./tmux/default.nix
    ./st/default.nix
+   ./emacs/default.nix
   ];
 
   
@@ -27,12 +28,12 @@
   arandr
   arc-theme
   autorandr
+  brave
   cinnamon.nemo
   cinnamon.pix
   copyq
   darktable
   easyeffects
-  emacs
   feh
   ffmpeg # for mpv
   ffmpegthumbnailer
@@ -105,7 +106,7 @@
 
 ];
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   programs.home-manager.enable = true;
 }

@@ -18,7 +18,7 @@ local plugins = {
   --   'dracula/vim',
   --   lazy = false,
   -- },
-  'bluz71/vim-nightfly-colors',
+--  'bluz71/vim-nightfly-colors',
   'rose-pine/neovim',
   'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',

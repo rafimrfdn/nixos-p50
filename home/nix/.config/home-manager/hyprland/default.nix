@@ -129,7 +129,7 @@ in {
     bind = SUPER, P, exec, wofi --show run
     bind = SUPER, W, exec, firefox
     # bind = SUPER, Q, exec, ~/.scripts/powermenu.sh
-    bind = SUPER, Q, exec, pkill wlogout || wlogout 
+    bind = SUPERSHIFT, Q, exec, pkill wlogout || wlogout 
     bind = SUPER, N, exec, kitty -e ~/.scripts/notetaker.sh
     bind = SUPER, O, pseudo, # dwindle
 

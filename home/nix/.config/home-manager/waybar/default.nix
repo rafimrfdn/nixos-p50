@@ -42,7 +42,8 @@ programs.waybar = {
                  animation-direction: alternate;
                }
                window#waybar {
-                 background-color: transparent;
+                 /**background-color: transparent;**/
+                 background-color: rgba(30, 30, 46, 0.5);
                }
                window > box {
                  margin-left: 0px;
@@ -104,7 +105,7 @@ programs.waybar = {
                  border-left:20px;
                  /*border-radius: 0 15px 15px 0;*/
                }
-         #custom-borderleft, #custom-borderright{
+         #custom-borderleft, #custom-borderright, #custom-centerborderleft, #custom-centerborderright{
                  background-color: transparent;
                  color: rgb(48, 52, 70);
                  font-family: "Symbols Nerd Font";
@@ -120,7 +121,8 @@ programs.waybar = {
                }
          #clock {
                  color: rgb(217, 224, 238);
-                 background-color: rgb(48, 52, 70);
+                 /**background-color: rgb(48, 52, 70);**/
+                 background-color: transparent;
                  /*border-radius: 15px ;*/
                }
         /* #idle_inhibitor {
@@ -195,9 +197,9 @@ programs.waybar = {
           #"custom/cava-internal"
         ];
         modules-center = [
-          "custom/borderleft"
+          #"custom/centerborderleft"
           "clock"
-          "custom/borderright"
+          #"custom/centerborderright"
         ];
         modules-right = [
           "custom/borderleft"
@@ -257,9 +259,9 @@ programs.waybar = {
             "default" = [ "" "" "" ];
             "headphones" = "";
           };
-          "states" = {
+          /**"states" = {
             "warning" = 85;
-          };
+          };**/
           "on-click" = "pamixer -t";
           "tooltip" = false;
         };
@@ -333,11 +335,24 @@ programs.waybar = {
           "tooltip" = false;
         };
         "custom/borderleft" = {
+          "format" = "";
+          /**"format" = "";**/
+          "tooltip" = false;
+        };
+        "custom/centerborderleft" = {
           "format" = "";
+          /**"format" = "";**/
+          "tooltip" = false;
+        };
+        "custom/centerborderright" = {
+          "format" = "";
+          /**"format" = "";**/
           "tooltip" = false;
         };
         "custom/borderright" = {
-          "format" = "";
+          /**"format" = "";**/
+         "format" = "";
+          /**"format" = "";**/
           "tooltip" = false;
         };
         "custom/powermenu" = {

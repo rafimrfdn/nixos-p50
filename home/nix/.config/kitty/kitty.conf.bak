@@ -9,16 +9,21 @@
 # to see all list of fonts in system
 # kitty +list-fonts
 
-font_family      Iosevka Nerd Font Complete Medium
+font_family      Iosevka 
+#font_family      Iosevka Nerd Font Complete Medium
 #font_family      Caskaydia Cove Nerd Font Complete Regular
 #font_family     FreeMono Bold
-italic_font      auto
-bold_font        auto
-bold_italic_font auto
+#italic_font      auto
+#bold_font        auto
+#bold_italic_font auto
+
+italic_font      Iosevka Italic
+bold_font        Iosevka Bold
+bold_italic_font Iosevka Bold Italic
 
 #modify_font cell_width 100%
-modify_font cell_height -5px
-modify_font baseline 3
+#modify_font cell_height -5px
+#modify_font baseline 3
 #adjust_line_height  100%
 #single_window_margin_width 0
 
@@ -38,7 +43,7 @@ allow_remote_control yes
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 14
+font_size 12
 
 #: Font size (in pts)
 
@@ -2277,6 +2282,6 @@ map cmd+q quit
 
 
 # BEGIN_KITTY_THEME
-# Bluloco Dark
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
