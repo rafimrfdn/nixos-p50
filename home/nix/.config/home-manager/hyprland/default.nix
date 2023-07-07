@@ -37,6 +37,7 @@ in {
     # exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
 
     exec-once=waybar
+    #exec-once = conky -c $HOME/.config/conky/conky.conf &> /dev/null &
     
     # Set clipman as Clipboard, dont forget to set the environment variable
     exec-once = wl-paste -t text --watch clipman store --no-persist
@@ -61,7 +62,19 @@ in {
       }
     sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
     }
-    
+
+    windowrule = noborder,conky
+    windowrule = center,conky
+    windowrule = float,conky
+    windowrule = nofocus,conky
+    windowrule = opacity 0.5,conky
+    windowrule = workspace 1 silent,^(conky)$
+    windowrulev2 = pin,class:^(conky)$
+
+    layerrule = ignorezero,notifications
+    layerrule = ignorezero, ^(gtk-layer-shell)$
+
+
    # This will activate gesture so you can switch between workspace like Gnome 42 or MacOS  
     gestures { 
       workspace_swipe=true 
@@ -124,6 +137,7 @@ in {
 
     # Keybind for launch apps
     bind = SUPERSHIFT, Return, exec, kitty
+    bind = SUPERSHIFT, E, exec, emacs
     bind = SUPER, E, exec, nemo
     bind = SUPER, D, exec, wofi --show drun -I
     bind = SUPER, P, exec, wofi --show run

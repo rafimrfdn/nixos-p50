@@ -20,13 +20,14 @@ in
     settings = {
       default_session = {
         #command = "${lib.makeBinPath [pkgs.greetd.tuigreet] }/tuigreet --time --cmd ${swayRun}";
-        command = "Hyprland"; 
+        #command = "Hyprland"; 
+        command = "startx"; 
         user = "nix";
       };
       initial_session = {
         #command = "${swayRun}";
-        command = "Hyprland"; # I want to set Hyprland as my default session
-        #command = "startx";
+        #command = "Hyprland"; # I want to set Hyprland as my default session
+        command = "startx";
         #command = "sway";
         user = "nix";
       };

@@ -26,4 +26,6 @@
 #        dbus-update-activation-environment DISPLAY XAUTHORITY
 #fi
 
+export XDG_SESSION_TYPE=x11
+
 exec awesome

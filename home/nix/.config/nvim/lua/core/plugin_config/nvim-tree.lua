@@ -10,7 +10,8 @@ vim.g.loaded_netrwPlugin = 1
 
 --vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>')
 
-vim.keymap.set('n', '<F3>', ':NvimTreeFindFileToggle<CR>')
+vim.keymap.set('n', '<F3>', ':NvimTreeFocus<CR>')
+vim.keymap.set('n', '<F4>', ':NvimTreeFindFileToggle<CR>')
 
 local function on_attach(bufnr)
   local api = require "nvim-tree.api"
@@ -37,16 +38,21 @@ end
 
 require("nvim-tree").setup({
   on_attach = on_attach,
-    sort_by = "case_sensitive",
-    view = {
-        width = 50,
-        side = "right"
-    },
-    filters = { 
-        dotfiles = true
-    }
-    -- renderer = {
-    --     group_empty = true;
-    -- }
+  sort_by = "case_sensitive",
+  view = {
+      width = 50,
+      side = "right"
+  },
+  filters = { 
+      dotfiles = true
+  },
+  -- renderer = {
+  --     group_empty = true;
+  -- }
+ actions = {
+       open_file = {
+           quit_on_open = true
+       }
+   } 
 })
 

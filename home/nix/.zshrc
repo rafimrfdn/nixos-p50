@@ -40,6 +40,7 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 #alias lf="/run/current-system/sw/bin/lf"
 alias hs="hugo server"
 alias hse="hugo serve --environment production"
+alias nrs="npm run start"
 
 #TMUX
 alias ta="tmux attach -t"

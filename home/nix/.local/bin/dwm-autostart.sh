@@ -5,8 +5,8 @@ xset r rate 300 50 &
 xset mouse 5 1 &
 #dwmblocks & 
 #copyq &
-#picom &
-#nm-applet &
-#volumeicon &
+picom &
+nm-applet &
+volumeicon &
 #sh $HOME/.fehbg &
 #sh $HOME/.config/rustyvibes/rustyvibes.sh &

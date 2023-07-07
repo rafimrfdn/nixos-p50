@@ -25,12 +25,14 @@
   #rofi
   #xfce.thunar
   acpi
+  appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
   arandr
   arc-theme
   autorandr
   brave
   cinnamon.nemo
   cinnamon.pix
+  conky
   copyq
   darktable
   easyeffects

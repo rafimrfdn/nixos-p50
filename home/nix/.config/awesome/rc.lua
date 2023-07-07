@@ -260,13 +260,14 @@ globalkeys = gears.table.join(
     {description = "go back", group = "tag"}),
 
   --My Keybind
-  awful.key({ modkey, "" }, "w", function () awful.util.spawn_with_shell("firefox") end),
-  awful.key({ modkey, "" }, "e", function () awful.util.spawn_with_shell("pcmanfm") end),
-  awful.key({ modkey, "" }, "d", function () awful.util.spawn_with_shell("rofi -show drun") end),
-  awful.key({ modkey, "" }, "q", function () awful.util.spawn_with_shell("sh ~/.scripts/powermenu.sh") end),
+  awful.key({ modkey, ""        }, "w", function () awful.util.spawn_with_shell("firefox") end),
+  awful.key({ modkey, ""        }, "e", function () awful.util.spawn_with_shell("pcmanfm") end),
+  awful.key({ modkey, "Shift"   }, "e", function () awful.util.spawn_with_shell("emacs") end),
+  awful.key({ modkey, ""        }, "d", function () awful.util.spawn_with_shell("rofi -show drun") end),
+  awful.key({ modkey, "Shift"   }, "q", function () awful.util.spawn_with_shell("sh ~/.scripts/powermenu.sh") end),
   awful.key({ modkey, "Control" }, "p", function () awful.util.spawn_with_shell("sh ~/.scripts/selectmonitor.sh") end),
-  awful.key({ modkey, "" }, "n", function () awful.util.spawn_with_shell("kitty -e ~/.scripts/notetaker.sh") end),
-  awful.key({ modkey, "" }, "z", function () awful.util.spawn_with_shell("feh --bg-fill --randomize ~/Pictures/wp/*") end),
+  awful.key({ modkey, ""        }, "n", function () awful.util.spawn_with_shell("kitty -e ~/.scripts/notetaker.sh") end),
+  awful.key({ modkey, ""        }, "z", function () awful.util.spawn_with_shell("feh --bg-fill --randomize ~/Pictures/wp/*") end),
 
   awful.key({}, "XF86AudioLowerVolume", function() os.execute("pactl set-sink-volume 0 -5%") end),
   awful.key({}, "XF86AudioRaiseVolume", function() os.execute("pactl set-sink-volume 0 +5%") end),
@@ -329,8 +330,8 @@ globalkeys = gears.table.join(
     {description = "open a terminal", group = "launcher"}),
   awful.key({ modkey, "Control" }, "r", awesome.restart,
     {description = "reload awesome", group = "awesome"}),
-  awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-    {description = "quit awesome", group = "awesome"}),
+--  awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+ --   {description = "quit awesome", group = "awesome"}),
 
   awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
     {description = "increase master width factor", group = "layout"}),
@@ -362,7 +363,7 @@ globalkeys = gears.table.join(
     {description = "restore minimized", group = "client"}),
 
   -- Prompt
-  awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+  awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
     {description = "run prompt", group = "launcher"}),
 
   awful.key({ modkey }, "x",
@@ -531,7 +532,7 @@ awful.rules.rules = {
       -- "DTA",  -- Firefox addon DownThemAll.
       "copyq",  -- Includes session name in class.
       "pinentry",
-      "emacs",
+      -- "emacs",
     },
     class = {
       "Arandr",
