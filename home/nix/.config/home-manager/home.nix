@@ -30,7 +30,7 @@
   arc-theme
   autorandr
   brave
-  cinnamon.nemo
+  cinnamon.nemo-with-extensions
   cinnamon.pix
   conky
   copyq
@@ -61,6 +61,7 @@
   mpv
   mpvScripts.youtube-quality
   neofetch
+  networkmanagerapplet
   nodejs
   ntfs3g
   onlyoffice-bin
@@ -89,7 +90,7 @@
   xclip
   xdg-desktop-portal-wlr
   xorg.xev
-  yt-dlp
+  #yt-dlp
   zsh-autosuggestions
 
   #my rust specal apps
@@ -108,7 +109,7 @@
 
 ];
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "22.11";
 
   programs.home-manager.enable = true;
 }
