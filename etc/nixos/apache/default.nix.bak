@@ -1,0 +1,37 @@
+{ lib, config, pkgs, ...}:
+
+{
+
+networking.firewall.allowedTCPPorts = [ 80 443 ];
+# apache
+services.httpd.enable = true;
+services.httpd.package = pkgs.apacheHttpd;
+# php
+services.httpd.enablePHP = true;
+services.httpd.phpPackage = pkgs.php;
+# mysql
+services.mysql.enable = true;
+services.mysql.package = pkgs.mariadb;
+
+# setting apache virtualhost
+services.httpd.user = "nix";
+services.httpd.group = "users";
+
+services.httpd.virtualHosts.localhost.documentRoot = "/home/nix/Project/wp/wordpress";
+services.httpd.virtualHosts.localhost.extraConfig = ''
+    <Directory "/">
+        Options FollowSymLinks
+        AllowOverride Limit Options FileInfo
+        DirectoryIndex index.php
+        Require all granted
+    </Directory>
+'';
+
+services.httpd.phpOptions = ''
+  date.timezone = "Asia/Makassar";
+  display_errors = on;
+  upload_max_filesize = "100M";
+  post_max_size = "100M";
+'';
+
+}

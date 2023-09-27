@@ -7,9 +7,9 @@ let
    # export XDG_CURRENT_DESKTOP=Hyprland
    # systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
-      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP SWAYSOCK XDG_CURRENT_SESSION
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP SWAYSOCK XDG_CURRENT_SESSION
 
-#    systemd-run --user --scope --collect --quiet --unit=sway systemd-cat --identifier=sway ${pkgs.sway}/bin/sway $@
+   # systemd-run --user --scope --collect --quiet --unit=sway systemd-cat --identifier=sway ${pkgs.sway}/bin/sway $@
     systemd-run --user --scope --collect --quiet --unit=sway systemd-cat --identifier=sway ${pkgs.sway}/bin/sway Hyprland
   '';
 in
@@ -20,14 +20,14 @@ in
     settings = {
       default_session = {
         #command = "${lib.makeBinPath [pkgs.greetd.tuigreet] }/tuigreet --time --cmd ${swayRun}";
-        #command = "Hyprland"; 
-        command = "startx"; 
+        command = "Hyprland"; 
+        #command = "startx"; 
         user = "nix";
       };
       initial_session = {
         #command = "${swayRun}";
-        #command = "Hyprland"; # I want to set Hyprland as my default session
-        command = "startx";
+        command = "Hyprland"; # I want to set Hyprland as my default session
+        #command = "startx";
         #command = "sway";
         user = "nix";
       };
@@ -49,7 +49,8 @@ in
 #  enable = true;
 #  settings = rec {
 #    initial_session = {
-#      command = "Hyprland";
+#      #command = "Hyprland";
+#      command = "startx";
 #      user = "nix";
 #    };
 #    default_session = initial_session;

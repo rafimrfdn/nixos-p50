@@ -652,4 +652,16 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --beautiful.useless_gap=2
 
 -- Autostart
-awful.spawn.with_shell("~/.config/autostart/dwm-autostart.sh")
+awful.spawn.with_shell("/home/nix/.config/autostart/dwm-autostart.sh")
+
+-- Autorun programs
+do
+  local cmds =
+  {
+    "volumeicon",
+  }
+
+  for _,i in pairs(cmds) do
+    awful.util.spawn(i)
+  end
+end

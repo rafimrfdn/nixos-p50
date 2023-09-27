@@ -2,7 +2,7 @@
 
 {
   imports = [
-#   ./sway/default.nix
+   ./sway/default.nix
    ./hyprland/default.nix
    ./neovim/default.nix
    ./waybar/default.nix
@@ -59,7 +59,7 @@
   luajit
   lxappearance
   mpv
-  mpvScripts.youtube-quality
+  mpvScripts.quality-menu
   neofetch
   networkmanagerapplet
   nodejs
@@ -78,6 +78,7 @@
   rofi-wayland
   scrot
   simplescreenrecorder
+  sqlite
   tdesktop
   tree
   unzip
@@ -97,7 +98,7 @@
   ripgrep #untuk Telescope neovim
   bat #cat yang lebih cantik, ketik bat namafile
   lsd #ls yang menampilkan icon, ketik lsd
-  exa #ls lebih rapih, ketik exa
+  eza #ls lebih rapih, ketik exa #diganti menjadi eza
   xcp
   zoxide
   du-dust #du yang lebih cantik, ketik dust
@@ -109,7 +110,7 @@
 
 ];
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   programs.home-manager.enable = true;
 }

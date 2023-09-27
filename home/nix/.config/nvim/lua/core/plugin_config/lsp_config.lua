@@ -18,6 +18,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- vim.keymap.set({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
 -- vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
 
+
 require("lspconfig").lua_ls.setup {
   capabilities = capabilities,
   settings = {
@@ -42,3 +43,5 @@ require("lspconfig").solargraph.setup {
 require("lspconfig").pyright.setup {
   capabilities = capabilities,
 }
+
+

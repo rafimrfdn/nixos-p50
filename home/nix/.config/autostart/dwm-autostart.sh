@@ -4,7 +4,7 @@ xrdb -merge .Xresources &
 xset r rate 300 50 &
 xset mouse 5 1 &
 nm-applet &
-sh volumeicon &
+#volumeicon &
 xrandr --output DP-4 --scale 1.25x1.25 &
 #slstatus &
 picom &

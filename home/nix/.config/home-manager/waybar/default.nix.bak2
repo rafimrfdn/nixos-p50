@@ -188,7 +188,6 @@ programs.waybar = {
         modules-left = [
           "custom/launcher"
           "hyprland/workspaces"
-          "wlr/workspaces"
           "temperature"
           "custom/uptime"
           "custom/borderright"
@@ -210,19 +209,9 @@ programs.waybar = {
           "cpu"
          #"network"
           "battery"
-         #"bluetooth"
           "custom/powermenu"
           "tray"
         ];
-        # "bluetooth"= {
-        #     "format"= " {status}";
-        #     "format-connected"= " {device_alias}";
-        #     "format-connected-battery"= " {device_alias} {device_battery_percentage}%";
-        #     "tooltip-format"= "{controller_alias}\\t{controller_address}\\n\\n{num_connections} connected";
-        #     "tooltip-format-connected"= "{controller_alias}\\t{controller_address}\\n\\n{num_connections} connected\\n\\n{device_enumerate}";
-        #     "tooltip-format-enumerate-connected"= "{device_alias}\\t{device_address}";
-        #     "tooltip-format-enumerate-connected-battery"= "{device_alias}\\t{device_address}\\t{device_battery_percentage}%";
-        # };
         "custom/launcher" = {
           "format" = " ";
           /** "on-click" = "pkill rofi || ~/.config/rofi/launcher.sh";**/
@@ -240,46 +229,12 @@ programs.waybar = {
           "exec" = "sleep 1s && cava-internal";
           "tooltip" = false;
         };
-        # for sway use wlr/workspace 
-        "wlr/workspaces" = {
-          "format" = "{icon}";
-          "on-click" = "activate";
-          "format-icons"= {
-            "1"= "";
-            "2"= "";
-            "3"= "";
-            "4"= "";
-            "5"= "";
-            "urgent"= "";
-            "active"= "";
-            "default"= "";
-          };
-          "sort-by-number"= true;
-          # "on-scroll-up" = "hyprctl dispatch workspace e+1";
-          # "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        };
-        # for hyprland use hyprland/workspace
         "hyprland/workspaces" = {
           "format" = "{icon}";
           "on-click" = "activate";
-          "format-icons"= {
-            "1"= "1";
-            "2"= "2";
-            "3"= "3";
-            "4"= "4";
-            "5"= "5";
-            "6"= "6";
-            "7"= "7";
-            "8"= "8";
-            "9"= "9";
-           # "urgent"= "";
-           # "active"= "";
-           # "default"= "";
-          };
-          "sort-by-number"= true;
+          "format-icons" =  ["1" "2" "3" "4" "5" "6" "7" "8" "9" ];
           # "on-scroll-up" = "hyprctl dispatch workspace e+1";
           # "on-scroll-down" = "hyprctl dispatch workspace e-1";
-          # read more : https://github.com/Alexays/Waybar/wiki/Module:-Workspaces
         };
         "idle_inhibitor" = {
           "format" = "{icon}";

@@ -9,6 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./greetd/default.nix
+#      ./caddy/default.nix
+#     ./LEMP/default.nix
+      ./apache/default.nix
+#      ./wordpress/default.nix
 #      ./sound/default.nix
     ];
 
@@ -72,6 +76,7 @@ services.blueman.enable = true;
   networking.hostName = "nixhost"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -101,6 +106,8 @@ services.blueman.enable = true;
     151.101.65.140    www.redditmedia.com
     151.101.193.140   about.reddit.com
     52.203.76.9       out.reddit.com
+
+    127.0.0.1 	      local.nixhost
   '';
 
 
@@ -178,7 +185,7 @@ services.blueman.enable = true;
   programs.light.enable = true;
 
 # Fonts
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     cascadia-code
     fira-code
     fira
@@ -232,9 +239,37 @@ services.blueman.enable = true;
 	"input" 
 	"storage" 
 	"libvirtd"
+	"docker"
 	];
     shell = pkgs.zsh;
+
+    packages = with pkgs; [
+	php82
+	php82Packages.composer
+	mariadb
+	# some extenstion for wordpress
+	php82Extensions.mbstring
+	php82Extensions.pdo
+	php82Extensions.mysqlnd
+	php82Extensions.enchant
+	php82Extensions.gd
+	php82Extensions.zlib
+	php82Extensions.xml
+	php82Extensions.zip
+	php82Extensions.curl
+	php82Extensions.opcache
+	php82Extensions.imagick
+    ];
+
   };
+
+# untuk develop laravel pakai database mariadb
+#  services.lighttpd.enable = true;
+
+#  services.mysql.enable = true;
+#  services.mysql.package = pkgs.mariadb;
+#  services.longview.mysqlPasswordFile = "/run/keys/mysql.password";
+
 
 # Additional user for test Hyprland installed on system, not from home-manager
 #  users.users.rafi = {
@@ -264,6 +299,10 @@ services.blueman.enable = true;
 # Virtualization with qemu kvm
    virtualisation.libvirtd.enable = true;
    programs.dconf.enable = true;
+
+
+# Virtualization with docker
+   virtualisation.docker.enable = true;
 
   # Automatic delete old version
   nix = {

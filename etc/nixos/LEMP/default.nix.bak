@@ -1,0 +1,183 @@
+{ lib, config, pkgs, ... }:
+
+{
+
+######
+# untuk bisa berhasil install wordpress!
+# masuk ke mysql dengan mengetik `mysql -u root` saja
+# catatan: saat proses instalasi wordpress, tidak usah isi kolom password datababase.
+######
+
+# LEMP Stack
+#  services.nginx = {
+#    user = "nix";
+#    enable = true;
+#    virtualHosts = 
+#      let
+#        makeHost = address: {
+#          root = "/var/www/html/wp-piaud/${address}";
+#          serverName = address;
+#          serverAliases = [ address ];
+#          extraConfig = ''
+#            index index.php;
+#          '';
+#          listen = [{ port = 80;  addr="0.0.0.0"; }];
+#          locations = {
+#            "/".extraConfig = ''
+#              try_files $uri $uri/ /index.php?$args;
+#            '';
+#            "~* /(?:uploads|files)/.*\.php$".extraConfig = ''
+#              deny all; 
+#            '';
+#            "~ \.php$".extraConfig = ''
+#              fastcgi_intercept_errors on;
+#              fastcgi_pass  unix:${config.services.phpfpm.pools.mypool.socket};
+#            '';
+#
+#            "~* \.(js|css|png|jpg|jpeg|gif|ico)$".extraConfig = ''
+#                expires max;
+#                log_not_found off;
+#            '';
+#          };
+#        };
+#      in
+#      {
+#        "local.nixhost" = (makeHost "local.nixhost");
+#      };
+#  };
+#  
+#  services.mysql = {
+#    enable = true;
+#    package = pkgs.mariadb;
+#    settings = { "mysqld" = { "port" = 3308; }; };
+#    initialScript =
+#      pkgs.writeText "initial-script" ''
+#        CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY 'root';
+#        CREATE DATABASE IF NOT EXISTS wordpress;
+#        GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost';
+#      '';
+#    ensureDatabases = [ "wordpress" ];
+#    ensureUsers = [
+#      {
+#        name = "root";
+#        ensurePermissions = {
+#          "root.*" = "ALL PRIVILEGES";
+#          "*.*" = "ALL PRIVILEGES";
+#        };
+#      }
+#    ];
+#  };
+#  
+#  services.phpfpm.pools.mypool = {
+#    user = "nobody";
+#    settings = {
+#      pm = "dynamic";
+#      "listen.owner" = config.services.nginx.user;
+#      "pm.max_children" = 5;
+#      "pm.start_servers" = 2;
+#      "pm.min_spare_servers" = 1;
+#      "pm.max_spare_servers" = 3;
+#      "pm.max_requests" = 500;
+#    };
+#  };
+
+##################################
+
+services.nginx = {
+  enable = true;
+  user = "nix";
+  virtualHosts."local.nixhost" = {
+    enableACME = true;
+    forceSSL = true;
+    root = "/var/www/html";
+    #root = "/var/www/wp-piaud";
+    extraConfig = ''
+    index index.php;
+    '';
+    locations."~ \\.php$".extraConfig = ''
+      fastcgi_pass  unix:${config.services.phpfpm.pools.mypool.socket};
+      fastcgi_index index.php;
+    '';
+     locations."/".extraConfig = ''
+              try_files $uri $uri/ /index.php?$args;
+     '';
+     locations."~* /(?:uploads|files)/.*\.php$".extraConfig = ''
+              deny all; 
+     '';
+     locations."~* \.(js|css|png|jpg|jpeg|gif|ico)$".extraConfig = ''
+                expires max;
+                log_not_found off;
+     '';
+  };
+};
+
+#services.mysql = {
+#  enable = true;
+#  package = pkgs.mariadb;
+#};
+#services.phpfpm.pools.mypool = {
+#  user = "nobody";
+#  settings = {
+#    pm = "dynamic";
+#    "listen.owner" = config.services.nginx.user;
+#    "pm.max_children" = 5;
+#    "pm.start_servers" = 2;
+#    "pm.min_spare_servers" = 1;
+#    "pm.max_spare_servers" = 3;
+#    "pm.max_requests" = 500;
+#  };
+#};
+
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+#    settings = { "mysqld" = { "port" = 3308; }; };
+    initialScript =
+      pkgs.writeText "initial-script" ''
+        CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY 'root';
+        CREATE DATABASE IF NOT EXISTS wordpress;
+        GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost';
+      '';
+    ensureDatabases = [ "wordpress" ];
+    ensureUsers = [
+      {
+        name = "root";
+        ensurePermissions = {
+          "root.*" = "ALL PRIVILEGES";
+          "*.*" = "ALL PRIVILEGES";
+        };
+      }
+    ];
+ };
+ services.longview.mysqlPasswordFile = "/run/keys/mysql.password";
+
+security.acme = {
+	acceptTerms = true;
+};
+security.acme.certs = {
+	"local.nixhost".email = "youremail@address.com";
+};
+  
+  services.phpfpm.pools.mypool = {
+    user = "nobody";
+    settings = {
+      pm = "dynamic";
+      "listen.owner" = config.services.nginx.user;
+      "pm.max_children" = 5;
+      "pm.start_servers" = 2;
+      "pm.min_spare_servers" = 1;
+      "pm.max_spare_servers" = 3;
+      "pm.max_requests" = 500;
+    };
+  };
+
+services.phpfpm.phpOptions = ''
+  date.timezone = "Asia/Makassar";
+  display_errors = on;
+  upload_max_filesize = "100M";
+  post_max_size = "100M";
+'';
+
+
+}
+

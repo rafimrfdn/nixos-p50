@@ -1,18 +1,16 @@
 { config, pkgs, ... }:
 
-# let
-#   flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
-#
-#   hyprland = (import flake-compat {
-#     #src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/releases/download/v0.24.1/source-v0.24.1.tar.gz";
-#     src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
-#   }).defaultNix;
-# in {
-#   imports = [
-#     hyprland.homeManagerModules.default
-#   ];
+let
+  flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
 
-{
+  hyprland = (import flake-compat {
+    #src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/releases/download/v0.24.1/source-v0.24.1.tar.gz";
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+in {
+  imports = [
+    hyprland.homeManagerModules.default
+  ];
 
   home.packages = with pkgs; [
     wofi swaybg wlsunset 
@@ -21,6 +19,7 @@
     clipman
     slurp sway-contrib.grimshot jq socat
     wlogout swaylock
+    #waybar-hyprland
   ];
 
   wayland.windowManager.hyprland = {
@@ -65,16 +64,16 @@
     sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
     }
 
-#    windowrule = noborder,conky
-#    windowrule = center,conky
-#    windowrule = float,conky
-#    windowrule = nofocus,conky
-#    windowrule = opacity 0.5,conky
-#    windowrule = workspace 1 silent,^(conky)$
-#    windowrulev2 = pin,class:^(conky)$
-#
-#    layerrule = ignorezero,notifications
-#    layerrule = ignorezero, ^(gtk-layer-shell)$
+    windowrule = noborder,conky
+    windowrule = center,conky
+    windowrule = float,conky
+    windowrule = nofocus,conky
+    windowrule = opacity 0.5,conky
+    windowrule = workspace 1 silent,^(conky)$
+    windowrulev2 = pin,class:^(conky)$
+
+    layerrule = ignorezero,notifications
+    layerrule = ignorezero, ^(gtk-layer-shell)$
 
 
    # This will activate gesture so you can switch between workspace like Gnome 42 or MacOS  

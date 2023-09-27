@@ -19,8 +19,13 @@ local plugins = {
   --   lazy = false,
   -- },
 --  'bluz71/vim-nightfly-colors',
-  'rose-pine/neovim',
-  'nvim-tree/nvim-tree.lua',
+  -- 'rose-pine/neovim',
+  'navarasu/onedark.nvim',
+
+  "nvim-neo-tree/neo-tree.nvim",
+  "MunifTanjim/nui.nvim",
+
+  -- 'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',
   'nvim-lualine/lualine.nvim',
   'nvim-treesitter/nvim-treesitter',
@@ -38,19 +43,20 @@ local plugins = {
   "rafamadriz/friendly-snippets",
   -- "github/copilot.vim",
   "williamboman/mason.nvim",
-  "neovim/nvim-lspconfig",
   "williamboman/mason-lspconfig.nvim",
-  -- "glepnir/lspsaga.nvim",
+  "neovim/nvim-lspconfig",
+  -- "nvimdev/lspsaga.nvim",
 
-    -- My own useful plugin
-    'akinsho/toggleterm.nvim', -- run terminal on vim
-    'numToStr/Comment.nvim', -- for commenting support
-  {
-	  'nvim-telescope/telescope.nvim',
-	  tag = '0.1.0',
-	  dependencies = { {'nvim-lua/plenary.nvim'} }
-  }
+  -- My own useful plugin
+  'akinsho/toggleterm.nvim', -- run terminal on vim
+  'numToStr/Comment.nvim', -- for commenting support
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.0',
+        dependencies = { {'nvim-lua/plenary.nvim'} }
+    }
 }
+
 
 local opts = {}
 

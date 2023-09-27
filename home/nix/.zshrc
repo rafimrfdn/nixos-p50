@@ -24,6 +24,7 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 alias ll="ls -alG"
 #alias ls="exa --icons"
 alias ls="exa"
+alias cat="bat"
 
 #PROMPT='%F{208}%n%f in %F{226}%~%f -> '
 PROMPT='%F{226}%~%f '
@@ -64,14 +65,17 @@ alias rustyvibes="/home/nix/rustyvibes/target/debug/rustyvibes /home/nix/.config
 alias hme="home-manager edit"
 alias hms="home-manager switch"
 
-alias jt="cd /home/nix/Project/jagotekno"
-alias jf="cd /home/nix/Project/jfhugo"
-alias pm="cd /home/nix/Project/pmhugo"
-alias iz="cd /home/nix/Project/izzulislam.com"
-alias mrfdn="cd /home/nix/Project/mrfdn.com"
+alias jt="cd /home/nix/Project/hugo/jagotekno"
+alias jf="cd /home/nix/Project/hugo/jfhugo"
+alias pm="cd /home/nix/Project/hugo/pmhugo"
+alias iz="cd /home/nix/Project/hugo/izzulislam.com"
+alias mrfdn="cd /home/nix/Project/hugo/mrfdn.com"
 
 alias dev="npm run dev"
+
+alias pas="php artisan serve"
 
 # my dotfiles alias
 alias p50="/home/nix/.nix-profile/bin/git --git-dir=$HOME/.nixos-p50/ --work-tree=/"
 
+alias biznet="/home/nix/.ssh/mysshport"
