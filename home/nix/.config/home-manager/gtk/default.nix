@@ -10,10 +10,20 @@
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
+      #package = pkgs.qogir-icon-theme;
+      #name = "Qogir";
+      #package = pkgs.pop-icon-theme;
+      #name = "Pop";
+      #package = pkgs.whitesur-icon-theme;
+      #name = "WhiteSur";
     };
     theme = {
-      package = pkgs.qogir-theme;
-      name = "Qogir";
+      #package = pkgs.qogir-theme;
+      #name = "Qogir";
+      #package = pkgs.whitesur-gtk-theme;
+      #name = "WhiteSur-dark";
+      package = pkgs.arc-theme;
+      name = "Arc";
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;

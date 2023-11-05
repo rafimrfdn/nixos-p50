@@ -6,7 +6,8 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 // static char *font = "Iosevka:pixelsize=16:antialias=true:autohint=true";
-static char *font = "Iosevka:style=Medium:pixelsize=16:antialias=true:autohint=true";
+//static char *font = "Iosevka:style=Medium:pixelsize=16:antialias=true:autohint=true";
+static char *font = "Cascadia Code:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
 	// "Symbols Nerd Font:style=2048-em:size=16:antialias=true:autohint=true",

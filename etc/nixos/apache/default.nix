@@ -36,38 +36,38 @@ services.httpd.virtualHosts = {
 	addSSL = true;
 	enableACME = true;
 	};
- "drupal.localhost" = {
-	documentRoot = "/home/nix/Project/drupal/drupalweb";
-	extraConfig = ''
-		Alias /drupal "/home/nix/Project/drupal/drupalweb/"
-
-		<Directory "/home/nix/Project/drupal/drupalweb/">
-			Options Indexes FollowSymLinks
-		        AllowOverride All
-		        Require all granted
-		</Directory>
-		'';
-	addSSL = true;
-	enableACME = true;
-	};
- "joomla.localhost" = {
-	documentRoot = "/home/nix/Project/joomla/joomlaweb";
-	extraConfig = ''
-		Timeout 600
-		ProxyTimeout 600
-
-		Alias /joomla "/home/nix/Project/joomla/joomlaweb/"
-		DirectoryIndex index.php index.html index.htm
-		<Directory "/home/nix/Project/joomla/joomlaweb/">
-			Options FollowSymLinks
-			AllowOverride Limit Options FileInfo
-			DirectoryIndex index.php
-			Require all granted
-		</Directory>
-		'';
-	addSSL = true;
-	enableACME = true;
-	};
+# "drupal.localhost" = {
+#	documentRoot = "/home/nix/Project/drupal/drupalweb";
+#	extraConfig = ''
+#		Alias /drupal "/home/nix/Project/drupal/drupalweb/"
+#
+#		<Directory "/home/nix/Project/drupal/drupalweb/">
+#			Options Indexes FollowSymLinks
+#		        AllowOverride All
+#		        Require all granted
+#		</Directory>
+#		'';
+#	addSSL = true;
+#	enableACME = true;
+#	};
+# "joomla.localhost" = {
+#	documentRoot = "/home/nix/Project/joomla/joomlaweb";
+#	extraConfig = ''
+#		Timeout 600
+#		ProxyTimeout 600
+#
+#		Alias /joomla "/home/nix/Project/joomla/joomlaweb/"
+#		DirectoryIndex index.php index.html index.htm
+#		<Directory "/home/nix/Project/joomla/joomlaweb/">
+#			Options FollowSymLinks
+#			AllowOverride Limit Options FileInfo
+#			DirectoryIndex index.php
+#			Require all granted
+#		</Directory>
+#		'';
+#	addSSL = true;
+#	enableACME = true;
+#	};
 };
 
 services.httpd.phpOptions = ''
@@ -85,14 +85,14 @@ security.acme = {
 			webroot = "/var/lib/acme/acme-challenge";
 			email = "youremail@address.com";
 		};
-		"drupal.localhost" = {
-			webroot = "/var/lib/acme/acme-challenge";
-			email = "youremail@address.com";
-		};
-		"joomla.localhost" = {
-			webroot = "/var/lib/acme/acme-challenge";
-			email = "youremail@address.com";
-		};
+		#"drupal.localhost" = {
+		#	webroot = "/var/lib/acme/acme-challenge";
+		#	email = "youremail@address.com";
+		#};
+		#"joomla.localhost" = {
+		#	webroot = "/var/lib/acme/acme-challenge";
+		#	email = "youremail@address.com";
+		#};
 	};
 };
 

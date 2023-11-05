@@ -68,23 +68,16 @@ services.blueman.enable = true;
   boot.supportedFilesystems = ["ntfs"];
 
   # Use latest linux kernel
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-#   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
-   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-
-   systemd.services = {
-   	systemd-tmpfiles-setup.before = [ "sysinit.target"];
-   	systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
-   };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Silent boot to hide Stage when boot system 
-#  boot.plymouth.enable = true;
-#
-#  boot.kernelParams = ["quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3"];
-#  boot.consoleLogLevel = 0;
-#  boot.initrd.verbose = false;
-#  boot.initrd.systemd.enable = true;
-#  systemd.watchdog.rebootTime = "0";
+  boot.plymouth.enable = true;
+
+  boot.kernelParams = ["quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3"];
+  boot.consoleLogLevel = 0;
+  boot.initrd.verbose = false;
+  boot.initrd.systemd.enable = true;
+  systemd.watchdog.rebootTime = "0";
 
   networking.hostName = "nixhost"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -254,7 +247,7 @@ services.blueman.enable = true;
 	"input" 
 	"storage" 
 	"libvirtd"
-#	"docker"
+	"docker"
 	];
     shell = pkgs.zsh;
 
@@ -263,17 +256,17 @@ services.blueman.enable = true;
 	php82Packages.composer
 	mariadb
 	# some extenstion for wordpress
-	#php82Extensions.mbstring
-	#php82Extensions.pdo
-	#php82Extensions.mysqlnd
-	#php82Extensions.enchant
-	#php82Extensions.gd
-	#php82Extensions.zlib
-	#php82Extensions.xml
-	#php82Extensions.zip
-	#php82Extensions.curl
-	#php82Extensions.opcache
-	#php82Extensions.imagick
+	php82Extensions.mbstring
+	php82Extensions.pdo
+	php82Extensions.mysqlnd
+	php82Extensions.enchant
+	php82Extensions.gd
+	php82Extensions.zlib
+	php82Extensions.xml
+	php82Extensions.zip
+	php82Extensions.curl
+	php82Extensions.opcache
+	php82Extensions.imagick
     ];
 
   };
@@ -317,7 +310,7 @@ services.blueman.enable = true;
 
 
 # Virtualization with docker
-#   virtualisation.docker.enable = true;
+   virtualisation.docker.enable = true;
 
   # Automatic delete old version
   nix = {
@@ -355,8 +348,6 @@ services.blueman.enable = true;
 # Remove unecessary preinstalled packages
   #environment.defaultPackages = [];
 
-
-
   environment.variables.EDITOR = "nvim";
 # environment.shells = with pkgs; [zsh];
 
@@ -374,10 +365,21 @@ services.blueman.enable = true;
   ];
 
 #  services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+#  xdg.portal = {
+#    enable = true;
+#    wlr.enable = true;
+#    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+#  };
+
+# Coba ikut saran https://shen.hong.io/nixos-home-manager-wayland-sway/ untuk mengaktifkan sway
+   xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
   };
 
 

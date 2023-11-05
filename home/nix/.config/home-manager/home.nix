@@ -79,6 +79,7 @@
   scrot
   simplescreenrecorder
   sqlite
+  sqlitebrowser
   tdesktop
   tree
   unzip
@@ -92,6 +93,7 @@
   xdg-desktop-portal-wlr
   xorg.xev
   #yt-dlp
+  zip
   zsh-autosuggestions
 
   #my rust specal apps

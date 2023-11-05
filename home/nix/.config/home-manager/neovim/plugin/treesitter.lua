@@ -1,3 +1,15 @@
+-- require('nvim-treesitter.configs').setup {
+--     ensure_installed = {},
+--
+--     auto_install = false,
+--
+--     highlight = { enable = true },
+--
+--     indent = { enable = true },
+-- }
+
+
+
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   -- ensure_installed = { "c", "lua", "rust", "ruby", "vim" },
@@ -9,7 +21,7 @@ require'nvim-treesitter.configs'.setup {
   --   enable = true,
   -- },
   --
-    ensure_installed = { "c", "javascript", "json", "lua", "typescript", "html", "css", "yaml", "php" }, -- one of "all" or a list of languages
+    ensure_installed = {}, -- one of "all" or a list of languages
     -- ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
     highlight = {
         enable = true, -- false will disable the whole extension

@@ -33,7 +33,7 @@
     #exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK 
     #exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
-    exec-once=dbus-update-activation-environment --systemd DISPLAY _WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP SWAYSOCK _XDG_CURRENT_SESSION 
+    #exec-once=dbus-update-activation-environment --systemd DISPLAY _WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP SWAYSOCK _XDG_CURRENT_SESSION
 
     # exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     # exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
@@ -95,10 +95,10 @@
 
     decoration {
       rounding = 5
-        drop_shadow=0
-        shadow_range=60
-        col.shadow=0x66000000
-        multisample_edges = true
+      drop_shadow= true
+      shadow_range= 4
+      inactive_opacity = 0.75
+      col.shadow=0x66000000
     }
 
     animations {
