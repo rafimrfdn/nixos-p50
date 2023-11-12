@@ -103,5 +103,11 @@ Every time you want to update, first go to this `.dotfiles` folder then update t
 1. `nix flake update`
 1. `sudo nixos-rebuild switch --flake .`
 
+## Tips
+
+Now every time you want to edit the system config or add package into home-manager, just go to `~/.dotfiles` folder then edit the files.
+
+> Never touch the `hardware-configuration.nix` files if you don't know what to do.
+
 
 Big thanks to : [LibrePhoenix](https://www.youtube.com/watch?v=ACybVzRvDhs) for creating the nixos flake content for novious like me.
