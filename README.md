@@ -1,5 +1,7 @@
 # Thinkpad P50 Flake
 
+![](./screenshot-hyprland.jpg)
+
 This is my system configuration for Thinkpad P50.
 
 > If you create use this repo, make sure to change everything inside `hardware-configuratin.nix` as your system created. Because if not, you will mess up your system, and maybe will not boot.
