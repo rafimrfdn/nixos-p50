@@ -29,6 +29,8 @@ This is my system configuration for Thinkpad P50.
 │   ├── neovim
 │   ├── st
 │   ├── sway
+│   ├── kitty
+│   ├── zsh
 │   ├── tmux
 │   └── waybar
 ├── README.md
@@ -145,6 +147,10 @@ Every time you want to update, first go to this `.dotfiles` folder then update t
 Now every time you want to edit the system config or add package into home-manager, just go to `~/.dotfiles` folder then edit the files.
 
 > Never touch the `hardware-configuration.nix` files if you don't know what to do.
+
+If you got some error message like **warning: Git tree '/home/ is dirty**, don't worry. It's because you have integrated git in this .dotfile folder. 
+
+To solve this, perform `git status`, `git add .`, `git commit -am "message"`, then switch to new configuration.
 
 
 Big thanks to : [LibrePhoenix](https://www.youtube.com/watch?v=ACybVzRvDhs) for creating the nixos flake video content for novice like me.
