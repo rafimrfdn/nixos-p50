@@ -3,8 +3,7 @@
 {
   programs.zsh = {
     enable = true;
-    enableBashCompletion.enable = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
+    enableBashCompletion = true;
+    syntaxHighlighting = true;
   };
 }
