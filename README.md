@@ -6,11 +6,47 @@ This is my system configuration for Thinkpad P50.
 
 > If you create use this repo, make sure to change everything inside `hardware-configuratin.nix` as your system created. Because if not, you will mess up your system, and maybe will not boot.
 
+
+## Folder structure
+
+```
+~/.dotfiles
+.
+├── apache
+│   └── default.nix
+├── configuration.nix
+├── flake.lock
+├── flake.nix
+├── greetd
+│   └── default.nix
+├── hardware-configuration.nix
+├── home
+│   ├── emacs
+│   ├── gtk
+│   ├── home.nix
+│   ├── hyprland
+│   ├── mpv
+│   ├── neovim
+│   ├── st
+│   ├── sway
+│   ├── tmux
+│   └── waybar
+├── README.md
+└── screenshot-hyprland.jpg
+```
+
+
 ## How to create system configuration for flakes? 
 
 1. Create a directory called `~/.dotfiles` then cd into this folder.
-1. Copy `/etc/nixos/configuration.nix` and `/etc/nixos/hardware-configuration.nix` in to `.dotfiles` folder we created before.
-1. Create a file called `flake.nix` then define the system configuration in it.
+2. Copy `/etc/nixos/configuration.nix` and `/etc/nixos/hardware-configuration.nix` in to `.dotfiles` folder we created before.
+```bash
+cd .dotfiles
+cp /etc/nixos/configuration.nix .
+cp /etc/nixos/hardware-configuration.nix .
+```
+
+3. Create a file called `flake.nix` then define the system configuration in it.
 
 ```nix
 {
@@ -37,6 +73,7 @@ This is my system configuration for Thinkpad P50.
 }
 
 ```
+4. To perform nixos-rebuild system add `--flakes` command and add `.` (dot) at the end of line. `sudo nixos-rebuild switch --flake .`
 
 ## How to create home manager config for flakes?
 
@@ -110,4 +147,4 @@ Now every time you want to edit the system config or add package into home-manag
 > Never touch the `hardware-configuration.nix` files if you don't know what to do.
 
 
-Big thanks to : [LibrePhoenix](https://www.youtube.com/watch?v=ACybVzRvDhs) for creating the nixos flake content for novious like me.
+Big thanks to : [LibrePhoenix](https://www.youtube.com/watch?v=ACybVzRvDhs) for creating the nixos flake video content for novice like me.
