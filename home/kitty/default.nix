@@ -25,6 +25,10 @@
 
       allow_remote_control yes
       confirm_os_window_close 0
+
+      remember_window_size  no
+      initial_window_width  640
+      initial_window_height 400
       ''; 
     };
 }
