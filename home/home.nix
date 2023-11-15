@@ -32,9 +32,10 @@
   arc-theme
   autorandr
   brave
-  cinnamon.nemo-with-extensions
+  # cinnamon.nemo-with-extensions
+  cinnamon.nemo
   cinnamon.pix
-  conky
+  # conky
   copyq
   darktable
   easyeffects
@@ -42,7 +43,7 @@
   ffmpeg # for mpv
   ffmpegthumbnailer
   firefox
-  flameshot
+  # flameshot
   #font-awesome
   gcc
   gimp
@@ -65,7 +66,7 @@
   #mpvScripts.quality-menu
   neofetch
   networkmanagerapplet
-  nodejs
+  # nodejs
   ntfs3g
   onlyoffice-bin
   papirus-icon-theme
@@ -86,7 +87,7 @@
   tdesktop
   tree
   unzip
-  virt-manager
+  # virt-manager
   volumeicon
   vscodium
   wget

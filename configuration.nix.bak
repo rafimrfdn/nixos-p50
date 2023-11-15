@@ -124,17 +124,17 @@ services.blueman.enable = true;
   };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.displayManager.startx.enable = true;
+  services.xserver.enable = true;
+  services.xserver.displayManager.startx.enable = true;
 
   #AwesomeWM
-  # services.xserver.windowManager.awesome.enable = true;
+  services.xserver.windowManager.awesome.enable = true;
 
   # Enable LightDM
-  # services.xserver.displayManager.lightdm.enable = false;
+  services.xserver.displayManager.lightdm.enable = false;
 
   # Set default XSesssion
-  # services.xserver.displayManager.defaultSession = "none+awesome";
+  services.xserver.displayManager.defaultSession = "none+awesome";
 
 
   # Enable Cinnamon Dekstop
@@ -153,7 +153,6 @@ services.blueman.enable = true;
     xkbVariant = "";
   };
 
-  # disable xterm, because this enable by default
   services.xserver.excludePackages = [ pkgs.xterm ];
 
   #NVidia setting
@@ -169,14 +168,14 @@ services.blueman.enable = true;
 # Fonts
   fonts.packages = with pkgs; [
     cascadia-code
-    # fira-code
-    # fira
-    # cooper-hewitt
-    # ibm-plex
-    # jetbrains-mono
+    fira-code
+    fira
+    cooper-hewitt
+    ibm-plex
+    jetbrains-mono
     iosevka
-    # spleen
-    # fira-code-symbols
+    spleen
+    fira-code-symbols
   ];
 
 
@@ -239,8 +238,8 @@ services.blueman.enable = true;
 # nixpkgs.config.allowBroken = true;
 
 # Virtualization with qemu kvm
-#   virtualisation.libvirtd.enable = true;
-#   programs.virt-manager.enable = true;
+   virtualisation.libvirtd.enable = true;
+   programs.dconf.enable = true;
 
 
   # Automatic delete old version
@@ -256,7 +255,8 @@ services.blueman.enable = true;
 
 
   # NodeJS and NPM
-  # programs.npm.enable = true;
+  programs.npm.enable = true;
+  
 
   environment.variables.EDITOR = "nvim";
 
