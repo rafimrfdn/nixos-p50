@@ -97,7 +97,7 @@
       rounding = 5
       drop_shadow= true
       shadow_range= 4
-      inactive_opacity = 0.75
+      inactive_opacity = 0.90
       col.shadow=0x66000000
     }
 

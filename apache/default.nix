@@ -2,7 +2,8 @@
 
 {
 
-networking.firewall.allowedTCPPorts = [ 80 443 ];
+# networking.firewall.allowedTCPPorts = [ 80 443 ];
+networking.firewall.allowedTCPPorts = [ 80 ];
 # apache
 services.httpd.enable = true;
 services.httpd.package = pkgs.apacheHttpd;
@@ -31,10 +32,14 @@ services.httpd.virtualHosts = {
 			AllowOverride Limit Options FileInfo
 			DirectoryIndex index.php
 			Require all granted
+
+            RewriteEngine On
+            RewriteCond %{HTTPS} on
+            RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=302,NE] 
 		</Directory>
 		'';
-	addSSL = true;
-	enableACME = true;
+	# addSSL = true;
+	# enableACME = true;
 	};
 # "drupal.localhost" = {
 #	documentRoot = "/home/nix/Project/drupal/drupalweb";
@@ -80,11 +85,11 @@ services.httpd.phpOptions = ''
 security.acme = {
 	acceptTerms = true;
 	useRoot = true;
-	certs = {
-		"wp.localhost" = {
-			webroot = "/var/lib/acme/acme-challenge";
-			email = "youremail@address.com";
-		};
+	# certs = {
+	# 	"wp.localhost" = {
+	# 		webroot = "/var/lib/acme/acme-challenge";
+	# 		email = "youremail@address.com";
+	# 	};
 		#"drupal.localhost" = {
 		#	webroot = "/var/lib/acme/acme-challenge";
 		#	email = "youremail@address.com";
@@ -93,7 +98,7 @@ security.acme = {
 		#	webroot = "/var/lib/acme/acme-challenge";
 		#	email = "youremail@address.com";
 		#};
-	};
+	# };
 };
 
 

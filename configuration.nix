@@ -171,12 +171,12 @@ services.blueman.enable = true;
     cascadia-code
     # fira-code
     # fira
-    # cooper-hewitt
+    cooper-hewitt
     # ibm-plex
     # jetbrains-mono
     iosevka
-    # spleen
-    # fira-code-symbols
+    spleen
+    fira-code-symbols
   ];
 
 
