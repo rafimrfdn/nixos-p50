@@ -22,7 +22,7 @@
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
-              user.nix = ./home/home.nix;
+              users.nix = ./home/home.nix;
             };
           }
         ];
