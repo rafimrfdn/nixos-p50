@@ -45,23 +45,39 @@
 
 #############################
 
+# {
+# services.greetd = {
+#   enable = true;
+#   settings = rec {
+#     initial_session = {
+#       command = "Hyprland";
+#       #command = "startx";
+#       user = "nix";
+#     };
+#     default_session = initial_session;
+#   };
+# };
+# environment.etc."greetd/environments".text = ''
+#   Hyprland
+#   startx
+#   sway
+#   '';
+# }
+
+#############################
+
 {
-services.greetd = {
-  enable = true;
-  settings = rec {
-    initial_session = {
-      command = "Hyprland";
-      #command = "startx";
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "Hyprland";
+        # command = "startx";
       user = "nix";
     };
     default_session = initial_session;
   };
 };
-environment.etc."greetd/environments".text = ''
-  Hyprland
-  startx
-  sway
-  '';
 }
 
 

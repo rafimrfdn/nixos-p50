@@ -25,31 +25,5 @@
         modules = [ ./home/home.nix ];
       };
     };
-    # set nodejs for development environment
-    devShells."${system}".default = let
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          (self: super: rec {
-            nodejs = super.nodejs-18_x;
-            pnpm = super.nodePackages.pnpm;
-            yarn = (super.yarn.override { inherit nodejs; });
-          })
-        ];
-      };
-    in pkgs.mkShell {
-      # create an environment with nodejs-18_x, pnpm, and yarn
-      packages = with pkgs; [
-        node2nix
-        nodejs
-        pnpm
-        yarn
-      ];
-
-      shellHook = ''
-        echo "node `${pkgs.nodejs}/bin/node --version`"
-      '';
-    };
-
   };
 }

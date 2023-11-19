@@ -13,6 +13,7 @@
    ./mpv/default.nix
    ./kitty/default.nix
    ./zsh/default.nix
+   # ./nodejs/default.nix
   ];
 
   home.username = "nix";
@@ -66,7 +67,7 @@
   #mpvScripts.quality-menu
   neofetch
   networkmanagerapplet
-  # nodejs
+  nodejs
   ntfs3g
   onlyoffice-bin
   papirus-icon-theme
