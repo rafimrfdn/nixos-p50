@@ -4,7 +4,7 @@
   gtk = {
     enable = true;
     font = {
-      name = "Cantarel";
+      name = "Cantarell";
       package = pkgs.cantarell-fonts;
     };
     iconTheme = {

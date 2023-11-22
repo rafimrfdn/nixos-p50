@@ -27,7 +27,8 @@
     enable = true;
     extraConfig = ''
     # My HYPRLAND Configuration
-    monitor=eDP-1,1920x1080@60.05200,0x0,1
+    # monitor=eDP-1,1366x768@60.05200,0x0,1
+    monitor=eDP-1,1366x768@60.10300,0x0,1
 
     # For screen sharing 
     #exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK 
@@ -44,9 +45,9 @@
     # Set clipman as Clipboard, dont forget to set the environment variable
     exec-once = wl-paste -t text --watch clipman store --no-persist
 
-    # exec-once = swaybg -m fill -i ~/Pictures/wp/xp.jpg
-    # exec-once=swaymsg output "*" bg ~/Pictures/wp/* fill
-    exec-once = sh ~/.scripts/different-wp.sh
+    exec-once = swaybg -m fill -i ~/Pictures/wp/img2.jpg
+    #exec-once = swaymsg output "*" bg ~/Pictures/wp/* fill
+    #exec-once = sh ~/.scripts/different-wp.sh
 
     # Set your Xrate setting in here 
     input {

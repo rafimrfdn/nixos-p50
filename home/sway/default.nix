@@ -1,6 +1,15 @@
 { config, pkgs, ...}: 
 
 {
+  home.packages = with pkgs; [
+    wofi swaybg wlsunset 
+    wl-clipboard 
+    wf-recorder
+    clipman
+    slurp sway-contrib.grimshot jq socat
+    wlogout swaylock
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     #config = rec {

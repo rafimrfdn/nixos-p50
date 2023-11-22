@@ -8,8 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./greetd/default.nix
-      ./apache/default.nix
+     # ./greetd/default.nix
+     # ./apache/default.nix
     ];
 
 
@@ -24,18 +24,21 @@
     ];
     driSupport = true;
    };
-
+#
 # bluetooth
-hardware.bluetooth.enable = true;
-services.blueman.enable = true;
+#hardware.bluetooth.enable = true;
+#services.blueman.enable = true;
 
+programs.dconf.enable = true;
+
+  services.getty.autologinUser = "nix";
 
   # Enable zram
   zramSwap.enable = true;
   zramSwap.memoryPercent = 50;
 
   # Disable kernel from nvidia
-  boot.blacklistedKernelModules = [ "nouveau" ];
+#  boot.blacklistedKernelModules = [ "nouveau" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -158,8 +161,8 @@ services.blueman.enable = true;
 
   #NVidia setting
 #  services.xserver.videoDrivers = [ "nvidia" "intel" ];
-  services.xserver.videoDrivers = [ "nouveau" "intel" ];
-#  services.xserver.videoDrivers = [ "intel" ];
+#  services.xserver.videoDrivers = [ "nouveau" "intel" ];
+  services.xserver.videoDrivers = [ "intel" ];
 #  hardware.nvidia.nvidiaPersistenced = true;
 
 
@@ -177,6 +180,8 @@ services.blueman.enable = true;
     iosevka
     spleen
     fira-code-symbols
+    nerdfonts
+    noto-fonts-cjk-sans
   ];
 
 
@@ -216,7 +221,7 @@ services.blueman.enable = true;
     description = "nix";
     extraGroups = [ 
 	"wheel" 
-    "networkmanager" 
+    	"networkmanager" 
 	"video" 
 	"input" 
 	"storage" 

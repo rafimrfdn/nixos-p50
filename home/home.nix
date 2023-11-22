@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  programs.home-manager.enable = true;
+
   imports = [
    ./sway/default.nix
    ./hyprland/default.nix
@@ -118,9 +120,6 @@
 ];
 
 
-
-
   home.stateVersion = "23.05";
 
-  programs.home-manager.enable = true;
 }

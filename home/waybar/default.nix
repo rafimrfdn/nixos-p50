@@ -108,7 +108,7 @@ programs.waybar = {
          #custom-borderleft, #custom-borderright, #custom-centerborderleft, #custom-centerborderright{
                  background-color: transparent;
                  color: rgb(48, 52, 70);
-                 font-family: "Symbols Nerd Font";
+                 font-family: "Fira Code Symbol";
                  font-size: 25px;
                }
          #memory {
