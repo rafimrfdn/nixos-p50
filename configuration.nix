@@ -30,6 +30,7 @@ hardware.bluetooth.enable = true;
 services.blueman.enable = true;
 
 
+
   # Enable zram
   zramSwap.enable = true;
   zramSwap.memoryPercent = 50;
@@ -165,6 +166,9 @@ services.blueman.enable = true;
 
   # enable backlight
   programs.light.enable = true;
+
+  # wajib aktifkan dconf supaya bisa compile home-manager secara modular.
+programs.dconf.enable = true;
 
 # Fonts
   fonts.packages = with pkgs; [
