@@ -121,9 +121,9 @@ cp /etc/nixos/hardware-configuration.nix .
 
 ```
 
-## How to use this flake repo?
+### How to use this flake + separated home-manager ?
 
-> Make sure to istall Install home manager fist
+> Make sure to istall Install **home-manager** first
 
 1. Clone it.
 1. Change the `hardware-configuration.nix` as your system created.
@@ -196,6 +196,19 @@ So every time rebuild system, only execute 1 command.
 1. Rebuild system + home manager `sudo nixos-rebuid switch --flake .`
 
 What a beautiful system workflow, hah!
+
+### How to use this flake + home-manager (modular) ?
+
+> Make sure to istall Install **home-manager** first
+
+1. Clone it.
+1. Change the `hardware-configuration.nix` as your system created.
+1. Update the **flake.lock** file with `nix flake update`, if needed, you can delete the *flake.lock* first.
+1. Rebuild the system with flake command : `sudo nixos-rebuild switch --flake .`
+1. Wait till it finish.
+1. See the generations `nix-env --list-generations --profile /nix/var/nix/profiles/system`
+
+> Now you don't need to execute the `home-manager` command.
 
 ## Tips
 
