@@ -127,6 +127,7 @@ cp /etc/nixos/hardware-configuration.nix .
 
 1. Clone it.
 1. Change the `hardware-configuration.nix` as your system created.
+1. Update the **flake.lock** file with `nix flake update`, if needed, you can delete the *flake.lock* first.
 1. Rebuild the system with flake command : `sudo nixos-rebuild switch --flake .`
 1. Rebuild the home-manager : `home-manager switch --flake .`
 1. Wait till it finish.
@@ -141,6 +142,60 @@ Now your system configuration is setup by flakes.
 Every time you want to update, first go to this `.dotfiles` folder then update the system with this command:
 1. `nix flake update`
 1. `sudo nixos-rebuild switch --flake .`
+
+
+
+## Update: 22 Nov 2023, now my config flake is modular 
+
+It means the home-manager is setup in flake, so that we can execute only 1 command.
+
+Here is the updated full flake config.
+
+```nix
+{
+  description = "Thinkpad X220 flake";
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { self, nixpkgs, home-manager, ...}: 
+  let 
+    lib = nixpkgs.lib;
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations = {
+    # nixhost is my hostname I choosen, it can different with your system, but it will become your next hostname.
+      nixhost = lib.nixosSystem {
+        inherit system; 
+        modules = [ 
+          ./configuration.nix
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              # nix is my username, change it as yours!
+              users.nix = ./home/home.nix;
+            };
+          }
+        ];
+      };
+    };
+  };
+}
+
+```
+
+So every time rebuild system, only execute 1 command.
+
+1. `cd ~/.dotfiles`
+1. Update flake `nix flake update`
+1. Rebuild system + home manager `sudo nixos-rebuid switch --flake .`
+
+What a beautiful system workflow, hah!
 
 ## Tips
 
