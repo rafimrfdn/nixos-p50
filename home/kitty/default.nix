@@ -5,7 +5,7 @@
     enable = true;
     font = {
       name = "Cascadia Code";
-      size = 10.5;
+      size = 9;
     };
     theme = "Nord";
     extraConfig = ''

@@ -4,7 +4,7 @@
   programs.home-manager.enable = true;
 
   imports = [
-   ./sway/default.nix
+   # ./sway/default.nix
    ./hyprland/default.nix
    ./neovim/default.nix
    ./waybar/default.nix
@@ -15,6 +15,7 @@
    ./mpv/default.nix
    ./kitty/default.nix
    ./zsh/default.nix
+   ./firefox/default.nix
    # ./nodejs/default.nix
   ];
 
@@ -31,21 +32,21 @@
   #xfce.thunar
   acpi
   appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
-  arandr
+  #arandr
   arc-theme
-  autorandr
+  #autorandr
   brave
   # cinnamon.nemo-with-extensions
   cinnamon.nemo
   cinnamon.pix
   # conky
   copyq
-  darktable
+  #darktable
   easyeffects
   feh
   ffmpeg # for mpv
   ffmpegthumbnailer
-  firefox
+  # firefox
   # flameshot
   #font-awesome
   gcc
@@ -57,13 +58,13 @@
   hugo
   imagemagick
   inkscape
-  kdenlive
+  #kdenlive
   keepassxc
   killall
   #kitty
   libreoffice
   luajit
-  lxappearance
+  #lxappearance
   #mpv
   #vapoursynth-mvtools
   #mpvScripts.quality-menu
@@ -73,7 +74,7 @@
   ntfs3g
   onlyoffice-bin
   papirus-icon-theme
-  pcmanfm
+  #pcmanfm
   picom
   pipes #run with pipes.sh
   pulseaudio
@@ -82,7 +83,7 @@
   qogir-theme
   rclone
   rclone-browser
-  rofi-wayland
+  #rofi-wayland
   scrot
   simplescreenrecorder
   sqlite
@@ -97,11 +98,11 @@
   wofi
   #xarchiver #for pcmanfm extractor
   xclip
-  xdg-desktop-portal-wlr
+  #xdg-desktop-portal-wlr
   xorg.xev
   #yt-dlp
   zip
-  zsh-autosuggestions
+  #zsh-autosuggestions
 
   #my rust specal apps
   ripgrep #untuk Telescope neovim
@@ -116,7 +117,6 @@
   bottom #top yang lebih cantik, ketik btm
   broot #cd ala vim, ketik broot
   monolith #save single page ke satu halaman html
-
 ];
 
 

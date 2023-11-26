@@ -21,7 +21,7 @@ programs.waybar = {
     style = ''
             * {
                  font-family: "SF Pro Display";
-                 font-size: 12px;
+                 font-size: 10px;
                  min-height: 0;
                  font-weight: 600;
                  border-radius: 0px;

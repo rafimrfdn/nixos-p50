@@ -6,6 +6,7 @@
     font = {
       name = "Cantarell";
       package = pkgs.cantarell-fonts;
+      size = 8.5;
     };
     iconTheme = {
       package = pkgs.papirus-icon-theme;
