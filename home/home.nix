@@ -15,7 +15,6 @@
    ./mpv/default.nix
    ./kitty/default.nix
    ./zsh/default.nix
-   ./firefox/default.nix
    # ./nodejs/default.nix
   ];
 
@@ -46,7 +45,7 @@
   feh
   ffmpeg # for mpv
   ffmpegthumbnailer
-  # firefox
+  firefox
   # flameshot
   #font-awesome
   gcc
