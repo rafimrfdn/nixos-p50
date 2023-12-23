@@ -6,6 +6,7 @@
     font = {
       name = "Cantarel";
       package = pkgs.cantarell-fonts;
+      size = 11;
     };
     iconTheme = {
       package = pkgs.papirus-icon-theme;
@@ -18,10 +19,12 @@
       #name = "WhiteSur";
     };
     theme = {
-      #package = pkgs.qogir-theme;
-      #name = "Qogir";
-      #package = pkgs.whitesur-gtk-theme;
-      #name = "WhiteSur-dark";
+      # package = pkgs.qogir-theme;
+      # name = "Qogir";
+      # name = "Qogir-Dark";
+      # package = pkgs.whitesur-gtk-theme;
+      # name = "WhiteSur-dark";
+      # name = "WhiteSur";
       package = pkgs.arc-theme;
       name = "Arc";
     };
@@ -38,6 +41,9 @@
     settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
+      };
+      "org/gnome/shell/extensions/user-theme" = {
+        name = "Arc";
       };
     };
   };

@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./greetd/default.nix
+      # ./greetd/default.nix
       ./apache/default.nix
     ];
 
@@ -23,7 +23,16 @@
        libvdpau-va-gl
     ];
     driSupport = true;
+    # driSupport32Bit = true;
    };
+
+ # hardware.nvidia = {
+ #    modesetting.enable = true;
+ #    open = false;
+ #
+ #    nvidiaSettings = true;
+ #    package = config.boot.kernelPackages.nvidiaPackages.latest;
+ #  };
 
 # bluetooth
 hardware.bluetooth.enable = true;
@@ -36,7 +45,7 @@ services.blueman.enable = true;
   zramSwap.memoryPercent = 50;
 
   # Disable kernel from nvidia
-  boot.blacklistedKernelModules = [ "nouveau" ];
+  # boot.blacklistedKernelModules = [ "nouveau" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -67,6 +76,11 @@ services.blueman.enable = true;
 #  boot.initrd.verbose = false;
 #  boot.initrd.systemd.enable = true;
 #  systemd.watchdog.rebootTime = "0";
+
+#  setting nvidia untuk hyprland, tapi gak work
+  # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+  # hardware.nvidia.powerManagement.enable = true;
+  # hardware.nvidia.open = false;
 
   networking.hostName = "nixhost"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -125,8 +139,19 @@ services.blueman.enable = true;
   };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  #services.xserver.enable = true;
   # services.xserver.displayManager.startx.enable = true;
+
+  services.xserver = {
+    enable = true;
+   # videoDrivers = ["nvidia"];
+   videoDrivers = ["nouveau" "intel"];
+    # X11 keymap
+    layout = "us";
+    xkbVariant = "";
+    excludePackages = [pkgs.xterm];
+    libinput.enable = true;
+  };
 
   #AwesomeWM
   # services.xserver.windowManager.awesome.enable = true;
@@ -145,21 +170,32 @@ services.blueman.enable = true;
   # zsh
     programs.zsh.enable = true;
     programs.zsh.autosuggestions.enable = true;
-    programs.bash.enableCompletion = true;
+    # programs.bash.enableCompletion = true;
 
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+  # copy dari https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/hosts/desktop/default.nix
+  programs = {
+    bash = {
+      interactiveShellInit = ''
+        if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+           WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
+        fi
+      '';
+    enableCompletion = true;
+    };
   };
 
+  # Configure keymap in X11
+  # services.xserver = {
+  #   layout = "us";
+  #   xkbVariant = "";
+  # };
+
   # disable xterm, because this enable by default
-  services.xserver.excludePackages = [ pkgs.xterm ];
+  # services.xserver.excludePackages = [ pkgs.xterm ];
 
   #NVidia setting
-#  services.xserver.videoDrivers = [ "nvidia" "intel" ];
-  services.xserver.videoDrivers = [ "nouveau" "intel" ];
+ # services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  # services.xserver.videoDrivers = [ "nouveau" "intel" ];
 #  services.xserver.videoDrivers = [ "intel" ];
 #  hardware.nvidia.nvidiaPersistenced = true;
 
@@ -169,6 +205,7 @@ services.blueman.enable = true;
 
   # wajib aktifkan dconf supaya bisa compile home-manager secara modular.
 programs.dconf.enable = true;
+
 
 # Fonts
   fonts.packages = with pkgs; [
@@ -208,10 +245,14 @@ programs.dconf.enable = true;
 
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  #services.xserver.libinput.enable = true;
 
   # Enable Network Manager applet
   programs.nm-applet.enable = true;
+
+
+  #auto login user 
+  services.getty.autologinUser = "nix";
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -255,7 +296,7 @@ programs.dconf.enable = true;
       # automatically trigger garbage collection
       gc.automatic = true;
       gc.dates = "weekly";
-      gc.options = "--delete-older-than 30d";
+      gc.options = "--delete-older-than 15d";
   };
 
 
@@ -277,6 +318,11 @@ programs.dconf.enable = true;
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+    };
   };
 
 

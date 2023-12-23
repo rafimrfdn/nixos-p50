@@ -1,5 +1,20 @@
 { pkgs, lib, ... }:
 
+{
+programs.regreet.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        user = "nix";
+        # command = "$SHELL -l";
+        command = "Hyprland";
+      };
+    };
+  };
+}
+
+#############################################
 #let
 #  swayRun = pkgs.writeShellScript "sway-run" ''
 #   # export XDG_SESSION_TYPE=wayland
@@ -66,23 +81,24 @@
 
 #############################
 
-{
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "Hyprland";
-        # command = "startx";
-      user = "nix";
-    };
-    default_session = initial_session;
-  };
-};
-}
+# {
+#   services.greetd = {
+#     enable = true;
+#     settings = rec {
+#       initial_session = {
+#         command = "Hyprland";
+#         # command = "startx";
+#       user = "nix";
+#     };
+#     default_session = initial_session;
+#   };
+# };
+# }
 
 
 
-#############################################
+########################################
+
 
 #let
 #  swayConfig = pkgs.writeText "greetd-sway-config" ''

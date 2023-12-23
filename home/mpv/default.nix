@@ -20,26 +20,25 @@ in
   home.packages = [ mpv ] ++ (with pkgs; [
      # vlc
      # smplayer
-     vapoursynth-mvtools
   ]);
 
   #home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
-  home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
-    src = ./motioninterpolation.py;
+  home.file.".config/mpv/motioninterpolation.vpy".source = pkgs.substituteAll {
+    src = ./motioninterpolation.vpy;
     #mvtoolslib = "${pkgs.vapoursynth-mvtools}/lib/vapoursynth/";
   };
 
-  home.file.".config/mpv/svp.py".source = pkgs.substituteAll {
-    src = ./svp.py;
+  # home.file.".config/mpv/svp.py".source = pkgs.substituteAll {
+  #   src = ./svp.py;
     #svpflow = "${pkgs.lun.svpflow}/lib/";
     #mvtoolslib = "${pkgs.vapoursynth-mvtools}/lib/vapoursynth/";
-  };
+  # };
 
   home.file.".config/mpv/mpv.conf".text = ''
     #vf=format=yuv420p,vapoursynth=./motioninterpolation.vpy:4:4
-    #vf=format=yuv420p,vapoursynth=~~/motioninterpolation.vpy:4:4
+    vf=format=yuv420p,vapoursynth=~~/motioninterpolation.vpy:4:4
     #vf=format=yuv420p,vapoursynth=./motioninterpolation.py:4:4
-    vf=vapoursynth=~~/svp.py:2:24
+    #vf=vapoursynth=~~/svp.py:2:24
   '';
 
   home.file.".config/mpv/input.conf".text = ''

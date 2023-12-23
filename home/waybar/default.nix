@@ -1,26 +1,13 @@
 {config, pkgs, ...}:
 
 {
-# nixpkgs.overlays = [
-#     (final: prev: {
-#       waybar =
-#         let
-#           hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-#           waybarPatchFile = import ./workspace-patch.nix { inherit pkgs hyprctl; };
-#         in
-#         prev.waybar.overrideAttrs (oldAttrs: {
-#           mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-#           patches = (oldAttrs.patches or [ ]) ++ [ waybarPatchFile ];
-#         });
-#     })
-#   ];
 
 programs.waybar = {
     enable = true;
     systemd.enable = false;
     style = ''
             * {
-                 font-family: "SF Pro Display";
+                 font-family: "SF Pro Display", "Symbols Nerd Font";
                  font-size: 12px;
                  min-height: 0;
                  font-weight: 600;
@@ -108,7 +95,7 @@ programs.waybar = {
          #custom-borderleft, #custom-borderright, #custom-centerborderleft, #custom-centerborderright{
                  background-color: transparent;
                  color: rgb(48, 52, 70);
-                 font-family: "Symbols Nerd Font";
+                 font-family: "Fira Code Symbol";
                  font-size: 25px;
                }
          #memory {
@@ -140,6 +127,7 @@ programs.waybar = {
                  background-color: rgb(48, 52, 70);
                }
          #pulseaudio {
+                 /*font-family: "Symbols Nerd Font";*/
                  color: rgb(245, 224, 220);
                  background-color: rgb(48, 52, 70);
                 /*border-radius: 15px 0 0 15px; */
@@ -158,6 +146,7 @@ programs.waybar = {
                  color: rgb(242, 143, 173);
                }
          #custom-powermenu {
+                 /*font-family: "Symbols Nerd Font";*/
                  color: rgb(242, 143, 173);
                  background-color: rgb(48, 52, 70);
                }

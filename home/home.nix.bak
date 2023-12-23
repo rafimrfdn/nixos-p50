@@ -28,53 +28,29 @@
   #lf
   #rofi
   #xfce.thunar
+  acpi
+  appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
   # arandr
+  arc-theme
   # autorandr
+  brave
   # cinnamon.nemo-with-extensions
   # cinnamon.nemo
   # cinnamon.pix
   # conky
-  # feh
-  # flameshot
-  #font-awesome
-  # gnome.file-roller #archive manager for nemo
-  #kitty
-  #mpv
-  #vapoursynth-mvtools
-  #mpvScripts.quality-menu
-  # pcmanfm
-  #pipes #run with pipes.sh
-  # virt-manager
-  #xclip
-  # xdg-desktop-portal-wlr
-  # xdg-desktop-portal-hyprland
-  #xorg.xev
-  #yt-dlp
-  #lsd #ls yang menampilkan icon, ketik lsd
-  #xcp
-  #zoxide
-  #du-dust #du yang lebih cantik, ketik dust
-  #procs #ps yang lebih modern, ketik ps
-  #broot #cd ala vim, ketik broot
-  #monolith #save single page ke satu halaman html
-  # open-fonts 
-
-
-
-  acpi
-  appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
-  arc-theme
-  brave
   copyq
-  corefonts # we need windows fonts on libreoffice
   darktable
   easyeffects
+  # feh
   ffmpeg # for mpv
   ffmpegthumbnailer
   firefox
+  # flameshot
+  #font-awesome
   gcc
   gimp
   git
+  # gnome.file-roller #archive manager for nemo
   gnumake
   gparted
   hugo
@@ -83,16 +59,22 @@
   kdenlive
   keepassxc
   killall
+  #kitty
   libreoffice
   luajit
   lxappearance
+  #mpv
+  #vapoursynth-mvtools
+  #mpvScripts.quality-menu
   neofetch
   networkmanagerapplet
   nodejs
   ntfs3g
   onlyoffice-bin
   papirus-icon-theme
+  # pcmanfm
   picom
+  #pipes #run with pipes.sh
   pulseaudio
   pulseaudio-ctl
   qogir-icon-theme
@@ -107,19 +89,37 @@
   tdesktop
   tree
   unzip
+  # virt-manager
   volumeicon
   vscodium
   wget
   wofi
   xarchiver #for pcmanfm extractor
+  #xclip
+  # xdg-desktop-portal-wlr
+  # xdg-desktop-portal-hyprland
+  #xorg.xev
+  #yt-dlp
   zip
   zsh-autosuggestions
 
+  #my rust specal apps
   ripgrep #untuk Telescope neovim
   bat #cat yang lebih cantik, ketik bat namafile
+  #lsd #ls yang menampilkan icon, ketik lsd
   eza #ls lebih rapih, ketik exa #diganti menjadi eza
+  #xcp
+  #zoxide
+  #du-dust #du yang lebih cantik, ketik dust
   fd #find yang lebih mudah, ketik fd --type query
+  #procs #ps yang lebih modern, ketik ps
   bottom #top yang lebih cantik, ketik btm
+  #broot #cd ala vim, ketik broot
+  #monolith #save single page ke satu halaman html
+
+  # Fonts
+  corefonts # we need windows fonts on libreoffice
+  # open-fonts 
 
 ]) ++ (with pkgs.gnome; [ 
     nautilus
@@ -128,6 +128,9 @@
     eog
     # gedit
   ]);
+
+
+
 
   home.stateVersion = "23.05";
 

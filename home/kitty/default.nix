@@ -7,7 +7,8 @@
       name = "Cascadia Code";
       size = 10.5;
     };
-    theme = "Nord";
+    # theme = "Nord";
+    theme = "Solarized Dark Higher Contrast";
     extraConfig = ''
       # to see all list of fonts in system
       # kitty +list-fonts
