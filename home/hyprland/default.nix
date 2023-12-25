@@ -17,7 +17,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;
+    # systemd.enable = true;
     # enableNvidiaPatches = true;
     extraConfig = ''
     # My HYPRLAND Configuration
@@ -246,30 +246,30 @@
 
    CLUTTER_BACKEND="wayland";
 
-    EDITOR = "nvim";
-    BROWSER = "firefox";
-    TERMINAL = "kitty";
-    # GBM_BACKEND= "nvidia-drm";
-    # __GLX_VENDOR_LIBRARY_NAME= "nvidia";
-    # LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration
-    # __GL_VRR_ALLOWED="1";
-    # WLR_NO_HARDWARE_CURSORS = "1";
-    # WLR_RENDERER_ALLOW_SOFTWARE = "1";
-    # CLUTTER_BACKEND = "wayland";
-    # WLR_RENDERER = "vulkan";
-    #
-    # GDK_BACKEND="wayland,x11";
-    # SDL_VIDEODRIVER = "wayland";
-    # _JAVA_AWT_WM_NONREPARENTING = "1";
-    # MOZ_ENABLE_WAYLAND = "1";
-    # QT_QPA_PLATFORM = "wayland";
-    # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    #
-    # XDG_CURRENT_DESKTOP = "Hyprland";
-    # XDG_SESSION_DESKTOP = "Hyprland";
-    # XDG_SESSION_TYPE = "wayland";
+   EDITOR = "nvim";
+   BROWSER = "firefox";
+   TERMINAL = "kitty";
+   # GBM_BACKEND= "nvidia-drm";
+   # __GLX_VENDOR_LIBRARY_NAME= "nvidia";
+   # LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration
+   # __GL_VRR_ALLOWED="1";
+   # WLR_NO_HARDWARE_CURSORS = "1";
+   # WLR_RENDERER_ALLOW_SOFTWARE = "1";
+   # CLUTTER_BACKEND = "wayland";
+   # WLR_RENDERER = "vulkan";
+   #
+   # GDK_BACKEND="wayland,x11";
+   # SDL_VIDEODRIVER = "wayland";
+   # _JAVA_AWT_WM_NONREPARENTING = "1";
+   # MOZ_ENABLE_WAYLAND = "1";
+   # QT_QPA_PLATFORM = "wayland";
+   # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+   #
+   # XDG_CURRENT_DESKTOP = "Hyprland";
+   # XDG_SESSION_DESKTOP = "Hyprland";
+   # XDG_SESSION_TYPE = "wayland";
 
-    # GTK_THEME = "Qogir Dark";
+   # GTK_THEME = "Qogir Dark";
   };
 
 #programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [wlrobs];

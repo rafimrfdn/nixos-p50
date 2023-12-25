@@ -29,8 +29,6 @@ programs.neovim =
 
     plugins = with pkgs.vimPlugins; [
 
-      mason-nvim
-      mason-lspconfig-nvim
 
       {
         plugin = nvim-lspconfig;
@@ -51,13 +49,7 @@ programs.neovim =
       #   config = "colorscheme onedark";
       # }
 
-      # solarized-nvim
-
-      {
-        plugin = vim-colors-solarized;
-        config = "colorscheme solarized";
-      }
-      
+      solarized-nvim
 
       neodev-nvim
 

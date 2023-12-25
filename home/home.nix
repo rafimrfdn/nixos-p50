@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 
+
+
 {
   imports = [
    ./sway/default.nix
@@ -84,7 +86,7 @@
   keepassxc
   killall
   libreoffice
-  #luajit
+  luajit
   lxappearance
   neofetch
   networkmanagerapplet

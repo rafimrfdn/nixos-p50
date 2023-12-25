@@ -11,10 +11,11 @@ programs.neovim =
 
     defaultEditor = true;
     withNodeJs = true;
+    withPython3 = true;
+    withRuby = true;
 
     viAlias = true;
     vimAlias = true;
-    vimdiffAlias = true;
 
     extraPackages = with pkgs; [
       # Language server
@@ -27,10 +28,8 @@ programs.neovim =
 
     ];
 
-    plugins = with pkgs.vimPlugins; [
 
-      mason-nvim
-      mason-lspconfig-nvim
+    plugins = with pkgs.vimPlugins; [
 
       {
         plugin = nvim-lspconfig;
@@ -51,13 +50,14 @@ programs.neovim =
       #   config = "colorscheme onedark";
       # }
 
-      # solarized-nvim
+      solarized-nvim
 
-      {
-        plugin = vim-colors-solarized;
-        config = "colorscheme solarized";
-      }
-      
+      # {
+      #   plugin = solarized-nvim;
+      #   type = "lua";
+      #   config = ''
+      #   '';
+      # }
 
       neodev-nvim
 
@@ -132,6 +132,7 @@ programs.neovim =
 
     extraLuaConfig = ''
       ${builtins.readFile ./options.lua}
+      ${builtins.readFile ./plugin/other.lua}
     '';
 
     # extraLuaConfig = ''
