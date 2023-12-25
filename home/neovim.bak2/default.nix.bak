@@ -29,8 +29,6 @@ programs.neovim =
 
     plugins = with pkgs.vimPlugins; [
 
-      mason-nvim
-      mason-lspconfig-nvim
 
       {
         plugin = nvim-lspconfig;

@@ -21,7 +21,7 @@ require'nvim-treesitter.configs'.setup {
   --   enable = true,
   -- },
   --
-    ensure_installed = { }, -- one of "all" or a list of languages
+    ensure_installed = { all }, -- one of "all" or a list of languages
     -- ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
     highlight = {
         enable = true, -- false will disable the whole extension

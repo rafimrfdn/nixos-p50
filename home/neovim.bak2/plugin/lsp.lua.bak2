@@ -42,15 +42,8 @@ require('lspconfig').lua_ls.setup {
     }
 }
 
--- LSP for Nix language
+-- LSP for nix - do not remove this.
 require('lspconfig').rnix.setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
-
-require('lspconfig').eslint.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-

@@ -18,7 +18,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
-    enableNvidiaPatches = true;
+    # enableNvidiaPatches = true;
     extraConfig = ''
     # My HYPRLAND Configuration
     monitor=eDP-1,1920x1080@60.05200,0x0,1

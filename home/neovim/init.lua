@@ -78,7 +78,7 @@ vim.g.solarized_contrast = true
 vim.g.solarized_borders = false
 vim.g.solarized_disable_background = false
 
-vim.cmd("colorscheme solarized")
+-- vim.cmd("colorscheme solarized")
 
 -- Load the colorscheme
 -- require('solarized').set()

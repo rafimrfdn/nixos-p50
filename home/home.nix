@@ -84,7 +84,7 @@
   keepassxc
   killall
   libreoffice
-  luajit
+  #luajit
   lxappearance
   neofetch
   networkmanagerapplet

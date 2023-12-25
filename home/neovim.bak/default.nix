@@ -10,7 +10,7 @@ programs.neovim =
     enable = true;
 
     defaultEditor = true;
-    withNodeJs = true;
+    # withNodeJs = true;
 
     viAlias = true;
     vimAlias = true;
@@ -19,6 +19,7 @@ programs.neovim =
     extraPackages = with pkgs; [
       lua-language-server
       rnix-lsp
+      nodePackages.eslint
 
       xclip
       wl-clipboard
@@ -26,8 +27,8 @@ programs.neovim =
 
     plugins = with pkgs.vimPlugins; [
 
+      indentLine
       
-
       {
         plugin = nvim-lspconfig;
         config = toLuaFile ./plugin/lsp.lua;
@@ -42,14 +43,15 @@ programs.neovim =
       #   plugin = gruvbox-nvim;
       #   config = "colorscheme gruvbox";
       # }
-      {
-        plugin = onedark-nvim;
-        config = "colorscheme onedark";
-      }
+      
+
+
+      solarized-nvim
 
       neodev-nvim
 
-      nvim-cmp 
+      # nvim-cmp 
+
       {
         plugin = nvim-cmp;
         config = toLuaFile ./plugin/cmp.lua;
@@ -82,23 +84,29 @@ programs.neovim =
       lualine-nvim
       nvim-web-devicons
       # nvim-treesitter-parsers.astro
-      nvim-treesitter.withAllGrammars
+      # nvim-treesitter.withAllGrammars
+
 
       {
-        plugin = (nvim-treesitter.withPlugins (p: [
-          p.tree-sitter-nix
-          p.tree-sitter-vim
-          p.tree-sitter-lua
-          p.tree-sitter-bash
-          p.tree-sitter-json
-          p.tree-sitter-html
-          p.tree-sitter-css
-          p.tree-sitter-typescript
-          p.tree-sitter-svelte
-          p.tree-sitter-php
-        ]));
+        plugin = nvim-treesitter.withAllGrammars;
         config = toLuaFile ./plugin/treesitter.lua;
       }
+
+      # {
+      #   plugin = (nvim-treesitter.withPlugins (p: [
+      #     p.tree-sitter-nix
+      #     p.tree-sitter-vim
+      #     p.tree-sitter-lua
+      #     p.tree-sitter-bash
+      #     p.tree-sitter-json
+      #     p.tree-sitter-html
+      #     p.tree-sitter-css
+      #     p.tree-sitter-typescript
+      #     p.tree-sitter-svelte
+      #     p.tree-sitter-php
+      #   ]));
+      #   config = toLuaFile ./plugin/treesitter.lua;
+      # }
 
 
 
@@ -108,6 +116,10 @@ programs.neovim =
       #   plugin = vimPlugins.own-onedark-nvim;
       #   config = "colorscheme onedark";
       # }
+
+ 
+
+
     ];
 
     extraLuaConfig = ''
