@@ -2,23 +2,23 @@
 require("lualine").setup({
     icons_enabled = true,
     -- theme = 'onedark',
-    theme = 'solarized',
+    -- theme = 'solarized',
 })
 
 -- Example config in lua Solarized
-vim.g.solarized_italic_comments = true
-vim.g.solarized_italic_keywords = true
-vim.g.solarized_italic_functions = true
-vim.g.solarized_italic_variables = false
-vim.g.solarized_contrast = true
-vim.g.solarized_borders = false
-vim.g.solarized_disable_background = false
--- require('solarized').set()
+-- vim.g.solarized_italic_comments = true
+-- vim.g.solarized_italic_keywords = true
+-- vim.g.solarized_italic_functions = true
+-- vim.g.solarized_italic_variables = false
+-- vim.g.solarized_contrast = true
+-- vim.g.solarized_borders = false
+-- vim.g.solarized_disable_background = false
+-- require("solarized").setup()
 
 -- Colorscheme
 -- vim.cmd("colorscheme gruvbox")
 -- vim.cmd("colorscheme onedark")
-vim.cmd("colorscheme solarized")
+-- vim.cmd("colorscheme solarized")
 
 
 

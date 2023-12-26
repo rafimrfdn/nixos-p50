@@ -11,8 +11,6 @@ programs.neovim =
 
     defaultEditor = true;
     withNodeJs = true;
-    withPython3 = true;
-    withRuby = true;
 
     viAlias = true;
     vimAlias = true;
@@ -28,6 +26,10 @@ programs.neovim =
 
     ];
 
+    extraLuaConfig = ''
+      ${builtins.readFile ./options.lua}
+      -- ${builtins.readFile ./plugin/other.lua}
+    '';
 
     plugins = with pkgs.vimPlugins; [
 
@@ -50,7 +52,7 @@ programs.neovim =
       #   config = "colorscheme onedark";
       # }
 
-      solarized-nvim
+      # solarized-nvim
 
       # {
       #   plugin = solarized-nvim;
@@ -130,10 +132,6 @@ programs.neovim =
       # }
     ];
 
-    extraLuaConfig = ''
-      ${builtins.readFile ./options.lua}
-      ${builtins.readFile ./plugin/other.lua}
-    '';
 
     # extraLuaConfig = ''
     #   ${builtins.readFile ./options.lua}
