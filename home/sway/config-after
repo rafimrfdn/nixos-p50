@@ -1,0 +1,67 @@
+# Colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #999999 #5f676a #999999 #999999   #999999
+client.focused_inactive #999999 #5f676a #999999 #999999   #999999
+client.unfocused        #333333 #222222 #888888 #292d2e   #1f1e1e
+client.urgent           #999999 #5f676a #999999 #999999   #999999
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+default_border pixel 1
+
+# Screenshots
+bindsym Print+Shift exec grim  -g "$(slurp)" /home/nix/Pictures/Screenshot-$(date +'%H:%M:%S.png')
+bindsym Print exec grim /home/nix/Pictures/Screenshot-$(date +'%H:%M:%S.png')
+
+# Media keys
+# Brightness
+bindsym XF86MonBrightnessDown exec light -U 2
+bindsym XF86MonBrightnessUp exec light -A 2
+
+bindsym $mod+Ctrl+Down exec light -U 2
+bindsym $mod+Ctrl+Up exec light -A 2
+
+# Volume
+bindsym XF86AudioMute exec 'pactl set-sink-mute 0 toggle'
+bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume 0 +5%'
+bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume 0 -5%'
+
+# Git token (paste it into "")
+#bindsym $mod+g exec wl-copy "" 
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Layout stuff:
+# Split verticaly =
+bindsym $mod+v splitv
+
+# Split horizontaly ||
+bindsym $mod+b splith
+
+# Stacking Layout
+bindsym $mod+s layout stacking
+
+bindsym $alt+minus scrathpad show
+bindsym $alt+e layout toggle split
+
+bindsym $mod+space focus mode_toggle
+
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+
+# Fixes
+exec dbus-sway-environment
+exec configure-gtk
+exec systemctl --user import-environment
+

@@ -60,7 +60,6 @@
   # open-fonts 
 
 
-
   acpi
   appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
   arc-theme

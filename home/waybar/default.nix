@@ -16,7 +16,7 @@ programs.waybar = {
         modules-left = [
           "custom/launcher"
           "hyprland/workspaces"
-          "wlr/workspaces"
+          "sway/workspaces"
           "temperature"
           "custom/uptime"
           "custom/borderright"
@@ -68,16 +68,25 @@ programs.waybar = {
           "exec" = "sleep 1s && cava-internal";
           "tooltip" = false;
         };
-        # for sway use wlr/workspace 
-        "wlr/workspaces" = {
+        # for sway use sway/workspace 
+        "sway/workspaces" = {
           "format" = "{icon}";
           "on-click" = "activate";
           "format-icons"= {
-            "1"= "";
-            "2"= "";
-            "3"= "";
-            "4"= "";
-            "5"= "";
+            # "1"= "";
+            # "2"= "";
+            # "3"= "";
+            # "4"= "";
+            # "5"= "";
+            "1"= "1";
+            "2"= "2";
+            "3"= "3";
+            "4"= "4";
+            "5"= "5";
+            "6"= "6";
+            "7"= "7";
+            "8"= "8";
+            "9"= "9";
             "urgent"= "";
             "active"= "";
             "default"= "";

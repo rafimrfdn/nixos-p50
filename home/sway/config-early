@@ -1,0 +1,27 @@
+# Wallpaper
+output * bg /home/nix/Pictures/wp/1.jpg fill
+
+set $mod Mod4
+set $alt Mod1
+
+set $term kitty
+set $menu rofi -show drun -I
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+bindsym $mod+Shift+Return exec $term
+
+bindsym $mod+W exec firefox
+bindsym $mod+E exec nautilus
+bindsym $mod+D exec $menu
+bindsym $mod+Shift+Q exec wlogout
+
+# Kill focused window
+bindsym $mod+Shift+c kill
+bindsym $alt+F4 kill
+bindsym $mod+N kitty -e ~/.scripts/notetaker.sh
+
+

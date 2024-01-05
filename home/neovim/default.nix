@@ -16,133 +16,93 @@ programs.neovim =
     vimAlias = true;
 
     extraPackages = with pkgs; [
-      # Language server
-      nodePackages.eslint
-      lua-language-server
+	# install the languages
       rnix-lsp
 
+	# clipboard tool
       xclip
       wl-clipboard
 
+      cargo
     ];
 
-    extraLuaConfig = ''
-      ${builtins.readFile ./options.lua}
-      -- ${builtins.readFile ./plugin/other.lua}
-    '';
 
     plugins = with pkgs.vimPlugins; [
+	  vim-solarized8
 
+      # status bar
       {
-        plugin = nvim-lspconfig;
-        config = toLuaFile ./plugin/lsp.lua;
+        plugin = lualine-nvim;
+        config = toLua "require(\"lualine\").setup({icons_enabled = true, theme = \'solarized8\'})";
       }
 
-      {
-        plugin = comment-nvim;
-        config = toLua "require(\"Comment\").setup()";
-      }
+#	  nvim-treesitter.withAllGrammars
 
-      # {
-      #   plugin = gruvbox-nvim;
-      #   config = "colorscheme gruvbox";
-      # }
-      # {
-      #   plugin = onedark-nvim;
-      #   config = "colorscheme onedark";
-      # }
-
-      # solarized-nvim
-
-      # {
-      #   plugin = solarized-nvim;
-      #   type = "lua";
-      #   config = ''
-      #   '';
-      # }
-
-      neodev-nvim
-
-      nvim-cmp 
-
-      {
-        plugin = nvim-cmp;
-        config = toLuaFile ./plugin/cmp.lua;
-      }
-
-      {
-        plugin = telescope-nvim;
-        config = toLuaFile ./plugin/telescope.lua;
-      }
-
-      {
-        plugin = neo-tree-nvim;
-        config = toLuaFile ./plugin/neotree.lua;
-      }
-
-      {
-        plugin = toggleterm-nvim;
-        config = toLuaFile ./plugin/toggleterm.lua;
-      }
-
-      telescope-fzf-native-nvim
-
-      cmp_luasnip
-      cmp-nvim-lsp
-
-      luasnip
-      friendly-snippets
-
-
-      lualine-nvim
-      nvim-web-devicons
-
-      # nvim-treesitter.withAllGrammars
-
-      nvim-treesitter-parsers.svelte
-      nvim-treesitter-parsers.astro
+	  neo-tree-nvim
+	  plenary-nvim
+	  nui-nvim
+	  nvim-web-devicons
 
       {
         plugin = nvim-treesitter.withAllGrammars;
         config = toLuaFile ./plugin/treesitter.lua;
       }
+    
+      # completion
+      {
+        plugin = nvim-cmp;
+        config = toLuaFile ./plugin/cmp.lua;
+      }
+      	## Snippet Engine & its associated nvim-cmp source
+	    luasnip
+      	cmp_luasnip
 
-      # {
-      #   plugin = (nvim-treesitter.withPlugins (p: [
-      #     p.tree-sitter-nix
-      #     p.tree-sitter-vim
-      #     p.tree-sitter-lua
-      #     p.tree-sitter-bash
-      #     p.tree-sitter-json
-      #     p.tree-sitter-html
-      #     p.tree-sitter-css
-      #     p.tree-sitter-typescript
-      #     p.tree-sitter-php
-      #   ]));
-      #   config = toLuaFile ./plugin/treesitter.lua;
-      # }
+      	## Adds LSP completion capabilities
+      	cmp-nvim-lsp
+      	cmp-path
+
+      	# Adds a number of user-friendly snippets
+      	friendly-snippets
 
 
+      # LSP
+      {
+        plugin = mason-nvim;
+        config = toLuaFile ./plugin/lsp.lua;
+      }
+	  mason-lspconfig-nvim
+      nvim-lspconfig
+      neodev-nvim
+
+	#comment
+      {
+        plugin = comment-nvim;
+        config = toLua "require(\"Comment\").setup()";
+      }
+
+	# telescope
+      {
+        plugin = telescope-nvim;
+        config = toLuaFile ./plugin/telescope.lua;
+      }
+	# include this with telescope
+      telescope-fzf-native-nvim
+
+	# toggleterm
+      {
+        plugin = toggleterm-nvim;
+        config = toLuaFile ./plugin/toggleterm.lua;
+      }
 
       vim-nix
 
-      # {
-      #   plugin = vimPlugins.own-onedark-nvim;
-      #   config = "colorscheme onedark";
-      # }
-    ];
+];
+    
 
-
-    # extraLuaConfig = ''
-    #   ${builtins.readFile ./options.lua}
-    #   ${builtins.readFile ./plugin/lsp.lua}
-    #   ${builtins.readFile ./plugin/cmp.lua}
-    #   ${builtins.readFile ./plugin/telescope.lua}
-    #   ${builtins.readFile ./plugin/treesitter.lua}
-    #   ${builtins.readFile ./plugin/other.lua}
-    # '';
+    extraLuaConfig = ''
+      ${builtins.readFile ./options.lua}
+    '';
   };
-
 
 
 }
