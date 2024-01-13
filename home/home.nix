@@ -2,18 +2,18 @@
 
 {
   imports = [
-   ./sway/default.nix
-   ./hyprland/default.nix
-   ./neovim/default.nix
-   ./waybar/default.nix
-   ./gtk/default.nix
-   ./tmux/default.nix
-   ./st/default.nix
-   ./emacs/default.nix
-   ./mpv/default.nix
-   ./kitty/default.nix
    ./zsh/default.nix
    ./dunst/default.nix
+   ./sway/default.nix
+   ./hyprland/default.nix
+   ./waybar/default.nix
+   ./tmux/default.nix
+   ./neovim/default.nix
+   ./emacs/default.nix
+   ./st/default.nix
+   ./gtk/default.nix
+   ./kitty/default.nix
+   ./mpv/default.nix
    # ./nodejs/default.nix
   ];
 

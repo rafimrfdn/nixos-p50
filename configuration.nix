@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
 # ./greetd/default.nix
       ./apache/default.nix
+      ./mime/default.nix
     ];
 
 
@@ -23,8 +24,8 @@ hardware.opengl = {
     libvdpau-va-gl
   ];
   driSupport = true;
-# driSupport32Bit = true;
-  };
+  driSupport32Bit = true;
+};
 
 # hardware.nvidia = {
 #    modesetting.enable = true;
@@ -62,10 +63,19 @@ hardware.opengl = {
 #   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
-  # systemd.services = {
-  #   systemd-tmpfiles-setup.before = [ "sysinit.target"];
-  #   systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
-  # };
+  systemd.services = {
+      # if you not using GDM or ZFS enable this for faster boot time
+      # services.systemd-udev-settle.enable = false; 
+
+    systemd-tmpfiles-setup.before = [ "sysinit.target"];
+    systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
+  };
+
+  systemd.services.NetworkManager-wait-online.enable = false;
+  networking = {
+    dhcpcd.wait = "background" ;
+    dhcpcd.extraConfig = "noarp" ;
+  };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -74,11 +84,11 @@ hardware.opengl = {
       wants = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];
       serviceConfig = {
-	Type = "simple";
-	ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-	Restart = "on-failure";
-	RestartSec = 1;
-	TimeoutStopSec = 10;
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
       };
     };
   };
@@ -91,11 +101,6 @@ hardware.opengl = {
 #  boot.initrd.verbose = false;
 #  boot.initrd.systemd.enable = true;
 #  systemd.watchdog.rebootTime = "0";
-
-#  setting nvidia untuk hyprland, tapi gak work
-# boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
-# hardware.nvidia.powerManagement.enable = true;
-# hardware.nvidia.open = false;
 
   networking.hostName = "nixhost"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -157,15 +162,15 @@ hardware.opengl = {
 #services.xserver.enable = true;
 # services.xserver.displayManager.startx.enable = true;
 
-  services.xserver = {
-    enable = true;
-# videoDrivers = ["nvidia"];
-    videoDrivers = ["nouveau" "intel"];
+services.xserver = {
+  enable = true;
 # X11 keymap
-    layout = "us";
-    xkbVariant = "";
-    excludePackages = [pkgs.xterm];
-    libinput.enable = true;
+  layout = "us";
+  xkbVariant = "";
+  excludePackages = [pkgs.xterm];
+  libinput.enable = true;
+  videoDrivers = ["nouveau" "intel"];
+# videoDrivers = ["nvidia"];
   };
 
 #AwesomeWM
@@ -192,7 +197,8 @@ hardware.opengl = {
     bash = {
  #      interactiveShellInit = ''
 	#   if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-	#     WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
+	#     # WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
+	#     exec sway
 	#   fi
 	# '';
       enableCompletion = true;
@@ -223,16 +229,16 @@ hardware.opengl = {
 
 
 # Fonts
-  fonts.packages = with pkgs; [
-    cascadia-code
+fonts.packages = with pkgs; [
+  cascadia-code
+  cooper-hewitt
+  iosevka
+  spleen
+  fira-code-symbols
 # fira-code
 # fira
-      cooper-hewitt
 # ibm-plex
 # jetbrains-mono
-      iosevka
-      spleen
-      fira-code-symbols
   ];
 
 
@@ -269,9 +275,17 @@ hardware.opengl = {
 #auto login user 
   services.getty.autologinUser = "nix";
 
+# enable emacs daemon
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
+  };
+
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nix = {
+users = {
+  defaultUserShell = pkgs.zsh;
+  users.nix = {
     isNormalUser = true;
     description = "nix";
     extraGroups = [ 
@@ -283,15 +297,16 @@ hardware.opengl = {
       "libvirtd"
 #	"docker"
     ];
-    shell = pkgs.zsh;
-
+    # shell = pkgs.zsh;
     packages = with pkgs; [
       php82
       php82Packages.composer
       mariadb
     ];
-
   };
+};
+
+
 
 
 # Allow unfree packages
@@ -299,8 +314,8 @@ hardware.opengl = {
 # nixpkgs.config.allowBroken = true;
 
 # Virtualization with qemu kvm
-#   virtualisation.libvirtd.enable = true;
-#   programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
 
 # Automatic delete old version
@@ -327,24 +342,20 @@ hardware.opengl = {
     gnumake
   ];
 
-#  services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config = {
-      common = {
-	default = [ "gtk" ];
-      };
+
+services.dbus.enable = true;
+xdg.portal = {
+  enable = true;
+  wlr.enable = true;
+  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  config = {
+    common = {
+      default = [ "gtk" ];
     };
   };
+};
 
 
-# enable emacs daemon
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-  };
 
 # Make swaylock function 
   security.pam.services.swaylock = {
@@ -359,15 +370,6 @@ hardware.opengl = {
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
-# Faster Boot Time
-# if you not using GDM or ZFS use this
-  systemd.services.systemd-udev-settle.enable = false; 
-
-  systemd.services.NetworkManager-wait-online.enable = false;
-  networking = {
-    dhcpcd.wait = "background" ;
-    dhcpcd.extraConfig = "noarp" ;
-  };
 
 # This value determines the NixOS release from which the default
 # settings for stateful data, like file locations and database versions

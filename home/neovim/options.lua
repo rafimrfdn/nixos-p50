@@ -116,7 +116,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- set solarize color scheme
-vim.cmd("set background=dark")
+-- vim.cmd("set background=dark")
 vim.cmd.colorscheme 'solarized8'
 
 -- teej kickstart feature
@@ -132,9 +132,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Lualine
-    icons_enabled = true,
-require("lualine").setup({
-    -- theme = 'onedark',
-    -- theme = 'solarized',
-})
+-- require("lualine").setup({
+--     icons_enabled = true,
+--     -- theme = 'onedark',
+--     -- theme = 'solarized',
+-- })
 

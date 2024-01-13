@@ -3,7 +3,7 @@
 {
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
+    # terminal = "screen-256color";
     newSession = true;
     shortcut = "a";
     plugins = [
@@ -14,6 +14,9 @@
       pkgs.tmuxPlugins.continuum
     ];
     extraConfig = "
+      # biar color scheme nvim tidak berubah saat dibuka di tmux, jalankan :checkhealth nvim di tmux
+      set-option -sa terminal-features ',kitty:RGB'
+
       # set-option -g status-position top
       
       set-option -g mouse on

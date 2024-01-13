@@ -9,13 +9,25 @@
       enable = true;
       package = pkgs.zsh-syntax-highlighting;
     };
+    profileExtra = ''
+    #!/usr/bin/env zsh
+    case $(basename "$(tty)" ) in  
+    tty1)
+    # WLR_NO_HARDWARE_CURSORS=1 exec Hyprland #prevents cursor disappear when using Nvidia drivers
+    exec sway
+    ;;
+    tty2)
+    exec Hyprland
+    ;;
+    esac
+    '';
     initExtra = ''
       # everything will be easy when you can use vim keybind on terminal
       bindkey -v
       
       #because when type which $TERM it returns "xterm-kitty not found"
-      TERM="kitty"
-      EDITOR="nvim"
+      # TERM="kitty"
+      # EDITOR="nvim"
       
       export CLICOLOR=1
       export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
@@ -36,6 +48,7 @@
       alias hs="hugo server"
       alias hse="hugo serve --environment production"
       alias nrs="npm run start"
+      alias dev="npm run dev"
       
       #TMUX
       alias ta="tmux attach -t"
@@ -50,20 +63,11 @@
       alias rustyvibes="/home/nix/rustyvibes/target/debug/rustyvibes /home/nix/.config/rustyvibes/cherrymx-brown-pbt"
       alias hms="cd ~/.dotfiles/ && home-manager switch --flake ."
       
-      alias jt="cd /home/nix/Project/hugo/jagotekno"
-      alias jf="cd /home/nix/Project/hugo/jfhugo"
-      alias pm="cd /home/nix/Project/hugo/pmhugo"
-      alias iz="cd /home/nix/Project/hugo/izzulislam.com"
-      alias mrfdn="cd /home/nix/Project/hugo/mrfdn.com"
-      
-      alias dev="npm run dev"
-      
       alias pas="php artisan serve"
       
       # my dotfiles alias
       alias p50="/home/nix/.nix-profile/bin/git --git-dir=$HOME/.nixos-p50/ --work-tree=/"
       
-      alias biznet="/home/nix/.ssh/mysshport"
     '';
   };
 }

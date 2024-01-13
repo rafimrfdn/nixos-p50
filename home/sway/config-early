@@ -22,6 +22,6 @@ bindsym $mod+Shift+Q exec wlogout
 # Kill focused window
 bindsym $mod+Shift+c kill
 bindsym $alt+F4 kill
-bindsym $mod+N kitty -e ~/.scripts/notetaker.sh
+bindsym $mod+N exec kitty -e ~/.scripts/notetaker.sh
 
 

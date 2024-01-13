@@ -9,6 +9,8 @@
     };
     # theme = "Nord";
     theme = "Solarized Dark Higher Contrast";
+    # theme = "Solarized Dark";
+    # theme = "Ubuntu";
     extraConfig = ''
       # to see all list of fonts in system
       # kitty +list-fonts
