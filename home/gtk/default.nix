@@ -9,24 +9,28 @@
       size = 11;
     };
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
-      #package = pkgs.qogir-icon-theme;
-      #name = "Qogir";
-      #package = pkgs.pop-icon-theme;
+      package = pkgs.papirus-icon-theme;
+      # name = "Qogir";
+      # package = pkgs.qogir-icon-theme;
       #name = "Pop";
-      #package = pkgs.whitesur-icon-theme;
-      #name = "WhiteSur";
+      # package = pkgs.pop-icon-theme;
+      # name = "WhiteSur";
+      # package = pkgs.whitesur-icon-theme;
     };
     theme = {
-      # package = pkgs.qogir-theme;
       # name = "Qogir";
       # name = "Qogir-Dark";
-      # package = pkgs.whitesur-gtk-theme;
-      # name = "WhiteSur-dark";
+      # package = pkgs.qogir-theme;
       # name = "WhiteSur";
-      package = pkgs.arc-theme;
-      name = "Arc";
+      # name = "WhiteSur-dark";
+      # package = pkgs.whitesur-gtk-theme;
+      # name = "Arc";
+      # package = pkgs.arc-theme;
+      name = "Orchis-Dark";
+      package = pkgs.orchis-theme;
+      # name = "Juno";
+      # package = pkgs.juno-theme;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
@@ -42,9 +46,11 @@
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
       };
-      "org/gnome/shell/extensions/user-theme" = {
-        name = "Arc";
-      };
+      # "org/gnome/shell/extensions/user-theme" = {
+      #   # name = "Arc";
+      #   # name = "Qogir-Dark";
+      #   name = "juno";
+      # };
     };
   };
 }

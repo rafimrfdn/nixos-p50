@@ -5,7 +5,7 @@
    ./zsh/default.nix
    ./dunst/default.nix
    ./sway/default.nix
-   ./hyprland/default.nix
+   # ./hyprland/default.nix
    ./waybar/default.nix
    ./tmux/default.nix
    ./neovim/default.nix
@@ -58,15 +58,13 @@
   #broot #cd ala vim, ketik broot
   #monolith #save single page ke satu halaman html
   # open-fonts 
+  #lxappearance
 
 
   acpi
-  appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
   arc-theme
-  brave
   copyq
   corefonts # we need windows fonts on libreoffice
-  darktable
   easyeffects
   ffmpeg # for mpv
   ffmpegthumbnailer
@@ -79,18 +77,15 @@
   hugo
   imagemagick
   inkscape
-  kdenlive
   keepassxc
   killall
-  libreoffice
   luajit
-  lxappearance
   neofetch
   networkmanagerapplet
   nodejs
   ntfs3g
-  onlyoffice-bin
   papirus-icon-theme
+  pdfarranger
   picom
   pulseaudio
   pulseaudio-ctl
@@ -100,25 +95,48 @@
   rclone-browser
   rofi-wayland
   scrot
-  simplescreenrecorder
   sqlite
   sqlitebrowser
   tdesktop
   tree
   unzip
   volumeicon
-  vscodium
   wget
   wofi
   xarchiver #for pcmanfm extractor
   zip
-  zsh-autosuggestions
+  #zsh-autosuggestions
 
   ripgrep #untuk Telescope neovim
   bat #cat yang lebih cantik, ketik bat namafile
   eza #ls lebih rapih, ketik exa #diganti menjadi eza
   fd #find yang lebih mudah, ketik fd --type query
   bottom #top yang lebih cantik, ketik btm
+
+  # install via sudo nix-env -iA nixos.packageName:
+  # view list installed via sudo nix-env --query
+  #onlyoffice-bin
+  #libreoffice
+  #vscodium
+  #simplescreenrecorder
+  #darktable
+  #brave
+  #kdenlive
+  #appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
+
+  # Hyprland needed apps
+    xdg-desktop-portal-hyprland
+    swaybg 
+    wlsunset 
+    wl-clipboard 
+    wf-recorder
+    clipman
+    slurp 
+    grim grimblast jq socat
+    wlogout swaylock
+    # swayimg #image viewer for sway/wayland
+    # imv #this also image viewer
+    swww
 
 ]) ++ (with pkgs.gnome; [ 
     nautilus

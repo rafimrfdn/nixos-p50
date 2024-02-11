@@ -99,11 +99,18 @@ in lib.mkDefault
         };
 
         extraSessionCommands = ''
-            export SDL_VIDEODRIVER=wayland
-            export QT_QPA_PLATFORM=wayland
+            export SDL_VIDEODRIVER="wayland"
+            export QT_QPA_PLATFORM="wayland"
             export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-            export _JAVA_AWT_WM_NONREPARENTING=1
-            export MOZ_ENABLE_WAYLAND=1
+            export _JAVA_AWT_WM_NONREPARENTING="1"
+            export MOZ_ENABLE_WAYLAND="1"
+
+            export CLUTTER_BACKEND="wayland"
+            # export GTK_THEME="Arc-Dark"
+            # export GTK_THEME="Qogir-Dark"
+            # export GTK_THEME="WhiteSur-Dark"
+            export GTK_THEME="Orchis-Dark"
+            export GDK_BACKEND="wayland,x11"
             '';
 
         # set beginning config

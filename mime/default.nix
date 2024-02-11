@@ -13,11 +13,12 @@
         inkscape = ["org.inkscape.Inkscape.desktop"];
         eog= ["org.gnome.eog.desktop"];
         nautilus = ["org.gnome.nautilus.desktop"];
-        nvim = ["neovim.desktop"];
-        mpv= ["userapp-mpv-JVXS11.desktop"];
+        nvim = ["nvim.desktop"];
+        mpv= ["mpv.desktop"];
         emacs = ["emacs.desktop"];
+        pdfarranger = ["com.github.jeromerobert.pdfarranger.desktop"];
       in {
-        "application/pdf" = firefox;
+        "application/pdf" = pdfarranger;
         "application/x-extension-htm" = firefox;
         "application/x-extension-html" = firefox;
         "application/x-extension-shtml" = firefox;

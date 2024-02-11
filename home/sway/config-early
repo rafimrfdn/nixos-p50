@@ -16,6 +16,8 @@ bindsym $mod+Shift+Return exec $term
 
 bindsym $mod+W exec firefox
 bindsym $mod+E exec nautilus
+bindsym $mod+P exec wofi --show run
+bindsym $mod+Shift+E exec emacs
 bindsym $mod+D exec $menu
 bindsym $mod+Shift+Q exec wlogout
 

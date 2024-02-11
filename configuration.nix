@@ -8,37 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-# ./greetd/default.nix
-      ./apache/default.nix
-      ./mime/default.nix
+    ./greetd/default.nix
+    ./apache/default.nix
+    ./mime/default.nix
     ];
-
-
-# Intel/OpenGL
-hardware.opengl = {
-  enable = true;
-  extraPackages = with pkgs; [
-    intel-media-driver
-    vaapiIntel
-    vaapiVdpau
-    libvdpau-va-gl
-  ];
-  driSupport = true;
-  driSupport32Bit = true;
-};
-
-# hardware.nvidia = {
-#    modesetting.enable = true;
-#    open = false;
-#
-#    nvidiaSettings = true;
-#    package = config.boot.kernelPackages.nvidiaPackages.latest;
-#  };
-
-# bluetooth
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-
 
 # Enable zram
   zramSwap.enable = true;
@@ -62,45 +35,6 @@ hardware.opengl = {
 #boot.kernelPackages = pkgs.linuxPackages_latest;
 #   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-
-  systemd.services = {
-      # if you not using GDM or ZFS enable this for faster boot time
-      # services.systemd-udev-settle.enable = false; 
-
-    systemd-tmpfiles-setup.before = [ "sysinit.target"];
-    systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
-  };
-
-  systemd.services.NetworkManager-wait-online.enable = false;
-  networking = {
-    dhcpcd.wait = "background" ;
-    dhcpcd.extraConfig = "noarp" ;
-  };
-
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
-
-# Silent boot to hide Stage when boot system 
-#  boot.plymouth.enable = true;
-#
-#  boot.kernelParams = ["quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3"];
-#  boot.consoleLogLevel = 0;
-#  boot.initrd.verbose = false;
-#  boot.initrd.systemd.enable = true;
-#  systemd.watchdog.rebootTime = "0";
 
   networking.hostName = "nixhost"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -158,6 +92,100 @@ hardware.opengl = {
     LC_TIME = "id_ID.utf8";
   };
 
+# Enable CUPS to print documents.
+#  services.printing.enable = false;
+
+
+# Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false; #Disable Pulseaudio
+    security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+# If you want to use JACK applications, uncomment this
+#jack.enable = true;
+
+# use the example session manager (no others are packaged yet so this is enabled by default,
+# no need to redefine it in your config for now)
+#media-session.enable = true;
+  };
+
+
+
+
+# Intel/OpenGL
+hardware.opengl = {
+  enable = true;
+  extraPackages = with pkgs; [
+    intel-media-driver
+    vaapiIntel
+    vaapiVdpau
+    libvdpau-va-gl
+  ];
+  driSupport = true;
+  driSupport32Bit = true;
+};
+
+# hardware.nvidia = {
+#    modesetting.enable = true;
+#    open = false;
+#
+#    nvidiaSettings = true;
+#    package = config.boot.kernelPackages.nvidiaPackages.latest;
+#  };
+
+# bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+
+
+  systemd.services = {
+      # if you not using GDM or ZFS enable this for faster boot time
+    systemd-udev-settle.enable = false; 
+
+    systemd-tmpfiles-setup.before = [ "sysinit.target"];
+    systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
+
+    # NetworkManager-wait-online.enable = false;
+  };
+
+  # systemd.services.NetworkManager-wait-online.enable = false;
+  # networking = {
+  #   dhcpcd.wait = "background" ;
+  #   dhcpcd.extraConfig = "noarp" ;
+  # };
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
+# Silent boot to hide Stage when boot system 
+#  boot.plymouth.enable = true;
+#
+#  boot.kernelParams = ["quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3"];
+#  boot.consoleLogLevel = 0;
+#  boot.initrd.verbose = false;
+#  boot.initrd.systemd.enable = true;
+#  systemd.watchdog.rebootTime = "0";
+
+
 # Enable the X11 windowing system.
 #services.xserver.enable = true;
 # services.xserver.displayManager.startx.enable = true;
@@ -165,13 +193,26 @@ hardware.opengl = {
 services.xserver = {
   enable = true;
 # X11 keymap
-  layout = "us";
-  xkbVariant = "";
+  xkb.layout = "us";
+  xkb.variant = "";
   excludePackages = [pkgs.xterm];
   libinput.enable = true;
   videoDrivers = ["nouveau" "intel"];
 # videoDrivers = ["nvidia"];
   };
+
+services.dbus.enable = true;
+xdg.enable = true;
+xdg.portal = {
+  enable = true;
+  wlr.enable = true;
+  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  config = {
+    common = {
+      default = [ "gtk" ];
+    };
+  };
+};
 
 #AwesomeWM
 # services.xserver.windowManager.awesome.enable = true;
@@ -242,28 +283,6 @@ fonts.packages = with pkgs; [
   ];
 
 
-# Enable CUPS to print documents.
-#  services.printing.enable = false;
-
-# Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false; #Disable Pulseaudio
-    security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-# If you want to use JACK applications, uncomment this
-#jack.enable = true;
-
-# use the example session manager (no others are packaged yet so this is enabled by default,
-# no need to redefine it in your config for now)
-#media-session.enable = true;
-  };
-
-
 
 # Enable touchpad support (enabled default in most desktopManager).
 #services.xserver.libinput.enable = true;
@@ -271,9 +290,6 @@ fonts.packages = with pkgs; [
 # Enable Network Manager applet
   programs.nm-applet.enable = true;
 
-
-#auto login user 
-  services.getty.autologinUser = "nix";
 
 # enable emacs daemon
   services.emacs = {
@@ -306,7 +322,26 @@ users = {
   };
 };
 
+# NodeJS and NPM
+# programs.npm.enable = true;
 
+  environment.variables.EDITOR = "nvim";
+
+# Make swaylock function 
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
+
+  security.pam.mount.enable = true;
+  security.pam.mount.createMountPoints = true;
+  security.polkit.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
+#auto login user 
+  services.getty.autologinUser = "nix";
 
 
 # Allow unfree packages
@@ -330,10 +365,6 @@ users = {
   };
 
 
-# NodeJS and NPM
-# programs.npm.enable = true;
-
-  environment.variables.EDITOR = "nvim";
 
 # List packages installed in system profile. To search, run:
 # $ nix search wget
@@ -341,34 +372,6 @@ users = {
     gcc #must have one linux compiler like gcc or cc etc.
     gnumake
   ];
-
-
-services.dbus.enable = true;
-xdg.portal = {
-  enable = true;
-  wlr.enable = true;
-  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  config = {
-    common = {
-      default = [ "gtk" ];
-    };
-  };
-};
-
-
-
-# Make swaylock function 
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
-  };
-
-  security.pam.mount.enable = true;
-  security.pam.mount.createMountPoints = true;
-  security.polkit.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
 
 
 # This value determines the NixOS release from which the default

@@ -3,11 +3,6 @@
 {
   programs.emacs = {
     enable = true;
-    #config = /home/nix/.emacs.d/init.el;
-    # Optionally provide extra packages not in the configuration file.
-    #extraEmacsPackages = epkgs: [
-    #    epkgs.use-package;
-    # ];
     extraPackages = epkgs: [
       epkgs.use-package
       epkgs.evil
@@ -21,7 +16,8 @@
       epkgs.undo-tree  
     ];
     extraConfig = ''
-
+      ${builtins.readFile ./sanemacs.el}
+      ${builtins.readFile ./init.el}
     '';
   };
 }

@@ -3,16 +3,16 @@
 {
 
   home.packages = with pkgs; [
-    xdg-desktop-portal-hyprland
-    wofi swaybg wlsunset 
-    wl-clipboard 
-    wf-recorder
-    clipman
-    slurp grim grimblast jq socat
-    wlogout swaylock
-    # swayimg #image viewer for sway/wayland
-    # imv #this also image viewer
-    swww
+    # xdg-desktop-portal-hyprland
+    # wofi swaybg wlsunset 
+    # wl-clipboard 
+    # wf-recorder
+    # clipman
+    # slurp grim grimblast jq socat
+    # wlogout swaylock
+    # # swayimg #image viewer for sway/wayland
+    # # imv #this also image viewer
+    # swww
   ];
 
   wayland.windowManager.hyprland = {
