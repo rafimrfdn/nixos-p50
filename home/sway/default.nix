@@ -109,7 +109,7 @@ in lib.mkDefault
             # export GTK_THEME="Arc-Dark"
             # export GTK_THEME="Qogir-Dark"
             # export GTK_THEME="WhiteSur-Dark"
-            export GTK_THEME="Orchis-Dark"
+            # export GTK_THEME="Orchis-Dark"
             export GDK_BACKEND="wayland,x11"
             '';
 

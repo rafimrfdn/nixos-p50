@@ -13,13 +13,6 @@
     ./mime/default.nix
     ];
 
-# Enable zram
-  zramSwap.enable = true;
-  zramSwap.memoryPercent = 50;
-
-# Disable kernel from nvidia
-# boot.blacklistedKernelModules = [ "nouveau" ];
-
 # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -35,6 +28,13 @@
 #boot.kernelPackages = pkgs.linuxPackages_latest;
 #   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+
+# Disable kernel from nvidia
+# boot.blacklistedKernelModules = [ "nouveau" ];
+
+# Enable zram
+  zramSwap.enable = true;
+  zramSwap.memoryPercent = 50;
 
   networking.hostName = "nixhost"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -202,7 +202,6 @@ services.xserver = {
   };
 
 services.dbus.enable = true;
-xdg.enable = true;
 xdg.portal = {
   enable = true;
   wlr.enable = true;
@@ -226,6 +225,9 @@ xdg.portal = {
 
 # Enable Cinnamon Dekstop
 #  services.xserver.desktopManager.cinnamon.enable = true;
+
+# Enable touchpad support (enabled default in most desktopManager).
+#services.xserver.libinput.enable = true;
 
 
 # zsh
@@ -262,11 +264,14 @@ xdg.portal = {
 #  hardware.nvidia.nvidiaPersistenced = true;
 
 
-# enable backlight
+# enable backlight for screen brightness
   programs.light.enable = true;
 
 # wajib aktifkan dconf supaya bisa compile home-manager secara modular.
   programs.dconf.enable = true;
+
+# Enable Network Manager applet
+  programs.nm-applet.enable = true;
 
 
 # Fonts
@@ -283,20 +288,14 @@ fonts.packages = with pkgs; [
   ];
 
 
-
-# Enable touchpad support (enabled default in most desktopManager).
-#services.xserver.libinput.enable = true;
-
-# Enable Network Manager applet
-  programs.nm-applet.enable = true;
-
-
 # enable emacs daemon
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-  };
+  # services.emacs = {
+  #   enable = true;
+  #   package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
+  # };
 
+# set default text editor
+  environment.variables.EDITOR = "nvim";
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
 users = {
@@ -310,7 +309,7 @@ users = {
       "video" 
       "input" 
       "storage" 
-      "libvirtd"
+      # "libvirtd"
 #	"docker"
     ];
     # shell = pkgs.zsh;
@@ -322,10 +321,6 @@ users = {
   };
 };
 
-# NodeJS and NPM
-# programs.npm.enable = true;
-
-  environment.variables.EDITOR = "nvim";
 
 # Make swaylock function 
   security.pam.services.swaylock = {
@@ -334,6 +329,7 @@ users = {
     '';
   };
 
+# mount new drive, usb flash disk, etc for pacman, nemo and manually mounting drives.
   security.pam.mount.enable = true;
   security.pam.mount.createMountPoints = true;
   security.polkit.enable = true;
@@ -343,14 +339,13 @@ users = {
 #auto login user 
   services.getty.autologinUser = "nix";
 
-
 # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 # nixpkgs.config.allowBroken = true;
 
 # Virtualization with qemu kvm
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
+  # virtualisation.libvirtd.enable = true;
+  # programs.virt-manager.enable = true;
 
 
 # Automatic delete old version

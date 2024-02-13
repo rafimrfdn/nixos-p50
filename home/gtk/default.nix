@@ -9,10 +9,10 @@
       size = 11;
     };
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-      # name = "Qogir";
-      # package = pkgs.qogir-icon-theme;
+      # name = "Papirus-Dark";
+      # package = pkgs.papirus-icon-theme;
+      name = "Qogir";
+      package = pkgs.qogir-icon-theme;
       #name = "Pop";
       # package = pkgs.pop-icon-theme;
       # name = "WhiteSur";
@@ -20,15 +20,17 @@
     };
     theme = {
       # name = "Qogir";
-      # name = "Qogir-Dark";
-      # package = pkgs.qogir-theme;
+      name = "Qogir-Dark";
+      package = pkgs.qogir-theme;
       # name = "WhiteSur";
       # name = "WhiteSur-dark";
       # package = pkgs.whitesur-gtk-theme;
       # name = "Arc";
       # package = pkgs.arc-theme;
-      name = "Orchis-Dark";
-      package = pkgs.orchis-theme;
+      # name = "Orchis-Dark";
+      # package = pkgs.orchis-theme;
+      # name = "Nordic";
+      # package = pkgs.nordic;
       # name = "Juno";
       # package = pkgs.juno-theme;
     };

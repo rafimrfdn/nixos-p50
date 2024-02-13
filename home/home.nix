@@ -125,7 +125,7 @@
   #appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
 
   # Hyprland needed apps
-    xdg-desktop-portal-hyprland
+    # xdg-desktop-portal-hyprland
     swaybg 
     wlsunset 
     wl-clipboard 
