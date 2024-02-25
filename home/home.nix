@@ -62,7 +62,7 @@
 
 
   acpi
-  arc-theme
+  bun
   copyq
   corefonts # we need windows fonts on libreoffice
   easyeffects
@@ -84,13 +84,10 @@
   networkmanagerapplet
   nodejs
   ntfs3g
-  papirus-icon-theme
   pdfarranger
   picom
   pulseaudio
   pulseaudio-ctl
-  qogir-icon-theme
-  qogir-theme
   rclone
   rclone-browser
   rofi-wayland
@@ -104,6 +101,8 @@
   wget
   wofi
   xarchiver #for pcmanfm extractor
+  xdg-user-dirs # manage well known user directories
+  xdg-utils 
   zip
   #zsh-autosuggestions
 
@@ -112,6 +111,25 @@
   eza #ls lebih rapih, ketik exa #diganti menjadi eza
   fd #find yang lebih mudah, ketik fd --type query
   bottom #top yang lebih cantik, ketik btm
+
+
+  #themes
+  juno-theme
+  pop-gtk-theme
+  qogir-theme
+  pantheon.elementary-gtk-theme
+  arc-theme
+  nordic
+  whitesur-gtk-theme
+  mojave-gtk-theme
+  numix-solarized-gtk-theme
+  
+  #icon themes
+  papirus-icon-theme
+  qogir-icon-theme
+  whitesur-icon-theme
+  pop-icon-theme
+  pantheon.elementary-icon-theme
 
   # install via sudo nix-env -iA nixos.packageName:
   # view list installed via sudo nix-env --query
@@ -143,8 +161,8 @@
     zenity
     gnome-tweaks
     eog
-    # gedit
   ]);
+
 
   home.stateVersion = "23.05";
 

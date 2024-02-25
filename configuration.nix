@@ -190,28 +190,65 @@ hardware.opengl = {
 #services.xserver.enable = true;
 # services.xserver.displayManager.startx.enable = true;
 
-services.xserver = {
+  services.xserver = {
   enable = true;
 # X11 keymap
   xkb.layout = "us";
   xkb.variant = "";
+  desktopManager = {
+        xterm = {
+        enable = false;
+    };
+  };
+  displayManager = {
+    sessionPackages = [pkgs.sway];
+    lightdm = {
+      enable = false;
+      greeter = {
+        enable = false;
+      };
+    };
+    autoLogin = {
+      enable = true;
+      user = "nix";
+   };
+  };
   excludePackages = [pkgs.xterm];
   libinput.enable = true;
-  videoDrivers = ["nouveau" "intel"];
+  videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
 # videoDrivers = ["nvidia"];
   };
 
 services.dbus.enable = true;
-xdg.portal = {
-  enable = true;
-  wlr.enable = true;
-  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  config = {
-    common = {
-      default = [ "gtk" ];
+# xdg.portal = {
+#   enable = true;
+#   wlr.enable = true;
+#   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+#   config = {
+#     common = {
+#       default = [ "gtk" ];
+#     };
+#   };
+# };
+
+#this from hervyqa
+xdg = {
+    portal = {
+      enable = true;
+      wlr = {
+        enable = false;
+      };
+      configPackages = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
     };
   };
-};
+
 
 #AwesomeWM
 # services.xserver.windowManager.awesome.enable = true;
@@ -309,8 +346,8 @@ users = {
       "video" 
       "input" 
       "storage" 
-      # "libvirtd"
-#	"docker"
+      "libvirtd"
+      "docker"
     ];
     # shell = pkgs.zsh;
     packages = with pkgs; [
@@ -337,7 +374,7 @@ users = {
   services.udisks2.enable = true;
 
 #auto login user 
-  services.getty.autologinUser = "nix";
+  # services.getty.autologinUser = "nix";
 
 # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

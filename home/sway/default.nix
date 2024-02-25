@@ -105,12 +105,19 @@ in lib.mkDefault
             export _JAVA_AWT_WM_NONREPARENTING="1"
             export MOZ_ENABLE_WAYLAND="1"
 
-            export CLUTTER_BACKEND="wayland"
+            # export CLUTTER_BACKEND="wayland"
             # export GTK_THEME="Arc-Dark"
+            # export GTK_THEME="Nordic"
             # export GTK_THEME="Qogir-Dark"
-            # export GTK_THEME="WhiteSur-Dark"
+            export GTK_THEME="WhiteSur-Dark-solid"
             # export GTK_THEME="Orchis-Dark"
-            export GDK_BACKEND="wayland,x11"
+            # export GTK_THEME="Pop-dark"
+            # export GTK_THEME="Juno"
+            # export GDK_BACKEND="wayland,x11"
+
+            export XDG_CURRENT_DESKTOP="sway"
+            export XDG_SESSION_DESKTOP="sway"
+            export XDG_SESSION_TYPE="wayland"
             '';
 
         # set beginning config
