@@ -123,7 +123,8 @@ cp /etc/nixos/hardware-configuration.nix .
 
 ## How to use this flake repo?
 
-> Make sure to istall Install home manager fist
+> Make sure to install Install home manager fist
+
 
 1. Clone it.
 1. Change the `hardware-configuration.nix` as your system created.
@@ -131,6 +132,13 @@ cp /etc/nixos/hardware-configuration.nix .
 1. Rebuild the home-manager : `home-manager switch --flake .`
 1. Wait till it finish.
 1. See the generations `nix-env --list-generations --profile /nix/var/nix/profiles/system`
+
+## Regenerate home-manager
+run this command:
+
+```
+nix run home-manager/master -- init
+```
 
 > If you got error when build home-manager, run this : `sudo chown nix flake.lock` and `sudo chgrp users flake.lock`.
 
@@ -154,3 +162,6 @@ To solve this, perform `git status`, `git add .`, `git commit -am "message"`, th
 
 
 Big thanks to : [LibrePhoenix](https://www.youtube.com/watch?v=ACybVzRvDhs) for creating the nixos flake video content for novice like me.
+
+
+
