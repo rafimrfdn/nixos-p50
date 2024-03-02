@@ -9,11 +9,28 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./greetd/default.nix
-    ./boot/default.nix
     # ./apache/default.nix
     # ./mime/default.nix
     ];
 
+# Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  boot.loader.systemd-boot.editor = false;
+  boot.loader.timeout = 0;
+
+# Enable NTFS
+  boot.supportedFilesystems = ["ntfs"];
+
+# Use latest linux kernel
+#boot.kernelPackages = pkgs.linuxPackages_latest;
+#   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+
+# Disable kernel from nvidia
+# boot.blacklistedKernelModules = [ "nouveau" ];
 
 # Enable zram
   zramSwap.enable = true;
@@ -113,6 +130,14 @@ hardware.opengl = {
   driSupport32Bit = true;
 };
 
+# hardware.nvidia = {
+#    modesetting.enable = true;
+#    open = false;
+#
+#    nvidiaSettings = true;
+#    package = config.boot.kernelPackages.nvidiaPackages.latest;
+#  };
+
 # bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -121,7 +146,7 @@ hardware.opengl = {
 
   systemd.services = {
       # if you not using GDM or ZFS enable this for faster boot time
-    # systemd-udev-settle.enable = false; 
+    systemd-udev-settle.enable = false; 
 
     systemd-tmpfiles-setup.before = [ "sysinit.target"];
     systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];

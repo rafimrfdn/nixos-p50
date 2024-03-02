@@ -50,9 +50,9 @@
       # name = "Adapta";
       # package = pkgs.adapta-gtk-theme;
       # name = "Mojave-Light"; # or Mojave-Light-alt || Mojave-Light-solid || Mojave-Light-solid-alt
-      # name = "Mojave-Dark"; # or Mojave-Dark-alt || Mojave-Dark-solid || Mojave-Dark-solid-alt
+      name = "Mojave-Dark"; # or Mojave-Dark-alt || Mojave-Dark-solid || Mojave-Dark-solid-alt
       # package = pkgs.mojave-gtk-theme;
-      name = "NumixStandard"; # or NumixStandard || NumixSolarizedDarkBlue etc
+      # name = "NumixSolarizedDarkBlue"; # or NumixStandard || NumixSolarizedDarkBlue etc
       # package = pkgs.numix-solarized-gtk-theme;
     };
     iconTheme = {
