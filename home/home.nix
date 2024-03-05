@@ -153,6 +153,7 @@
   whitesur-gtk-theme
   mojave-gtk-theme
   numix-solarized-gtk-theme
+  dracula-theme
   
   #icon themes
   papirus-icon-theme
@@ -160,6 +161,7 @@
   whitesur-icon-theme
   pop-icon-theme
   pantheon.elementary-icon-theme
+  dracula-icon-theme
 
   # install via sudo nix-env -iA nixos.packageName:
   # view list installed via sudo nix-env --query

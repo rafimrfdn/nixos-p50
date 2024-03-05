@@ -27,7 +27,7 @@
       # package = pkgs.cantarell-fonts;
       size = 10;
     };
-    theme = {
+    # theme = {
       # name = "Qogir";
       # name = "Qogir-Dark";
       # package = pkgs.qogir-theme;
@@ -50,12 +50,12 @@
       # name = "Adapta";
       # package = pkgs.adapta-gtk-theme;
       # name = "Mojave-Light"; # or Mojave-Light-alt || Mojave-Light-solid || Mojave-Light-solid-alt
-      name = "Mojave-Dark"; # or Mojave-Dark-alt || Mojave-Dark-solid || Mojave-Dark-solid-alt
+      # name = "Mojave-Dark"; # or Mojave-Dark-alt || Mojave-Dark-solid || Mojave-Dark-solid-alt
       # package = pkgs.mojave-gtk-theme;
       # name = "NumixSolarizedDarkBlue"; # or NumixStandard || NumixSolarizedDarkBlue etc
       # package = pkgs.numix-solarized-gtk-theme;
-    };
-    iconTheme = {
+    # };
+    # iconTheme = {
       # name = "Papirus-Dark";
       # package = pkgs.papirus-icon-theme;
       # name = "Qogir";
@@ -68,8 +68,8 @@
       # name = "WhiteSur-dark";
       # package = pkgs.whitesur-icon-theme;
       # name = "Newaita-dark"; # or Newaita-bluish
-      name = "Papirus-Dark"; # or Papirus
-    };
+      # name = "Papirus-Dark"; # or Papirus
+    # };
     cursorTheme = {
       name = "Pop";
       # package = pkgs.pop-gtk-theme;

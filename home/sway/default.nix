@@ -113,7 +113,8 @@ in lib.mkDefault
             # export GTK_THEME="Orchis-Dark"
             # export GTK_THEME="Pop-dark"
             # export GTK_THEME="Juno"
-            export GTK_THEME="Mojave-Dark"
+            # export GTK_THEME="Mojave-Dark"
+            export GTK_THEME="Dracula"
             # export GTK_THEME="NumixSolarizedDarkBlue"
             export GDK_BACKEND="wayland,x11"
 
