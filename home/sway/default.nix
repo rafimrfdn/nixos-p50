@@ -3,7 +3,6 @@
 let
 modifier = config.wayland.windowManager.sway.config.modifier;
 in lib.mkDefault
-
 {
     wayland.windowManager.sway = {
         enable = true;
@@ -106,16 +105,19 @@ in lib.mkDefault
             export MOZ_ENABLE_WAYLAND="1"
 
             export CLUTTER_BACKEND="wayland"
+            # export GTK_THEME="Adwaita-dark"
             # export GTK_THEME="Arc-Dark"
             # export GTK_THEME="Nordic"
             # export GTK_THEME="Qogir-Dark"
             # export GTK_THEME="WhiteSur-Dark-solid"
+            export GTK_THEME="WhiteSur-Dark"
             # export GTK_THEME="Orchis-Dark"
             # export GTK_THEME="Pop-dark"
-            # export GTK_THEME="Juno"
             # export GTK_THEME="Mojave-Dark"
-            export GTK_THEME="Dracula"
-            # export GTK_THEME="NumixSolarizedDarkBlue"
+            # export GTK_THEME="Dracula"
+            # export GTK_THEME="Fluent-Dark-compact"
+            # export GTK_THEME="Fluent-Dark"
+            # export GTK_THEME="Graphite-Dark"
             export GDK_BACKEND="wayland,x11"
 
             export XDG_CURRENT_DESKTOP="sway"

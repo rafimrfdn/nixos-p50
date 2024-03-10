@@ -12,11 +12,11 @@
     kernelPackages = pkgs.linuxPackages_zen;
 
   loader = {    
+    timeout = 0;
     systemd-boot.editor = false;
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot/efi";
-    timeout = 0;
   };
 
   kernelParams = [

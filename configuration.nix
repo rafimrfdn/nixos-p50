@@ -368,7 +368,7 @@ users = {
 # automatically trigger garbage collection
     gc.automatic = true;
     gc.dates = "weekly";
-    gc.options = "--delete-older-than 15d";
+    gc.options = "--delete-older-than 7d";
   };
 
 
