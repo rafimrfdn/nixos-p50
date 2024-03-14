@@ -43,25 +43,25 @@
 	update_seconds = false
   '';
 
- #  nixpkgs.overlays = [
- #    (final: prev: {
- #      dwm = prev.dwm.overrideAttrs (old: { src = ./dwm/dwm-6.3; });
- #    })
- #    (self: super: {
- #      dwm = super.dwm.overrideAttrs (oldAttrs: rec {
- #        patches = [
- #         ./dwm/dwm-systray-6.3.diff
- #         ./dwm/dwm-cool-autostart-6.2.diff
- #         ./dwm/dwm-ru_gaps-6.3.diff
- #         ./dwm/dwm-ru_bottomstack-6.2.diff
- #         ./dwm/dwm-warp-6.2.diff
- #         ./dwm/dwm-alwayscenter.diff
- #         ./dwm/dwm-pertag.diff
- #         ./dwm/dwm-hide_vacant_tags-6.3.diff
- #        ];
- #        configFile = super.writeText "config.h" (builtins.readFile ./dwm/config.h);
- #        postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
- #      });
+  nixpkgs.overlays = [
+    (final: prev: {
+      dwm = prev.dwm.overrideAttrs (old: { src = ./dwm-6.3; });
+    })
+    (self: super: {
+      dwm = super.dwm.overrideAttrs (oldAttrs: rec {
+        patches = [
+         ./dwm-systray-6.3.diff
+         ./dwm-cool-autostart-6.2.diff
+         ./dwm-ru_gaps-6.3.diff
+         ./dwm-ru_bottomstack-6.2.diff
+         ./dwm-warp-6.2.diff
+         ./dwm-alwayscenter.diff
+         ./dwm-pertag.diff
+         ./dwm-hide_vacant_tags-6.3.diff
+        ];
+        configFile = super.writeText "config.h" (builtins.readFile ./config.h);
+        postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
+      });
  #      st = super.st.overrideAttrs (oldAttrs: rec {
  #        patches = [
 	# ./st/st-scrollback-0.8.5.diff
@@ -70,6 +70,6 @@
 	# ./st/st-w3m-0.8.3.diff
  #        ];
  #      });
- #    })
- #  ];
+    })
+  ];
 }

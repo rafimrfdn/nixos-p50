@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./greetd/default.nix
+    # ./greetd/default.nix
     ./boot/default.nix
     # ./apache/default.nix
     # ./mime/default.nix
@@ -180,7 +180,7 @@ hardware.opengl = {
   displayManager = {
     # sessionPackages = [pkgs.sway];
     lightdm = {
-      enable = false;
+      enable = true;
       greeter = {
         enable = false;
       };
@@ -241,6 +241,7 @@ xdg = {
 
 # Set default XSesssion
 # services.xserver.displayManager.defaultSession = "none+awesome";
+services.xserver.displayManager.defaultSession = "none+dwm";
 
 
 # Enable Cinnamon Dekstop

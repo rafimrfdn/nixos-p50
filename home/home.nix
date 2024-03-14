@@ -78,6 +78,7 @@
   # cinnamon.nemo
   # cinnamon.pix
   # conky
+  dmenu
   # feh
   # flameshot
   #font-awesome
@@ -102,7 +103,7 @@
   #broot #cd ala vim, ketik broot
   #monolith #save single page ke satu halaman html
   # open-fonts 
-  #lxappearance
+  lxappearance
 
 
   acpi
