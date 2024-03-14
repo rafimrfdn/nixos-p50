@@ -12,8 +12,10 @@
     ./boot/default.nix
     # ./apache/default.nix
     # ./mime/default.nix
+    ./dwm/default.nix
     ];
 
+    documentation.nixos.enable = false;
 
 # Enable zram
   zramSwap.enable = true;
@@ -176,7 +178,7 @@ hardware.opengl = {
     };
   };
   displayManager = {
-    sessionPackages = [pkgs.sway];
+    # sessionPackages = [pkgs.sway];
     lightdm = {
       enable = false;
       greeter = {
@@ -190,7 +192,7 @@ hardware.opengl = {
   };
   excludePackages = [pkgs.xterm];
   libinput.enable = true;
-  videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
+  # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
 # videoDrivers = ["nvidia"];
   };
 
@@ -201,28 +203,34 @@ services.dbus.enable = true;
 #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 #   config = {
 #     common = {
-#       default = [ "gtk" ];
+#       # default = [ "gtk" ];
+#       default = [ "*" ];
 #     };
 #   };
 # };
 
 #this from hervyqa
 xdg = {
-    portal = {
-      enable = true;
-      wlr = {
-        enable = false;
+  portal = {
+    enable = true;
+    wlr = {
+      enable = false;
+    };
+    configPackages = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+    config = {
+      common = {
+        default = [ "*" ];
       };
-      configPackages = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-wlr
-      ];
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-wlr
-      ];
     };
   };
+};
 
 
 #AwesomeWM
@@ -387,7 +395,7 @@ users = {
 # this value at the release version of the first install of this system.
 # Before changing this value read the documentation for this option
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 }

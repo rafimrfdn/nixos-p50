@@ -1,5 +1,4 @@
-{
-  description = "Thinkpad P50 flake";
+{ description = "Thinkpad P50 flake";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -7,14 +6,17 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ...}: 
+  # outputs = { self, nixpkgs, home-manager, ...}: 
+  outputs = inputs @ { self, nixpkgs, home-manager, ...}: 
   let 
+    hostname = "nixhost";
+    user = "nix";
     lib = nixpkgs.lib;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations = {
-      nixhost = lib.nixosSystem {
+      ${hostname} = lib.nixosSystem {
         inherit system; 
         modules = [ 
           ./configuration.nix
@@ -22,7 +24,10 @@
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
-              users.nix = import ./home/home.nix;
+              # users.nix = ./home/home.nix;
+              users.${user}= import ./home/home.nix;
+              # from cristitus
+              extraSpecialArgs = {inherit inputs self user;};
             };
           }
         ];

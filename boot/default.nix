@@ -13,22 +13,29 @@
 
   loader = {    
     timeout = 0;
-    systemd-boot.editor = false;
     systemd-boot.enable = true;
+    systemd-boot.editor = false;
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot/efi";
   };
 
+  # silent boot. 
   kernelParams = [
-    "quiet"
-    "splash"
-    "vga=currrent"
-    "rd.systemd.show_status=false"
-    "rd.udev.log_level=3"
-    "udev.log_priority=3"
+    # "quiet"
+    # "splash"
+    # "vga=currrent"
+    # "rd.systemd.show_status=false"
+    # "rd.udev.log_level=3"
+    # "udev.log_priority=3"
+    "nohibernate"
   ];
   consoleLogLevel = 0;
   initrd.verbose = false;
+  initrd.systemd.enable = true;
   supportedFilesystems = ["ntfs"];
+
+  #christitus nixos config
+  tmp.cleanOnBoot = true;
   };
+  systemd.watchdog.rebootTime = "0";
 }

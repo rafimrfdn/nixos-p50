@@ -94,7 +94,7 @@
   scrot
   sqlite
   sqlitebrowser
-  tdesktop
+  #tdesktop
   tree
   unzip
   volumeicon
@@ -132,7 +132,10 @@
   pantheon.elementary-icon-theme
 
   # install via sudo nix-env -iA nixos.packageName:
-  # view list installed via sudo nix-env --query
+  # view list installed via sudo nix-env --query 
+  # or
+  # install via sudo nix profile intall packagename
+  # view list installed via sudo nix profile list
   #onlyoffice-bin
   #libreoffice
   #vscodium
@@ -140,6 +143,7 @@
   #darktable
   #brave
   #kdenlive
+  #tdesktop
   #appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
 
   # Hyprland needed apps

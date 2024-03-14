@@ -4,7 +4,7 @@
   imports = [
    ./zsh/default.nix
    ./dunst/default.nix
-   ./sway/default.nix
+   # ./sway/default.nix
    # ./hyprland/default.nix
    ./waybar/default.nix
    ./tmux/default.nix
@@ -16,6 +16,20 @@
    ./mpv/default.nix
    # ./nodejs/default.nix
   ];
+
+
+
+  fonts.fontconfig.enable = true;
+
+  xdg = {
+    enable = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+  };
+
+
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -124,7 +138,6 @@
   scrot
   sqlite
   sqlitebrowser
-  tdesktop
   tree
   unzip
   volumeicon
@@ -159,14 +172,15 @@
 
   # install via sudo nix-env -iA nixos.packageName:
   # view list installed via sudo nix-env --query
-  #onlyoffice-bin
-  #libreoffice
-  #vscodium
-  #simplescreenrecorder
-  #darktable
-  #brave
-  #kdenlive
-  #appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
+  # onlyoffice-bin
+  # libreoffice
+  # vscodium
+  # simplescreenrecorder
+  # darktable
+  # brave
+  # kdenlive
+  # tdesktop
+  # appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
 
   # Hyprland needed apps
     # xdg-desktop-portal-hyprland
@@ -182,12 +196,16 @@
     # imv #this also image viewer
     swww
 
+
+
 ]) ++ (with pkgs.gnome; [ 
     nautilus
     zenity
     gnome-tweaks
     eog
   ]);
+
+
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
