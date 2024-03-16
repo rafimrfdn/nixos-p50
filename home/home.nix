@@ -4,6 +4,7 @@
   imports = [
    ./zsh/default.nix
    ./dunst/default.nix
+   ./dwm/default.nix
    # ./sway/default.nix
    # ./hyprland/default.nix
    ./waybar/default.nix
@@ -79,7 +80,7 @@
   # cinnamon.pix
   # conky
   dmenu
-  # feh
+  feh
   # flameshot
   #font-awesome
   # gnome.file-roller #archive manager for nemo
@@ -185,17 +186,17 @@
 
   # Hyprland needed apps
     # xdg-desktop-portal-hyprland
-    swaybg 
-    wlsunset 
-    wl-clipboard 
-    wf-recorder
+    # swaybg 
+    # wlsunset 
+    # wl-clipboard 
+    # wf-recorder
     clipman
-    slurp 
-    grim grimblast jq socat
-    wlogout swaylock
-    # swayimg #image viewer for sway/wayland
-    # imv #this also image viewer
-    swww
+    # slurp 
+    # grim grimblast jq socat
+    # wlogout swaylock
+    # # swayimg #image viewer for sway/wayland
+    # # imv #this also image viewer
+    # swww
 
 
 

@@ -123,8 +123,7 @@ hardware.opengl = {
 
   systemd.services = {
       # if you not using GDM or ZFS enable this for faster boot time
-    # systemd-udev-settle.enable = false; 
-
+    systemd-udev-settle.enable = false; 
     systemd-tmpfiles-setup.before = [ "sysinit.target"];
     systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
 
@@ -168,32 +167,32 @@ hardware.opengl = {
 # services.xserver.displayManager.startx.enable = true;
 
   services.xserver = {
-  enable = true;
-# X11 keymap
-  xkb.layout = "us";
-  xkb.variant = "";
-  desktopManager = {
-        xterm = {
-        enable = false;
-    };
-  };
-  displayManager = {
-    # sessionPackages = [pkgs.sway];
-    lightdm = {
-      enable = true;
-      greeter = {
-        enable = false;
+    enable = true;
+    # X11 keymap
+    xkb.layout = "us";
+    xkb.variant = "";
+    desktopManager = {
+          xterm = {
+          enable = false;
       };
     };
-    autoLogin = {
-      enable = true;
-      user = "nix";
-   };
-  };
-  excludePackages = [pkgs.xterm];
-  libinput.enable = true;
-  # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
-# videoDrivers = ["nvidia"];
+    displayManager = {
+      # sessionPackages = [pkgs.sway];
+      lightdm = {
+        enable = true;
+        greeter = {
+          enable = false;
+        };
+      };
+      autoLogin = {
+        enable = true;
+        user = "nix";
+     };
+    };
+    excludePackages = [pkgs.xterm];
+    libinput.enable = true;
+    # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
+    # videoDrivers = ["nvidia"];
   };
 
 services.dbus.enable = true;
@@ -241,7 +240,6 @@ xdg = {
 
 # Set default XSesssion
 # services.xserver.displayManager.defaultSession = "none+awesome";
-services.xserver.displayManager.defaultSession = "none+dwm";
 
 
 # Enable Cinnamon Dekstop
