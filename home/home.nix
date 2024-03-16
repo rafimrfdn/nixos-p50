@@ -4,7 +4,7 @@
   imports = [
    ./zsh/default.nix
    ./dunst/default.nix
-   ./dwm/default.nix
+   # ./dwm/default.nix
    # ./sway/default.nix
    # ./hyprland/default.nix
    ./waybar/default.nix
