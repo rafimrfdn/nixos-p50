@@ -13,6 +13,7 @@
     # ./apache/default.nix
     # ./mime/default.nix
     ./dwm/default.nix
+    # ./sway/default.nix
     ];
 
     documentation.nixos.enable = false;
@@ -168,23 +169,23 @@ hardware.opengl = {
 # services.xserver.displayManager.startx.enable = true;
 
   services.xserver = {
-  enable = true;
-# X11 keymap
-  xkb.layout = "us";
-  xkb.variant = "";
-  desktopManager = {
-        xterm = {
-        enable = false;
-    };
-  };
-  displayManager = {
-    # sessionPackages = [pkgs.sway];
-    lightdm = {
-      enable = true;
-      greeter = {
-        enable = false;
+    enable = true;
+    # X11 keymap
+    xkb.layout = "us";
+    xkb.variant = "";
+    desktopManager = {
+          xterm = {
+          enable = false;
       };
     };
+  displayManager = {
+    # sessionPackages = [pkgs.sway];
+    # lightdm = {
+    #   enable = true;
+    #   greeter = {
+    #     enable = false;
+    #   };
+    # };
     autoLogin = {
       enable = true;
       user = "nix";
@@ -210,27 +211,27 @@ services.dbus.enable = true;
 # };
 
 #this from hervyqa
-xdg = {
-  portal = {
-    enable = true;
-    wlr = {
-      enable = false;
-    };
-    configPackages = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-    ];
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-    ];
-    config = {
-      common = {
-        default = [ "*" ];
-      };
-    };
-  };
-};
+# xdg = {
+#   portal = {
+#     enable = true;
+#     wlr = {
+#       enable = false;
+#     };
+#     configPackages = with pkgs; [
+#       xdg-desktop-portal-gtk
+#       xdg-desktop-portal-wlr
+#     ];
+#     extraPortals = with pkgs; [
+#       xdg-desktop-portal-gtk
+#       xdg-desktop-portal-wlr
+#     ];
+#     config = {
+#       common = {
+#         default = [ "*" ];
+#       };
+#     };
+#   };
+# };
 
 
 #AwesomeWM
@@ -258,10 +259,10 @@ xdg = {
 # copy dari https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/hosts/desktop/default.nix
   programs = {
     bash = {
- #      interactiveShellInit = ''
-	#   if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-	#     # WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
-	#     exec sway
+   #    interactiveShellInit = ''
+   #  	  if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  	#     # WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
+   #      #exec sway
 	#   fi
 	# '';
       enableCompletion = true;
@@ -342,12 +343,6 @@ users = {
 };
 
 
-# Make swaylock function 
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
-  };
 
 # mount new drive, usb flash disk, etc for pacman, nemo and manually mounting drives.
   security.pam.mount.enable = true;
@@ -395,7 +390,7 @@ users = {
 # this value at the release version of the first install of this system.
 # Before changing this value read the documentation for this option
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 }

@@ -1,8 +1,37 @@
-{config, pkgs, ...}:
+{ pkgs, ...}:
 
 {
+
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.autologin.enable = true;
+  services.xserver.displayManager.autologin.user = "nix";
+  # services.xserver.videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
+
+  programs = {
+    bash = {
+      interactiveShellInit = ''
+    	  if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+          while true;do
+            dbus-launch --exit-with-session dwm > /dev/null 2>&1
+          done
+          exec dwm
+        fi
+	'';
+      enableCompletion = true;
+    };
+  };
+
   # DWM
+  services.xserver.displayManager.startx.enable = true;
   services.xserver.windowManager.dwm.enable = true;
+  # services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
+  #   src = ./dwm-6.4;
+  # };
+
+
+
+  
+
   services.xserver.displayManager.defaultSession = "none+dwm";
   services.dwm-status.enable = true;
   services.dwm-status.order = [ "backlight" "time" "battery"  ];
