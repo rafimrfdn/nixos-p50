@@ -9,6 +9,7 @@
    ./waybar/default.nix
    ./tmux/default.nix
    ./neovim/default.nix
+   ./helix/default.nix
    ./emacs/default.nix
    ./st/default.nix
    ./gtk/default.nix

@@ -12,8 +12,8 @@
     ./boot/default.nix
     # ./apache/default.nix
     # ./mime/default.nix
-    ./dwm/default.nix
-    # ./sway/default.nix
+    # ./dwm/default.nix
+    ./sway/default.nix
     ];
 
     documentation.nixos.enable = false;

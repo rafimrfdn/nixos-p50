@@ -3,8 +3,6 @@
 {
 
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.autologin.enable = true;
-  services.xserver.displayManager.autologin.user = "nix";
   # services.xserver.videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
 
   programs = {
@@ -28,11 +26,8 @@
   #   src = ./dwm-6.4;
   # };
 
-
-
-  
-
   services.xserver.displayManager.defaultSession = "none+dwm";
+
   services.dwm-status.enable = true;
   services.dwm-status.order = [ "backlight" "time" "battery"  ];
   services.dwm-status.extraConfig = ''
