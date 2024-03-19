@@ -120,7 +120,6 @@
   git
   gnumake
   gparted
-  helix
   hugo
   imagemagick
   inkscape
