@@ -8,12 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # ./greetd/default.nix
+    ./greetd/default.nix
     ./boot/default.nix
     # ./apache/default.nix
     # ./mime/default.nix
-    # ./dwm/default.nix
-    ./sway/default.nix
+    ./dwm/default.nix
+    # ./sway/default.nix
     ];
 
     documentation.nixos.enable = false;
@@ -257,17 +257,17 @@ services.dbus.enable = true;
 # programs.bash.enableCompletion = true;
 
 # copy dari https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/hosts/desktop/default.nix
-  programs = {
-    bash = {
-   #    interactiveShellInit = ''
-   #  	  if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-  	#     # WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
-   #      #exec sway
-	#   fi
-	# '';
-      enableCompletion = true;
-    };
-  };
+ #  programs = {
+ #    bash = {
+ #   #    interactiveShellInit = ''
+ #   #  	  if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+ #  	#     # WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
+ #   #      #exec sway
+	# #   fi
+	# # '';
+ #      enableCompletion = true;
+ #    };
+ #  };
 
 # Configure keymap in X11
 # services.xserver = {

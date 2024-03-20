@@ -2,7 +2,7 @@
 
 {
 
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.enable = false;
   # services.xserver.videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
 
   programs = {

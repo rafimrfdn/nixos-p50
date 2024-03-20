@@ -28,7 +28,6 @@ programs.waybar = {
         modules-center = [
           #"custom/centerborderleft"
           "clock"
-          "sway/window"
           #"custom/centerborderright"
         ];
         modules-right = [
@@ -268,15 +267,6 @@ programs.waybar = {
         "tray" = {
           "icon-size" = 15;
           "spacing" = 5;
-        };
-        "sway/window": {
-            "format": "{title}",
-            "max-length": 50,
-            "rewrite": {
-               "(.*) - Mozilla Firefox": "🌎 $1",
-               "(.*) - vim": " $1",
-               "(.*) - zsh": " [$1]"
-            }
         };
       }];
   };

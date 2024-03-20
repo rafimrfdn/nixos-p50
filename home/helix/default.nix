@@ -19,7 +19,8 @@
       };
       
       editor.file-picker = {
-        hidden = false
+        hidden = false;
       };
+  };
   };
 }
