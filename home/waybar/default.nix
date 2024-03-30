@@ -17,9 +17,8 @@ programs.waybar = {
           "custom/launcher"
           "hyprland/workspaces"
           "sway/workspaces"
-          "temperature"
-          "custom/uptime"
-          "custom/borderright"
+          "sway/window"
+          # "custom/borderright"
           #"idle_inhibitor"
           #"custom/wall"
           #"mpd"
@@ -27,21 +26,22 @@ programs.waybar = {
         ];
         modules-center = [
           #"custom/centerborderleft"
-          "clock"
-          "sway/window"
           #"custom/centerborderright"
         ];
         modules-right = [
-          "custom/borderleft"
+          # "custom/borderleft"
           "pulseaudio"
           "backlight"
           "memory"
           "cpu"
          #"network"
+          "custom/uptime"
+          "temperature"
           "battery"
          #"bluetooth"
-          "custom/powermenu"
+          "clock"
           "tray"
+          "custom/powermenu"
         ];
         # "bluetooth"= {
         #     "format"= " {status}";
@@ -269,14 +269,14 @@ programs.waybar = {
           "icon-size" = 15;
           "spacing" = 5;
         };
-        "sway/window": {
-            "format": "{title}",
-            "max-length": 50,
-            "rewrite": {
-               "(.*) - Mozilla Firefox": "🌎 $1",
-               "(.*) - vim": " $1",
-               "(.*) - zsh": " [$1]"
-            }
+        "sway/window" = {
+            "format" = "   {title}";
+            "max-length" = 50;
+            "rewrite" = {
+               "(.*) - Mozilla Firefox" = "🌎 $1";
+               "(.*) - vim" = " $1";
+               "(.*) - zsh" = " [$1]";
+            };
         };
       }];
   };

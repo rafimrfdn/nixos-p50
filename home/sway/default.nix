@@ -5,6 +5,7 @@ modifier = config.wayland.windowManager.sway.config.modifier;
 in lib.mkDefault
 {
     wayland.windowManager.sway = {
+      systemd.enable = true; # for copyq service. read appendix
         enable = true;
         config = {
             modifier = "Mod4";

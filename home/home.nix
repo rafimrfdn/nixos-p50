@@ -68,7 +68,6 @@
   # ];
 
   home.packages = (with pkgs; [
-  #deno
   #elementary-xfce-icon-theme
   #lf
   #rofi
@@ -128,7 +127,6 @@
   luajit
   neofetch
   networkmanagerapplet
-  nodejs
   ntfs3g
   pdfarranger
   picom
@@ -138,7 +136,6 @@
   rclone-browser
   rofi-wayland
   scrot
-  sqlite
   sqlitebrowser
   tree
   unzip
@@ -157,6 +154,11 @@
   fd #find yang lebih mudah, ketik fd --type query
   bottom #top yang lebih cantik, ketik btm
 
+  #web development
+  deno
+  nodejs
+  turso-cli
+  sqlite
 
   #themes
   qogir-theme
@@ -191,9 +193,10 @@
     # wl-clipboard 
     # wf-recorder
     clipman
-    # slurp 
-    # grim grimblast jq socat
-    # wlogout swaylock
+    slurp 
+    grim grimblast jq socat
+    wlogout 
+    # swaylock
     # # swayimg #image viewer for sway/wayland
     # # imv #this also image viewer
     # swww
@@ -206,6 +209,11 @@
     gnome-tweaks
     eog
   ]);
+
+  services.copyq = {
+    enable = true;
+    systemdTarget = "sway-session.target";
+  };
 
 
 

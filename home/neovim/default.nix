@@ -17,7 +17,8 @@ programs.neovim =
 
     extraPackages = with pkgs; [
 	# install the languages
-      rnix-lsp
+      # rnix-lsp
+      nil #replacement nix lsp for nixos
 
 	# clipboard tool
       xclip

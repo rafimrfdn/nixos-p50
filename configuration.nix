@@ -253,7 +253,7 @@ services.dbus.enable = true;
 
 # zsh
   programs.zsh.enable = true;
-  programs.zsh.autosuggestions.enable = true;
+  programs.zsh.autosuggestion.enable = true;
 # programs.bash.enableCompletion = true;
 
 # copy dari https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/hosts/desktop/default.nix
