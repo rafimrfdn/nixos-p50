@@ -1,11 +1,7 @@
-# Thinkpad P50 Flake
+# Thinkpad P50 Flake + SWAY
 
-![](./screenshot-hyprland.jpg)
-
-This is my system configuration for Thinkpad P50.
-
-> If you create use this repo, make sure to change everything inside `hardware-configuratin.nix` as your system created. Because if not, you will mess up your system, and maybe will not boot.
-
+![](./screenshot-sway.png)
+![](./screenshot-sway2.png)
 
 ## Folder structure
 
@@ -21,10 +17,10 @@ This is my system configuration for Thinkpad P50.
 │   └── default.nix
 ├── hardware-configuration.nix
 ├── home
+│   ├── dunst
 │   ├── emacs
 │   ├── gtk
-│   ├── home.nix
-│   ├── hyprland
+│   ├── helix
 │   ├── mpv
 │   ├── neovim
 │   ├── st
@@ -32,117 +28,20 @@ This is my system configuration for Thinkpad P50.
 │   ├── kitty
 │   ├── zsh
 │   ├── tmux
-│   └── waybar
+│   ├── waybar
+│   └── home.nix
 ├── README.md
-└── screenshot-hyprland.jpg
+└── screenshot-sway.jpg
 ```
 
 
-## How to create system configuration for flakes? 
-
-1. Create a directory called `~/.dotfiles` then cd into this folder.
-2. Copy `/etc/nixos/configuration.nix` and `/etc/nixos/hardware-configuration.nix` in to `.dotfiles` folder we created before.
-```bash
-cd .dotfiles
-cp /etc/nixos/configuration.nix .
-cp /etc/nixos/hardware-configuration.nix .
-```
-
-3. Create a file called `flake.nix` then define the system configuration in it.
-
-```nix
-{
-  description = "Thinkpad P50 flake";
-
-  inputs = {
-    # I use nixos unstable channel
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-  };
-
-  outputs = { self,nixpkgs, ...}: 
-  let 
-    lib = nixpkgs.lib;
-  in
-    {
-    nixosConfigurations = {
-    # nixhost is my hostname, make sure you change it.
-      nixhost = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./configuration.nix ];
-      };
-    };
-  };
-}
-
-```
-4. To perform nixos-rebuild system add `--flakes` command and add `.` (dot) at the end of line. `sudo nixos-rebuild switch --flake .`
-
-## How to create home manager config for flakes?
-
-1. Make sure you have install home manager first, choose [Stand alone installation](https://nix-community.github.io/home-manager/index.html#sec-install-standalone)
-1. Once you setup home-manager, copy `~/.config/home-manager/home.nix` into `~/.dotfiles` folder that just created
-1. Edit the `flake.nix` file like this:
-
-```nix
-{
-  description = "Thinkpad P50 flake";
-
-  inputs = {
-    # I use nixos unstable channel
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    # I want to use branch master, which is default in home-manager, which will profide the latest app or the unstable version app
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = { self,nixpkgs, home-manager, ...}: 
-  let 
-    lib = nixpkgs.lib;
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    nixosConfigurations = {
-    # nixhost is my hostname
-      nixhost = lib.nixosSystem {
-        inherit system; 
-        modules = [ ./configuration.nix ];
-      };
-    };
-    homeConfigurations = {
-    # nix is my user name, make sure to change this
-      nix = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs; 
-        modules = [ ./home/home.nix ];
-      };
-    };
-
-  };
-}
-
-```
-
-## How to use this flake repo?
-
-> Make sure to install Install home manager fist
-
+## How to use this repo
 
 1. Clone it.
-1. Change the `hardware-configuration.nix` as your system created.
+1. Copy your own `hardware-configuration.nix` to this folder.
 1. Rebuild the system with flake command : `sudo nixos-rebuild switch --flake .`
-1. Rebuild the home-manager : `home-manager switch --flake .`
 1. Wait till it finish.
 1. See the generations `nix-env --list-generations --profile /nix/var/nix/profiles/system`
-
-## Regenerate home-manager
-run this command:
-
-```
-nix run home-manager/master -- init
-```
-
-> If you got error when build home-manager, run this : `sudo chown nix flake.lock` and `sudo chgrp users flake.lock`.
-
-## How to update?
 
 Now your system configuration is setup by flakes.
 

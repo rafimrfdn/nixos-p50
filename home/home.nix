@@ -5,7 +5,6 @@
    ./zsh/default.nix
    ./dunst/default.nix
    ./sway/default.nix
-   # ./hyprland/default.nix
    ./waybar/default.nix
    ./tmux/default.nix
    ./neovim/default.nix
@@ -15,10 +14,7 @@
    ./gtk/default.nix
    ./kitty/default.nix
    ./mpv/default.nix
-   # ./nodejs/default.nix
   ];
-
-
 
   fonts.fontconfig.enable = true;
 
@@ -30,81 +26,15 @@
     };
   };
 
-
-
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "nix";
   home.homeDirectory = "/home/nix";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  # home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  # ];
-
+  home.stateVersion = "23.11"; 
   home.packages = (with pkgs; [
-  #elementary-xfce-icon-theme
-  #lf
-  #rofi
-  #xfce.thunar
-  # arandr
-  # autorandr
-  # cinnamon.nemo-with-extensions
-  # cinnamon.nemo
-  # cinnamon.pix
-  # conky
+
   dmenu
   feh
-  # flameshot
-  #font-awesome
-  # gnome.file-roller #archive manager for nemo
-  #kitty
-  #mpv
-  #vapoursynth-mvtools
-  #mpvScripts.quality-menu
-  # pcmanfm
-  #pipes #run with pipes.sh
-  # virt-manager
-  #xclip
-  # xdg-desktop-portal-wlr
-  # xdg-desktop-portal-hyprland
-  #xorg.xev
-  #yt-dlp
-  #lsd #ls yang menampilkan icon, ketik lsd
-  #xcp
-  #zoxide
-  #du-dust #du yang lebih cantik, ketik dust
-  #procs #ps yang lebih modern, ketik ps
-  #broot #cd ala vim, ketik broot
-  #monolith #save single page ke satu halaman html
-  # open-fonts 
   lxappearance
-
 
   acpi
   copyq
@@ -174,33 +104,22 @@
   dracula-icon-theme
   fluent-icon-theme
 
-  # install via sudo nix-env -iA nixos.packageName:
-  # view list installed via sudo nix-env --query
-  # onlyoffice-bin
-  # libreoffice
-  # vscodium
-  # simplescreenrecorder
-  # darktable
-  # brave
-  # kdenlive
-  # tdesktop
-  # appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
+  # install via: nix profile install 
+  # nixpkgs#onlyoffice-bin
+  # nixpkgs#libreoffice
+  # nixpkgs#vscodium
+  # nixpkgs#simplescreenrecorder
+  # nixpkgs#darktable
+  # nixpkgs#brave
+  # nixpkgs#kdenlive
+  # nixpkgs#tdesktop
+  # nixpkgs#appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
 
-  # Hyprland needed apps
-  # xdg-desktop-portal-hyprland
-  # swaybg 
-  # wlsunset 
-  # wl-clipboard 
-  # wf-recorder
+  # sway neededs app
   clipman
   slurp 
   grim grimblast jq socat
   wlogout 
-  # swaylock
-  # # swayimg #image viewer for sway/wayland
-  # # imv #this also image viewer
-  # swww
-
 
 
 ]) ++ (with pkgs.gnome; [ 
@@ -215,10 +134,6 @@
     systemdTarget = "sway-session.target";
   };
 
-
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a

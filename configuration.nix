@@ -11,7 +11,6 @@
     ./greetd/default.nix
     ./boot/default.nix
     # ./apache/default.nix
-    # ./mime/default.nix
     ./dwm/default.nix
     # ./sway/default.nix
     ];
