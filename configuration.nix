@@ -122,20 +122,9 @@ hardware.opengl = {
 
 
   systemd.services = {
-      # if you not using GDM or ZFS enable this for faster boot time
-    # systemd-udev-settle.enable = false; 
-
     systemd-tmpfiles-setup.before = [ "sysinit.target"];
     systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
-
-    # NetworkManager-wait-online.enable = false;
   };
-
-  # systemd.services.NetworkManager-wait-online.enable = false;
-  # networking = {
-  #   dhcpcd.wait = "background" ;
-  #   dhcpcd.extraConfig = "noarp" ;
-  # };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -153,20 +142,8 @@ hardware.opengl = {
     };
   };
 
-# Silent boot to hide Stage when boot system 
-#  boot.plymouth.enable = true;
-#
-#  boot.kernelParams = ["quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3"];
-#  boot.consoleLogLevel = 0;
-#  boot.initrd.verbose = false;
-#  boot.initrd.systemd.enable = true;
-#  systemd.watchdog.rebootTime = "0";
-
 
 # Enable the X11 windowing system.
-#services.xserver.enable = true;
-# services.xserver.displayManager.startx.enable = true;
-
   services.xserver = {
     enable = true;
     # X11 keymap
@@ -178,13 +155,6 @@ hardware.opengl = {
       };
     };
   displayManager = {
-    # sessionPackages = [pkgs.sway];
-    # lightdm = {
-    #   enable = true;
-    #   greeter = {
-    #     enable = false;
-    #   };
-    # };
     autoLogin = {
       enable = true;
       user = "nix";
@@ -193,96 +163,14 @@ hardware.opengl = {
   excludePackages = [pkgs.xterm];
   libinput.enable = true;
   # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
-# videoDrivers = ["nvidia"];
+  # videoDrivers = ["nvidia"];
   };
 
 services.dbus.enable = true;
-# xdg.portal = {
-#   enable = true;
-#   wlr.enable = true;
-#   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-#   config = {
-#     common = {
-#       # default = [ "gtk" ];
-#       default = [ "*" ];
-#     };
-#   };
-# };
-
-#this from hervyqa
-# xdg = {
-#   portal = {
-#     enable = true;
-#     wlr = {
-#       enable = false;
-#     };
-#     configPackages = with pkgs; [
-#       xdg-desktop-portal-gtk
-#       xdg-desktop-portal-wlr
-#     ];
-#     extraPortals = with pkgs; [
-#       xdg-desktop-portal-gtk
-#       xdg-desktop-portal-wlr
-#     ];
-#     config = {
-#       common = {
-#         default = [ "*" ];
-#       };
-#     };
-#   };
-# };
-
-
-#AwesomeWM
-# services.xserver.windowManager.awesome.enable = true;
-
-# Enable LightDM
-# services.xserver.displayManager.lightdm.enable = false;
-
-# Set default XSesssion
-# services.xserver.displayManager.defaultSession = "none+awesome";
-
-
-# Enable Cinnamon Dekstop
-#  services.xserver.desktopManager.cinnamon.enable = true;
-
-# Enable touchpad support (enabled default in most desktopManager).
-#services.xserver.libinput.enable = true;
-
 
 # zsh
   programs.zsh.enable = true;
   programs.zsh.autosuggestions.enable = true;
-# programs.bash.enableCompletion = true;
-
-# copy dari https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/hosts/desktop/default.nix
- #  programs = {
- #    bash = {
- #   #    interactiveShellInit = ''
- #   #  	  if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
- #  	#     # WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
- #   #      #exec sway
-	# #   fi
-	# # '';
- #      enableCompletion = true;
- #    };
- #  };
-
-# Configure keymap in X11
-# services.xserver = {
-#   layout = "us";
-#   xkbVariant = "";
-# };
-
-# disable xterm, because this enable by default
-# services.xserver.excludePackages = [ pkgs.xterm ];
-
-#NVidia setting
-# services.xserver.videoDrivers = [ "nvidia" "intel" ];
-# services.xserver.videoDrivers = [ "nouveau" "intel" ];
-#  services.xserver.videoDrivers = [ "intel" ];
-#  hardware.nvidia.nvidiaPersistenced = true;
-
 
 # enable backlight for screen brightness
   programs.light.enable = true;
@@ -306,13 +194,6 @@ fonts.packages = with pkgs; [
 # ibm-plex
 # jetbrains-mono
   ];
-
-
-# enable emacs daemon
-  # services.emacs = {
-  #   enable = true;
-  #   package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-  # };
 
 # set default text editor
   environment.variables.EDITOR = "nvim";
@@ -340,8 +221,6 @@ users = {
     ];
   };
 };
-
-
 
 # mount new drive, usb flash disk, etc for pacman, nemo and manually mounting drives.
   security.pam.mount.enable = true;

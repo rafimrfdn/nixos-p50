@@ -1,4 +1,6 @@
-# Thinkpad P50 Flake + SWAY
+# Thinkpad P50 Flake + SWAY + DWM
+
+By default the SWAY is the window manager. If switch to TTY2, you can run DWM by typing `startx` in terminal to launch the DWM.
 
 ![](./screenshot-sway.png)
 ![](./screenshot-sway2.png)
@@ -10,12 +12,12 @@
 .
 ├── apache
 │   └── default.nix
-├── configuration.nix
-├── flake.lock
-├── flake.nix
+├── boot
+│   └── default.nix
+├── dwm
+│   └── default.nix
 ├── greetd
 │   └── default.nix
-├── hardware-configuration.nix
 ├── home
 │   ├── dunst
 │   ├── emacs
@@ -30,12 +32,19 @@
 │   ├── tmux
 │   ├── waybar
 │   └── home.nix
-├── README.md
-└── screenshot-sway.jpg
+├── configuration.nix
+├── hardware-configuration.nix
+├── flake.lock
+├── flake.nix
+└── README.md
 ```
 
 
 ## How to use this repo
+
+Fixme:
+username in this repo = nix
+hostname in this repo = nixhost
 
 1. Clone it.
 1. Copy your own `hardware-configuration.nix` to this folder.
