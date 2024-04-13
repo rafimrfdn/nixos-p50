@@ -381,6 +381,7 @@ users = {
   environment.systemPackages = with pkgs; [
     gcc #must have one linux compiler like gcc or cc etc.
     gnumake
+    go
   ];
 
 

@@ -56,6 +56,10 @@ window > box {
     background-color: rgb(248, 189, 150);
     color: rgb(26, 24, 38);
 }
+#workspaces button.focused{
+    background-color: rgb(181, 232, 224);
+    color: rgb(26, 24, 38);
+}
 tooltip {
     background: rgb(48, 45, 65);
 }

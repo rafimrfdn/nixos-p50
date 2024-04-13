@@ -10,7 +10,7 @@ programs.neovim =
     enable = true;
 
     defaultEditor = true;
-    withNodeJs = true;
+    # withNodeJs = true;
 
     viAlias = true;
     vimAlias = true;

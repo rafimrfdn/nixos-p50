@@ -107,7 +107,6 @@
 
 
   acpi
-  bun
   copyq
   corefonts # we need windows fonts on libreoffice
   easyeffects
@@ -155,6 +154,7 @@
   bottom #top yang lebih cantik, ketik btm
 
   #web development
+  bun
   deno
   nodejs
   turso-cli
@@ -187,19 +187,19 @@
   # appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
 
   # Hyprland needed apps
-    # xdg-desktop-portal-hyprland
-    # swaybg 
-    # wlsunset 
-    # wl-clipboard 
-    # wf-recorder
-    clipman
-    slurp 
-    grim grimblast jq socat
-    wlogout 
-    # swaylock
-    # # swayimg #image viewer for sway/wayland
-    # # imv #this also image viewer
-    # swww
+  # xdg-desktop-portal-hyprland
+  # swaybg 
+  # wlsunset 
+  # wl-clipboard 
+  # wf-recorder
+  clipman
+  slurp 
+  grim grimblast jq socat
+  wlogout 
+  # swaylock
+  # # swayimg #image viewer for sway/wayland
+  # # imv #this also image viewer
+  # swww
 
 
 
