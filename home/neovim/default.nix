@@ -1,109 +1,82 @@
-{config, pkgs, input, ...}:
+{pkgs, lib, ...}: #vim.opt.fillchars = 'eob: ' <-- changes eob from ~ to spaces (works better with opacity)
 
 {
-programs.neovim = 
-  let
-    toLua = str: "lua << EOF\n${str}\nEOF\n";
-    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-  in
-  {
-    enable = true;
+    programs.neovim = {
+        enable = true;
+        defaultEditor = true;
+        extraLuaConfig = ''
+            require("onivim")
+            vim.opt.fillchars = 'eob: '
+            '';
+        plugins = with pkgs.vimPlugins;
+        let 
+            onivim = pkgs.vimUtils.buildVimPlugin { #can also fetch from github
+                name = "onivim";
+                src = ./nvim;
+            };
+            fromGithub = rev: ref: repo: pkgs.vimUtils.buildVimPlugin { #this is a interface that fetches from github
+                pname = "${lib.strings.sanitizeDerivationName repo}";
+                version = ref;
+                src = builtins.fetchGit {
+                    url = "http://github.com/${repo}.git";
+                    ref = ref;
+                    rev = rev;
+                };
+            };
+        in 
+            [
 
-    defaultEditor = true;
-    # withNodeJs = true;
+            ### VISUAL ###
+            kanagawa-nvim
+            bufferline-nvim
+            nvim-tree-lua
+            nvim-web-devicons
+            lualine-nvim
+            nvim-colorizer-lua # show colors that were written
+            indent-blankline-nvim # show indentation lines
+            dressing-nvim #makes the pop uis for input and select look nicer
+            lspkind-nvim #nice icons for cmp
+            noice-nvim # ui overhaul
+            nvim-notify # noice requires this
+            nui-nvim # noice requires this
+            #telescope
+            plenary-nvim
+            telescope-nvim
+            #bufdeletion without messing up window layout
+            nvim-bufdel
+            #github
+            gitsigns-nvim
+            #lsp
+            nvim-lspconfig
+            #autocompletion
+            nvim-cmp
+            cmp-nvim-lsp
+            cmp_luasnip
+            cmp-path
+            cmp-buffer
+            #discord
+            presence-nvim
+            #auto pairs of special characters and tags
+            nvim-autopairs
+            nvim-ts-autotag
+            #snippets
+            friendly-snippets
+            luasnip
+            #neodev to see vim configs/apis
+            neodev-nvim
+            #treesitter
+            nvim-treesitter.withAllGrammars
 
-    viAlias = true;
-    vimAlias = true;
+            onivim # my config file
 
-    extraPackages = with pkgs; [
-	# install the languages
-      # rnix-lsp
-      nil #replacement nix lsp for nixos
-
-	# clipboard tool
-      xclip
-      wl-clipboard
-
-      cargo
-    ];
-
-
-    plugins = with pkgs.vimPlugins; [
-	  vim-solarized8
-
-      # status bar
-      {
-        plugin = lualine-nvim;
-        config = toLua "require(\"lualine\").setup({icons_enabled = true, theme = \'solarized8\'})";
-      }
-
-#	  nvim-treesitter.withAllGrammars
-
-	  neo-tree-nvim
-	  plenary-nvim
-	  nui-nvim
-	  nvim-web-devicons
-
-      {
-        plugin = nvim-treesitter.withAllGrammars;
-        config = toLuaFile ./plugin/treesitter.lua;
-      }
-    
-      # completion
-      {
-        plugin = nvim-cmp;
-        config = toLuaFile ./plugin/cmp.lua;
-      }
-      	## Snippet Engine & its associated nvim-cmp source
-	    luasnip
-      	cmp_luasnip
-
-      	## Adds LSP completion capabilities
-      	cmp-nvim-lsp
-      	cmp-path
-
-      	# Adds a number of user-friendly snippets
-      	friendly-snippets
-
-
-      # LSP
-      {
-        plugin = mason-nvim;
-        config = toLuaFile ./plugin/lsp.lua;
-      }
-	  mason-lspconfig-nvim
-      nvim-lspconfig
-      neodev-nvim
-
-	#comment
-      {
-        plugin = comment-nvim;
-        config = toLua "require(\"Comment\").setup()";
-      }
-
-	# telescope
-      {
-        plugin = telescope-nvim;
-        config = toLuaFile ./plugin/telescope.lua;
-      }
-	# include this with telescope
-      telescope-fzf-native-nvim
-
-	# toggleterm
-      {
-        plugin = toggleterm-nvim;
-        config = toLuaFile ./plugin/toggleterm.lua;
-      }
-
-      vim-nix
-
-];
-    
-
-    extraLuaConfig = ''
-      ${builtins.readFile ./options.lua}
-    '';
-  };
-
-
+            ];
+        extraPackages = with pkgs; [
+            wl-clipboard
+            lua-language-server
+            nixd
+            nodePackages.vscode-langservers-extracted
+            nodePackages.typescript-language-server
+            emmet-language-server
+        ];
+    };
 }

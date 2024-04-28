@@ -33,7 +33,7 @@
       export EDITOR=nvim
       export PATH="$HOME/.config/emacs/bin:$PATH"
       
-      alias hs="hugo server"
+      alias hs="hugo server --renderToMemory"
       alias hse="hugo serve --environment production"
       alias nrs="npm run start"
       alias dev="npm run dev"

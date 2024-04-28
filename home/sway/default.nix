@@ -7,6 +7,7 @@ in lib.mkDefault
     wayland.windowManager.sway = {
       systemd.enable = true; # for copyq service. read appendix
         enable = true;
+        checkConfig = false; #default is true, set this to false because of failed to build background config
         config = {
             modifier = "Mod4";
             bars = [{

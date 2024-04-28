@@ -123,6 +123,7 @@
   inkscape
   keepassxc
   killall
+  lazygit
   luajit
   neofetch
   networkmanagerapplet
