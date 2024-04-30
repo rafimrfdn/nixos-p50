@@ -3,7 +3,8 @@
 {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
+    #enableAutosuggestions = true;
     enableCompletion = true;
     syntaxHighlighting = {
       enable = true;

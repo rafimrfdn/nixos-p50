@@ -4,6 +4,8 @@
     programs.neovim = {
         enable = true;
         defaultEditor = true;
+        viAlias = true;
+        vimAlias = true;
         extraLuaConfig = ''
             require("onivim")
             vim.opt.fillchars = 'eob: '
@@ -14,58 +16,74 @@
                 name = "onivim";
                 src = ./nvim;
             };
-            fromGithub = rev: ref: repo: pkgs.vimUtils.buildVimPlugin { #this is a interface that fetches from github
-                pname = "${lib.strings.sanitizeDerivationName repo}";
-                version = ref;
-                src = builtins.fetchGit {
-                    url = "http://github.com/${repo}.git";
-                    ref = ref;
-                    rev = rev;
-                };
-            };
+            #fromGithub = rev: ref: repo: pkgs.vimUtils.buildVimPlugin { #this is a interface that fetches from github
+            #    pname = "${lib.strings.sanitizeDerivationName repo}";
+            #    version = ref;
+            #    src = builtins.fetchGit {
+            #        url = "http://github.com/${repo}.git";
+            #        ref = ref;
+            #        rev = rev;
+            #    };
+            #};
         in 
             [
 
             ### VISUAL ###
+	        vim-solarized8
             kanagawa-nvim
             bufferline-nvim
-            nvim-tree-lua
+            # nvim-tree-lua
+	        neo-tree-nvim
             nvim-web-devicons
             lualine-nvim
             nvim-colorizer-lua # show colors that were written
             indent-blankline-nvim # show indentation lines
             dressing-nvim #makes the pop uis for input and select look nicer
             lspkind-nvim #nice icons for cmp
-            noice-nvim # ui overhaul
-            nvim-notify # noice requires this
-            nui-nvim # noice requires this
-            #telescope
+            # noice-nvim # ui overhaul
+            # nvim-notify # noice requires this
+            # nui-nvim # noice requires this
+
+            ### Telescope ###
             plenary-nvim
             telescope-nvim
+
             #bufdeletion without messing up window layout
             nvim-bufdel
-            #github
+
+            ### GITHUB ###
             gitsigns-nvim
-            #lsp
+
+            ### LSP ##
             nvim-lspconfig
-            #autocompletion
+
+            ### AUTOCOMPLETION ###
             nvim-cmp
             cmp-nvim-lsp
             cmp_luasnip
             cmp-path
             cmp-buffer
+
             #discord
-            presence-nvim
+            # presence-nvim
+
             #auto pairs of special characters and tags
             nvim-autopairs
             nvim-ts-autotag
-            #snippets
+
+            ### SNIPPETS
             friendly-snippets
             luasnip
+
             #neodev to see vim configs/apis
             neodev-nvim
-            #treesitter
+
+            ### TREESITTER ###
             nvim-treesitter.withAllGrammars
+
+        
+            ### COMMENT ###
+            comment-nvim
 
             onivim # my config file
 

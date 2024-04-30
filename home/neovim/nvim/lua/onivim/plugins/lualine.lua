@@ -18,12 +18,13 @@ end
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = 'kanagawa',
+        --theme = 'kanagawa',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {},
         ignore_focus = {
-            "NvimTree"
+            --"NvimTree"
+            "NeoTree"
         },
         always_divide_middle = false,
         refresh = {
