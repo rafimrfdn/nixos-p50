@@ -181,7 +181,7 @@ hardware.opengl = {
         excludePackages = [pkgs.xterm];
     # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
     # videoDrivers = ["nvidia"];
-    videoDrivers = ["nouveau" "intel"];
+    videoDrivers = ["intel"];
     };
     services.libinput = {
         enable = true;
