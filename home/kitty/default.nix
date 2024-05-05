@@ -9,7 +9,7 @@
     };
     # theme = "Nord";
     # theme = "Solarized Dark Higher Contrast";
-    theme = "Kanagawa";
+    theme = "kanagawa";
     # theme = "Solarized Dark";
     # theme = "Ubuntu";
     extraConfig = ''
