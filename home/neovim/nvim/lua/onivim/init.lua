@@ -5,7 +5,7 @@ require("onivim.plugins.lualine")
 --require("onivim.plugins.nvim-tree")
 require("onivim.plugins.telescope")
 --require("onivim.plugins.noice-nvim")
-require("comment").setup {}
+require('Comment').setup()
 require("nvim-autopairs").setup{}
 require("ibl").setup{}
 require("colorizer").setup {}

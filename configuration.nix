@@ -162,7 +162,7 @@ hardware.opengl = {
 #  boot.initrd.verbose = false;
 #  boot.initrd.systemd.enable = true;
 #  systemd.watchdog.rebootTime = "0";
-
+    boot.initrd.systemd.dbus.enable = true; # coba aktifkan ini instead of pakai # services.dbus.enable = true;
 
 # Enable the X11 windowing system.
 #services.xserver.enable = true;
@@ -178,7 +178,12 @@ hardware.opengl = {
           enable = false;
       };
     };
-  displayManager = {
+  excludePackages = [pkgs.xterm];
+  libinput.enable = true;
+    # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
+    # videoDrivers = ["nvidia"];
+  };
+  services.displayManager = {
     # sessionPackages = [pkgs.sway];
     # lightdm = {
     #   enable = true;
@@ -186,18 +191,14 @@ hardware.opengl = {
     #     enable = false;
     #   };
     # };
+    # defaultSession = "sway";
     autoLogin = {
       enable = true;
       user = "nix";
-   };
-  };
-  excludePackages = [pkgs.xterm];
-  libinput.enable = true;
-  # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
-# videoDrivers = ["nvidia"];
+    };
   };
 
-services.dbus.enable = true;
+# services.dbus.enable = true;
 # xdg.portal = {
 #   enable = true;
 #   wlr.enable = true;
@@ -359,8 +360,8 @@ users = {
 # nixpkgs.config.allowBroken = true;
 
 # Virtualization with qemu kvm
-  # virtualisation.libvirtd.enable = true;
-  # programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
 
 # Automatic delete old version

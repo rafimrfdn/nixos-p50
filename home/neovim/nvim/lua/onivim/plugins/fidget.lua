@@ -91,8 +91,13 @@ require("fidget").setup {
   },
 
   -- Options related to integrating with other plugins
+  -- integration = {
+  --   ["nvim-tree"] = {
+  --     enable = true,              -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+  --   },
+  -- },
   integration = {
-    ["nvim-tree"] = {
+    ["neotree"] = {
       enable = true,              -- Integrate with nvim-tree/nvim-tree.lua (if installed)
     },
   },

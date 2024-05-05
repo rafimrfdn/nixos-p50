@@ -26,7 +26,8 @@
   #   src = ./dwm-6.4;
   # };
 
-  services.xserver.displayManager.defaultSession = "none+dwm";
+  # services.xserver.displayManager.defaultSession = "none+dwm"; # this is deprecated 
+  services.displayManager.defaultSession = "none+dwm";
 
   services.dwm-status.enable = true;
   services.dwm-status.order = [ "backlight" "time" "battery"  ];

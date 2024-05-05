@@ -1,5 +1,9 @@
 -- nvim/lua/onivim/config.lua
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- run at the mill keybinds
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -54,10 +58,10 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 --vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Navigate vim panes better
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
+vim.keymap.set('n', '<C-k>', ':wincmd k<CR>')
+vim.keymap.set('n', '<C-j>', ':wincmd j<CR>')
+vim.keymap.set('n', '<C-h>', ':wincmd h<CR>')
+vim.keymap.set('n', '<C-l>', ':wincmd l<CR>')
 
 
 
@@ -104,10 +108,6 @@ vim.o.mouse = 'a'
 
 -- makes things show in one long line instead of wrapping (super annoying btw)
 vim.o.wrap = false
-
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 
 -- teej kickstart feature
