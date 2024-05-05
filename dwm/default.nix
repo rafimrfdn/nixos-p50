@@ -71,14 +71,15 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      dwm = prev.dwm.overrideAttrs (old: { src = ./dwm-6.4; });
+      dwm = prev.dwm.overrideAttrs (old: { src = ./dwm-6.5; });
     })
     (self: super: {
       dwm = super.dwm.overrideAttrs (oldAttrs: rec {
         patches = [
          # ./dwm-systray-6.3.diff
          ./dwm-systray-6.4.diff
-         ./dwm-cool-autostart-6.2.diff
+         # ./dwm-cool-autostart-6.2.diff
+         ./dwm-cool-autostart-2024.diff
          ./dwm-ru_gaps-6.3.diff
          ./dwm-inplacerotate-6.2.diff
          # ./dwm-ru_bottomstack-6.2.diff

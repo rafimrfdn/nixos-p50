@@ -81,7 +81,6 @@
             ### TREESITTER ###
             nvim-treesitter.withAllGrammars
 
-        
             ### COMMENT ###
             comment-nvim
 
@@ -91,7 +90,7 @@
         extraPackages = with pkgs; [
             wl-clipboard
             lua-language-server
-            nixd
+            nixd #nix language server
             nodePackages.vscode-langservers-extracted
             nodePackages.typescript-language-server
             emmet-language-server

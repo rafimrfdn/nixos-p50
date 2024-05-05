@@ -168,21 +168,24 @@ hardware.opengl = {
 #services.xserver.enable = true;
 # services.xserver.displayManager.startx.enable = true;
 
-  services.xserver = {
-    enable = true;
-    # X11 keymap
-    xkb.layout = "us";
-    xkb.variant = "";
-    desktopManager = {
-          xterm = {
-          enable = false;
-      };
-    };
-  excludePackages = [pkgs.xterm];
-  libinput.enable = true;
+    services.xserver = {
+        enable = true;
+        # X11 keymap
+        xkb.layout = "us";
+        xkb.variant = "";
+        desktopManager = {
+            xterm = {
+                enable = false;
+            };
+        };
+        excludePackages = [pkgs.xterm];
     # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
     # videoDrivers = ["nvidia"];
-  };
+    videoDrivers = ["nouveau" "intel"];
+    };
+    services.libinput = {
+        enable = true;
+    };
   services.displayManager = {
     # sessionPackages = [pkgs.sway];
     # lightdm = {
