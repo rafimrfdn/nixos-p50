@@ -8,8 +8,8 @@
       size = 10.5;
     };
     # theme = "Nord";
-    # theme = "Solarized Dark Higher Contrast";
-    theme = "kanagawa";
+    theme = "Solarized Dark Higher Contrast";
+    # theme = "Kanagawa";
     # theme = "Solarized Dark";
     # theme = "Ubuntu";
     extraConfig = ''

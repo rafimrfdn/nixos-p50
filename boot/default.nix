@@ -6,10 +6,12 @@
   boot = {
     bootspec.enable = true;
     # Use latest linux kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = pkgs.linuxPackages_zen;
+    # linuxKernel.kernels.linux_testing
+    kernelPackages = pkgs.linux_xanmod_latest;
 
   loader = {    
     timeout = 0;
