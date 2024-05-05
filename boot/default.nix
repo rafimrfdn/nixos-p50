@@ -6,10 +6,10 @@
   boot = {
     bootspec.enable = true;
     # Use latest linux kernel
-    #kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
-    #kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    # kernelPackages = pkgs.linuxPackages_zen;
 
   loader = {    
     timeout = 0;
@@ -30,12 +30,21 @@
     "nohibernate"
   ];
   consoleLogLevel = 0;
-  initrd.verbose = false;
-  initrd.systemd.enable = true;
+  initrd = {
+      verbose = false;
+      systemd = {
+          enable = true;
+          dbus.enable = true; # coba aktifkan ini instead of pakai # services.dbus.enable = true;
+      };
+  };
   supportedFilesystems = ["ntfs"];
 
   #christitus nixos config
   tmp.cleanOnBoot = true;
   };
+
   systemd.watchdog.rebootTime = "0";
 }
+
+# Silent boot to hide Stage when boot system 
+#  boot.plymouth.enable = true;

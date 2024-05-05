@@ -8,12 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./greetd/default.nix
     ./boot/default.nix
-    # ./apache/default.nix
-    # ./mime/default.nix
+    ./greetd/default.nix
     ./dwm/default.nix
     # ./sway/default.nix
+    # ./apache/default.nix
+    # ./mime/default.nix
     ];
 
     documentation.nixos.enable = false;
@@ -32,7 +32,6 @@
 
 # Enable networking
   networking.networkmanager.enable = true;
-
 
 # Host for open reddit
   networking.extraHosts = ''
@@ -123,7 +122,7 @@ hardware.opengl = {
 
 
   systemd.services = {
-      # if you not using GDM or ZFS enable this for faster boot time
+    # if you not using GDM or ZFS enable this for faster boot time
     # systemd-udev-settle.enable = false; 
 
     systemd-tmpfiles-setup.before = [ "sysinit.target"];
@@ -154,15 +153,6 @@ hardware.opengl = {
     };
   };
 
-# Silent boot to hide Stage when boot system 
-#  boot.plymouth.enable = true;
-#
-#  boot.kernelParams = ["quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3"];
-#  boot.consoleLogLevel = 0;
-#  boot.initrd.verbose = false;
-#  boot.initrd.systemd.enable = true;
-#  systemd.watchdog.rebootTime = "0";
-    boot.initrd.systemd.dbus.enable = true; # coba aktifkan ini instead of pakai # services.dbus.enable = true;
 
 # Enable the X11 windowing system.
 #services.xserver.enable = true;
@@ -181,7 +171,6 @@ hardware.opengl = {
         excludePackages = [pkgs.xterm];
     # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
     # videoDrivers = ["nvidia"];
-    videoDrivers = ["intel"];
     };
     services.libinput = {
         enable = true;
