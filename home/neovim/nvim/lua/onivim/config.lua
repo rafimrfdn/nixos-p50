@@ -93,7 +93,7 @@ vim.o.hlsearch = false
 
 -- compatiblity/good colors
 vim.o.termguicolors = true
-vim.cmd.colorscheme 'solarized8'
+-- vim.cmd.colorscheme 'solarized8'
 
 -- hides the mode that shows up in the cmdline, it is redundant since lualine already shows us which mode we are in
 vim.o.showmode = false

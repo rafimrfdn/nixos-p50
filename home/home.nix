@@ -90,7 +90,7 @@
   # pcmanfm
   #pipes #run with pipes.sh
   # virt-manager
-  #xclip
+  xclip #must install to activate clipboard on DWM session
   # xdg-desktop-portal-wlr
   # xdg-desktop-portal-hyprland
   #xorg.xev
