@@ -18,8 +18,6 @@
    # ./nodejs/default.nix
   ];
 
-
-
   fonts.fontconfig.enable = true;
 
   xdg = {
@@ -206,8 +204,8 @@
 
 ]) ++ (with pkgs.gnome; [ 
     nautilus
-    zenity
-    gnome-tweaks
+    # zenity
+    # gnome-tweaks
     eog
   ]);
 
@@ -253,5 +251,5 @@
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.home-manager.enable = false;
 }

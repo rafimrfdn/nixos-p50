@@ -349,13 +349,13 @@ users = {
 
 # Automatic delete old version
   nix = {
-# Hard link identical files in the store automatically
-#autoOptimiseStore = true;
-    settings.auto-optimise-store = true;
 # automatically trigger garbage collection
     gc.automatic = true;
     gc.dates = "weekly";
-    gc.options = "--delete-older-than 7d";
+    gc.options = "--delete-older-than 7w";
+# Hard link identical files in the store automatically
+#autoOptimiseStore = true;
+    settings.auto-optimise-store = true;
   };
 
 # List packages installed in system profile. To search, run:

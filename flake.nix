@@ -7,8 +7,7 @@
     };
 
     # outputs = { self, nixpkgs, home-manager, ...}: 
-    outputs = { nixpkgs, home-manager, ...}: 
-    # outputs = inputs @ { self, nixpkgs, home-manager, ...}: 
+    outputs = inputs@{ self, nixpkgs, home-manager, ...}: 
     let 
         hostname = "nixhost";
         user = "nix";
@@ -23,8 +22,9 @@
                     ./configuration.nix
                     home-manager.nixosModules.home-manager {
                         home-manager = {
-                            useUserPackages = true;
+                            backupFileExtension = "backup";
                             useGlobalPkgs = true;
+                            useUserPackages = true;
                             # users.nix = ./home/home.nix;
                             users.${user}= import ./home/default.nix;
                             # from cristitus
