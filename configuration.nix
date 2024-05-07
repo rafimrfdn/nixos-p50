@@ -121,15 +121,6 @@ hardware.opengl = {
 
 
 
-  systemd.services = {
-    # if you not using GDM or ZFS enable this for faster boot time
-    # systemd-udev-settle.enable = false; 
-
-    systemd-tmpfiles-setup.before = [ "sysinit.target"];
-    systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
-
-    # NetworkManager-wait-online.enable = false;
-  };
 
   # systemd.services.NetworkManager-wait-online.enable = false;
   # networking = {
