@@ -6,18 +6,22 @@
     boot = {
         loader = {    
             systemd-boot.enable = true;
-            # systemd-boot.editor = false;
+            systemd-boot.editor = false;
+            systemd-boot.configurationLimit = 10;
             efi.canTouchEfiVariables = true;
             efi.efiSysMountPoint = "/boot/efi";
-            grub = {
-                # enable = true;
-                # device = "/dev/sda";
-                # copyKernels = true;
-                useOSProber = false;
-                splashImage = null;
-            };
+            # grub = {
+            #     enable = true;
+            #     device = "/dev/sda";
+            #     copyKernels = true;
+            #     # useOSProber = false;
+            #     splashImage = null;
+            # };
             timeout = 0;
-            configurationLimit = 10;
+            ## after rebuild: please run this two line of code, 
+            ## so the timeout will reset:
+            # sudo bootctl set-default ""
+            # sudo bootctl set-timeout ""
         };
 
         # bootspec.enable = true;
@@ -78,7 +82,7 @@
     systemd-tmpfiles-setup.before = [ "sysinit.target"];
     systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
 
-    # NetworkManager-wait-online.enable = false;
+    NetworkManager-wait-online.enable = false;
   };
 }
 
