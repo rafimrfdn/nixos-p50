@@ -67,7 +67,7 @@
         tmp.cleanOnBoot = true;
 
         # Silent boot to hide Stage when boot system and show the splash screen
-        plymouth.enable = true;
+        # plymouth.enable = true;
     };
     
   # A DBus service that allows applications to update firmware

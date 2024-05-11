@@ -6,14 +6,13 @@
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # outputs = { self, nixpkgs, home-manager, ...}: 
-    outputs = inputs@{ self, nixpkgs, home-manager, ...}: 
+    outputs = inputs@{ self, nixpkgs, home-manager, ...}: # self is must have
     let 
         hostname = "nixhost";
         user = "nix";
         lib = nixpkgs.lib;
         system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = nixpkgs.legacyPackages.${system}; 
     in {
         nixosConfigurations = {
             ${hostname} = lib.nixosSystem {
