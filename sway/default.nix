@@ -24,7 +24,7 @@
       };
     };
   };
-  videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
+  # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
   # videoDrivers = ["nvidia"];
 
   };

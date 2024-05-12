@@ -156,7 +156,8 @@ networking = {
         };
         excludePackages = [pkgs.xterm];
         # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
-        # videoDrivers = ["nvidia"];
+        videoDrivers = ["nouveau" "intel"]; #only this works to activate nvidia when set discrete nvidia driver in bios, now I can run both sway and DWM.
+        # videoDrivers = ["nvidia"]; # when set hardware-module especially for Thinkpad P50 in flakes, then disable this.
     };
     services.libinput = {
         enable = true;

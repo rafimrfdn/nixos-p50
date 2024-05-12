@@ -37,7 +37,7 @@
             nvim-web-devicons
             lualine-nvim
             nvim-colorizer-lua # show colors that were written
-            indent-blankline-nvim # show indentation lines
+            # indent-blankline-nvim # show indentation lines
             dressing-nvim #makes the pop uis for input and select look nicer
             lspkind-nvim #nice icons for cmp
             # noice-nvim # ui overhaul
