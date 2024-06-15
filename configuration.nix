@@ -155,8 +155,11 @@ networking = {
             };
         };
         excludePackages = [pkgs.xterm];
-        # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
-        videoDrivers = ["nouveau" "intel"]; #only this works to activate nvidia when set discrete nvidia driver in bios, now I can run both sway and DWM.
+        # disable all videoDrivers if you want to activate DWM.
+        # but if you set Discrete VGA on BIOS, you an activate intel and nouveau driver
+        # videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ]; # this is all drivers can be use
+        videoDrivers = ["modesetting" "fbdev" ]; # use this if not discrete VGA
+        # videoDrivers = ["nouveau" "intel"]; #only this works to activate nvidia when set discrete nvidia driver in bios, now I can run both sway and DWM.
         # videoDrivers = ["nvidia"]; # when set hardware-module especially for Thinkpad P50 in flakes, then disable this.
     };
     services.libinput = {

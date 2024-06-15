@@ -2,8 +2,9 @@
 
 {
 
-  services.xserver.displayManager.lightdm.enable = false;
+  # services.xserver.displayManager.lightdm.enable = false;
   # services.xserver.videoDrivers = ["nouveau" "intel" "amdgpu" "radeon" "modesetting" "fbdev" ];
+  # services.xserver.videoDrivers = ["nouveau" "intel" ]; #only works when set Discrete VGA in BIOS.
 
   programs = {
     bash = {
@@ -23,7 +24,7 @@
   services.xserver.displayManager.startx.enable = true;
   services.xserver.windowManager.dwm.enable = true;
   # services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-  #   src = ./dwm-6.4;
+  #   src = ./dwm-6.5;
   # };
 
   # services.xserver.displayManager.defaultSession = "none+dwm"; # this is deprecated 
@@ -78,7 +79,6 @@
         patches = [
          # ./dwm-systray-6.3.diff
          ./dwm-systray-6.4.diff
-         # ./dwm-cool-autostart-6.2.diff
          ./dwm-cool-autostart-2024.diff
          ./dwm-ru_gaps-6.3.diff
          ./dwm-inplacerotate-6.2.diff

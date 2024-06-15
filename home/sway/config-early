@@ -28,5 +28,4 @@ bindsym $mod+Shift+Q exec wlogout
 bindsym $mod+Shift+c kill
 bindsym $alt+F4 kill
 bindsym $mod+N exec kitty -e ~/.scripts/notetaker.sh
-
-
+bindsym $mod+Z exec ~/.scripts/background-swap.sh

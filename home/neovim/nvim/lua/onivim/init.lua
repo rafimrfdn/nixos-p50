@@ -7,5 +7,5 @@ require("onivim.plugins.telescope")
 --require("onivim.plugins.noice-nvim")
 require('Comment').setup()
 require("nvim-autopairs").setup{}
-require("ibl").setup{}
+--require("ibl").setup{} --this is indent blank line
 require("colorizer").setup {}

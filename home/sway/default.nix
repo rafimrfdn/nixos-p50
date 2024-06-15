@@ -125,6 +125,8 @@ in lib.mkDefault
             export XDG_CURRENT_DESKTOP="sway"
             export XDG_SESSION_DESKTOP="sway"
             export XDG_SESSION_TYPE="wayland"
+
+            export NIXOS_OZONE_WL="1"
             '';
 
         # set beginning config

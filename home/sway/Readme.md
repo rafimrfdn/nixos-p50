@@ -9,5 +9,6 @@ Important note for this config:
 2. make sure to set the "keybindings" at the config then set the important keybind for navigate
 3. then I must have the **config-early** file, this will render the config before enter the default config.
 4. then I must have the **config-after** file, this will render after the default config.
+5. copy the background-swap.sh script to ~/.scripts/ folder.
 
 you can check the generated config after your system rebuild at `~/.config/sway/config`

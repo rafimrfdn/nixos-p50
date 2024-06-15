@@ -103,7 +103,6 @@
   # open-fonts 
   lxappearance
 
-
   acpi
   copyq
   corefonts # we need windows fonts on libreoffice
@@ -123,9 +122,11 @@
   killall
   lazygit
   luajit
+  lutris
   neofetch
   networkmanagerapplet
   ntfs3g
+  pcmanfm
   pdfarranger
   picom
   pulseaudio
@@ -135,6 +136,7 @@
   rofi-wayland
   scrot
   sqlitebrowser
+  xfce.thunar
   tree
   unzip
   volumeicon
@@ -176,6 +178,7 @@
   # install via sudo nix-env -iA nixos.packageName:
   # view list installed via sudo nix-env --query
   # onlyoffice-bin
+  # chromium
   # libreoffice
   # vscodium
   # simplescreenrecorder
@@ -187,13 +190,13 @@
 
   # Hyprland needed apps
   # xdg-desktop-portal-hyprland
-  # swaybg 
   # wlsunset 
-  # wl-clipboard 
   # wf-recorder
-  clipman
+  # clipman
+  swaybg  #for background and wallpaper switch script
+  wl-clipboard # I need this also for screenshot
   slurp 
-  grim grimblast jq socat
+  grim grimblast jq socat #this is must have for screenshot
   wlogout 
   # swaylock
   # # swayimg #image viewer for sway/wayland
