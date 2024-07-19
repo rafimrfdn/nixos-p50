@@ -36,7 +36,7 @@
       clang-tools
       lua-language-server
       rust-analyzer
-      bash-language-server
+      # bash-language-server
     ];
 
     languages.language = [

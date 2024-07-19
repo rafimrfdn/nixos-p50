@@ -82,15 +82,16 @@ networking = {
 
 
 # Enable sound with pipewire.
-    sound.enable = true;
-    hardware.pulseaudio.enable = false; #Disable Pulseaudio
-        security.rtkit.enable = true;
+    # sound.enable = true;
+    # hardware.pulseaudio.enable = false; #Disable Pulseaudio
+    #     security.rtkit.enable = true;
     services.pipewire = {
         enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
+        audio.enable = true;
+        # alsa.enable = true;
+        # alsa.support32Bit = true;
         pulse.enable = true;
-        wireplumber.enable = true;
+        # wireplumber.enable = true;
 # If you want to use JACK applications, uncomment this
 #jack.enable = true;
 
@@ -103,7 +104,7 @@ networking = {
 
 
 # Intel/OpenGL
-    hardware.opengl = {
+    hardware.graphics= {
         enable = true;
         extraPackages = with pkgs; [
             intel-media-driver
@@ -111,8 +112,8 @@ networking = {
                 vaapiVdpau
                 libvdpau-va-gl
         ];
-        driSupport = true;
-        driSupport32Bit = true;
+        # driSupport = true;
+        # driSupport32Bit = true;
     };
 
 # bluetooth
@@ -237,7 +238,7 @@ networking = {
 # zsh
     programs.zsh.enable = true;
     programs.zsh.autosuggestions.enable = true;
-# programs.bash.enableCompletion = true;
+    programs.bash.completion.enable = true;
 
 # copy dari https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/hosts/desktop/default.nix
 #  programs = {
@@ -289,13 +290,17 @@ networking = {
 #   package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
 # };
 
-# set default text editor
-    environment.variables.EDITOR = "nvim";
+
+    environment = {
+        variables.EDITOR = "nvim";  # set default text editor
+        shells = [ pkgs.zsh ];          # add the zsh package to /etc/shells
+    };
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
     users = {
         defaultUserShell = pkgs.zsh;
         users.nix = {
+            # defaultUserShell = true;  # when this active, tmux will not use zsh as default shell, but bash
             isNormalUser = true;
             description = "nix";
             extraGroups = [ 
@@ -310,8 +315,8 @@ networking = {
             # shell = pkgs.zsh;
             packages = with pkgs; [
                 php82
-                    php82Packages.composer
-                    mariadb
+                php82Packages.composer
+                mariadb
             ];
         };
     };
@@ -333,7 +338,16 @@ networking = {
 # nixpkgs.config.allowBroken = true;
 
 # Virtualization with qemu kvm
-    virtualisation.libvirtd.enable = true;
+    virtualisation = {
+        libvirtd.enable = true;
+        docker = {                      # Enable Docker
+                enable = true;
+                rootless = {            # this will run docker without root access
+                    enable = true;
+                    setSocketVariable = true;
+                };
+            };
+        };
     programs.virt-manager.enable = true;
 
 
@@ -342,7 +356,7 @@ networking = {
 # automatically trigger garbage collection
         gc.automatic = true;
         gc.dates = "weekly";
-        gc.options = "--delete-older-than 7w";
+        gc.options = "--delete-older-than 7d";
 # Hard link identical files in the store automatically
 #autoOptimiseStore = true;
         settings.auto-optimise-store = true;
@@ -351,9 +365,10 @@ networking = {
 # List packages installed in system profile. To search, run:
 # $ nix search wget
     environment.systemPackages = with pkgs; [
-        gcc #must have one linux compiler like gcc or cc etc.
-            gnumake
-            go
+        # gcc       # must have one linux compiler like gcc or cc etc.
+        # gnumake
+        zig         # this is alternative to gcc, cc, act like compiler but faster 
+        go
     ];
 
 
@@ -365,6 +380,6 @@ networking = {
 # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "22.11"; # Did you read the comment?
 
-        nix.settings.experimental-features = [ "nix-command" "flakes"];
+    nix.settings.experimental-features = [ "nix-command" "flakes"]; # activate flake
 }
 

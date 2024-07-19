@@ -79,10 +79,29 @@
             neodev-nvim
 
             ### TREESITTER ###
-            nvim-treesitter.withAllGrammars
+            # nvim-treesitter.withAllGrammars
+            nvim-treesitter
 
             ### COMMENT ###
             comment-nvim
+
+            ### PARSER
+            # nvim-treesitter-parsers.bash
+            # nvim-treesitter-parsers.c
+            # nvim-treesitter-parsers.cmake
+            # nvim-treesitter-parsers.css
+            # nvim-treesitter-parsers.dockerfile
+            # nvim-treesitter-parsers.javascript
+            # nvim-treesitter-parsers.json
+            # nvim-treesitter-parsers.markdown
+            # nvim-treesitter-parsers.nix
+            # nvim-treesitter-parsers.regex
+            # nvim-treesitter-parsers.scss # overlay::css
+            # nvim-treesitter-parsers.ssh_config
+            # nvim-treesitter-parsers.vim
+            # nvim-treesitter-parsers.xml
+            # nvim-treesitter-parsers.yaml
+            # nvim-treesitter-parsers.vento
 
             onivim # my config file
 

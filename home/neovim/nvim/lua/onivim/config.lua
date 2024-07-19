@@ -22,7 +22,8 @@ vim.api.nvim_set_keymap("n", "<S-Tab>", ":bprevious<cr>", { silent = true, norem
 -- closes current buffer with space + x
 vim.keymap.set("n", "<leader>x", ":BufDel<cr>", {silent = true, noremap = true})
 
-
+-- close other buffer ecept active one
+vim.keymap.set("n", "<leader>z", ":BufDelOthers<CR>", {silent = true, noremap = true})
 
 
 -- from my old option config

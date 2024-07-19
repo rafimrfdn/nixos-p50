@@ -6,7 +6,8 @@ let
     vapoursynth = with pkgs; vapoursynth.withPlugins
         [ vapoursynth-mvtools ffms ];
 };
-  mpv = pkgs.wrapMpv mpv-unwrapped { };
+  # mpv = pkgs.wrapMpv mpv-unwrapped { };
+  mpv = pkgs.mpv-unwrapped;
 
 # mpv-unwrapped = super.mpv-unwrapped.override {
 #       vapoursynthSupport = true;
@@ -17,10 +18,11 @@ let
 
 in
 {
-  home.packages = [ mpv ] ++ (with pkgs; [
+  home.packages = [ mpv ] ;
+  # ++ (with pkgs; [
      # vlc
      # smplayer
-  ]);
+  # ]);
 
   #home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
   home.file.".config/mpv/motioninterpolation.vpy".source = pkgs.substituteAll {

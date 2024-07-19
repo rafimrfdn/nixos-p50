@@ -16,7 +16,8 @@
           exec dwm
         fi
 	'';
-      enableCompletion = true;
+      # enableCompletion = true;
+      completion.enable = true;
     };
   };
 

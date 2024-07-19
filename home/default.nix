@@ -107,6 +107,7 @@
   copyq
   corefonts # we need windows fonts on libreoffice
   easyeffects
+  # eog
   ffmpeg # for mpv
   ffmpegthumbnailer
   firefox
@@ -123,6 +124,7 @@
   lazygit
   luajit
   lutris
+  # nautilus
   neofetch
   networkmanagerapplet
   ntfs3g
@@ -136,6 +138,7 @@
   rofi-wayland
   scrot
   sqlitebrowser
+  svp
   xfce.thunar
   tree
   unzip
@@ -155,9 +158,9 @@
   bottom #top yang lebih cantik, ketik btm
 
   #web development
-  bun
-  deno
-  nodejs
+  # bun
+  # deno
+  # nodejs
   turso-cli
   sqlite
 
@@ -205,12 +208,14 @@
 
 
 
-]) ++ (with pkgs.gnome; [ 
-    nautilus
-    # zenity
-    # gnome-tweaks
-    eog
-  ]);
+]);
+  # because nautilus has moved on toe top-level package
+  # ++ (with pkgs.gnome; [ 
+  #   nautilus
+  #   # zenity
+  #   # gnome-tweaks
+  #   eog
+  # ]);
 
   services.copyq = {
     enable = true;

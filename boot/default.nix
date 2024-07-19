@@ -27,9 +27,10 @@
         # bootspec.enable = true;
         # Use latest linux kernel
         # kernelPackages = pkgs.linuxPackages_latest;
+        kernelPackages = pkgs.linuxKernel.packages.linux_testing;
         # kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
         # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-        kernelPackages = pkgs.linuxPackages_zen;
+        # kernelPackages = pkgs.linuxPackages_zen;
         # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
         # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
         # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
@@ -69,9 +70,9 @@
         # Silent boot to hide Stage when boot system and show the splash screen
         # plymouth.enable = true;
     };
-    
+
   # A DBus service that allows applications to update firmware
-  services.fwupd.enable = true;
+  # services.fwupd.enable = true;
 
   systemd.watchdog.rebootTime = "0";
 
@@ -82,7 +83,7 @@
     systemd-tmpfiles-setup.before = [ "sysinit.target"];
     systemd-update-utmp.after = [ "systemd-tmpfiles_setup.service"];
 
-    NetworkManager-wait-online.enable = false;
+    # NetworkManager-wait-online.enable = false;
   };
 }
 

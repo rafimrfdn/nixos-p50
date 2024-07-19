@@ -1,86 +1,40 @@
 {config, pkgs, ...}:
-
 {
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-      # "org/gnome/shell/extensions/user-theme" = {
-        # name = "Arc";
-        # name = "Qogir-Dark";
-        # name = "Nordic";
-        # name = "Pop";
-        # name = "Adapta";
-        # name = "Juno";
-      # };
-    };
-  };
 
-  gtk = {
-    enable = true;
-    font = {
-      name = "Sans Regular";
-      # name = "SF Pro Display Regular";
-      # name = "Cantarel";
-      # package = pkgs.cantarell-fonts;
-      size = 10;
-    };
-    # theme = {
-      # name = "Qogir";
-      # name = "Qogir-Dark";
-      # package = pkgs.qogir-theme;
-      # name = "WhiteSur";
-      # name = "WhiteSur-dark";
-      # package = pkgs.whitesur-gtk-theme;
-      # name = "Pop";
-      # name = "Pop-dark";
-      # package = pkgs.pop-gtk-theme;
-      # name = "Elementary";
-      # package = pkgs.pantheon.elementary-gtk-theme;
-      # name = "Arc-Darker"; # or Arc || Arc-Dark || Arc-Darker || Arc-Lighter
-      # package = pkgs.arc-theme;
-      # name = "Orchis-Dark";
-      # package = pkgs.orchis-theme;
-      # name = "Nordic";
-      # package = pkgs.nordic;
-      # name = "Juno";
-      # package = pkgs.juno-theme;
-      # name = "Adapta";
-      # package = pkgs.adapta-gtk-theme;
-      # name = "Mojave-Light"; # or Mojave-Light-alt || Mojave-Light-solid || Mojave-Light-solid-alt
-      # name = "Mojave-Dark"; # or Mojave-Dark-alt || Mojave-Dark-solid || Mojave-Dark-solid-alt
-      # package = pkgs.mojave-gtk-theme;
-      # name = "NumixSolarizedDarkBlue"; # or NumixStandard || NumixSolarizedDarkBlue etc
-      # package = pkgs.numix-solarized-gtk-theme;
-    # };
-    # iconTheme = {
-      # name = "Papirus-Dark";
-      # package = pkgs.papirus-icon-theme;
-      # name = "Qogir";
-      # package = pkgs.qogir-icon-theme;
-      # name = "Pop-dark";
-      # package = pkgs.pop-icon-theme;
-      # name = "Elementary";
-      # package = pkgs.pantheon.elementary-icon-theme;
-      # name = "WhiteSur";
-      # name = "WhiteSur-dark";
-      # package = pkgs.whitesur-icon-theme;
-      # name = "Newaita-dark"; # or Newaita-bluish
-      # name = "Papirus-Dark"; # or Papirus
-    # };
-    cursorTheme = {
-      name = "Pop";
-      # package = pkgs.pop-gtk-theme;
-    };
-    gtk3.extraConfig = {
-      # gtk-application-prefer-dark-theme = true;
-      gtk-application-prefer-dark-theme=1;
-    };
-    gtk4.extraConfig = {
-      # gtk-application-prefer-dark-theme = true;
-      gtk-application-prefer-dark-theme=1;
-    };
-  };
+  home.packages = [ pkgs.dconf ];
+  gtk.enable = true;
+  
+  gtk.cursorTheme.package = pkgs.capitaine-cursors;
+  gtk.cursorTheme.name =  "capitaine-cursors-white";
+  gtk.cursorTheme.size = 24;
+  
+  home.pointerCursor.package = pkgs.capitaine-cursors;
+  home.pointerCursor.name = "capitaine-cursors-white";
+  home.pointerCursor.size = 24;
+  home.pointerCursor.x11.defaultCursor = "capitaine-cursors-white";
+  
+  xsession.enable = true;
+  
+  home.pointerCursor.x11.enable = true;
+  
+  gtk.iconTheme.package = pkgs.whitesur-icon-theme;
+  gtk.iconTheme.name = "WhiteSur-dark";
+  
+  gtk.theme.package = pkgs.whitesur-gtk-theme;
+  gtk.theme.name = "WhiteSur-Dark" ;
+  
+  gtk.gtk3.extraConfig = {
+        gtk-dialogs-use-header=false;
+        gtk-cursor-theme-size=0;
+        gtk-toolbar-style="GTK_TOOLBAR_BOTH_HORIZ";
+        gtk-toolbar-icon-size="GTK_ICON_SIZE_LARGE_TOOLBAR";
+        gtk-button-images=0;
+        gtk-menu-images=0;
+        gtk-enable-event-sounds=0;
+        gtk-enable-input-feedback-sounds=1;
+        gtk-xft-antialias=1;
+        gtk-xft-hinting=1;
+        gtk-xft-hintstyle="hintslight";
+        gtk-xft-rgba="none";
+	};
 }

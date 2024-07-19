@@ -1,0 +1,215 @@
+# Wallpaper
+#set $background #ff0000
+#output * bg $background solid_color
+
+output * bg /home/nix/Pictures/wp/1.jpg fill
+
+set $mod Mod4
+set $alt Mod1
+
+set $term kitty
+set $menu rofi -show drun -I
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+bindsym $mod+Shift+Return exec $term
+
+bindsym $mod+W exec firefox
+bindsym $mod+E exec nautilus
+bindsym $mod+P exec wofi --show run
+bindsym $mod+Shift+E exec emacs
+bindsym $mod+D exec $menu
+bindsym $mod+Shift+Q exec wlogout
+
+# Kill focused window
+bindsym $mod+Shift+c kill
+bindsym $alt+F4 kill
+bindsym $mod+N exec kitty -e ~/.scripts/notetaker.sh
+bindsym $mod+Z exec ~/.scripts/background-swap.sh
+
+
+font pango:monospace 8.000000
+floating_modifier Mod4
+default_border normal 2
+default_floating_border normal 2
+hide_edge_borders none
+focus_wrapping no
+focus_follows_mouse yes
+focus_on_window_activation smart
+mouse_warping output
+workspace_layout default
+workspace_auto_back_and_forth no
+client.focused #4c7899 #285577 #ffffff #2e9ef4 #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50 #5f676a
+client.unfocused #333333 #222222 #888888 #292d2e #222222
+client.urgent #2f343a #900000 #ffffff #900000 #900000
+client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
+client.background #ffffff
+
+bindsym Mod4+$down focus down
+bindsym Mod4+$left focus left
+bindsym Mod4+$right focus right
+bindsym Mod4+$up focus up
+bindsym Mod4+1 workspace number 1
+bindsym Mod4+2 workspace number 2
+bindsym Mod4+3 workspace number 3
+bindsym Mod4+4 workspace number 4
+bindsym Mod4+5 workspace number 5
+bindsym Mod4+6 workspace number 6
+bindsym Mod4+7 workspace number 7
+bindsym Mod4+8 workspace number 8
+bindsym Mod4+9 workspace number 9
+bindsym Mod4+Down focus down
+bindsym Mod4+Left focus left
+bindsym Mod4+Right focus right
+bindsym Mod4+Shift+$down move down
+bindsym Mod4+Shift+$left move left
+bindsym Mod4+Shift+$right move right
+bindsym Mod4+Shift+$up move up
+bindsym Mod4+Shift+1 move container to workspace number 1
+bindsym Mod4+Shift+2 move container to workspace number 2
+bindsym Mod4+Shift+3 move container to workspace number 3
+bindsym Mod4+Shift+4 move container to workspace number 4
+bindsym Mod4+Shift+5 move container to workspace number 5
+bindsym Mod4+Shift+6 move container to workspace number 6
+bindsym Mod4+Shift+7 move container to workspace number 7
+bindsym Mod4+Shift+8 move container to workspace number 8
+bindsym Mod4+Shift+9 move container to workspace number 9
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Right move right
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Up focus up
+
+input "type:keyboard" {
+repeat_delay 300
+repeat_rate 50
+}
+
+input "type:pointer" {
+accel_profile flat
+pointer_accel 0
+}
+
+input "type:touchpad" {
+middle_emulation enabled
+natural_scroll disabled
+tap enabled
+}
+
+mode "resize" {
+  bindsym Down resize grow height 10 px
+  bindsym Escape mode default
+  bindsym Left resize shrink width 10 px
+  bindsym Return mode default
+  bindsym Right resize grow width 10 px
+  bindsym Up resize shrink height 10 px
+  bindsym h resize shrink width 10 px
+  bindsym j resize grow height 10 px
+  bindsym k resize shrink height 10 px
+  bindsym l resize grow width 10 px
+}
+
+bar {
+  font pango:monospace 8.000000
+  swaybar_command waybar
+}
+
+gaps inner 0
+gaps outer 0
+smart_borders on
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
+
+exec "/nix/store/wbqwrp6gpf31acmdchik5lsj8zdw2z24-dbus-1.14.10/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE NIXOS_OZONE_WL XCURSOR_THEME XCURSOR_SIZE; systemctl --user reset-failed && systemctl --user start sway-session.target && swaymsg -mt subscribe '[]' || true && systemctl --user stop sway-session.target"
+# Colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #999999 #5f676a #999999 #999999   #999999
+client.focused_inactive #999999 #5f676a #999999 #999999   #999999
+client.unfocused        #333333 #222222 #888888 #292d2e   #1f1e1e
+client.urgent           #999999 #5f676a #999999 #999999   #999999
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+default_border pixel 1
+
+# Screenshots
+bindsym Shift+Print exec grim  -g "$(slurp)" /home/nix/Pictures/Screenshot-$(date +'%H:%M:%S.png')
+bindsym Print exec grim /home/nix/Pictures/Screenshot-$(date +'%H:%M:%S.png')
+bindsym Ctrl+Print exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" /home/nix/Pictures/Screenshot-$(date +'%H:%M:%S.png')
+
+# Screenshots + copy to clipoard
+# bindsym Print exec grim - | wl-copy && $notify screenshot "Full Screen Captured"
+# bindsym Shift+Print exec grim -g "$(slurp)" - | wl-copy && $notify screenshot "Screenshot Captured"
+
+# Screenshots using grimshot
+# bindsym Print exec grimshot copy active | grimshot save active
+# bindsym Shift+Print exec grimshot save area
+# bindsym Ctrl+Print exec grimshot save window
+
+# Brightness
+bindsym XF86MonBrightnessDown exec light -U 2
+bindsym XF86MonBrightnessUp exec light -A 2
+
+bindsym $mod+Ctrl+Down exec light -U 2
+bindsym $mod+Ctrl+Up exec light -A 2
+
+# Volume
+bindsym XF86AudioMute exec 'pactl set-sink-mute 0 toggle'
+bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume 0 +5%'
+bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume 0 -5%'
+
+# Git token (paste it into "")
+#bindsym $mod+g exec wl-copy "" 
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Layout stuff:
+# Split verticaly =
+bindsym $mod+v splitv
+
+# Split horizontaly ||
+bindsym $mod+b splith
+
+# Stacking Layout
+bindsym $alt+s layout stacking
+bindsym $alt+w layout tabbed
+
+bindsym $alt+e layout toggle split          # to reset the stack and tab layout
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle        # then use this to toggle window between the floating and the tiling
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+#
+#
+
+# Fixes
+exec dbus-sway-environment
+exec configure-gtk
+exec systemctl --user import-environment
