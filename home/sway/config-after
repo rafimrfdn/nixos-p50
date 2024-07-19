@@ -88,3 +88,4 @@ exec dbus-sway-environment
 exec configure-gtk
 exec systemctl --user import-environment
 
+output * bg /home/nix/Pictures/wp/1.jpg fill

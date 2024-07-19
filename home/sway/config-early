@@ -2,7 +2,7 @@
 #set $background #ff0000
 #output * bg $background solid_color
 
-output * bg /home/nix/Pictures/wp/1.jpg fill
+# output * bg /home/nix/Pictures/wp/1.jpg fill
 
 set $mod Mod4
 set $alt Mod1
