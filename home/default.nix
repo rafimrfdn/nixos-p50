@@ -189,13 +189,13 @@
   whitesur-gtk-theme
   
   #icon themes
-  papirus-icon-theme
+  # papirus-icon-theme
   qogir-icon-theme
   whitesur-icon-theme
   pop-icon-theme
   dracula-icon-theme
   fluent-icon-theme
-  morewaita-icon-theme
+  marwaita-icons
 
   # install via sudo nix-env -iA nixos.packageName:
   # view list installed via sudo nix-env --query

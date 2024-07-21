@@ -41,8 +41,7 @@ dconf = {
   gtk.theme.name = "WhiteSur-Dark" ;
 
   # gtk.iconTheme.name = "Papirus";
-  gtk.iconTheme.package = pkgs.marwaita-icons;
-  gtk.iconTheme.name = "Marwaita";
+  gtk.iconTheme.name = "Marwaita-Dark-Blue";
   # gtk.iconTheme.package = pkgs.dracula-icon-theme;
   # gtk.iconTheme.name = "Dracula";
   
