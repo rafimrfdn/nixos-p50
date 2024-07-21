@@ -1,27 +1,50 @@
 {config, pkgs, ...}:
 {
 
-  home.packages = [ pkgs.dconf ];
+dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+      # "org/gnome/shell/extensions/user-theme" = {
+        # name = "Arc";
+        # name = "Qogir-Dark";
+        # name = "Nordic";
+        # name = "Pop";
+        # name = "Adapta";
+        # name = "Juno";
+      # };
+    };
+  };
+
   gtk.enable = true;
+
+  gtk.font.name = "Sans Regular";
+  gtk.font.size = 10;
   
   gtk.cursorTheme.package = pkgs.capitaine-cursors;
-  gtk.cursorTheme.name =  "capitaine-cursors-white";
-  gtk.cursorTheme.size = 24;
+  gtk.cursorTheme.name =  "capitaine-cursors-white"; gtk.cursorTheme.size = 24;
   
   home.pointerCursor.package = pkgs.capitaine-cursors;
   home.pointerCursor.name = "capitaine-cursors-white";
   home.pointerCursor.size = 24;
   home.pointerCursor.x11.defaultCursor = "capitaine-cursors-white";
-  
+
   xsession.enable = true;
-  
+
   home.pointerCursor.x11.enable = true;
   
-  gtk.iconTheme.package = pkgs.whitesur-icon-theme;
-  gtk.iconTheme.name = "WhiteSur-dark";
-  
-  gtk.theme.package = pkgs.whitesur-gtk-theme;
+  # gtk.iconTheme.package = pkgs.whitesur-icon-theme;
+  # gtk.iconTheme.name = "WhiteSur-dark";
+  # gtk.theme.package = pkgs.whitesur-gtk-theme;
   gtk.theme.name = "WhiteSur-Dark" ;
+
+  # gtk.iconTheme.name = "Papirus";
+  gtk.iconTheme.package = pkgs.marwaita-icons;
+  gtk.iconTheme.name = "Marwaita";
+  # gtk.iconTheme.package = pkgs.dracula-icon-theme;
+  # gtk.iconTheme.name = "Dracula";
   
   gtk.gtk3.extraConfig = {
         gtk-dialogs-use-header=false;
@@ -36,5 +59,10 @@
         gtk-xft-hinting=1;
         gtk-xft-hintstyle="hintslight";
         gtk-xft-rgba="none";
+        gtk-application-prefer-dark-theme=1;
+	};
+
+  gtk.gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme=1;
 	};
 }

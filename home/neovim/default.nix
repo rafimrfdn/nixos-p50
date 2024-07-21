@@ -29,7 +29,7 @@
             [
 
             ### VISUAL ###
-	        vim-solarized8
+	        # vim-solarized8
             kanagawa-nvim
             bufferline-nvim
             # nvim-tree-lua

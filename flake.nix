@@ -23,13 +23,13 @@
                     ./configuration.nix
                     home-manager.nixosModules.home-manager {
                         home-manager = {
-                            backupFileExtension = "backup";
                             useGlobalPkgs = true;
                             useUserPackages = true;
                             # users.nix = ./home/home.nix;
                             users.${user}= import ./home/default.nix;
                             # from cristitus
                             # extraSpecialArgs = {inherit inputs self user;};
+                            backupFileExtension = "bakkk";
                         };
                     }
                 ];

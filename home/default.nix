@@ -26,6 +26,24 @@
       enable = true;
       createDirectories = true;
     };
+    # mimieapps
+    mime.enable = true;
+    mimeApps = {
+        enable = true;
+        
+        # associations.added = {
+        #   "application/pdf" = [ "org.gnome.Evince.desktop" ];
+        #   "image/*"         = [ "org.gnome.Loupe.desktop"  ];
+        #   "video/*"         = [ "totem.desktop"            ];
+        # };
+        # 
+        # defaultApplications = {
+        #   "application/pdf" = [ "org.gnome.Evince.desktop" ];
+        #   "image/*"         = [ "org.gnome.Loupe.desktop"  ];
+        #   "video/*"         = [ "totem.desktop"            ];
+        # };
+    };
+  
   };
 
 
@@ -177,6 +195,7 @@
   pop-icon-theme
   dracula-icon-theme
   fluent-icon-theme
+  morewaita-icon-theme
 
   # install via sudo nix-env -iA nixos.packageName:
   # view list installed via sudo nix-env --query
