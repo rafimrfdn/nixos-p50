@@ -23,13 +23,13 @@ dconf = {
   gtk.font.name = "Sans Regular";
   gtk.font.size = 10;
   
-  gtk.cursorTheme.package = pkgs.capitaine-cursors;
-  gtk.cursorTheme.name =  "capitaine-cursors-white"; gtk.cursorTheme.size = 24;
-  
-  home.pointerCursor.package = pkgs.capitaine-cursors;
-  home.pointerCursor.name = "capitaine-cursors-white";
-  home.pointerCursor.size = 24;
-  home.pointerCursor.x11.defaultCursor = "capitaine-cursors-white";
+  # gtk.cursorTheme.package = pkgs.capitaine-cursors;
+  # gtk.cursorTheme.name =  "capitaine-cursors-white"; gtk.cursorTheme.size = 24;
+  # 
+  # home.pointerCursor.package = pkgs.capitaine-cursors;
+  # home.pointerCursor.name = "capitaine-cursors-white";
+  # home.pointerCursor.size = 24;
+  # home.pointerCursor.x11.defaultCursor = "capitaine-cursors-white";
 
   xsession.enable = true;
 

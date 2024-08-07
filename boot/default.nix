@@ -26,14 +26,15 @@
 
         # bootspec.enable = true;
         # Use latest linux kernel
-        # kernelPackages = pkgs.linuxPackages_latest;
-        kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+        kernelPackages = pkgs.linuxPackages_latest;
+        # kernelPackages = pkgs.linuxKernel.packages.linux_testing;
         # kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
         # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
         # kernelPackages = pkgs.linuxPackages_zen;
         # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
         # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
         # kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+        # kernelPackages = pkgs.linuxKernel.packages.linux_lqx;
         
         # silent boot. 
         kernelParams = [
@@ -72,7 +73,7 @@
     };
 
   # A DBus service that allows applications to update firmware
-  # services.fwupd.enable = true;
+  services.fwupd.enable = true;
 
   systemd.watchdog.rebootTime = "0";
 

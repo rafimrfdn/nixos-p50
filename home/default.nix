@@ -15,7 +15,6 @@
    ./gtk/default.nix
    ./kitty/default.nix
    ./mpv/default.nix
-   # ./nodejs/default.nix
   ];
 
   fonts.fontconfig.enable = true;
@@ -31,16 +30,22 @@
     mimeApps = {
         enable = true;
         
-        # associations.added = {
-        #   "application/pdf" = [ "org.gnome.Evince.desktop" ];
-        #   "image/*"         = [ "org.gnome.Loupe.desktop"  ];
-        #   "video/*"         = [ "totem.desktop"            ];
-        # };
-        # 
-        # defaultApplications = {
-        #   "application/pdf" = [ "org.gnome.Evince.desktop" ];
-        #   "image/*"         = [ "org.gnome.Loupe.desktop"  ];
-        #   "video/*"         = [ "totem.desktop"            ];
+
+        associations.added = {
+          "application/pdf" = [ "emacsclient.desktop"];
+          "image/*"         = [ "org.gnome.eog.desktop"  ];
+          "video/*"         = [ "mpv.desktop"            ];
+        };
+
+        defaultApplications = {
+          "application/pdf" = [ "emacsclient.desktop"];
+          "image/*"         = [ "org.gnome.eog.desktop" ];
+          "video/*"         = [ "mpv.desktop"         ];
+        };
+        # associations.removed = {
+        #   "application/pdf" = [ "wine*" ];
+        #   "image/*"         = [ "wine*" ];
+        #   "video/*"         = [ "wine*" ];
         # };
     };
   
@@ -176,10 +181,6 @@
   bottom #top yang lebih cantik, ketik btm
 
   #web development
-  # bun
-  # deno
-  # nodejs
-  turso-cli
   sqlite
 
   #themes
@@ -195,10 +196,10 @@
   pop-icon-theme
   dracula-icon-theme
   fluent-icon-theme
-  marwaita-icons
+  marwaita-icons #only can find on the unstable branch
 
-  # install via sudo nix-env -iA nixos.packageName:
-  # view list installed via sudo nix-env --query
+  # install via nix profile install nixpkgs#pkgname
+  # then view list installed package via nix profile list
   # onlyoffice-bin
   # chromium
   # libreoffice
@@ -209,6 +210,10 @@
   # kdenlive
   # tdesktop
   # appimage-run #jalankan di terminal dengan command appimage-run $namafile.appimage
+  # bun
+  # deno
+  # nodejs
+  # turso-cli
 
   # Hyprland needed apps
   # xdg-desktop-portal-hyprland
