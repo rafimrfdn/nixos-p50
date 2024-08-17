@@ -15,6 +15,7 @@
    ./gtk/default.nix
    ./kitty/default.nix
    ./mpv/default.nix
+   ./svp/default.nix
   ];
 
   fonts.fontconfig.enable = true;
@@ -184,7 +185,7 @@
   rofi-wayland
   scrot
   sqlitebrowser
-  svp
+  # svp
   xfce.thunar
   tree
   unzip
