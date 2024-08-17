@@ -25,11 +25,11 @@ in
   # ]);
 
   #home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
-  home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
+  # home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
     # src = ./motioninterpolation.vpy;
     # src = ./svp.py;
     #mvtoolslib = "${pkgs.vapoursynth-mvtools}/lib/vapoursynth/";
-  };
+  # };
 
   # home.file.".config/mpv/svp.py".source = pkgs.substituteAll {
   #   src = ./svp.py;
