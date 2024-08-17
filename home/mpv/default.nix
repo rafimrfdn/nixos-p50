@@ -1,52 +1,44 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
-let
-  mpv-unwrapped = pkgs.mpv-unwrapped.override { 
-    vapoursynthSupport = true;
-    vapoursynth = with pkgs; vapoursynth.withPlugins
-        [ vapoursynth-mvtools ffms ];
-};
-  # mpv = pkgs.wrapMpv mpv-unwrapped { };
-  mpv = pkgs.mpv-unwrapped;
-
-# mpv-unwrapped = super.mpv-unwrapped.override {
-#       vapoursynthSupport = true;
-#       vapoursynth = with self; vapoursynth.withPlugins
-#         [ vapoursynth-mvtools ffms ];
-#     };
-
-
-in
 {
-  home.packages = [ mpv ] ;
-  # ++ (with pkgs; [
-     # vlc
-     # smplayer
-  # ]);
+  programs.mpv = {
+    enable = true;
 
-  #home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
-  # home.file.".config/mpv/motioninterpolation.py".source = pkgs.substituteAll {
-    # src = ./motioninterpolation.vpy;
-    # src = ./svp.py;
-    #mvtoolslib = "${pkgs.vapoursynth-mvtools}/lib/vapoursynth/";
-  # };
+    config = {
+      video-sync = "display-resample";
+      interpolation = true;
+      tscale = "oversample";
+      fullscreen = true;
 
-  # home.file.".config/mpv/svp.py".source = pkgs.substituteAll {
-  #   src = ./svp.py;
-    #svpflow = "${pkgs.lun.svpflow}/lib/";
-    #mvtoolslib = "${pkgs.vapoursynth-mvtools}/lib/vapoursynth/";
-  # };
+      sub-auto = "fuzzy";
+      sub-font = "Noto Sans CJK JP Medium";
+      sub-blur = 10;
+      sub-file-paths = "subs:subtitles:字幕";
 
-  home.file.".config/mpv/mpv.conf".text = ''
-    #vf=format=yuv420p,vapoursynth=./motioninterpolation.vpy:4:4
-    # vf=format=yuv420p,vapoursynth=~~/motioninterpolation.vpy:4:4
-    vf=format=yuv420p,vapoursynth=~~/motioninterpolation.py:4:4
-    #vf=format=yuv420p,vapoursynth=./motioninterpolation.py:4:4
-    # vf=vapoursynth=~~/svp.py:2:24
-  '';
+      screenshot-format = "png";
 
-  home.file.".config/mpv/input.conf".text = ''
-  # I vf toggle format=yuv420p,vapoursynth=~~/motioninterpolation.vpy:4:4
-  I vf toggle format=yuv420p,vapoursynth=~~/motioninterpolation.py:4:4
-  '';
+      title = "\${filename} - mpv";
+      script-opts = "osc-title=\${filename},osc-boxalpha=150,osc-visibility=never,osc-boxvideo=yes";
+
+      osc = "no";
+      osd-on-seek = "no";
+      osd-bar = "no";
+      osd-bar-w = 30;
+      osd-bar-h = "0.2";
+      osd-duration = 750;
+
+      really-quiet = "yes";
+      autofit = "65%";
+    };
+
+    bindings = {
+      "ctrl+a" = "script-message osc-visibility cycle";
+    };
+
+    scripts = with pkgs.mpvScripts; [
+      mpris
+      uosc
+      thumbfast
+    ];
+  };
 }

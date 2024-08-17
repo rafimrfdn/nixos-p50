@@ -21,39 +21,6 @@
         "type": "github"
       }
     },
-    "mpvSockets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1707829438,
-        "narHash": "sha256-KFv3imLuiV+APx4A8TSi2LXL5gdHNKc497fRwBubvMk=",
-        "owner": "wis",
-        "repo": "mpvSockets",
-        "rev": "3b3f430074a67c63572a582847ed1fa69330c668",
-        "type": "github"
-      },
-      "original": {
-        "owner": "wis",
-        "repo": "mpvSockets",
-        "type": "github"
-      }
-    },
-    "mpvSvpFix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710274267,
-        "narHash": "sha256-QfDOUL7BmVg3c4KgV7L1mS6BNKzS9rXBGAsNsiZNERk=",
-        "owner": "xrun1",
-        "repo": "mpv-svp-fix",
-        "rev": "3d4bc22ad14fcb2f46a3ce6a71b4a7b9ade574ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xrun1",
-        "repo": "mpv-svp-fix",
-        "rev": "3d4bc22ad14fcb2f46a3ce6a71b4a7b9ade574ea",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1722332872,
@@ -88,8 +55,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "mpvSockets": "mpvSockets",
-        "mpvSvpFix": "mpvSvpFix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
       }

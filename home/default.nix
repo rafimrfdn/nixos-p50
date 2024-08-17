@@ -15,6 +15,7 @@
    ./gtk/default.nix
    ./kitty/default.nix
    ./mpv/default.nix
+   ./chromium.nix
   ];
 
   fonts.fontconfig.enable = true;
@@ -48,22 +49,26 @@
         mime.enable = true;
         mimeApps = {
             enable = true;
-            associations.added = {
-                "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
-                "image/png"       = [ "org.gnome.eog.desktop"  ];
-                "image/jpg"       = [ "org.gnome.eog.desktop"  ];
-                "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
-                "image/webp"      = [ "org.gnome.eog.desktop"  ];
-                "video/*"         = [ "mpv.desktop"            ];
-            };
+            # associations.added = {
+            #     "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
+            #     "image/png"       = [ "org.gnome.eog.desktop"  ];
+            #     "image/jpg"       = [ "org.gnome.eog.desktop"  ];
+            #     "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
+            #     "image/webp"      = [ "org.gnome.eog.desktop"  ];
+            #     "video/*"         = [ "mpv.desktop"            ];
+            # };
 
             defaultApplications = {
+                "text/markdown" = "nvim.desktop";
+                "text/plain" = "nvim.desktop";
                 "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
                 "image/png"       = [ "org.gnome.eog.desktop"  ];
                 "image/jpg"       = [ "org.gnome.eog.desktop"  ];
                 "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
                 "image/webp"      = [ "org.gnome.eog.desktop"  ];
                 "video/*"         = [ "mpv.desktop"         ];
+                "x-scheme-handler/http" = "firefox.desktop";
+                "x-scheme-handler/https" = "firefox.desktop";
             };
             # associations.removed = {
             #   "application/pdf" = [ "wine*" ];
@@ -71,6 +76,11 @@
             #   "video/*"         = [ "wine*" ];
             # };
         };
+
+  };
+}
+
+
 
     };
 
@@ -128,7 +138,7 @@
   #font-awesome
   # gnome.file-roller #archive manager for nemo
   #kitty
-  #mpv
+  # mpv
   #vapoursynth-mvtools
   #mpvScripts.quality-menu
   # pcmanfm
