@@ -19,37 +19,60 @@
 
   fonts.fontconfig.enable = true;
 
-  xdg = {
-    enable = true;
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
-    # mimieapps
-    mime.enable = true;
-    mimeApps = {
+
+    xdg = {
         enable = true;
-        
+        userDirs = {
+            enable = true;
+            createDirectories = true;
+        };
+        portal = {
+            enable = true;
+            configPackages = with pkgs; [
+                xdg-desktop-portal
+                xdg-desktop-portal-gtk
+                xdg-desktop-portal-wlr
+            ];
+            extraPortals = with pkgs; [
+                xdg-desktop-portal
+                xdg-desktop-portal-gtk
+                xdg-desktop-portal-wlr
+            ];
+            config = {
+                common = {
+                    default = [ "*" ];
+                };
+            };
+        };
+        # mimieapps
+        mime.enable = true;
+        mimeApps = {
+            enable = true;
+            associations.added = {
+                "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
+                "image/png"       = [ "org.gnome.eog.desktop"  ];
+                "image/jpg"       = [ "org.gnome.eog.desktop"  ];
+                "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
+                "image/webp"      = [ "org.gnome.eog.desktop"  ];
+                "video/*"         = [ "mpv.desktop"            ];
+            };
 
-        associations.added = {
-          "application/pdf" = [ "emacsclient.desktop"];
-          "image/*"         = [ "org.gnome.eog.desktop"  ];
-          "video/*"         = [ "mpv.desktop"            ];
+            defaultApplications = {
+                "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
+                "image/png"       = [ "org.gnome.eog.desktop"  ];
+                "image/jpg"       = [ "org.gnome.eog.desktop"  ];
+                "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
+                "image/webp"      = [ "org.gnome.eog.desktop"  ];
+                "video/*"         = [ "mpv.desktop"         ];
+            };
+            # associations.removed = {
+            #   "application/pdf" = [ "wine*" ];
+            #   "image/*"         = [ "wine*" ];
+            #   "video/*"         = [ "wine*" ];
+            # };
         };
 
-        defaultApplications = {
-          "application/pdf" = [ "emacsclient.desktop"];
-          "image/*"         = [ "org.gnome.eog.desktop" ];
-          "video/*"         = [ "mpv.desktop"         ];
-        };
-        # associations.removed = {
-        #   "application/pdf" = [ "wine*" ];
-        #   "image/*"         = [ "wine*" ];
-        #   "video/*"         = [ "wine*" ];
-        # };
     };
-  
-  };
 
 
 

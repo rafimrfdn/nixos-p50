@@ -5,7 +5,19 @@
         nixpkgs.url = "nixpkgs/nixos-unstable";
         home-manager.url = "github:nix-community/home-manager/master";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+       # copy from https://github.com/NixOS/nixpkgs/issues/295430 
+        mpvSockets.url = "github:wis/mpvSockets";
+        mpvSockets.flake = false;
+        mpvSvpFix.url = "github:xrun1/mpv-svp-fix/3d4bc22ad14fcb2f46a3ce6a71b4a7b9ade574ea";
+        mpvSvpFix.flake = false;
+
     };
+
+
+
+
+
 
     outputs = inputs@{ self, nixpkgs, home-manager, nixos-hardware, ...}: # self is must have
     let 
@@ -29,7 +41,7 @@
                             users.${user}= import ./home/default.nix;
                             # from cristitus
                             # extraSpecialArgs = {inherit inputs self user;};
-                            backupFileExtension = "bakkkkk";
+                            backupFileExtension = "bakkkkkkkk";
                         };
                     }
                 ];

@@ -123,7 +123,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
     // { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
-    // { MODKEY,              		    XK_o,      setlayout,      {.v = &layouts[4]} },
+    // { MODKEY,              		   XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -146,34 +146,34 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	// { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
   	// powermenu
-  	{ MODKEY,                       XK_q, spawn, {.v = powermenu } },
+  	{ MODKEY|ShiftMask,             XK_q, spawn, {.v = powermenu } },
   	// rofi
-  	 { MODKEY, XK_d, spawn, SHCMD("rofi -show drun") },
+  	{ MODKEY,                       XK_d, spawn, SHCMD("rofi -show drun") },
   	// note
-  	{ MODKEY, XK_n, spawn, SHCMD("kitty -e ~/.scripts/notetaker.sh") },
+  	{ MODKEY,                       XK_n, spawn, SHCMD("kitty -e ~/.scripts/notetaker.sh") },
   	// File explorer
-  	{ MODKEY, XK_e, spawn, SHCMD("nautilus") },
+  	{ MODKEY,                       XK_e, spawn, SHCMD("nautilus") },
   	// Browser
-  	{ MODKEY, XK_w, spawn, SHCMD("firefox") },
+  	{ MODKEY,                       XK_w, spawn, SHCMD("firefox") },
   	// Screenshot
-  	{ 0, XK_Print,  spawn, SHCMD("scrot 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },
-  	{ 0|ShiftMask, XK_Print,  spawn, SHCMD("scrot -s 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },
-  	{ 0|ControlMask, XK_Print,  spawn, SHCMD("scrot -u 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },
+  	{ 0,                            XK_Print,  spawn, SHCMD("scrot 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },
+  	{ 0|ShiftMask,                  XK_Print,  spawn, SHCMD("scrot -s 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },
+  	{ 0|ControlMask,                XK_Print,  spawn, SHCMD("scrot -u 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },
   	// Background 
-  	{ MODKEY, XK_z,      spawn,        SHCMD("feh --bg-fill --randomize ~/Pictures/wp/*") },
+  	{ MODKEY,                       XK_z,      spawn,        SHCMD("feh --bg-fill --randomize ~/Pictures/wp/*") },
   	// Clipboard
-  	{ MODKEY, XK_F12, spawn, SHCMD("copyq show clipboard") },
+  	{ MODKEY,                       XK_F12, spawn, SHCMD("copyq show clipboard") },
   	// ----------------- Hardware ------------------
   	// Volume
-  	{0, XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%")},
-  	{0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%")},
-  	{0, XF86XK_AudioMute, spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle")},
+  	{0,                             XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%")},
+  	{0,                             XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%")},
+  	{0,                             XF86XK_AudioMute, spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle")},
   	// Brightness
-  	{0, XF86XK_MonBrightnessUp, spawn, SHCMD("light -A 5")},
-  	{0, XF86XK_MonBrightnessDown, spawn, SHCMD("light -U 5")},
+  	{0,                             XF86XK_MonBrightnessUp, spawn, SHCMD("light -A 5")},
+  	{0,                             XF86XK_MonBrightnessDown, spawn, SHCMD("light -U 5")},
 
-  	{MODKEY|ControlMask, XK_Up, spawn, SHCMD("light -A 5")},
-    {MODKEY|ControlMask, XK_Down, spawn, SHCMD("light -U 5")},
+  	{MODKEY|ControlMask,            XK_Up, spawn, SHCMD("light -A 5")},
+    {MODKEY|ControlMask,            XK_Down, spawn, SHCMD("light -U 5")},
 };
 
 /* button definitions */

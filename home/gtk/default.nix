@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{pkgs, ...}:
 {
 
 dconf = {
@@ -13,7 +13,6 @@ dconf = {
         # name = "Nordic";
         # name = "Pop";
         # name = "Adapta";
-        # name = "Juno";
       # };
     };
   };
@@ -24,12 +23,22 @@ dconf = {
   gtk.font.size = 10;
   
   # gtk.cursorTheme.package = pkgs.capitaine-cursors;
-  # gtk.cursorTheme.name =  "capitaine-cursors-white"; gtk.cursorTheme.size = 24;
-  # 
+  # gtk.cursorTheme.name =  "capitaine-cursors-white"; 
+  # gtk.cursorTheme.size = 24;
+  #
   # home.pointerCursor.package = pkgs.capitaine-cursors;
   # home.pointerCursor.name = "capitaine-cursors-white";
   # home.pointerCursor.size = 24;
   # home.pointerCursor.x11.defaultCursor = "capitaine-cursors-white";
+
+  gtk.cursorTheme.package = pkgs.whitesur-cursors;
+  gtk.cursorTheme.name =  "WhiteSur-cursors"; 
+  gtk.cursorTheme.size = 24;
+
+  home.pointerCursor.package = pkgs.whitesur-cursors;
+  home.pointerCursor.name = "WhiteSur-cursors";
+  home.pointerCursor.size = 24;
+  home.pointerCursor.x11.defaultCursor = "WhiteSur-cursors";
 
   xsession.enable = true;
 
