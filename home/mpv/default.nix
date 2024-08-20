@@ -6,7 +6,7 @@
 
     config = {
       video-sync = "display-resample";
-      interpolation = true;
+      interpolation = false;
       tscale = "oversample";
       fullscreen = true;
 

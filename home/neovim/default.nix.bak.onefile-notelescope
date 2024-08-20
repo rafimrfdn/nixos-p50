@@ -1,0 +1,543 @@
+{ pkgs, ... }:
+
+{
+  programs.bat.enable = true;
+
+  editorconfig = {
+    enable = true;
+
+    settings = {
+      "*" = {
+        charset = "utf-8";
+        end_of_line = "lf";
+        insert_final_newline = true;
+        indent_size = 2;
+        indent_style = "space";
+        trim_trailing_whitespace = false;
+      };
+    };
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+
+    extraPackages = with pkgs; [
+      nodePackages.typescript-language-server
+      nodePackages."@astrojs/language-server"
+      nodePackages."@prisma/language-server"
+      emmet-language-server
+      markdown-oxide
+      tailwindcss-language-server
+      vscode-langservers-extracted
+      rust-analyzer
+      texlab
+      nixd
+      universal-ctags
+    ];
+
+    extraLuaConfig = # lua
+      ''
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+
+-- run at the mill keybinds
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+           
+
+
+vim.api.nvim_set_keymap("n", "<leader>e", ":set nu!<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>o", ":GitBlameToggle<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ef", ":Neotree toogle right<CR>", { silent = true, noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>d", ":bp\|bd #<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>f", ":Files<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>g", ":set hlsearch!<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>j", ":Buffers<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>l", ":Rg<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>;", ":Rg<CR>", { silent = true, noremap = true })
+
+
+-- move between buffers (bufferline specific)
+vim.api.nvim_set_keymap("n", "<Tab>", ":bnext<cr>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<S-Tab>", ":bprevious<cr>", { silent = true, noremap = true })
+
+-- closes current buffer with space + x
+vim.keymap.set("n", "<leader>x", ":BufDel<cr>", {silent = true, noremap = true})
+
+-- close other buffer ecept active one
+vim.keymap.set("n", "<leader>z", ":BufDelOthers<CR>", {silent = true, noremap = true})
+
+
+-- from my old option config
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- greatest remap ever
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+
+-- This is going to get me cancelled
+vim.keymap.set("i", "<C-c>", "<Esc>")
+
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+
+
+-- Navigate vim panes better
+vim.keymap.set('n', '<C-k>', ':wincmd k<CR>')
+vim.keymap.set('n', '<C-j>', ':wincmd j<CR>')
+vim.keymap.set('n', '<C-h>', ':wincmd h<CR>')
+vim.keymap.set('n', '<C-l>', ':wincmd l<CR>')
+
+
+-- clipboard
+vim.o.clipboard = "unnamedplus"
+
+vim.o.number = true
+vim.o.relativenumber = true -- for relative numbers
+
+-- indentation 4 spaces 
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
+
+-- no less than 10 lines on screen
+vim.o.scrolloff = 8
+
+-- Save undo history
+vim.o.undofile = true
+
+-- Set highlight on search
+vim.o.hlsearch = false
+
+-- compatiblity/good colors
+vim.o.termguicolors = true
+-- vim.cmd.colorscheme 'solarized8'
+
+-- hides the mode that shows up in the cmdline, it is redundant since lualine already shows us which mode we are in
+vim.o.showmode = false
+
+-- doing this to hide the original cmd line since we are already using a pop up from fine cmdline
+vim.o.cmdheight = 0
+
+-- makes it so we can have hover events from bufferline
+vim.o.mousemoveevent = true
+
+vim.o.mouse = 'a'
+
+-- makes things show in one long line instead of wrapping (super annoying btw)
+vim.o.wrap = false
+
+
+-- teej kickstart feature
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
+
+
+      '';
+
+    plugins = with pkgs.vimPlugins; [
+     neo-tree-nvim 
+      #{
+      #  plugin = nvim-tree-lua;
+      #  type = "lua";
+      #  config = # lua
+      #    ''
+      #      require("nvim-tree").setup()
+
+      #      vim.api.nvim_create_autocmd({"QuitPre"}, {
+      #        callback = function()
+      #          vim.cmd("NvimTreeClose")
+      #        end
+      #      })
+
+      #      local function open_nvim_tree(data)
+      #        local real_file = vim.fn.filereadable(data.file) == 1
+      #        local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+      #        if not real_file and not no_name then
+      #          return
+      #        end
+
+      #        require("nvim-tree.api").tree.toggle({ focus = false, find_file = true })
+      #      end
+
+      #      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+      #    '';
+      #}
+      {
+       plugin = nvim-bufdel;
+        type = "lua";
+        config = 
+        ''
+require('bufdel').setup {
+    quit = true,
+}
+        '';
+      }
+      {
+        plugin = indent-blankline-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require("ibl").setup()
+          '';
+      }
+      {
+        plugin = gitsigns-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require('gitsigns').setup()
+          '';
+      }
+      {
+        plugin = nvim-web-devicons;
+        type = "lua";
+      }
+      {
+        plugin = nvim-scrollbar;
+        type = "lua";
+        config = # lua
+          ''
+            require("scrollbar").setup()
+          '';
+      }
+      {
+        plugin = nvim-lspconfig;
+        type = "lua";
+        config = # lua
+          ''
+            local lspconfig = require('lspconfig')
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            lspconfig.denols.setup {
+              capabilities = capabilities,
+              root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+            }
+
+            lspconfig.tsserver.setup {
+              capabilities = capabilities,
+              root_dir = lspconfig.util.root_pattern("package.json"),
+              single_file_support = false
+            }
+
+            lspconfig.eslint.setup {
+              capabilities = capabilities,
+              on_attach = function(client, bufnr)
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                  buffer = bufnr,
+                  command = "EslintFixAll",
+                })
+              end
+            }
+
+            lspconfig.tailwindcss.setup {
+              capabilities = capabilities,
+              on_attach = function(client, bufnr)
+                require("tailwindcss-colors").buf_attach(bufnr)
+              end
+            }
+
+            vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+            vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+            vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+            vim.api.nvim_create_autocmd('LspAttach', {
+              group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+
+              callback = function(ev)
+                local opts = { buffer = ev.buf }
+
+                vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+                vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+                vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+                vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+                vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+                vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+                vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+                vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+              end,
+            })
+
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+              vim.lsp.handlers.hover, { border = "single" }
+            )
+
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+              vim.lsp.handlers.signature_help, { border = "single" }
+            )
+
+            vim.diagnostic.config {
+              float = { border = "single" }
+            }
+          '';
+      }
+      {
+        plugin = nvim-cmp;
+        type = "lua";
+        config = # lua
+          ''
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local lspconfig = require('lspconfig')
+
+            local servers = {
+              'nixd',
+              'rust_analyzer',
+              -- 'markdown_oxide',
+              'html',
+              'texlab',
+              -- 'prismals',
+              'jsonls',
+              'emmet_language_server',
+              'astro',
+              'cssls',
+            }
+
+            for _, lsp in ipairs(servers) do
+              lspconfig[lsp].setup {
+                capabilities = capabilities,
+              }
+            end
+
+            local luasnip = require('luasnip')
+            local cmp = require('cmp')
+
+            cmp.setup {
+              snippet = {
+                expand = function(args)
+                  luasnip.lsp_expand(args.body)
+                end,
+              },
+              mapping = cmp.mapping.preset.insert({
+                ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<CR>'] = cmp.mapping.confirm {
+                  behavior = cmp.ConfirmBehavior.Replace,
+                  select = true,
+                },
+                ['<Tab>'] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                    cmp.select_next_item()
+                  elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                  else
+                    fallback()
+                  end
+                end, { 'i', 's' }),
+                ['<S-Tab>'] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                    cmp.select_prev_item()
+                  elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                  else
+                    fallback()
+                  end
+                end, { 'i', 's' }),
+              }),
+              sources = {
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+              },
+            }
+          '';
+      }
+      cmp-nvim-lsp
+      cmp_luasnip
+      {
+        plugin = luasnip;
+        type = "lua";
+        config = # lua
+          ''
+            require("luasnip.loaders.from_vscode").lazy_load()
+          '';
+      }
+      friendly-snippets
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            local theme = require("lualine.themes.base16")
+            theme.normal.b.bg = nil
+            theme.normal.c.bg = nil
+            theme.replace.b.bg = nil
+            theme.insert.b.bg = nil
+            theme.visual.b.bg = nil
+            theme.inactive.a.bg = nil
+            theme.inactive.b.bg = nil
+            theme.inactive.c.bg = nil
+
+            require('lualine').setup {
+              options = {
+                theme = theme,
+                disabled_filetypes = {'NvimTree', 'tagbar'}
+              },
+              sections = { lualine_c = {'%f'} }
+            }
+          '';
+      }
+      {
+        plugin = git-blame-nvim;
+        type = "lua";
+      }
+      {
+        plugin = comment-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require('Comment').setup {
+            --  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+            }
+          '';
+      }
+      {
+        plugin = nvim-autopairs;
+        type = "lua";
+        config = # lua
+          ''
+            require("nvim-autopairs").setup()
+          '';
+      }
+      #{
+      #  plugin = auto-save-nvim;
+      #  type = "lua";
+      #  config = # lua
+      #    ''
+      #      require("auto-save").setup()
+      #    '';
+      #}
+      #{
+      #  plugin = vimtex;
+      #  config = # vim
+      #    ''
+      #      let g:vimtex_mappings_enabled = 0
+      #      let g:vimtex_imaps_enabled = 0
+      #      let g:vimtex_view_method = 'zathura'
+      #      let g:vimtex_compiler_latexmk = {'out_dir': '/tmp/vimtex'}
+
+      #      nnoremap <localleader>f <plug>(vimtex-view)
+      #      nnoremap <localleader>g <plug>(vimtex-compile)
+      #      nnoremap <localleader>d <plug>(vimtex-env-delete)
+      #      nnoremap <localleader>c <plug>(vimtex-env-change)
+      #    '';
+      #}
+      #{
+      #  plugin = vim-markdown;
+      #  config = # vim
+      #    ''
+      #      let g:vim_markdown_folding_disabled = 1
+      #      let g:vim_markdown_conceal = 0
+      #      let g:vim_markdown_frontmatter = 1
+      #      let g:vim_markdown_toml_frontmatter = 1
+      #      let g:vim_markdown_json_frontmatter = 1
+      #    '';
+      #}
+      #{
+      #  plugin = nvim-ts-autotag;
+      #  type = "lua";
+      #  config = # lua
+      #    ''
+      #      require('nvim-ts-autotag').setup()
+      #    '';
+      #}
+      {
+        plugin = nvim-surround;
+        type = "lua";
+        config = # lua
+          ''
+            require('nvim-surround').setup()
+          '';
+      }
+      #{
+      #  plugin = tailwindcss-colors-nvim;
+      #  type = "lua";
+      #  config = # lua
+      #    ''
+      #      require('tailwindcss-colors').setup()
+      #    '';
+      #}
+      #{
+      #  plugin = nvim-ts-context-commentstring;
+      #  type = "lua";
+      #  config = # lua
+      #    ''
+      #      require('ts_context_commentstring').setup {
+      #        enable_autocmd = false,
+      #      }
+      #    '';
+      #}
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        type = "lua";
+        config = # lua
+          ''
+            require'nvim-treesitter.configs'.setup {
+              highlight = {
+                enable = true,
+                disable = function(lang)
+                  return lang ~= "javascript"
+                    and lang ~= "tsx"
+                    and lang ~= "typescript"
+                    and lang ~= "astro"
+                    and lang ~= "css"
+                    and lang ~= "glsl"
+                    and lang ~= "nix"
+                    and lang ~= "prisma"
+                end,
+                additional_vim_regex_highlighting = true,
+              },
+            }
+          '';
+      }
+      # {
+      #   plugin = vista-vim;
+      #   config = # vim
+      #     ''
+      #       let g:vista_default_executive = 'nvim_lsp'
+      #       let g:vista_executive_for = {
+      #         \ 'rust': 'ctags',
+      #         \ }
+
+      #       autocmd QuitPre * silent! :Vista!
+      #     '';
+      # }
+      fzf-vim
+      vim-caddyfile
+      vim-graphql
+      vim-javascript
+      vim-jsx-pretty
+      rust-vim
+      yuck-vim
+      neoformat
+      vim-nix
+      # tagbar
+      # rainbow-delimiters-nvim
+    ];
+  };
+}
