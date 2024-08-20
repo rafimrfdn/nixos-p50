@@ -110,7 +110,7 @@
             wl-clipboard
             lua-language-server
             nixd #nix language server
-            # nodePackages.vscode-langservers-extracted
+            nodePackages.vscode-langservers-extracted
             nodePackages.typescript-language-server
             emmet-language-server
         ];
