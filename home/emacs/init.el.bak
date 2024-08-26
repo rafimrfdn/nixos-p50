@@ -1,7 +1,8 @@
 ;; (load "/home/nix/.config/home-manager/emacs/sanemacs.el" nil t)
 ;;(load "/home/nix/.dotfiles/home/emacs/sanemacs.el" nil t)
 
-(set-frame-font "iosevka 12" nil t)
+;; (set-frame-font "iosevka 12" nil t)
+(set-frame-font "CascadiaCodeNF 12" nil t)
 
 (transient-mark-mode 1)
 

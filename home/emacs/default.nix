@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{config, epkgs, ...}:
 
 {
   programs.emacs = {
@@ -13,11 +13,14 @@
       epkgs.org-roam
       epkgs.vertico
       epkgs.markdown-mode
-      epkgs.undo-tree  
+      epkgs.vterm
+      epkgs.neotree
+      epkgs.which-key
+      epkgs.dired-open
+      epkgs.sudo-edit
     ];
     extraConfig = ''
-      ${builtins.readFile ./sanemacs.el}
-      ${builtins.readFile ./init.el}
+      ${builtins.readFile ./init.org}
     '';
   };
 }
