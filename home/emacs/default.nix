@@ -20,7 +20,7 @@
       epkgs.sudo-edit
     ];
     extraConfig = ''
-      ${builtins.readFile ./init.org}
+      ${builtins.readFile ./init.el}
     '';
   };
 }
