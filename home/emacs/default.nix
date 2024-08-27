@@ -14,14 +14,19 @@
       epkgs.vertico
       epkgs.markdown-mode
       epkgs.vterm
+      epkgs.vterm-toggle
       epkgs.neotree
       epkgs.which-key
       epkgs.dired-open
       epkgs.sudo-edit
+      epkgs.evil-collection
+      epkgs.evil-tutor
+      epkgs.general
+      epkgs.org-bullets
     ];
     extraConfig = ''
+      ${builtins.readFile ./sanemacs.el}
       ${builtins.readFile ./init.el}
     '';
   };
 }
-

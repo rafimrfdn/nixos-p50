@@ -1,4 +1,19 @@
-(load "./sanemacs.el" nil t)
+;;; For packaged versions which must use `require'.
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+
+  ;;  Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+
+  ;; Load the theme of your choice.
+  (load-theme 'modus-vivendi-tinted)
+
+  (define-key global-map (kbd "<f5>") #'modus-themes-toggle)) ;; press F5 to toggle theme
 
 ;; Expands to: (elpaca evil (use-package evil :demand t))
 (use-package evil
@@ -78,9 +93,6 @@
 ;;  "t v" '(vterm-toggle :wk "Toggle vterm"))
 ;;)
 
-
-
-
 (use-package dired-open
   :config
   (setq dired-open-extensions '(("gif" . "sxiv")
@@ -100,6 +112,37 @@
 )
 
 ;;(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+
+;;; Useful Defaults
+  (setq-default cursor-type 'bar)           ; Line-style cursor similar to other text editors
+  (setq inhibit-startup-screen t)           ; Disable startup screen
+  (setq inhibit-startup-scratch t)
+  (setq initial-scratch-message "")         ; Make *scratch* buffer blank
+  (setq-default frame-title-format '("%b")) ; Make window title the buffer name
+  (setq ring-bell-function 'ignore)         ; Disable bell sound
+  (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
+  (show-paren-mode 1)                       ; Show closing parens by default
+  (setq linum-format "%4d ")                ; Line number format
+  (delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
+  (global-auto-revert-mode t)               ; Auto-update buffer if file has changed on disk
+  (use-package undo-tree                    ; Enable undo-tree, sane undo/redo behavior
+    :init (global-undo-tree-mode)
+    :config (setq-default undo-tree-auto-save-history nil))
+  (add-hook 'before-save-hook
+            'delete-trailing-whitespace)    ; Delete trailing whitespace on save
+
+  ;; Show line numbers in programming modes
+  (add-hook 'prog-mode-hook
+            (if (or
+                             ; If linum-mode doesn't exist...
+                             (not (fboundp 'linum-mode))
+                             ; ...or Emacs has display-line-numbers-mode capability
+                             (and (fboundp 'display-line-numbers-mode) (display-graphic-p)))
+                            ; ...then use display-line-numbers-mode!
+                'display-line-numbers-mode
+                          ; Otherwise, use linum-mode
+              'linum-mode))
+
 
 ;; Enable vertico
 (use-package vertico
@@ -231,21 +274,3 @@
 	which-key-max-description-length 25
 	which-key-allow-imprecise-window-fit t
 	which-key-separator " → " ))
-
-
-;;; For packaged versions which must use `require'.
-(use-package modus-themes
-  :ensure t
-  :config
-  ;; Add all your customizations prior to loading the themes
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil)
-
-  ;;  Maybe define some palette overrides, such as by using our presets
-  (setq modus-themes-common-palette-overrides
-        modus-themes-preset-overrides-intense)
-
-  ;; Load the theme of your choice.
-  (load-theme 'modus-vivendi-tinted)
-
-  (define-key global-map (kbd "<f5>") #'modus-themes-toggle)) ;; press F5 to toggle theme

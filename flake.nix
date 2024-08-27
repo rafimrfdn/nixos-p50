@@ -18,11 +18,12 @@
         user = "nix";
         lib = nixpkgs.lib;
         system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system}; 
+        # pkgs = nixpkgs.legacyPackages.${system}; 
     in {
         nixosConfigurations = {
             ${hostname} = lib.nixosSystem {
-                inherit system; 
+                # inherit system; 
+                inherit ${system}; 
                 modules = [ 
                     nixos-hardware.nixosModules.lenovo-thinkpad-p50
                     ./configuration.nix
@@ -34,7 +35,7 @@
                             users.${user}= import ./home/default.nix;
                             # from cristitus
                             # extraSpecialArgs = {inherit inputs self user;};
-                            backupFileExtension = "bakkkkkkkkk";
+                            backupFileExtension = "bakkkkkkkkkk";
                         };
                     }
                 ];
