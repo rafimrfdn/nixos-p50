@@ -154,7 +154,7 @@ static Key keys[] = {
   	// File explorer
   	{ MODKEY,                       XK_e, spawn, SHCMD("nautilus") },
   	// Browser
-  	{ MODKEY,                       XK_w, spawn, SHCMD("firefox") },
+  	{ MODKEY,                       XK_w, spawn, SHCMD("firefox-esr") },
   	// Screenshot
   	{ 0,                            XK_Print,  spawn, SHCMD("scrot 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },
   	{ 0|ShiftMask,                  XK_Print,  spawn, SHCMD("scrot -s 'scrot_%Y-%m-%d_%X.png' -e 'mv $f ~/Pictures/'") },

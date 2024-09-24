@@ -1,6 +1,14 @@
-{config, epkgs, ...}:
+{config, pkgs, ...}:
 
 {
+
+    services.emacs = {
+        enable = true;
+        client.enable = true;
+        socketActivation.enable = true;
+        startWithUserSession = "graphical";
+    };
+
   programs.emacs = {
     enable = true;
     extraPackages = epkgs: [
@@ -25,7 +33,6 @@
       epkgs.org-bullets
     ];
     extraConfig = ''
-      ${builtins.readFile ./sanemacs.el}
       ${builtins.readFile ./init.el}
     '';
   };

@@ -12,7 +12,7 @@
             ./greetd/default.nix
             ./dwm/default.nix
             # ./sway/default.nix
-            # ./apache/default.nix
+            ./apache/default.nix
             # ./mime/default.nix
         ];
 
@@ -365,7 +365,7 @@ networking = {
 # List packages installed in system profile. To search, run:
 # $ nix search wget
     environment.systemPackages = with pkgs; [
-        # gcc       # must have one linux compiler like gcc or cc etc.
+        gcc       # must have one linux compiler like gcc or cc etc.
         # gnumake
         zig         # this is alternative to gcc, cc, act like compiler but faster 
         go

@@ -109,8 +109,8 @@
 
 ;;; Load wheatgrass as the default theme if one is not loaded already
 
-(if (not custom-enabled-themes)
-    (load-theme 'modus-vivendi-tinted))
+;;(if (not custom-enabled-themes)
+;;    (load-theme 'modus-vivendi-tinted))
     ;; (load-theme 'wheatgrass t))
 
 (defun reload-config ()

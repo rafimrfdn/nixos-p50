@@ -22,8 +22,7 @@
     in {
         nixosConfigurations = {
             ${hostname} = lib.nixosSystem {
-                # inherit system; 
-                inherit ${system}; 
+                inherit system; 
                 modules = [ 
                     nixos-hardware.nixosModules.lenovo-thinkpad-p50
                     ./configuration.nix
@@ -35,7 +34,7 @@
                             users.${user}= import ./home/default.nix;
                             # from cristitus
                             # extraSpecialArgs = {inherit inputs self user;};
-                            backupFileExtension = "bakkkkkkkkkk";
+                            backupFileExtension = "bakkkkkkkkkkk";
                         };
                     }
                 ];

@@ -1,4 +1,21 @@
-(load "./sanemacs.el" nil t)
+(load "~/.emacs.d/sanemacs.el" nil t)
+
+;;; For packaged versions which must use `require'.
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+
+  ;;  Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+
+  ;; Load the theme of your choice.
+  (load-theme 'modus-vivendi-tinted)
+
+  (define-key global-map (kbd "<F5>") #'modus-themes-toggle)) ;; press F5 to toggle theme
 
 ;; Expands to: (elpaca evil (use-package evil :demand t))
 (use-package evil
@@ -8,14 +25,12 @@
     (setq evil-vsplit-window-right t)
     (setq evil-split-window-below t)
     (evil-mode))
-  (use-package evil-collection
+(use-package evil-collection
     :after evil
     :config
     (setq evil-collection-mode-list '(dashboard dired ibuffer))
     (evil-collection-init))
-  (use-package evil-tutor)
-
-
+(use-package evil-tutor)
 
 
 ;;(use-package general
@@ -141,29 +156,29 @@
 (global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+;;(menu-bar-mode -1)
+;;(tool-bar-mode -1)
+;;(scroll-bar-mode -1)
 
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
 
-(use-package neotree
-  :config
-  (setq neo-smart-open t
-        neo-show-hidden-files t
-        neo-window-width 55
-        neo-window-fixed-size nil
-        inhibit-compacting-font-caches t
-        projectile-switch-project-action 'neotree-projectile-action)
-        ;; truncate long file names in neotree
-        (add-hook 'neo-after-create-hook
-           #'(lambda (_)
-               (with-current-buffer (get-buffer neo-buffer-name)
-                 (setq truncate-lines t)
-                 (setq word-wrap nil)
-                 (make-local-variable 'auto-hscroll-mode)
-                 (setq auto-hscroll-mode nil)))))
+;; (use-package neotree
+;;   :config
+;;   (setq neo-smart-open t
+;;         neo-show-hidden-files t
+;;         neo-window-width 55
+;;         neo-window-fixed-size nil
+;;         inhibit-compacting-font-caches t
+;;         projectile-switch-project-action 'neotree-projectile-action)
+;;         ;; truncate long file names in neotree
+;;         (add-hook 'neo-after-create-hook
+;;            #'(lambda (_)
+;;                (with-current-buffer (get-buffer neo-buffer-name)
+;;                  (setq truncate-lines t)
+;;                  (setq word-wrap nil)
+;;                  (make-local-variable 'auto-hscroll-mode)
+;;                  (setq auto-hscroll-mode nil)))))
 
 (use-package toc-org
     :commands toc-org-enable
@@ -233,19 +248,3 @@
 	which-key-separator " → " ))
 
 
-;;; For packaged versions which must use `require'.
-(use-package modus-themes
-  :ensure t
-  :config
-  ;; Add all your customizations prior to loading the themes
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil)
-
-  ;;  Maybe define some palette overrides, such as by using our presets
-  (setq modus-themes-common-palette-overrides
-        modus-themes-preset-overrides-intense)
-
-  ;; Load the theme of your choice.
-  (load-theme 'modus-vivendi-tinted)
-
-  (define-key global-map (kbd "<f5>") #'modus-themes-toggle)) ;; press F5 to toggle theme

@@ -156,26 +156,27 @@
   lxappearance
 
   acpi
-  copyq
+  # copyq
   corefonts # we need windows fonts on libreoffice
   easyeffects
   # eog
   ffmpeg # for mpv
   ffmpegthumbnailer
-  firefox
-  gcc
-  gimp
+  # firefox
+  # firefox-esr
+  # gcc
+  # gimp
   git
   gnumake
   gparted
-  hugo
+  # hugo
   imagemagick
   inkscape
   keepassxc
   killall
   lazygit
   luajit
-  lutris
+  # lutris
   # nautilus
   neofetch
   networkmanagerapplet
@@ -243,6 +244,9 @@
   # deno
   # nodejs
   # turso-cli
+  # gimp
+  # firefox-esr
+  # hugo
 
   # Hyprland needed apps
   # xdg-desktop-portal-hyprland

@@ -38,6 +38,7 @@
       hse="hugo serve --environment production";
       nrs="npm run start";
       dev="npm run dev";
+      firefox="firefox-esr";
       
       #TMUX
       ta="tmux attach -t";
