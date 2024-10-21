@@ -107,10 +107,12 @@ networking = {
     hardware.graphics= {
         enable = true;
         extraPackages = with pkgs; [
-            intel-media-driver
-                vaapiIntel
-                vaapiVdpau
-                libvdpau-va-gl
+            #intel-media-driver
+            #vaapiIntel
+            #vaapiVdpau
+            #libvdpau-va-gl
+            intel-media-sdk
+            vpl-gpu-rt
         ];
         # driSupport = true;
         # driSupport32Bit = true;
@@ -310,12 +312,12 @@ networking = {
                 "input" 
                 "storage" 
                 "libvirtd"
-                "docker"
+                # "docker"
             ];
             # shell = pkgs.zsh;
             packages = with pkgs; [
-                php82
-                php82Packages.composer
+                php83
+                php83Packages.composer
                 mariadb
             ];
         };
@@ -340,13 +342,13 @@ networking = {
 # Virtualization with qemu kvm
     virtualisation = {
         libvirtd.enable = true;
-        docker = {                      # Enable Docker
-                enable = true;
-                rootless = {            # this will run docker without root access
-                    enable = true;
-                    setSocketVariable = true;
-                };
-            };
+        # docker = {                      # Enable Docker
+        #         enable = true;
+        #         rootless = {            # this will run docker without root access
+        #             enable = true;
+        #             setSocketVariable = true;
+        #         };
+        #     };
         };
     programs.virt-manager.enable = true;
 

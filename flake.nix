@@ -3,11 +3,10 @@
     inputs = {
         nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Add hardware module for Thinkpad P50, this will activate and optimize nvidia driver.
         nixpkgs.url = "nixpkgs/nixos-unstable";
+        #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
         home-manager.url = "github:nix-community/home-manager/master";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
-
-
 
 
 
