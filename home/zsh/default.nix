@@ -73,7 +73,8 @@
       # useTheme = "agnoster";
       # useTheme = "json";
       # useTheme = "material";
-      useTheme = "cobalt2";
+      # useTheme = "cobalt2";
+       useTheme = "powerlevel10k_lean";
         # settings = {
         #     "$schema" = "https =//raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
         #     "blocks" = [

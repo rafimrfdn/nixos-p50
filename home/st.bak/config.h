@@ -5,8 +5,21 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-static int borderpx = 2;
+// static char *font = "Iosevka:pixelsize=16:antialias=true:autohint=true";
+//static char *font = "Iosevka:style=Medium:pixelsize=16:antialias=true:autohint=true";
+//static char *font = "Cascadia Code:pixelsize=14:antialias=true:autohint=true";
+static char *font = "Cascadia Code:style=Medium:pixelsize=16:antialias=true:autohint=true";
+/* Spare fonts */
+static char *font2[] = {
+	// "Symbols Nerd Font:style=2048-em:size=16:antialias=true:autohint=true",
+	// "Hack Nerd Font:style=Regular:size=16:antialias=true:autohint=true",
+	//  "Noto Color Emoji:size=10:antialias=true:autohint=true",
+	//  "Noto Sans Symbols:size=12:antialias=true:autohint=true"
+	 "Symbols Nerd Font:size=16",
+	 "Hack Nerd Font:size=16",
+	 "Noto Sans Symbols:size=16"
+};
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -16,7 +29,7 @@ static int borderpx = 2;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/sh";
+static char *shell = "/run/current-system/sw/bin/sh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
@@ -27,7 +40,11 @@ char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
+//static float chscale = .92;
 static float chscale = 1.0;
+/* Character rendering offsets in pixels */
+static short cxoffset = 0;
+static short cyoffset = 0;
 
 /*
  * word delimiter string
@@ -53,7 +70,7 @@ int allowwindowops = 0;
  * near minlatency, but it waits longer for slow updates to avoid partial draw.
  * low minlatency will tear/flicker more, as it can "detect" idle too early.
  */
-static double minlatency = 2;
+static double minlatency = 8;
 static double maxlatency = 33;
 
 /*
@@ -93,29 +110,76 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+/* bg opacity */
+float alpha = 0.8;
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	// /* 8 normal colors */
+	// "black",
+	// "red3",
+	// "green3",
+	// "yellow3",
+	// "blue2",
+	// "magenta3",
+	// "cyan3",
+	// "gray90",
+	//
+	// /* 8 bright colors */
+	// "gray50",
+	// "red",
+	// "green",
+	// "yellow",
+	// "#5c5cff",
+	// "magenta",
+	// "cyan",
+	// "white",
+	//
+	// [255] = 0,
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
-
-	[255] = 0,
+    /* solarized colors */
+    [0] = "#073642", /* black   */
+    [1] = "#dc322f", /* red     */
+    [2] = "#859900", /* green   */
+    [3] = "#b58900", /* yellow  */
+    [4] = "#268bd2", /* blue    */
+    [5] = "#d33682", /* magenta */
+    [6] = "#2aa198", /* cyan    */
+    [7] = "#eee8d5", /* white   */
+                                  
+    /* 8 bright colors */
+    [8]  = "#002b36", /* black   */
+    [9]  = "#cb4b16", /* red     */
+    [10] = "#586e75", /* green   */
+    [11] = "#657b83", /* yellow  */
+    [12] = "#839496", /* blue    */
+    [13] = "#6c71c4", /* magenta */
+    [14] = "#93a1a1", /* cyan    */
+    [15] = "#fdf6e3", /* white   */
+	
+    // /* 8 normal colors */
+    // [0] = "#000000", /* black   */
+    // [1] = "#ff5555", /* red     */
+    // [2] = "#50fa7b", /* green   */
+    // [3] = "#f1fa8c", /* yellow  */
+    // [4] = "#bd93f9", /* blue    */
+    // [5] = "#ff79c6", /* magenta */
+    // [6] = "#8be9fd", /* cyan    */
+    // [7] = "#bbbbbb", /* white   */
+    //                               
+    // /* 8 bright colors */
+    // [8]  = "#44475a", /* black   */
+    // [9]  = "#ff5555", /* red     */
+    // [10] = "#50fa7b", /* green   */
+    // [11] = "#f1fa8c", /* yellow  */
+    // [12] = "#bd93f9", /* blue    */
+    // [13] = "#ff79c6", /* magenta */
+    // [14] = "#8be9fd", /* cyan    */
+    // [15] = "#ffffff", /* white   */
+                                   
+    /* special colors */
+    [256] = "#282a36", /* background */
+    [257] = "#f8f8f2", /* foreground */
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
@@ -129,10 +193,24 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+// unsigned int defaultfg = 258;
+// unsigned int defaultbg = 259;
+// unsigned int defaultcs = 256;
+//
+// unsigned int defaultfg = 257;
+// unsigned int defaultbg = 256;
+// unsigned int defaultcs = 257;
+// static unsigned int defaultrcs = 257;
+//
+
+// for solarized
+unsigned int defaultfg = 12;
+unsigned int defaultbg = 8;
+unsigned int defaultcs = 14;
+static unsigned int defaultrcs = 15;
+
+unsigned int defaultitalic = 7;
+unsigned int defaultunderline = 7;
 
 /*
  * Default shape of cursor
@@ -201,6 +279,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*

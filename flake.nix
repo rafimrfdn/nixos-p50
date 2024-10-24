@@ -33,7 +33,7 @@
                             users.${user}= import ./home/default.nix;
                             # from cristitus
                             # extraSpecialArgs = {inherit inputs self user;};
-                            backupFileExtension = "bakkkkkkkkkkk";
+                            backupFileExtension = "bakkkkkkkkkkkk";
                         };
                     }
                 ];

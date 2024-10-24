@@ -1,0 +1,445 @@
+diff --git a/Makefile b/Makefile
+index 470ac86..b095566 100644
+--- a/Makefile
++++ b/Makefile
+@@ -15,8 +15,14 @@ options:
+ 	@echo "LDFLAGS = $(STLDFLAGS)"
+ 	@echo "CC      = $(CC)"
+ 
+-config.h:
+-	cp config.def.h config.h
++theme.h:
++	./xtheme
++
++theme_beg.h:
++	./themesetup
++
++config.h: theme.h
++	cp -n config.def.h config.h
+ 
+ .c.o:
+ 	$(CC) $(STCFLAGS) -c $<
+@@ -24,13 +30,14 @@ config.h:
+ st.o: config.h st.h win.h
+ x.o: arg.h config.h st.h win.h
+ 
+-$(OBJ): config.h config.mk
++$(OBJ): config.h theme_beg.h config.mk
+ 
+ st: $(OBJ)
+ 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
++	rm -f theme_{beg,end}.h
+ 
+ clean:
+-	rm -f st $(OBJ) st-$(VERSION).tar.gz
++	rm -f st $(OBJ) theme_{beg,end}.h st-$(VERSION).tar.gz
+ 
+ dist: clean
+ 	mkdir -p st-$(VERSION)
+diff --git a/config.def.h b/config.def.h
+index 91ab8ca..084710e 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,11 +1,15 @@
+ /* See LICENSE file for copyright and license details. */
+ 
++/* theme management */
++# include "theme_beg.h" /* this is a compile-time generated header file */
++# include "theme.h"
++
+ /*
+  * appearance
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = ST_FONT;
+ static int borderpx = 2;
+ 
+ /*
+@@ -93,37 +97,43 @@ char *termname = "st-256color";
+  */
+ unsigned int tabspaces = 8;
+ 
++/* bg opacity */
++float alpha = ST_ALPHA;
++
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
+ 	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
++	ST_COLOR0,
++	ST_COLOR1,
++	ST_COLOR2,
++	ST_COLOR3,
++	ST_COLOR4,
++	ST_COLOR5,
++	ST_COLOR6,
++	ST_COLOR7,
+ 
+ 	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
++	ST_COLOR8,
++	ST_COLOR9,
++	ST_COLOR10,
++	ST_COLOR11,
++	ST_COLOR12,
++	ST_COLOR13,
++	ST_COLOR14,
++	ST_COLOR15,
+ 
+ 	[255] = 0,
+ 
+ 	/* more colors can be added after 255 to use with DefaultXX */
+-	"#cccccc",
+-	"#555555",
+-	"gray90", /* default foreground colour */
+-	"black", /* default background colour */
++	ST_CURSORCOLOR,
++	ST_REVCURCOLOR,
++	ST_FOREGROUND, /* default foreground colour */
++	ST_BACKGROUND, /* default background colour */
+ };
+ 
++/* theme management */
++# include "theme_end.h" /* this is a compile-time generated header file */
++
+ 
+ /*
+  * Default colors (colorname index)
+diff --git a/themes/Cyberpunk-Neon.h b/themes/Cyberpunk-Neon.h
+new file mode 100644
+index 0000000..d77a229
+--- /dev/null
++++ b/themes/Cyberpunk-Neon.h
+@@ -0,0 +1,18 @@
++# define ST_FOREGROUND "#0abdc6"
++# define ST_BACKGROUND "#000b1e"
++# define ST_COLOR0 "#123e7c"
++# define ST_COLOR1 "#ff0000"
++# define ST_COLOR2 "#d300c4"
++# define ST_COLOR3 "#f57800"
++# define ST_COLOR4 "#123e7c"
++# define ST_COLOR5 "#711c91"
++# define ST_COLOR6 "#0abdc6"
++# define ST_COLOR7 "#d7d7d5"
++# define ST_COLOR8 "#1c61c2"
++# define ST_COLOR9 "#ff0000"
++# define ST_COLOR10 "#d300c4"
++# define ST_COLOR11 "#f57800"
++# define ST_COLOR12 "#00ff00"
++# define ST_COLOR13 "#711c91"
++# define ST_COLOR14 "#0abdc6"
++# define ST_COLOR15 "#d7d7d5"
+diff --git a/themes/catppuccin.h b/themes/catppuccin.h
+new file mode 100644
+index 0000000..6642319
+--- /dev/null
++++ b/themes/catppuccin.h
+@@ -0,0 +1,18 @@
++# define ST_FOREGROUND "#D9E0EE"
++# define ST_BACKGROUND "#1E1E2E"
++# define ST_COLOR0 "#6E6C7E"
++# define ST_COLOR1 "#F28FAD"
++# define ST_COLOR2 "#ABE9B3"
++# define ST_COLOR3 "#FAE3B0"
++# define ST_COLOR4 "#96CDFB"
++# define ST_COLOR5 "#DDB6F2"
++# define ST_COLOR6 "#F5C2E7"
++# define ST_COLOR7 "#C3BAC6"
++# define ST_COLOR8 "#988BA2"
++# define ST_COLOR9 "#F28FAD"
++# define ST_COLOR10 "#ABE9B3"
++# define ST_COLOR11 "#FAE3B0"
++# define ST_COLOR12 "#96CDFB"
++# define ST_COLOR13 "#DDB6F2"
++# define ST_COLOR14 "#F5C2E7"
++# define ST_COLOR15 "#D9E0EE"
+diff --git a/themes/dracula.h b/themes/dracula.h
+new file mode 100644
+index 0000000..1961616
+--- /dev/null
++++ b/themes/dracula.h
+@@ -0,0 +1,18 @@
++# define ST_FOREGROUND "#F8F8F2"
++# define ST_BACKGROUND "#282A36"
++# define ST_COLOR0 "#000000"
++# define ST_COLOR1 "#FF5555"
++# define ST_COLOR2 "#50FA7B"
++# define ST_COLOR3 "#F1FA8C"
++# define ST_COLOR4 "#BD93F9"
++# define ST_COLOR5 "#FF79C6"
++# define ST_COLOR6 "#8BE9FD"
++# define ST_COLOR7 "#BFBFBF"
++# define ST_COLOR8 "#4D4D4D"
++# define ST_COLOR9 "#FF6E67"
++# define ST_COLOR10 "#5AF78E"
++# define ST_COLOR11 "#F4F99D"
++# define ST_COLOR12 "#CAA9FA"
++# define ST_COLOR13 "#FF92D0"
++# define ST_COLOR14 "#9AEDFE"
++# define ST_COLOR15 "#E6E6E6"
+diff --git a/themes/dwan.h b/themes/dwan.h
+new file mode 100644
+index 0000000..6446c11
+--- /dev/null
++++ b/themes/dwan.h
+@@ -0,0 +1,19 @@
++# define ST_FOREGROUND "#9b9081"
++# define ST_BACKGROUND "#181b20"
++# define ST_CURSORCOLOR "#9b9081"
++# define ST_COLOR0 "#353535"
++# define ST_COLOR1 "#744b40"
++# define ST_COLOR2 "#6d6137"
++# define ST_COLOR3 "#765636"
++# define ST_COLOR4 "#61564b"
++# define ST_COLOR5 "#6b4a49"
++# define ST_COLOR6 "#435861"
++# define ST_COLOR7 "#b3b3b3"
++# define ST_COLOR8 "#5f5f5f"
++# define ST_COLOR9 "#785850"
++# define ST_COLOR10 "#6f6749"
++# define ST_COLOR11 "#776049"
++# define ST_COLOR12 "#696057"
++# define ST_COLOR13 "#6f5a59"
++# define ST_COLOR14 "#525f66"
++# define ST_COLOR15 "#cdcdcd"
+diff --git a/themes/gruvbox-dark.h b/themes/gruvbox-dark.h
+new file mode 100644
+index 0000000..c7901e8
+--- /dev/null
++++ b/themes/gruvbox-dark.h
+@@ -0,0 +1,18 @@
++# define ST_FOREGROUND "#ebdbb2"
++# define ST_BACKGROUND "#282828"
++# define ST_COLOR0 "#282828"
++# define ST_COLOR1 "#cc241d"
++# define ST_COLOR2 "#98971a"
++# define ST_COLOR3 "#d79921"
++# define ST_COLOR4 "#458588"
++# define ST_COLOR5 "#b16286"
++# define ST_COLOR6 "#689d6a"
++# define ST_COLOR7 "#a89984"
++# define ST_COLOR8 "#928374"
++# define ST_COLOR9 "#fb4934"
++# define ST_COLOR10 "#b8bb26"
++# define ST_COLOR11 "#fabd2f"
++# define ST_COLOR12 "#83a598"
++# define ST_COLOR13 "#d3869b"
++# define ST_COLOR14 "#8ec07c"
++# define ST_COLOR15 "#ebdbb2"
+diff --git a/themes/leet.h b/themes/leet.h
+new file mode 100644
+index 0000000..e149a2d
+--- /dev/null
++++ b/themes/leet.h
+@@ -0,0 +1,21 @@
++# define ST_ALPHA .75F
++# define ST_FOREGROUND "#FF0000"
++# define ST_BACKGROUND "#080000"
++# define ST_CURSORCOLOR "#D40000"
++# define ST_REVCURCOLOR "#FF0000"
++# define ST_COLOR0 "#010008"
++# define ST_COLOR1 "#A71B1A"
++# define ST_COLOR2 "#3B8526"
++# define ST_COLOR3 "#E49202"
++# define ST_COLOR4 "#1D576D"
++# define ST_COLOR5 "#97219C"
++# define ST_COLOR6 "#24866F"
++# define ST_COLOR7 "#B5AD64"
++# define ST_COLOR8 "#1C1C1C"
++# define ST_COLOR9 "#BF3130"
++# define ST_COLOR10 "#58A642"
++# define ST_COLOR11 "#FFB026"
++# define ST_COLOR12 "#4169E1"
++# define ST_COLOR13 "#A7248C"
++# define ST_COLOR14 "#37A48D"
++# define ST_COLOR15 "#CEC67D"
+diff --git a/themes/redish.h b/themes/redish.h
+new file mode 100644
+index 0000000..51fedfc
+--- /dev/null
++++ b/themes/redish.h
+@@ -0,0 +1,20 @@
++# define ST_FOREGROUND "#FF0000"
++# define ST_BACKGROUND "#1C0F0F"
++# define ST_CURSORCOLOR "#D40000"
++# define ST_REVCURCOLOR "#FF0000"
++# define ST_COLOR0 "#1C0F11"
++# define ST_COLOR1 "#752323"
++# define ST_COLOR2 "#D96767"
++# define ST_COLOR3 "#FF0000"
++# define ST_COLOR4 "#523F3F"
++# define ST_COLOR5 "#993131"
++# define ST_COLOR6 "#B45050"
++# define ST_COLOR7 "#735050"
++# define ST_COLOR8 "#806060"
++# define ST_COLOR9 "#C02F2F"
++# define ST_COLOR10 "#D76262"
++# define ST_COLOR11 "#FF0000"
++# define ST_COLOR12 "#7E4F4F"
++# define ST_COLOR13 "#FF1111"
++# define ST_COLOR14 "#FF8A8A"
++# define ST_COLOR15 "#8C6161"
+diff --git a/themes/solarized-dark.h b/themes/solarized-dark.h
+new file mode 100644
+index 0000000..4dabf4b
+--- /dev/null
++++ b/themes/solarized-dark.h
+@@ -0,0 +1,19 @@
++# define ST_FOREGROUND "#839496"
++# define ST_BACKGROUND "#002b36"
++# define ST_CURSORCOLOR "#93a1a1"
++# define ST_COLOR0 "#073642"
++# define ST_COLOR1 "#dc322f"
++# define ST_COLOR2 "#859900"
++# define ST_COLOR3 "#b58900"
++# define ST_COLOR4 "#268bd2"
++# define ST_COLOR5 "#d33682"
++# define ST_COLOR6 "#2aa198"
++# define ST_COLOR7 "#eee8d5"
++# define ST_COLOR8 "#002b36"
++# define ST_COLOR9 "#cb4b16"
++# define ST_COLOR10 "#586e75"
++# define ST_COLOR11 "#657b83"
++# define ST_COLOR12 "#839496"
++# define ST_COLOR13 "#6c71c4"
++# define ST_COLOR14 "#93a1a1"
++# define ST_COLOR15 "#fdf6e3"
+diff --git a/themes/sweetlove.h b/themes/sweetlove.h
+new file mode 100644
+index 0000000..5c85bd0
+--- /dev/null
++++ b/themes/sweetlove.h
+@@ -0,0 +1,19 @@
++# define ST_FOREGROUND "#c0b18b"
++# define ST_BACKGROUND "#1f1f1f"
++# define ST_CURSORCOLOR "#c0b18b"
++# define ST_COLOR0 "#4a3637"
++# define ST_COLOR1 "#d17b49"
++# define ST_COLOR2 "#7b8748"
++# define ST_COLOR3 "#af865a"
++# define ST_COLOR4 "#535c5c"
++# define ST_COLOR5 "#775759"
++# define ST_COLOR6 "#6d715e"
++# define ST_COLOR7 "#c0b18b"
++# define ST_COLOR8 "#402e2e"
++# define ST_COLOR9 "#ac5d2f"
++# define ST_COLOR10 "#647035"
++# define ST_COLOR11 "#8f6840"
++# define ST_COLOR12 "#444b4b"
++# define ST_COLOR13 "#614445"
++# define ST_COLOR14 "#585c49"
++# define ST_COLOR15 "#978965"
+diff --git a/themesetup b/themesetup
+new file mode 100755
+index 0000000..e8710c1
+--- /dev/null
++++ b/themesetup
+@@ -0,0 +1,5 @@
++#!/bin/sh
++
++echo \# if $(cat theme.h | cut -d' ' -f3 | sed "s/^/defined /;s/$/ ||/" | tr "\n" " ") 0 > theme_beg.h
++echo -e "# error (conflicting macro names)\n# endif" >> theme_beg.h
++cat theme.h | cut -d' ' -f3 | sed "s/^/# undef /;" > theme_end.h
+diff --git a/xtable.md b/xtable.md
+new file mode 100644
+index 0000000..9f51f33
+--- /dev/null
++++ b/xtable.md
+@@ -0,0 +1,24 @@
++|	TYPE    |	RESOURCE		|	DEFAULT VALUE													|	[ALTERNATIVE RESOURCE]	|
++|:---------:|:-----------------:|:-----------------------------------------------------------------:|:-------------------------:|
++|	S		|	font			|	Liberation Mono:pixelsize=12:antialias=true:autohint=true		|							|
++|	F		|	alpha			|	1																|							|
++|	S		|	foreground		|	gray90															|							|
++|	S		|	background		|	black															|							|
++|	S		|	cursorColor		|	#cccccc															|							|
++|	S		|	revCurColor		|	#555555															|							|
++|	S		|	color0			|	black															|							|
++|	S		|	color1			|	red3															|							|
++|	S		|	color2			|	green3															|							|
++|	S		|	color3			|	yellow3															|							|
++|	S		|	color4			|	blue2															|							|
++|	S		|	color5			|	magenta3														|							|
++|	S		|	color6			|	cyan3															|							|
++|	S		|	color7			|	gray90															|							|
++|	S		|	color8			|	gray50															|							|
++|	S		|	color9			|	red																|							|
++|	S		|	color10			|	green															|							|
++|	S		|	color11			|	yellow															|							|
++|	S		|	color12			|	#5c5cff															|							|
++|	S		|	color13			|	magenta															|							|
++|	S		|	color14			|	cyan															|							|
++|	S		|	color15			|	white															|							|
+diff --git a/xtheme b/xtheme
+new file mode 100755
+index 0000000..1c96534
+--- /dev/null
++++ b/xtheme
+@@ -0,0 +1,51 @@
++#!/bin/sh
++
++prefix=st
++themeout=theme.h
++xtable=xtable.md
++
++rm -f $themeout
++
++set_resource ()
++{
++	T=$1
++	M=$2
++	V=$3
++
++	case $T in
++		S)
++			V=\"$V\"
++			;;
++		SA)
++			V="{\"$(echo $V | sed 's/, /", "/g')\"}"
++	esac
++
++	[[ $V == '{""}' ]] && V="{}"
++
++	echo "# define $M $V" >> $themeout
++}
++
++cat "$xtable"											|
++	sed '1,2d;s/\t*|\t*/|/g;s/\(^|\)\|\(|$\)//g'		|
++	while IFS='|' read T R D A
++	do
++		m=$(echo "$prefix"'_'"$R" | tr '[:lower:]' '[:upper:]')
++
++		l=''
++
++		for r in "$R" "$A"
++		do
++			[[ "$r" == '' ]] && continue
++
++			l=$(xgetres "$prefix.$r")
++
++			if [[ "$l" != '' ]]
++			then
++				set_resource $T $m "$l"
++				break
++			fi
++		done
++
++		[[ "$l" == '' ]] &&
++			set_resource $T $m "$D"
++	done
