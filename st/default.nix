@@ -35,10 +35,11 @@ let
 
       # Specify the patches you want to apply
       patches = [
-        ./patches/st-scrollback-0.8.5.diff
+        # ./patches/st-scrollback-0.8.5.diff
+        ./patches/st-scrollback-0.9.2.diff
         ./patches/st-font2-0.8.5.diff
-        ./patches/st-glyph-wide-support-20220411-ef05519.diff
-        ./patches/st-charoffsets-20220311-0.8.5.diff
+        # ./patches/st-glyph-wide-support-20220411-ef05519.diff
+        # ./patches/st-charoffsets-20220311-0.8.5.diff
         ./patches/st-vertcenter.diff
         # Add more patches as needed
       ];
