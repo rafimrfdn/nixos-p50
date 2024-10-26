@@ -368,8 +368,8 @@ networking = {
 # $ nix search wget
     environment.systemPackages = with pkgs; [
         gcc       # must have one linux compiler like gcc or cc etc.
-        # gnumake
-        zig         # this is alternative to gcc, cc, act like compiler but faster 
+        gnumake   # must have this for build ST dan DWM
+        zig       # this is alternative to gcc, cc, act like compiler but faster 
         go
     ];
 
