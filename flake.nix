@@ -9,8 +9,6 @@
     };
 
 
-
-
     outputs = inputs@{ self, nixpkgs, home-manager, nixos-hardware, ...}: # self is must have
     let 
         hostname = "nixhost";
@@ -33,7 +31,7 @@
                             users.${user}= import ./home/default.nix;
                             # from cristitus
                             # extraSpecialArgs = {inherit inputs self user;};
-                            backupFileExtension = "bakkkkkkkkkkkk";
+                            backupFileExtension = "bakkkkkkkkkkkkk";
                         };
                     }
                 ];

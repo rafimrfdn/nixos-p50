@@ -58,7 +58,10 @@ in
   nixpkgs.overlays = [ myOverlay ];
 
   # Use Home Manager to install the st package
-  home.packages = with pkgs; [
+  # home.packages = with pkgs; [
+  #   st
+  # ];
+ environment.systemPackages = with pkgs; [
     st
   ];
 }
