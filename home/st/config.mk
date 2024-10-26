@@ -1,5 +1,5 @@
 # st version
-VERSION = 0.9.2
+VERSION = 0.9
 
 # Customize below to fit your system
 
