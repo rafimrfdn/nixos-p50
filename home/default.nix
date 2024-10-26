@@ -11,7 +11,7 @@
    ./neovim/default.nix
    ./helix/default.nix
    ./emacs/default.nix
-   ./st/default.nix
+   # ./st/default.nix
    ./gtk/default.nix
    ./kitty/default.nix
    ./mpv/default.nix
