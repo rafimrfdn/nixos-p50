@@ -37,11 +37,14 @@ static const char *const autostart[] = {
   "xrdb", "-merge", ".Xresources", NULL,
   "xset", "r", "rate", "300", "50", NULL,
   "xset", "mouse", "5", "1", NULL, 
+  // "dwm-status", "~/.dotfiles/dwm/dwmstatusconfig.toml", NULL,
   "sh", ".fehbg", NULL, 
   "copyq", NULL,
   "picom", NULL,
+  "nm-applet", NULL,
 //  "pasystray", NULL,
   "volumeicon", NULL,
+  "sh", "/home/nix/dwm-status.sh", NULL,
   NULL /* terminate */
 };
 

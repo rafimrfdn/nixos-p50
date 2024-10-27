@@ -1,5 +1,6 @@
-order = ["audio", "backlight", "cpu_load", "network", "time"]
-separator = "    "
+order = ["audio", "backlight", "time", "battery"]
+# separator = "    "
+separator = "  |  "
 
 [audio]
 control = "Master"
@@ -33,3 +34,5 @@ template = "{IPv4} · {IPv6} · {ESSID}"
 [time]
 format = "%d-%m-%Y %H:%M"
 update_seconds = false
+
+

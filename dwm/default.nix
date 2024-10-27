@@ -13,7 +13,7 @@
           while true;do
             dbus-launch --exit-with-session dwm > /dev/null 2>&1
           done
-          exec dwm && dwm-status /home/nix/.dotfiles/dwm/dwmstatusconfig.toml
+          exec dwm
         fi
 	'';
       # enableCompletion = true;
