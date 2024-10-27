@@ -11,7 +11,7 @@
             ./boot/default.nix
             ./greetd/default.nix
             ./dwm/default.nix
-            ./dwmstatus.nix
+            ./dwmstatus/default.nix
             ./st/default.nix
             # ./sway/default.nix
             ./apache/default.nix
