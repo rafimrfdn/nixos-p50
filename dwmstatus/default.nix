@@ -1,6 +1,6 @@
-{ lib, rustPlatform, fetchFromGitHub, dbus, gdk-pixbuf, libnotify, makeWrapper, pkg-config, xorg
+{ config, lib, rustPlatform, fetchFromGitHub, dbus, gdk-pixbuf, libnotify, makeWrapper, pkg-config, xorg
 , enableAlsaUtils ? true, alsa-utils, coreutils
-, enableNetwork ? true, dnsutils, iproute2, wirelesstools }:
+, enableNetwork ? true, dnsutils, iproute2, wirelesstools, ... }:
 
 let
   bins = lib.optionals enableAlsaUtils [ alsa-utils coreutils ]
@@ -11,12 +11,13 @@ rustPlatform.buildRustPackage rec {
   pname = "dwm-status";
   version = "1.8.1";
 
-  src = fetchFromGitHub {
-    owner = "Gerschtli";
-    repo = pname;
-    rev = version;
-    sha256 = "sha256-GkTPEmsnHFLUvbasAOXOQjFKs1Y9aaG87uyPvnQaT8Y=";
-  };
+  # src = fetchFromGitHub {
+  #   owner = "Gerschtli";
+  #   repo = pname;
+  #   rev = version;
+  #   sha256 = "sha256-GkTPEmsnHFLUvbasAOXOQjFKs1Y9aaG87uyPvnQaT8Y=";
+  # };
+        src = "./dwm-status";
 
   nativeBuildInputs = [ makeWrapper pkg-config ];
   buildInputs = [ dbus gdk-pixbuf libnotify xorg.libX11 ];

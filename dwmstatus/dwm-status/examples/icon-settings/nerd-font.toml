@@ -1,0 +1,17 @@
+order = ["audio", "backlight", "cpu_load", "network", "time"]
+separator = "    "
+
+[audio]
+mute = "ﱝ"
+template = "{ICO} {VOL}%"
+icons = ["奄", "奔", "墳"]
+
+[backlight]
+template = "{ICO} {BL}%"
+icons = ["", "", ""]
+
+[battery]
+charging = ""
+discharging = ""
+no_battery = ""
+icons = ["", "", "", "", "", "", "", "", "", "", ""]

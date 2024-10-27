@@ -1,0 +1,119 @@
+name: Build and test
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: 0 0 * * 1
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        rust:
+          - stable
+          - beta
+          - nightly
+          - 1.72.0
+        include:
+          - rust: nightly
+            components: clippy, rustfmt
+            cargo-flags: --features mocking
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: ${{ matrix.rust }}
+          components: ${{ matrix.components }}
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/registry
+          key: ${{ matrix.rust }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ matrix.rust }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}-
+            ${{ matrix.rust }}-cargo-registry-
+
+      - name: Cache cargo index
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/git
+          key: ${{ matrix.rust }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ matrix.rust }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}-
+            ${{ matrix.rust }}-cargo-index-
+
+      - name: Cache cargo build
+        uses: actions/cache@v4
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ matrix.rust }}-cargo-build-target-
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libdbus-1-dev libgdk-pixbuf2.0-dev libglib2.0-dev libnotify-dev
+
+      - name: Install tarpaulin
+        if: matrix.rust == 'nightly'
+        run: |
+          sudo apt-get install libssl-dev
+          RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
+
+      - name: Check coding style
+        if: matrix.rust == 'nightly'
+        run: cargo fmt -- --verbose --check
+
+      - name: Build package
+        run: |
+          cargo check --verbose ${{ matrix.cargo-flags }}
+          cargo build --verbose ${{ matrix.cargo-flags }}
+
+      - name: Check clippy errors
+        if: matrix.rust == 'nightly'
+        run: cargo clippy --verbose ${{ matrix.cargo-flags }}
+
+      - name: Run cargo tests
+        if: matrix.rust == 'nightly'
+        run: cargo test --verbose ${{ matrix.cargo-flags }}
+
+      - name: Generate and push code coverage data
+        if: matrix.rust == 'nightly'
+        run: |
+          RUST_BACKTRACE=full cargo tarpaulin --out xml
+          bash <(curl -s https://codecov.io/bash)
+
+
+  nix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+
+      - name: Setup cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: gerschtli
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Check flake
+        run: nix flake check --log-format bar-with-logs
+
+      - name: Show current rust version
+        run: nix develop --log-format bar-with-logs --command rustc --version
+
+      - name: Build package
+        run: nix build --log-format bar-with-logs

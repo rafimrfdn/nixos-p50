@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "ignoreDeps": [
+    "clap",
+    "config",
+    "dbus",
+    "uom"
+  ]
+}
