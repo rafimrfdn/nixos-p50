@@ -1,31 +1,30 @@
-{pkgs, ...}:
+{ pkgs, config, lib, ... }:
 
-let
-  # Define the custom overlay
-  myOverlay = self: super: {
-    dwmblocks = super.st.overrideAttrs (oldAttrs: rec {
-      # Path to the local st source directory
-        src = ./dwmblocks-async;
+pkgs.stdenv.mkDerivation {
+  pname = "dwmblocks";
+  version = "1.0";
 
-      # Add custom config file
-         configFile = super.writeText "config.h" (builtins.readFile ./dwmblocks-async/config.h);
+  # Use the current directory as the source
+  src = ./dwmblocks;
 
-      # Post-patch commands to copy your custom config
-        postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
-    });
+  # Dependencies required to build dwmblocks
+  buildInputs = [ pkgs.gcc pkgs.make ];
+
+  # The build process uses make by default
+  buildPhase = ''
+    make
+  '';
+
+  # Copy the built binary to the output directory
+  installPhase = ''
+    mkdir -p $out/bin
+    cp dwmblocks $out/bin/
+  '';
+
+  # Optional metadata about the package
+  meta = with pkgs.lib; {
+    description = "A modular status bar for dwm";
+    license = licenses.mit;
+    platforms = platforms.linux;
   };
-
-in
-{
-  # Add the overlay to Home Manager
-  nixpkgs.overlays = [ myOverlay ];
-
-  # Use Home Manager to install the st package
-  # home.packages = with pkgs; [
-  #   st
-  # ];
- environment.systemPackages = with pkgs; [
-    dwmblocks
-  ];
 }
-
