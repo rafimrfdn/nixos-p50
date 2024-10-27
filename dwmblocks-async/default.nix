@@ -1,11 +1,11 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs, config, lib, ... }:
 
 pkgs.stdenv.mkDerivation {
   pname = "dwmblocks";
   version = "1.0";
 
   # Use the current directory as the source
-  src = ./.;
+  src = ./dwmblocks;
 
   # Dependencies required to build dwmblocks
   buildInputs = [ pkgs.gcc pkgs.make ];
