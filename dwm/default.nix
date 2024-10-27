@@ -79,18 +79,18 @@
       dwm = super.dwm.overrideAttrs (oldAttrs: rec {
         patches = [
          # ./dwm-systray-6.3.diff
-         ./dwm-systray-6.4.diff
-         ./dwm-cool-autostart-2024.diff
-         ./dwm-ru_gaps-6.3.diff
-         ./dwm-inplacerotate-6.2.diff
+         ./patches/dwm-systray-6.4.diff
+         ./patches/dwm-cool-autostart-2024.diff
+         ./patches/dwm-ru_gaps-6.3.diff
+         ./patches/dwm-inplacerotate-6.2.diff
          # ./dwm-ru_bottomstack-6.2.diff
          # ./dwm-warp-6.2.diff
-         ./dwm-warp-6.4.diff
-         ./dwm-alwayscenter.diff
-         ./dwm-pertag.diff
-         ./dwm-hide_vacant_tags-6.3.diff
+         ./patches/dwm-warp-6.4.diff
+         ./patches/dwm-alwayscenter.diff
+         ./patches/dwm-pertag.diff
+         ./patches/dwm-hide_vacant_tags-6.3.diff
         ];
-        configFile = super.writeText "config.h" (builtins.readFile ./config.h);
+        configFile = super.writeText "config.h" (builtins.readFile ./config/config.h);
         postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
       });
  #      st = super.st.overrideAttrs (oldAttrs: rec {

@@ -7,8 +7,18 @@
  */
 //static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 //static char *font = "Iosevka:size=12:antialias=true:autohint=true";
-static char *font = "Cascadia Code:size=16:style=Regular:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "Cascadia Code:pixelsize=14:style=Regular:antialias=true:autohint=true";
+
+/* Spare fonts */
+static char *font2[] = {
+/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
+	"Hack Nerd Font Mono:pixelsize=10:antialias=true:autohint=true", 
+	 // "Symbols Nerd Font:pixelsize=16:antialias=true:autohint=true",
+	 // "Hack Nerd Font:pixelsize=16:antialias=true:autohint=true",
+	 // "Noto Sans Symbols:pixelsize=16:antialias=true:autohint=true"
+};
+
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -29,7 +39,11 @@ char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = 1.0;
+static float chscale = 0.9;
+
+/* Character rendering offsets in pixels */
+static short cxoffset = 0;
+static short cyoffset = 0;
 
 /*
  * word delimiter string
@@ -94,6 +108,10 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
+
+/* bg opacity */
+float alpha = 0.8;
+
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {

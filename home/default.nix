@@ -162,6 +162,7 @@
   # eog
   ffmpeg # for mpv
   ffmpegthumbnailer
+  freeoffice
   # firefox
   # firefox-esr
   # gcc
