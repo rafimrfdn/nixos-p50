@@ -158,6 +158,7 @@
   acpi
   # copyq
   corefonts # we need windows fonts on libreoffice
+  dwm-status
   easyeffects
   # eog
   ffmpeg # for mpv
