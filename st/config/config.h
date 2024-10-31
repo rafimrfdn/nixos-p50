@@ -7,14 +7,15 @@
  */
 //static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 //static char *font = "Iosevka:size=12:antialias=true:autohint=true";
-static char *font = "Cascadia Code:pixelsize=14:style=Regular:antialias=true:autohint=true";
+// static char *font = "Cascadia Code:pixelsize=14:style=Regular:antialias=true:autohint=true";
+static char *font = "Cascadia Code:size=10.5:style=Regular:antialias=true:autohint=true";
 
 /* Spare fonts */
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-	"Hack Nerd Font Mono:pixelsize=10:antialias=true:autohint=true", 
-	 // "Symbols Nerd Font:pixelsize=16:antialias=true:autohint=true",
-	 // "Hack Nerd Font:pixelsize=16:antialias=true:autohint=true",
+	// "Hack Nerd Font Mono:pixelsize=10:antialias=true:autohint=true", 
+	 "Symbols Nerd Font:pixelsize=10:antialias=true:autohint=true",
+	 // "Hack Nerd Font:pixelsize=11:antialias=true:autohint=true",
 	 // "Noto Sans Symbols:pixelsize=16:antialias=true:autohint=true"
 };
 
@@ -39,11 +40,11 @@ char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = 0.96;
+static float chscale = 1.0;
 
 /* Character rendering offsets in pixels */
-static short cxoffset = 0;
-static short cyoffset = 0;
+static short cxoffset = 1.0;
+static short cyoffset = 1.5;
 
 /*
  * word delimiter string

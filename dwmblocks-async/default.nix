@@ -1,14 +1,14 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, ... }:
 
 pkgs.stdenv.mkDerivation {
-  pname = "dwmblocks";
+  pname = "dwmblocks-async";
   version = "1.0";
 
   # Use the current directory as the source
-  src = ./dwmblocks;
+  src = ./source;
 
   # Dependencies required to build dwmblocks
-  buildInputs = [ pkgs.gcc pkgs.make ];
+  buildInputs =  [ pkgs.gcc pkgs.gnumake];
 
   # The build process uses make by default
   buildPhase = ''

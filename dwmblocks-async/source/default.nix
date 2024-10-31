@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.stdenv.mkDerivation {
-  pname = "dwmblocks";
+  pname = "dwmblocks-async";
   version = "1.0";
 
   # Use the current directory as the source
@@ -12,20 +12,20 @@ pkgs.stdenv.mkDerivation {
     pkgs.gcc
     pkgs.gnumake
     pkgs.pkg-config
-    pkgs.xorg.libX11
     pkgs.xorg.libxcb
+    pkgs.xorg.libX11
     pkgs.xorg.xcbutil
   ];
 
-  # Use the existing Makefile for the build process
+  # Ensure proper include directories for the build
   buildPhase = ''
-    make
+    make 
   '';
 
   # Install phase: copy the built binary to the output directory
   installPhase = ''
     mkdir -p $out/bin
-    cp dwmblocks $out/bin/
+    cp build/dwmblocks $out/bin/
   '';
 
   # Optional metadata about the package
