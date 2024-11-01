@@ -2,6 +2,12 @@
 
 {
 
+    environment.systemPackages = with pkgs; [
+        php83
+        php83Packages.composer
+        mariadb
+    ];
+
 # networking.firewall.allowedTCPPorts = [ 80 443 ];
 networking.firewall.allowedTCPPorts = [ 80 ];
 # apache
@@ -116,3 +122,4 @@ services.phpfpm.pools.mypool = {
 };
 
 }
+

@@ -7,15 +7,15 @@
 {
     imports =
         [ # Include the results of the hardware scan.
-        ./hardware-configuration.nix
+            ./hardware-configuration.nix
             ./boot/default.nix
             ./greetd/default.nix
             ./dwm/default.nix
             ./st/default.nix
-            # ./dwmblocks/default.nix
+            ./dwmblocks/default.nix
             # ./dwmblocks-async/default.nix
             # ./sway/default.nix
-            ./apache/default.nix
+            # ./apache/default.nix
             # ./mime/default.nix
         ];
 
@@ -297,7 +297,10 @@ networking = {
 
 
     environment = {
-        variables.EDITOR = "nvim";  # set default text editor
+        variables = {
+            EDITOR = "nvim";  # set default text editor
+            PATH = "$HOME/.local/share/gem/ruby/3.3.0/bin";  # ruby needs to set manualy the env variable like this.
+        };
         shells = [ pkgs.zsh ];          # add the zsh package to /etc/shells
     };
 
@@ -318,11 +321,11 @@ networking = {
                 # "docker"
             ];
             # shell = pkgs.zsh;
-            packages = with pkgs; [
-                php83
-                php83Packages.composer
-                mariadb
-            ];
+            # packages = with pkgs; [
+            #     php83
+            #     php83Packages.composer
+            #     mariadb
+            # ];
         };
     };
 

@@ -177,6 +177,7 @@
   keepassxc
   killall
   lazygit
+  libyaml #for ruby
   luajit
   # lutris
   # nautilus

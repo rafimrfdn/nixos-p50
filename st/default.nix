@@ -15,7 +15,7 @@ let
         ./patches/st-font2-0.8.5.diff
         # ./patches/st-glyph-wide-support-20220411-ef05519.diff
         ./patches/st-charoffsets-20220311-0.8.5.diff
-        ./patches/st-moonfly-0.8.2.diff
+        # ./patches/st-moonfly-0.8.2.diff
         # ./patches/st-alpha-0.8.5.diff
         # Add more patches as needed
       ];
