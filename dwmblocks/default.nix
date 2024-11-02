@@ -2,15 +2,17 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "dwmblocks";
-  version = "1.0";
+  version = "2.0";
 
   # Fetch the source from GitHub
-    src = pkgs.fetchFromGitHub {
-        owner = "torrinfail";        # Replace 'user' with the GitHub username
-        repo = "dwmblocks";     # Replace 'dwmblocks' with the repository name
-        rev = "master";           # Replace with the desired branch or commit hash
-        sha256 = "sha256-0000000000000000000000000000000000000000000000000000";
-    };
+    # src = pkgs.fetchFromGitHub {
+    #     owner = "torrinfail";        # Replace 'user' with the GitHub username
+    #     repo = "dwmblocks";     # Replace 'dwmblocks' with the repository name
+    #     rev = "master";           # Replace with the desired branch or commit hash
+    #     sha256 = "sha256-QtYQB2mvw1k2LA8D+/cVnA8+GRDWjhIM6rxfi/IGjEw=";
+    # };
+  # Use the current directory as the source
+  src = ./.; # kalau pakai local source build, kita bisa set custom config default.h
 
   # Dependencies required to build dwmblocks
   buildInputs = [
@@ -33,4 +35,10 @@ pkgs.stdenv.mkDerivation {
     cp dwmblocks $out/bin/
   '';
 
+  # Optional metadata about the package
+  meta = with pkgs.lib; {
+    description = "An asynchronous modular status bar for dwm";
+    license = licenses.mit;
+    platforms = platforms.linux;
+  };
 }

@@ -33,7 +33,7 @@ static const char *colors[][3]      = {
 
 /* cool autostart */
 static const char *const autostart[] = {
-//  "dwmblocks", NULL,
+  "dwmblocks", NULL,
   "xrdb", "-merge", ".Xresources", NULL,
   "xset", "r", "rate", "300", "50", NULL,
   "xset", "mouse", "5", "1", NULL, 
@@ -44,7 +44,7 @@ static const char *const autostart[] = {
   "nm-applet", NULL,
 //  "pasystray", NULL,
   "volumeicon", NULL,
-  "sh", "/home/nix/dwm-status.sh", NULL,
+  // "sh", "/home/nix/dwm-status.sh", NULL,
   NULL /* terminate */
 };
 

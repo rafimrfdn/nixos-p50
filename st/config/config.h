@@ -5,17 +5,18 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-//static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-//static char *font = "Iosevka:size=12:antialias=true:autohint=true";
-// static char *font = "Cascadia Code:pixelsize=14:style=Regular:antialias=true:autohint=true";
+// static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+// static char *font = "Iosevka:size=10.5:antialias=true:autohint=true";
+// static char *font = "Cascadia Code:pixelsize=12:style=Regular:antialias=true:autohint=true";
 static char *font = "Cascadia Code:size=10.5:style=Regular:antialias=true:autohint=true";
 
 /* Spare fonts */
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-	// "Hack Nerd Font Mono:pixelsize=10:antialias=true:autohint=true", 
+	// "Hack Nerd Font Mono:pixelsize=8:antialias=true:autohint=true", 
+	"Hack Nerd Font Mono:pixelsize=8:antialias=true:autohint=true", 
 	 // "Hack Nerd Font:pixelsize=11:antialias=true:autohint=true",
-	 "Noto Sans Symbols:pixelsize=9:antialias=true:autohint=true"
+	 // "Noto Sans Symbols:pixelsize=9:antialias=true:autohint=true"
 };
 
 static int borderpx = 0;
