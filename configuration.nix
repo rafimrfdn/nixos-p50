@@ -15,7 +15,7 @@
             # ./dwmblocks/default.nix
             # ./sway/default.nix
             # ./apache/default.nix
-            # ./mime/default.nix
+            ./mime/default.nix
         ];
 
     documentation.nixos.enable = false;

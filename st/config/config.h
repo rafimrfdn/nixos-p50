@@ -7,16 +7,16 @@
  */
 // static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 // static char *font = "Iosevka:size=10.5:antialias=true:autohint=true";
-static char *font = "Cascadia Code:pixelsize=14:style=Regular:antialias=true:autohint=true";
-// static char *font = "Cascadia Code:size=10.5:style=Regular:antialias=true:autohint=true";
+// static char *font = "Cascadia Mono NF:pixelsize=12.5:style=Regular:antialias=true:autohint=true"; //PL means Poerline, NF means NerdFont
+static char *font = "Cascadia Mono NF:pixelsize=14:style=Regular:antialias=true:autohint=true"; //PL means Poerline, NF means NerdFont
 
 /* Spare fonts */
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-	// "Hack Nerd Font Mono:pixelsize=8:antialias=true:autohint=true", 
-	"Hack Nerd Font Mono:pixelsize=8:antialias=true:autohint=true", 
-	 // "Hack Nerd Font:pixelsize=11:antialias=true:autohint=true",
-	 // "Noto Sans Symbols:pixelsize=9:antialias=true:autohint=true"
+	// "Hack Nerd Font Mono:pixelsize=12.5:antialias=true:autohint=true", 
+	// "Symbols Nerd Font Mono:pixelsize=12.5:style=2048-em",
+	"Symbols Nerd Font Mono:pixelsize=14:style=2048-em",
+	// "Fira Code Symbol:pixelsize=12.5:style=Symbol-Regular"
 };
 
 static int borderpx = 0;
@@ -90,7 +90,7 @@ static unsigned int cursorthickness = 2;
  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
-const int boxdraw = 0;
+const int boxdraw = 1;
 const int boxdraw_bold = 0;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */

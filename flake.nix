@@ -8,14 +8,12 @@
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
-    outputs = inputs@{ self, nixpkgs, home-manager, nixos-hardware, ...}: # self is must have
+    outputs = inputs@{ self, nixpkgs, home-manager, nixos-hardware, ...}:  #self is must have
     let 
         hostname = "nixhost";
         user = "nix";
         lib = nixpkgs.lib;
         system = "x86_64-linux";
-        # pkgs = nixpkgs.legacyPackages.${system}; 
     in {
         nixosConfigurations = {
             ${hostname} = lib.nixosSystem {
@@ -27,11 +25,8 @@
                         home-manager = {
                             useGlobalPkgs = true;
                             useUserPackages = true;
-                            # users.nix = ./home/home.nix;
                             users.${user}= import ./home/default.nix;
-                            # from cristitus
-                            # extraSpecialArgs = {inherit inputs self user;};
-                            backupFileExtension = "bakkkkkkkkkkkkkk";
+                            backupFileExtension = "bak1";
                         };
                     }
                 ];

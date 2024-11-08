@@ -37,8 +37,15 @@ in
     TTYVTDisallocate = true;
   };
 
-  environment.etc."greetd/environments".text = ''
-   sway
-   startx
-  '';
+  # environment.etc."greetd/environments".text = ''
+  #  sway
+  #  startx
+  # '';
+
+
+    environment.etc."greetd/environments".text = ''
+      sway = sway
+      dwm = startx
+      hyprland = Hyprland
+    '';
 }

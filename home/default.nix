@@ -47,35 +47,35 @@
         };
         # mimieapps
         mime.enable = true;
-        mimeApps = {
-            enable = true;
-            # associations.added = {
-            #     "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
-            #     "image/png"       = [ "org.gnome.eog.desktop"  ];
-            #     "image/jpg"       = [ "org.gnome.eog.desktop"  ];
-            #     "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
-            #     "image/webp"      = [ "org.gnome.eog.desktop"  ];
-            #     "video/*"         = [ "mpv.desktop"            ];
-            # };
+        # mimeApps = {
+        #     enable = true;
+        #     # associations.added = {
+        #     #     "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
+        #     #     "image/png"       = [ "org.gnome.eog.desktop"  ];
+        #     #     "image/jpg"       = [ "org.gnome.eog.desktop"  ];
+        #     #     "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
+        #     #     "image/webp"      = [ "org.gnome.eog.desktop"  ];
+        #     #     "video/*"         = [ "mpv.desktop"            ];
+        #     # };
+        #
+        #     defaultApplications = {
+        #         "text/markdown"     = "nvim.desktop";
+        #         "text/plain"        = "nvim.desktop";
+        #         "application/pdf"   = [ "com.github.jeromerobert.pdfarranger.desktop"];
+        #         "image/png"         = [ "org.gnome.eog.desktop"  ];
+        #         "image/jpg"         = [ "org.gnome.eog.desktop"  ];
+        #         "image/jpeg"        = [ "org.gnome.eog.desktop"  ];
+        #         "image/webp"        = [ "org.gnome.eog.desktop"  ];
+        #         "video/*"           = [ "mpv.desktop"            ];
+        #     };
+        #     # associations.removed = {
+        #     #   "application/pdf" = [ "wine*" ];
+        #     #   "image/*"         = [ "wine*" ];
+        #     #   "video/*"         = [ "wine*" ];
+        #     # };
+        # };
 
-            defaultApplications = {
-                "text/markdown" = "nvim.desktop";
-                "text/plain" = "nvim.desktop";
-                "application/pdf" = [ "com.github.jeromerobert.pdfarranger.desktop"];
-                "image/png"       = [ "org.gnome.eog.desktop"  ];
-                "image/jpg"       = [ "org.gnome.eog.desktop"  ];
-                "image/jpeg"      = [ "org.gnome.eog.desktop"  ];
-                "image/webp"      = [ "org.gnome.eog.desktop"  ];
-                "video/*"         = [ "mpv.desktop"         ];
-                "x-scheme-handler/http" = "librewolf.desktop";
-                "x-scheme-handler/https" = "librewolf.desktop";
-            };
-            # associations.removed = {
-            #   "application/pdf" = [ "wine*" ];
-            #   "image/*"         = [ "wine*" ];
-            #   "video/*"         = [ "wine*" ];
-            # };
-        };
+
 
   };
 

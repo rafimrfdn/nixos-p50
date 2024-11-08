@@ -93,7 +93,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 /* powermenu */
 static const char *powermenu[] = { "/home/nix/.scripts/powermenu.sh", NULL };
@@ -153,7 +153,8 @@ static Key keys[] = {
   	// rofi
   	{ MODKEY,                       XK_d, spawn, SHCMD("rofi -show drun") },
   	// note
-  	{ MODKEY,                       XK_n, spawn, SHCMD("kitty -e ~/.scripts/notetaker.sh") },
+  	// { MODKEY,                       XK_n, spawn, SHCMD("kitty -e ~/.scripts/notetaker.sh") },
+  	{ MODKEY,                       XK_n, spawn, SHCMD("st -e ~/.scripts/notetaker.sh") },
   	// File explorer
   	{ MODKEY,                       XK_e, spawn, SHCMD("nautilus") },
   	// Browser
