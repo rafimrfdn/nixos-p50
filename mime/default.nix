@@ -1,7 +1,8 @@
 { config,... }: 
 
 {
-    xdg.mimeApss = {
+    xdg.mime.enable = true;
+    xdg.mime.defaultApplications = {
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
         "inode/directory"   = "thunar.desktop";
@@ -9,6 +10,6 @@
         "application/pdf"   = [ "com.github.jeromerobert.pdfarranger.desktop"];
         "image/*"           = [ "org.gnome.eog.desktop"  ];
         "video/*"           = [ "mpv.desktop"            ];
-        "audio/*"           = [ "mpv.desktop"            ];
     };
+
 }

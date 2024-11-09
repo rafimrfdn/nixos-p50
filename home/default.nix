@@ -177,7 +177,7 @@
   keepassxc
   killall
   lazygit
-  libyaml #for ruby
+  
   luajit
   # lutris
   # nautilus
@@ -193,7 +193,7 @@
   rclone-browser
   rofi-wayland
   scrot
-  sqlitebrowser
+  
   svp
   xfce.thunar
   tree
@@ -215,6 +215,8 @@
 
   #web development
   sqlite
+  sqlitebrowser
+  rlwrap #so I can navigate using arrow key when enter to sqlite console
 
   #themes
   qogir-theme
@@ -265,7 +267,6 @@
   # # swayimg #image viewer for sway/wayland
   # # imv #this also image viewer
   # swww
-
 
 
 ]);

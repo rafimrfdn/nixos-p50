@@ -19,7 +19,8 @@ static const char *fonts[]          = {
 				// 	"Font Awesome 6 Free Regular:style=Regular:size=12"
 				 	};
 // static const char dmenufont[]       = "Iosevka Term:style=Medium:size=10";
-static const char dmenufont[]       = "Sans Regular:size=10";
+// static const char dmenufont[]       = "Sans Regular:size=10";
+static const char dmenufont[]       = "Sans Regular:size=9";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";

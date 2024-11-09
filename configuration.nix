@@ -14,7 +14,8 @@
             ./st/default.nix
             # ./dwmblocks/default.nix
             # ./sway/default.nix
-            # ./apache/default.nix
+            ./apache/default.nix
+            ./rubyonrails/default.nix
             ./mime/default.nix
         ];
 
