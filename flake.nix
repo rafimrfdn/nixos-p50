@@ -26,7 +26,7 @@
                             useGlobalPkgs = true;
                             useUserPackages = true;
                             users.${user}= import ./home/default.nix;
-                            backupFileExtension = "bak1";
+                            backupFileExtension = "bak2";
                         };
                     }
                 ];

@@ -8,7 +8,8 @@
 // static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 // static char *font = "Iosevka:size=10.5:antialias=true:autohint=true";
 // static char *font = "Cascadia Mono NF:pixelsize=12.5:style=Regular:antialias=true:autohint=true"; //PL means Poerline, NF means NerdFont
-static char *font = "Cascadia Mono NF:pixelsize=14:style=Regular:antialias=true:autohint=true"; //PL means Poerline, NF means NerdFont
+// static char *font = "Cascadia Mono NF:pixelsize=14:style=Regular:antialias=true:autohint=true"; //PL means Poerline, NF means NerdFont
+static char *font = "JetBrains Mono:pixelsize=14:style=Regular:antialias=true:autohint=true"; //PL means Poerline, NF means NerdFont
 
 /* Spare fonts */
 static char *font2[] = {
@@ -43,8 +44,8 @@ static float cwscale = 1.0;
 static float chscale = 1.0;
 
 /* Character rendering offsets in pixels */
-static short cxoffset = 0;
-static short cyoffset = 1.0;
+// static short cxoffset = 0;
+// static short cyoffset = 1.0;
 
 /*
  * word delimiter string

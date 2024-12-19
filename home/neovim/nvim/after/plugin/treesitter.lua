@@ -1,7 +1,9 @@
 vim.opt.runtimepath:prepend("~/.local/share/parsers") -- make sure to create this parsers folder
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = {},
+    -- ensure_installed = {}
+
+    ensure_installed = { "php", "typescript", "ruby", "go"},
 
     -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "astro", "svelte", "typescript", "javascript", "csv", "go", "html", "json", "jsdoc", "php", "nix", "scss", "css", "sql", "tsx", "vue", "vento" },
 

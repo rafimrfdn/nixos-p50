@@ -19,6 +19,7 @@
             ./mime/default.nix
         ];
 
+
     documentation.nixos.enable = false;
 
 # Enable zram
@@ -278,14 +279,14 @@ networking = {
 # Fonts
     fonts.packages = with pkgs; [
         cascadia-code
-            cooper-hewitt
-            iosevka
-            spleen
-            fira-code-symbols
-# fira-code
+        cooper-hewitt
+        iosevka
+        spleen
+        fira-code-symbols
+        fira-code
+        jetbrains-mono
 # fira
 # ibm-plex
-# jetbrains-mono
     ];
 
 

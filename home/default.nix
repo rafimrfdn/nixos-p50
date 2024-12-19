@@ -117,6 +117,7 @@
     # '')
   # ];
 
+
   home.packages = (with pkgs; [
   #elementary-xfce-icon-theme
   #lf
@@ -158,12 +159,12 @@
   acpi
   # copyq
   corefonts # we need windows fonts on libreoffice
-  dwm-status
+  # dwm-status
   easyeffects
   # eog
   ffmpeg # for mpv
   ffmpegthumbnailer
-  freeoffice
+  # freeoffice
   # firefox
   # firefox-esr
   # gcc
@@ -173,7 +174,7 @@
   gparted
   # hugo
   imagemagick
-  inkscape
+  # inkscape
   keepassxc
   killall
   lazygit
@@ -216,7 +217,7 @@
   #web development
   sqlite
   sqlitebrowser
-  rlwrap #so I can navigate using arrow key when enter to sqlite console
+  rlwrap #so I can navigate using arrow key when enter to sqlite console. launch sqlite with command "rlwrap sqlite3"
 
   #themes
   qogir-theme

@@ -79,6 +79,9 @@ services.httpd.virtualHosts = {
 #	addSSL = true;
 #	enableACME = true;
 #	};
+        "vite.localhost" = {
+            documentRoot = "/home/nix/Project/deno/deno-hono-vite-solidjs/dist";
+        };
 };
 
 services.httpd.phpOptions = ''

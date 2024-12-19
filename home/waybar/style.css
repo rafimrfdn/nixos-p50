@@ -36,7 +36,7 @@ window > box {
 }
 #workspaces {
     padding-left: 0px;
-    padding-right: 4px;
+    padding-right: 0px;
     background-color: rgb(48, 52, 70);
 }
 #workspaces button {
