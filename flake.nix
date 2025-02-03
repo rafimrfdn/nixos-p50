@@ -51,10 +51,11 @@
   let
     system = "x86_64-linux";
   in {
-    nixosConfigurations.mySystem = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixhost = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
         ./hosts/nixhost/configuration.nix
+        nixos-hardware.nixosModules.lenovo-thinkpad-p50
         display-flake.nixosModules.default
         home-manager.nixosModules.home-manager
         {
