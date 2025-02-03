@@ -166,7 +166,7 @@ networking = {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.myUser = import ./home.nix;
+    users.nix = import ./home.nix;
   };
 
 
