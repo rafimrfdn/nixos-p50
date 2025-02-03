@@ -22,7 +22,7 @@
   programs.zsh.enable = true;
   # programs.oh-my-zsh = {
   #   enable = true;
-  #   theme = "agnoster";  # Change to "powerlevel10k" if preferred
+  #   theme = "agnoster";  # Change to "powerlevel11k" if preferred
   #   plugins = [ "git" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
   # };
 
@@ -34,10 +34,10 @@
   };
 
   # Enable Waybar
-  programs.waybar.enable = true;
+  # programs.waybar.enable = true;
 
   # Enable MPV Configuration
-  programs.mpv.enable = true;
+  # programs.mpv.enable = true;
 
   # Import application-specific configurations
   # imports = [
