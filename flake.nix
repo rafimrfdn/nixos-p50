@@ -47,7 +47,7 @@
     # display-flake.url = "path:./flakes/display";
   };
 
-  outputs = { self, nixpkgs, home-manager, display-flake, ... }:
+  outputs = { self, nixpkgs, home-manager, .. }:
   let
     system = "x86_64-linux";
   in {
