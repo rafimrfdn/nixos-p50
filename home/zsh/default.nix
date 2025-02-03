@@ -46,6 +46,8 @@
       #tk="tmux kill-session -t";
       tl="tmux list-sessions";
       td="tmux detach";
+
+      sqlite3="rlwrap sqlite3";
     };
 
     profileExtra = ''

@@ -160,7 +160,7 @@
   # copyq
   corefonts # we need windows fonts on libreoffice
   # dwm-status
-  easyeffects
+  # easyeffects
   # eog
   ffmpeg # for mpv
   ffmpegthumbnailer
@@ -185,6 +185,7 @@
   neofetch
   networkmanagerapplet
   ntfs3g
+    pavucontrol
   pcmanfm
   pdfarranger
   picom
@@ -211,7 +212,7 @@
   ripgrep #untuk Telescope neovim
   bat #cat yang lebih cantik, ketik bat namafile
   eza #ls lebih rapih, ketik exa #diganti menjadi eza
-  fd #find yang lebih mudah, ketik fd --type query
+  fd #find yang lebih mudah, ketik fd --type query, juga dibutuhakah oleh nvim kickstart
   bottom #top yang lebih cantik, ketik btm
 
   #web development
