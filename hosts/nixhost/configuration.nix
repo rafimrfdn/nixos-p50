@@ -23,7 +23,7 @@
     zramSwap.memoryPercent = 50;
 
 networking = {
-  hostName = "laptop"; # Define your hostname.
+  hostName = "nixhost"; # Define your hostname.
   networkmanager.enable = true; # Enable networking
   dhcpcd.wait = "background"; # no need to wait interfaces to have an IP to continue booting
   dhcpcd.extraConfig = "noarp"; # avoid checking if IP is already taken to boot a few seconds faster
@@ -49,7 +49,7 @@ networking = {
     151.101.193.140   about.reddit.com
     52.203.76.9       out.reddit.com
 
-    127.0.0.1 	      local.laptop
+    127.0.0.1 	      local.nixhost
   '';
 };
 
