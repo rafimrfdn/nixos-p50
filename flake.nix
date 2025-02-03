@@ -44,7 +44,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-    display-flake.url = "path:./flakes/display";
+    # display-flake.url = "path:./flakes/display";
   };
 
   outputs = { self, nixpkgs, home-manager, display-flake, ... }:
@@ -56,7 +56,7 @@
       modules = [
         ./hosts/nixhost/configuration.nix
         # nixos-hardware.nixosModules.lenovo-thinkpad-p50
-        display-flake.nixosModules.default
+        # display-flake.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
