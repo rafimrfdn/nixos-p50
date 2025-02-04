@@ -6,18 +6,18 @@
 
 
   imports = [
-   # ./zsh/default.nix
+   ./zsh/default.nix
    # ./dunst/default.nix
-   ./sway.nix
+   ./sway/defaul.nix
    # ./hyprland/default.nix
-   # ./waybar/default.nix
-   # ./tmux/default.nix
+   ./waybar/default.nix
+   ./tmux/default.nix
    # ./neovim/default.nix
    # ./helix/default.nix
    # ./emacs/default.nix
    # ./st/default.nix
-   # ./gtk/default.nix
-   # ./kitty/default.nix
+   ./gtk/default.nix
+   ./kitty/default.nix
    # ./mpv/default.nix
    # ./chromium.nix
   ];
@@ -25,9 +25,10 @@
   # Enable Home Manager Packages
   home.packages = with pkgs; [
     neovim
-    sway
-    waybar
+    # sway
+    # waybar
     firefox
+    git
   ];
 
   # Set up Git
@@ -38,7 +39,7 @@
   # };
 
   # Enable Zsh and Oh My Zsh
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
   # programs.oh-my-zsh = {
   #   enable = true;
   #   theme = "agnoster";  # Change to "powerlevel11k" if preferred
@@ -46,14 +47,14 @@
   # };
 
   # Configure Kitty Terminal
-  programs.kitty = {
-    enable = true;
-    # font.name = "JetBrainsMono Nerd Font";
-    # font.size = 12;
-  };
+  # programs.kitty = {
+  #   enable = true;
+  #   # font.name = "JetBrainsMono Nerd Font";
+  #   # font.size = 12;
+  # };
 
   # Enable Waybar
-  programs.waybar.enable = true;
+  # programs.waybar.enable = true;
 
   # Enable MPV Configuration
   # programs.mpv.enable = true;
