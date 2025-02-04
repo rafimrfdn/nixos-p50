@@ -7,20 +7,13 @@
 
   imports = [
    ./zsh/default.nix
-   # ./dunst/default.nix
    ./sway/default.nix
-   # ./hyprland/default.nix
    ./waybar/default.nix
    ./tmux/default.nix
    ./neovim/default.nix
-   # ./helix/default.nix
-   # ./emacs/default.nix
-   # ./st/default.nix
    ./gtk/default.nix
    ./kitty/default.nix
    ./xdg/default.nix
-   # ./mpv/default.nix
-   # ./chromium.nix
   ];
 
   # Enable Home Manager Packages
