@@ -1,0 +1,31 @@
+# Wallpaper
+#set $background #ff0000
+#output * bg $background solid_color
+
+output * bg /home/nix/Pictures/wp/1.jpg fill
+
+set $mod Mod4
+set $alt Mod1
+
+set $term kitty
+set $menu rofi -show drun -I
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+bindsym $mod+Shift+Return exec $term
+
+bindsym $mod+W exec firefox-esr
+bindsym $mod+E exec nautilus
+bindsym $mod+P exec wofi --show run
+bindsym $mod+Shift+E exec emacs
+bindsym $mod+D exec $menu
+bindsym $mod+Shift+Q exec wlogout
+
+# Kill focused window
+bindsym $mod+Shift+c kill
+bindsym $alt+F4 kill
+bindsym $mod+N exec kitty -e ~/.scripts/notetaker.sh
+bindsym $mod+Z exec ~/.scripts/background-swap.sh

@@ -7,7 +7,7 @@
     nixosModules.default = { config, pkgs, ... }: {
       imports = [
         ./modules/sway.nix
-        ./modules/waybar.nix
+        # ./modules/waybar.nix
       ];
     };
   };

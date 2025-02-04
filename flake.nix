@@ -40,14 +40,14 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Add hardware module for Thinkpad P50, this will activate and optimize nvidia driver.
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Add hardware module for Thinkpad P50, this will activate and optimize nvidia driver.
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
     # display-flake.url = "path:./flakes/display";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }:
   let
     system = "x86_64-linux";
   in {
@@ -55,7 +55,7 @@
       inherit system;
       modules = [
         ./hosts/nixhost/configuration.nix
-        # nixos-hardware.nixosModules.lenovo-thinkpad-p50
+        nixos-hardware.nixosModules.lenovo-thinkpad-p50
         # display-flake.nixosModules.default
         home-manager.nixosModules.home-manager
         {

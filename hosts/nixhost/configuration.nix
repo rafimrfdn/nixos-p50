@@ -163,11 +163,11 @@ networking = {
     };
 
  # Enable Home Manager
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.nix = import ./home.nix;
-  };
+  # home-manager = {
+  #   useGlobalPkgs = true;
+  #   useUserPackages = true;
+  #   users.nix = import ./home.nix;
+  # };
 
 
 # mount new drive, usb flash disk, etc for pacman, nemo and manually mounting drives.

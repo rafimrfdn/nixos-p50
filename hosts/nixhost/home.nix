@@ -4,11 +4,30 @@
   home.username = "nix";
   home.homeDirectory = "/home/nix";
 
+
+  imports = [
+   # ./zsh/default.nix
+   # ./dunst/default.nix
+   ./sway.nix
+   # ./hyprland/default.nix
+   # ./waybar/default.nix
+   # ./tmux/default.nix
+   # ./neovim/default.nix
+   # ./helix/default.nix
+   # ./emacs/default.nix
+   # ./st/default.nix
+   # ./gtk/default.nix
+   # ./kitty/default.nix
+   # ./mpv/default.nix
+   # ./chromium.nix
+  ];
+
   # Enable Home Manager Packages
   home.packages = with pkgs; [
     neovim
     sway
     waybar
+    firefox
   ];
 
   # Set up Git
@@ -34,7 +53,7 @@
   };
 
   # Enable Waybar
-  # programs.waybar.enable = true;
+  programs.waybar.enable = true;
 
   # Enable MPV Configuration
   # programs.mpv.enable = true;

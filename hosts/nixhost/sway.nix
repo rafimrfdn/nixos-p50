@@ -130,14 +130,14 @@ in lib.mkDefault
             '';
 
         # set beginning config
-        extraConfigEarly = ''
-            ${builtins.readFile ./config-early}
-        '';
+        # extraConfigEarly = ''
+        #     ${builtins.readFile ./config-early}
+        # '';
 
         # set config after keybind
-        extraConfig = ''
-            ${builtins.readFile ./config-after}
-        '';
+        # extraConfig = ''
+        #     ${builtins.readFile ./config-after}
+        # '';
 
         # extraConfig = ''
         #       ${builtins.readFile ./config}
