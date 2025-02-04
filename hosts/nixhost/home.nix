@@ -12,12 +12,13 @@
    # ./hyprland/default.nix
    ./waybar/default.nix
    ./tmux/default.nix
-   # ./neovim/default.nix
+   ./neovim/default.nix
    # ./helix/default.nix
    # ./emacs/default.nix
    # ./st/default.nix
    ./gtk/default.nix
    ./kitty/default.nix
+   ./xdg/default.nix
    # ./mpv/default.nix
    # ./chromium.nix
   ];
@@ -29,7 +30,19 @@
     # waybar
     firefox
     git
+
+  ripgrep #untuk Telescope neovim
+  bat #cat yang lebih cantik, ketik bat namafile
+  eza #ls lebih rapih, ketik exa #diganti menjadi eza
+  fd #find yang lebih mudah, ketik fd --type query, juga dibutuhakah oleh nvim kickstart
+  bottom #top yang lebih cantik, ketik btm
+
   ];
+
+  services.copyq = {
+    enable = true;
+    systemdTarget = "sway-session.target";
+  };
 
   # Set up Git
   # programs.git = {
@@ -71,6 +84,9 @@
     EDITOR = "nvim";
     TERMINAL = "kitty";
   };
+
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
 
   # Define Home Manager state version
   home.stateVersion = "23.11";
