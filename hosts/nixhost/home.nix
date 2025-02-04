@@ -10,7 +10,7 @@
    ./sway/default.nix
    ./waybar/default.nix
    ./tmux/default.nix
-   ./neovim/default.nix
+   # ./neovim/default.nix
    ./gtk/default.nix
    ./kitty/default.nix
    ./xdg/default.nix

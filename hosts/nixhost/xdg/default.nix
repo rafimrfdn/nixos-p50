@@ -1,7 +1,8 @@
 {config, pkgs, ...}:
 
 {
-    xdg = enable = true;
+    xdg = {
+        enable = true;
         userDirs = {
             enable = true;
             createDirectories = true;
@@ -27,4 +28,5 @@
         # mimieapps
         mime.enable = true;
 
-  }
+    }
+}
