@@ -18,7 +18,7 @@
 
   # Enable Home Manager Packages
   home.packages = with pkgs; [
-    neovim
+    # neovim
     # sway
     # waybar
     firefox
