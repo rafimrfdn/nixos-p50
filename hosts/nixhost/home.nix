@@ -8,7 +8,7 @@
   imports = [
    ./zsh/default.nix
    # ./dunst/default.nix
-   ./sway/defaul.nix
+   ./sway/default.nix
    # ./hyprland/default.nix
    ./waybar/default.nix
    ./tmux/default.nix
