@@ -211,6 +211,7 @@ networking = {
         gnumake   # must have this for build ST dan DWM
         zig       # this is alternative to gcc, cc, act like compiler but faster 
         go
+        nodejs_23
     ];
 
 

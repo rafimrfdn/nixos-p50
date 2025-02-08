@@ -48,6 +48,8 @@
       td="tmux detach";
 
       sqlite3="rlwrap sqlite3";
+
+      vim="nvim";
     };
 
     profileExtra = ''
@@ -72,96 +74,8 @@
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
-      # useTheme = "agnoster";
-      # useTheme = "json";
-      # useTheme = "material";
-      # useTheme = "cobalt2";
        useTheme = "powerlevel10k_lean";
-        # settings = {
-        #     "$schema" = "https =//raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
-        #     "blocks" = [
-        #     {
-        #         "alignment" = "left";
-        #         "segments" = [
-        #             {
-        #                 "foreground" = "#F1FA8C";
-        #                 "properties" = {
-        #                     "style" = "folder";
-        #                 };
-        #                     "style" = "diamond";
-        #                 "template" = "<#42E66C>\ueaf7 </><b>{{ .Path }}</b>";
-        #                 "type" = "path";
-        #             }
-        #             {
-        #                 "foreground" = "#43CCEA";
-        #                 "properties" = {
-        #                     "branch_icon" = "";
-        #                 };
-        #                     "style" = "diamond";
-        #                 "template" = "<#ffffff> \u26A1 </><b>{{ .HEAD }}</b>";
-        #                 "type" = "git";
-        #             }
-        #             {
-        #                 "foreground" = "#ff0000";
-        #                 "style" = "diamond";
-        #                 "template" = "<#ff0000> \u25C9</>";
-        #                 "type" = "text";
-        #             }
-        #         ];
-        #             "type" = "prompt";
-        #     }
-        #     {
-        #         "alignment" = "left";
-        #         "newline" = true;
-        #         "segments" = [
-        #             {
-        #                 "foreground" = "#FFFFFF";
-        #                 "style" = "plain";
-        #                 "template" = ">";
-        #                 "type" = "text";
-        #             }
-        #         ];
-        #             "type" = "prompt";
-        #     }
-        # ];
-        #         "final_space" = true;
-        #         "version" = 2;
-        # };
   };
-
-
-# programs.starship = {
-#     enable = true;
-#
-#     enableBashIntegration = true;
-#     enableZshIntegration = true;
-#     enableNushellIntegration = true;
-#
-#     settings = {
-#       right_format = "$cmd_duration";
-#       
-#       directory = {
-#         format = "[ ](bold #89b4fa)[ $path ]($style)";
-#         style = "bold #b4befe";
-#       };
-#
-#       character = {
-#         success_symbol = "[ ](bold #89b4fa)[ ➜](bold green)";
-#         error_symbol = "[ ](bold #89b4fa)[ ➜](bold red)";
-#         # error_symbol = "[ ](bold #89dceb)[ ✗](bold red)";
-#       };
-#
-#       cmd_duration = {
-#         format = "[󰔛 $duration]($style)";
-#         disabled = false;
-#         style = "bg:none fg:#f9e2af";
-#         show_notifications = false;
-#         min_time_to_notify = 60000;
-#       };        
-#
-#       # palette = "catppuccin_mocha";
-#     }; 
-#   };
 
 
 }

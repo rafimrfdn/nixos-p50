@@ -12,7 +12,6 @@
    ./tmux/default.nix
    ./gtk/default.nix
    ./kitty/default.nix
-   ./neovim/default.nix
   ];
 
   # Enable Home Manager Packages
@@ -39,6 +38,7 @@
         neofetch
         # neovim
         networkmanagerapplet
+        nodejs_23
         ntfs3g
         pavucontrol
         pcmanfm
