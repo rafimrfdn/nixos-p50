@@ -62,7 +62,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.nix = import ./hosts/nixhost/home.nix;
-          home-manager.backupFileExtension = "bak2";
+          home-manager.backupFileExtension = "bak3";
         }
       ];
     };
