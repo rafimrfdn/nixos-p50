@@ -36,9 +36,8 @@
 
         luajit
         neofetch
-        # neovim
+        neovim
         networkmanagerapplet
-        nodejs_23
         ntfs3g
         pavucontrol
         pcmanfm
@@ -50,6 +49,7 @@
         rclone-browser
         rofi-wayland
         scrot
+
 
         svp
         xfce.thunar
@@ -74,20 +74,24 @@
         sqlitebrowser
         rlwrap #so I can navigate using arrow key when enter to sqlite console. launch sqlite with command "rlwrap sqlite3"
 
+        # javascript runtime
+        deno
+        nodejs_23
+
         #themes
-        qogir-theme
-        arc-theme
-        nordic
+        # qogir-theme
+        # arc-theme
+        # nordic
         whitesur-gtk-theme
 
         #icon themes
-        # papirus-icon-theme
-        qogir-icon-theme
-        whitesur-icon-theme
-        pop-icon-theme
-        dracula-icon-theme
-        fluent-icon-theme
-        marwaita-icons #only can find on the unstable branch
+        papirus-icon-theme
+        # qogir-icon-theme
+        # whitesur-icon-theme
+        # pop-icon-theme
+        # dracula-icon-theme
+        # fluent-icon-theme
+        # marwaita-icons #only can find on the unstable branch
 
         swaybg  #for background and wallpaper switch script
         wl-clipboard # I need this also for screenshot

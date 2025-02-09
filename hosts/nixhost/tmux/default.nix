@@ -10,7 +10,7 @@
       pkgs.tmuxPlugins.nord
       pkgs.tmuxPlugins.yank
       pkgs.tmuxPlugins.sensible
-      pkgs.tmuxPlugins.resurrect
+      # pkgs.tmuxPlugins.resurrect
       pkgs.tmuxPlugins.continuum
     ];
     extraConfig = "

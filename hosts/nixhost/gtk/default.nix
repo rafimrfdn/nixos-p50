@@ -49,8 +49,8 @@ dconf = {
   # gtk.theme.package = pkgs.whitesur-gtk-theme;
   gtk.theme.name = "WhiteSur-Dark" ;
 
-  # gtk.iconTheme.name = "Papirus";
-  gtk.iconTheme.name = "Marwaita-Dark-Blue";
+  gtk.iconTheme.name = "Papirus";
+  # gtk.iconTheme.name = "Marwaita-Dark-Blue";
   # gtk.iconTheme.package = pkgs.dracula-icon-theme;
   # gtk.iconTheme.name = "Dracula";
   

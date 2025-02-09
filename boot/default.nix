@@ -5,18 +5,21 @@
 {
     boot = {
         loader = {    
-            systemd-boot.enable = true;
-            systemd-boot.editor = false;
-            systemd-boot.configurationLimit = 10;
+            # systemd-boot.enable = false;
+            # systemd-boot.editor = false;
+            # systemd-boot.configurationLimit = 10;
             efi.canTouchEfiVariables = true;
             efi.efiSysMountPoint = "/boot/efi";
-            # grub = {
-            #     enable = true;
-            #     device = "/dev/sda";
-            #     copyKernels = true;
-            #     # useOSProber = false;
-            #     splashImage = null;
-            # };
+            grub = {
+                enable = true;
+                # device = "/dev/sda";
+                device = "nodev";
+                copyKernels = true;
+                efiSupport = true;
+                # useOSProber = false;
+                splashImage = null;
+                useOSProber = true;
+            };
             timeout = 0;
             ## after rebuild: please run this two line of code, 
             ## so the timeout will reset:
