@@ -14,13 +14,42 @@
                 enable = true;
                 # device = "/dev/sda";
                 device = "nodev";
+                useOSProber = false;
                 copyKernels = true;
                 efiSupport = true;
                 # useOSProber = false;
                 splashImage = null;
-                useOSProber = true;
+                # default = "Arch Linux (on /dev/sda4)";
+                # extraEntries = ''
+                #      menuentry "FreeBSD 14.2" {
+                #             insmod ufs2
+                #             set root=(hd0,gpt5)
+                #             chainloader +1
+                #      }
+                # '';
+                extraEntries = ''
+                  menuentry "Arch Linux" {
+                       insmod ext2
+                       search --no-floppy --fs-uuid --set=root 95f9519a-f49c-4953-a8db-36609a505c07
+                       linux /boot/vmlinuz-linux root=UUID=95f9519a-f49c-4953-a8db-36609a505c07 rw
+                       initrd /boot/initramfs-linux.img
+                  }
+                  menuentry "FreeBSD" {
+                      insmod ufs2
+                      search --no-floppy --fs-uuid --set=root 67ce02dda9705f77
+                      chainloader /boot/loader.efi
+                  }
+                  '';
             };
-            timeout = 0;
+            timeout = 5;
+            # grub.menuEntries = [
+            #   {
+            #     title = "FreeBSD";
+            #     linux = "/boot/loader/entries/freebsd.conf";
+            #     initrd = "/boot/loader/entries/initramfs.img";
+            #     options = "root=UUID=67cc5e8db0313f24";
+            #   }
+            # ];
             ## after rebuild: please run this two line of code, 
             ## so the timeout will reset:
             # sudo bootctl set-default ""
