@@ -36,7 +36,7 @@
                   }
                   menuentry "FreeBSD" {
                       insmod ufs2
-                      search --no-floppy --fs-uuid --set=root 67ce02dda9705f77
+                      search --no-floppy --fs-uuid --set=root 67d0a366af5a5007
                       chainloader /boot/loader.efi
                   }
                   '';
