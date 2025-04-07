@@ -1,3 +1,0 @@
-# Onivim-NixOS
-
-WIP

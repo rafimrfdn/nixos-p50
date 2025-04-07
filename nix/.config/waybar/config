@@ -1,0 +1,225 @@
+[
+  {
+    "backlight": {
+      "device": "intel_backlight",
+      "format": "{icon} {percent}%",
+      "format-icons": [
+        "  ",
+        "  ",
+        "  ",
+        "  "
+      ],
+      "on-scroll-down": "light -U 5",
+      "on-scroll-up": "light -A 5",
+      "scroll-step": 2
+    },
+    "battery": {
+      "format": "{icon} {capacity}%",
+      "format-charging": " {capacity}%",
+      "format-full": "{icon} {capacity}%",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "interval": 10,
+      "states": {
+        "critical": 10,
+        "warning": 20
+      },
+      "tooltip": false
+    },
+    "clock": {
+      "actions": {
+        "on-click-backward": "tz_down",
+        "on-click-forward": "tz_up",
+        "on-click-right": "mode",
+        "on-scroll-down": "shift_down",
+        "on-scroll-up": "shift_up"
+      },
+      "calendar": {
+        "format": {
+          "days": "<span color='#ecc6d9'><b>{}</b></span>",
+          "months": "<span color='#ffead3'><b>{}</b></span>",
+          "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+          "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+          "weeks": "<span color='#99ffdd'><b>W{}</b></span>"
+        },
+        "mode": "year",
+        "mode-mon-col": 3,
+        "on-click-right": "mode",
+        "on-scroll": 1,
+        "weeks-pos": "right"
+      },
+      "format": "{:%H:%M}  ",
+      "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+    "cpu": {
+      "format": "  {usage}%",
+      "interval": 1
+    },
+    "custom/borderleft": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/borderright": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/cava-internal": {
+      "exec": "sleep 1s && cava-internal",
+      "tooltip": false
+    },
+    "custom/centerborderleft": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/centerborderright": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/launcher": {
+      "format": " ",
+      "on-click": "fuzzel",
+      "tooltip": false
+    },
+    "custom/powermenu": {
+      "format": "",
+      "on-click": "pkill wlogout || wlogout",
+      "tooltip": false
+    },
+    "custom/uptime": {
+      "exec": "uptime | awk '{print $3 }' | sed 's/,/ /'",
+      "format": "󱎴  {}",
+      "interval": 1,
+      "tooltip": false
+    },
+    "custom/wall": {
+      "format": " ﴔ ",
+      "on-click": "wallpaper_random",
+      "on-click-middle": "default_wall",
+      "on-click-right": "killall dynamic_wallpaper || dynamic_wallpaper &",
+      "tooltip": false
+    },
+    "height": 10,
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9"
+      },
+      "on-click": "activate",
+      "sort-by-number": true
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      },
+      "tooltip": false
+    },
+    "layer": "top",
+    "memory": {
+      "format": "  {percentage}%",
+      "interval": 1,
+      "states": {
+        "warning": 85
+      }
+    },
+    "modules-center": [],
+    "modules-left": [
+      "custom/launcher",
+      "hyprland/workspaces",
+      "sway/workspaces",
+      "niri/workspaces",
+      "sway/window"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "backlight",
+      "memory",
+      "cpu",
+      "custom/uptime",
+      "temperature",
+      "battery",
+      "clock",
+      "tray",
+      "custom/powermenu"
+    ],
+    "network": {
+      "format-disconnected": "說 Disconnected",
+      "format-ethernet": "  {ifname} ({ipaddr})",
+      "format-linked": "說 {essid} (No IP)",
+      "format-wifi": "說 {essid}",
+      "interval": 1,
+      "tooltip": false
+    },
+    "position": "bottom",
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-icons": {
+        "default": [
+          "  ",
+          "  ",
+          "  "
+        ],
+        "headphones": ""
+      },
+      "format-muted": "婢 Muted",
+      "on-click": "pamixer -t",
+      "scroll-step": 1,
+      "tooltip": false
+    },
+    "sway/window": {
+      "format": "   {title}",
+      "max-length": 50,
+      "rewrite": {
+        "(.*) - Mozilla Firefox": "🌎 $1",
+        "(.*) - vim": " $1",
+        "(.*) - zsh": " [$1]"
+      }
+    },
+    "sway/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "active": "",
+        "default": "",
+        "urgent": ""
+      },
+      "on-click": "activate",
+      "sort-by-number": true
+    },
+    "temperature": {
+      "format": " {temperatureC}°C",
+      "tooltip": false
+    },
+    "tray": {
+      "icon-size": 15,
+      "spacing": 5
+    }
+  }
+]

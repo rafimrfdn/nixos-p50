@@ -1,167 +1,47 @@
-# Thinkpad P50 Flake
+# Nixos Configs
 
-![](./screenshot-hyprland.jpg)
+![nixos+niri window manager](./screenshot-niri.png)
 
-This is my system configuration for Thinkpad P50.
+## current defaults
+ - WM: Niri
+ - Bar: Waybar
+ - Greeter: ly
+ - Text Editor: Nvim
+ - Browser: Firefox
+ - File manager: Nautilus
 
-> If you create use this repo, make sure to change everything inside `hardware-configuratin.nix` as your system created. Because if not, you will mess up your system, and maybe will not boot.
+# Other Configs
 
+  All other program configs are found in the /nix/.config folder 
 
-## Folder structure
+> This repo do not use **nixos home-manager**, because create a config app that is sometimes painful. So let's manually copy those config folder to the home.
 
-```
-~/.dotfiles
-.
-├── apache
-│   └── default.nix
-├── configuration.nix
-├── flake.lock
-├── flake.nix
-├── greetd
-│   └── default.nix
-├── hardware-configuration.nix
-├── home
-│   ├── emacs
-│   ├── gtk
-│   ├── home.nix
-│   ├── hyprland
-│   ├── mpv
-│   ├── neovim
-│   ├── st
-│   ├── sway
-│   ├── kitty
-│   ├── zsh
-│   ├── tmux
-│   └── waybar
-├── README.md
-└── screenshot-hyprland.jpg
-```
+# Things you should change
 
+## hardware-configuration
 
-## How to create system configuration for flakes? 
+> If you create use this repo, make sure to change everything inside `hardware-configuratin.nix` as your system created. Copy your own hardware-configuration file. Because if not, you will mess up your system, and maybe will not boot.
 
-1. Create a directory called `~/.dotfiles` then cd into this folder.
-2. Copy `/etc/nixos/configuration.nix` and `/etc/nixos/hardware-configuration.nix` in to `.dotfiles` folder we created before.
-```bash
-cd .dotfiles
-cp /etc/nixos/configuration.nix .
-cp /etc/nixos/hardware-configuration.nix .
-```
+### Check configs in /modules/user.nix
 
-3. Create a file called `flake.nix` then define the system configuration in it.
-
-```nix
-{
-  description = "Thinkpad P50 flake";
-
-  inputs = {
-    # I use nixos unstable channel
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-  };
-
-  outputs = { self,nixpkgs, ...}: 
-  let 
-    lib = nixpkgs.lib;
-  in
-    {
-    nixosConfigurations = {
-    # nixhost is my hostname, make sure you change it.
-      nixhost = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./configuration.nix ];
-      };
-    };
-  };
-}
+consider to change username and hostname, I use this:
 
 ```
-4. To perform nixos-rebuild system add `--flakes` command and add `.` (dot) at the end of line. `sudo nixos-rebuild switch --flake .`
-
-## How to create home manager config for flakes?
-
-1. Make sure you have install home manager first, choose [Stand alone installation](https://nix-community.github.io/home-manager/index.html#sec-install-standalone)
-1. Once you setup home-manager, copy `~/.config/home-manager/home.nix` into `~/.dotfiles` folder that just created
-1. Edit the `flake.nix` file like this:
-
-```nix
-{
-  description = "Thinkpad P50 flake";
-
-  inputs = {
-    # I use nixos unstable channel
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    # I want to use branch master, which is default in home-manager, which will profide the latest app or the unstable version app
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = { self,nixpkgs, home-manager, ...}: 
-  let 
-    lib = nixpkgs.lib;
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    nixosConfigurations = {
-    # nixhost is my hostname
-      nixhost = lib.nixosSystem {
-        inherit system; 
-        modules = [ ./configuration.nix ];
-      };
-    };
-    homeConfigurations = {
-    # nix is my user name, make sure to change this
-      nix = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs; 
-        modules = [ ./home/home.nix ];
-      };
-    };
-
-  };
-}
-
+username: nix
+hostname: nixhost
 ```
 
-## How to use this flake repo?
-
-> Make sure to install Install home manager fist
-
-
-1. Clone it.
-1. Change the `hardware-configuration.nix` as your system created.
-1. Rebuild the system with flake command : `sudo nixos-rebuild switch --flake .`
-1. Rebuild the home-manager : `home-manager switch --flake .`
-1. Wait till it finish.
-1. See the generations `nix-env --list-generations --profile /nix/var/nix/profiles/system`
-
-## Regenerate home-manager
-run this command:
+# Perform rebuild using this flake
 
 ```
-nix run home-manager/master -- init
+cd to this flake folder, then run:
+
+sudo nixos-rebuild switch --flake .
 ```
 
-> If you got error when build home-manager, run this : `sudo chown nix flake.lock` and `sudo chgrp users flake.lock`.
+To perform nixos-rebuild system add `--flakes` command and add `.` (dot) at the end of line. `sudo nixos-rebuild switch --flake .`
 
-## How to update?
+# Perform update
 
-Now your system configuration is setup by flakes.
-
-Every time you want to update, first go to this `.dotfiles` folder then update the system with this command:
 1. `nix flake update`
 1. `sudo nixos-rebuild switch --flake .`
-
-## Tips
-
-Now every time you want to edit the system config or add package into home-manager, just go to `~/.dotfiles` folder then edit the files.
-
-> Never touch the `hardware-configuration.nix` files if you don't know what to do.
-
-If you got some error message like **warning: Git tree '/home/ is dirty**, don't worry. It's because you have integrated git in this .dotfile folder. 
-
-To solve this, perform `git status`, `git add .`, `git commit -am "message"`, then switch to new configuration.
-
-
-Big thanks to : [LibrePhoenix](https://www.youtube.com/watch?v=ACybVzRvDhs) for creating the nixos flake video content for novice like me.
-
-
-
